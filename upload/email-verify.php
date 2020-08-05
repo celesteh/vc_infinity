@@ -217,7 +217,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                 <input type="password" name="confirm_password" class="form-control">
                 <span class="help-block"><?php echo $confirm_password_err; ?></span>
             </div>
-            <input name="id" type="hidden" value="<?php echo $id; ?>" />
+            <input name="id" type="hidden" value="<?php echo $userid; ?>" />
             <input name="hash" type="hidden" value="<?php echo $hash; ?>" />  
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
