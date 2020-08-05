@@ -20,14 +20,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
     // Check if username is empty
     if(empty(trim($_POST["username"]))){
-        $username_err = "Please enter username.";
+        $username_err = _("Please enter username.");
     } else{
         $username = trim($_POST["username"]);
     }
     
     // Check if password is empty
     if(empty(trim($_POST["password"]))){
-        $password_err = "Please enter your password.";
+        $password_err = _("Please enter your password.");
     } else{
         $password = trim($_POST["password"]);
     }
@@ -73,15 +73,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = "The password you entered was not valid.";
+                            $password_err = _("The password you entered was not valid.");
                         }
                     }
                 } else{
                     // Display an error message if username doesn't exist
-                    $username_err = "No account found with that username.";
+                    $username_err = _("No account found with that username.");
                 }
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo _("Oops! Something went wrong. Please try again later.");
             }
 
             // Close statement

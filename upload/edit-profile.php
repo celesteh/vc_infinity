@@ -31,27 +31,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
 		$renamed = TRUE;
 		$_SESSION["realname"] = $new_name;
-		$name_status = "Name updated";
+		$name_status = _("Name updated");
 	    }
 	}
     }
 
     //Validate new password
     if(empty(trim($_POST["new_password"]))){
-        $new_password_err = "Please enter the new password.";     
+        $new_password_err = _("Please enter the new password.");     
     } elseif(strlen(trim($_POST["new_password"])) < 6){
-        $new_password_err = "Password must have atleast 6 characters.";
+        $new_password_err = _("Password must have atleast 6 characters.");
     } else{
         $new_password = trim($_POST["new_password"]);
     }
     
     // Validate confirm password
     if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Please confirm the password.";
+        $confirm_password_err = _("Please confirm the password.");
     } else{
         $confirm_password = trim($_POST["confirm_password"]);
         if(empty($new_password_err) && ($new_password != $confirm_password)){
-            $confirm_password_err = "Password did not match.";
+            $confirm_password_err = _("Password did not match.");
         }
     }
         
@@ -76,7 +76,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 header("location: login.php");
                 exit();
             } else{
-                echo "Oops! Something went wrong. Please try again later.";
+                echo _("Oops! Something went wrong. Please try again later.");
             }
 
             // Close statement
@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Cancel</a>
+                <a class="btn btn-link" href="welcome.php">Go Back</a>
             </div>
         </form>
     </div>    
