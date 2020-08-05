@@ -40,7 +40,7 @@ function verify_user($fid, $fhash){
     }
 
     if (empty($fhash)){
-        $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
+        $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you. [Empty]");
     }
 
     if ((empty($iderror) && empty($hasherror))){
@@ -71,7 +71,7 @@ function verify_user($fid, $fhash){
                                 // we can show the password change form
                                 $success = True;
                             } else {
-                                $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
+                                $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you. [Wrong]");
                                 $success = false;
                             }
                         }
