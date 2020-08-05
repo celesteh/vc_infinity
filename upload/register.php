@@ -212,7 +212,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                        $sql = "SELECT * FROM `organisations` WHERE 1 ";
                         if($stmt = $pdo->prepare($sql)){
                             if($stmt->execute()){
-                                if($row = $stmt->fetch()){
+                                while($row = $stmt->fetch()){
                                     $orgcode = $row["orgcode"];
                                     $orgname = $row["orgname"];
 
