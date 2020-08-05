@@ -53,9 +53,11 @@ function password_reset($fuid, $pdo){
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $stmt->bindParam(":tpass", $param_password, PDO::PARAM_STR);
-        $stmt->bindParam(":id", $fid, PDO::PARAM_INT);
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
         
         $param_password = $hash;
+        $param_id = (int)$fuid;
+        
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Password updated successfully. Destroy the session, and redirect to login page
