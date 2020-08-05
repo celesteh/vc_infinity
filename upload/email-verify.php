@@ -68,7 +68,8 @@ function verify_user($fuid, $fhash){
                             $notrequestederror = "Password (re)set request not sent";
                         } else {
 
-                            if(password_verify($fhash, $hashed_password)){
+                            //if(password_verify($fhash, $hashed_password)){
+                            if ($fhash == $hashed_password){
                                 // we can show the password change form
                                 $success = True;
                             } else {
