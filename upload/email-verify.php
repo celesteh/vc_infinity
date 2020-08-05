@@ -198,13 +198,13 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     </style>
 </head>
 <body>
-    <div class="wrapper <?php echo ($sucess) ? 'invisible' : ''; ?>">
+    <div class="wrapper <?php echo ($success) ? 'invisible' : ''; ?>">
         <h2>Error</h2>
         <p><?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?>
-            <?php echo $notrequestederror ?> <?php echo $success ?>
+            <?php echo $notrequestederror ?> 
         </p>
     </div>
-    <div class="wrapper <?php echo ($sucess) ? '' : 'invisible'; ?>"> 
+    <div class="wrapper <?php echo ($success) ? '' : 'invisible'; ?>"> 
         <h2>Set Password</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
