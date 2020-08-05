@@ -172,18 +172,18 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
-        div.hide {
-            visibility:hidden
+        div.invisible {
+            display:none
         }
 
     </style>
 </head>
 <body>
-    <div class="wrapper <?php echo ($sucess) ? 'hide' : ''; ?>">
-        <h2>Error<h2>
-        <?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?></p>
+    <div class="wrapper <?php echo ($sucess) ? 'invisible' : ''; ?>">
+        <h2>Error</h2>
+        <p><?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?></p>
     </div>
-    <div class="wrapper<?php echo ($sucess) ? '' : 'hide'; ?>"> "
+    <div class="wrapper <?php echo ($sucess) ? '' : 'invisible'; ?>"> 
         <h2>Set Password</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
