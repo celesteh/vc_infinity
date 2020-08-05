@@ -17,6 +17,8 @@ $password = $confirm_password = $email = "";
 $password_err = $confirm_password_err = "";
 $iderror = $hasherror = $unknownerror = $novalueserror = $notrequestederror = "";
 
+$username = "";
+
 $success = FALSE;
 
 // Define variables and initialize with empty values
@@ -32,6 +34,7 @@ function verify_user($fuid, $fhash){
     global $pdo;
     global $unknownerror;
     global $notrequestederror;
+    global $username;
 
 
     $success = FALSE;
@@ -46,7 +49,7 @@ function verify_user($fuid, $fhash){
 
     if ((empty($iderror) && empty($hasherror))){
 
-        $sql = "SELECT userid, temp_password FROM users WHERE userid = :userid";
+        $sql = "SELECT username, userid, temp_password FROM users WHERE userid = :userid";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -63,7 +66,6 @@ function verify_user($fuid, $fhash){
                         $id = $row["userid"];
                         $username = $row["username"];
                         $hashed_password = $row["temp_password"];
-                        $realname = $row["u_realname"];
                         
                         if ($hashed_password == ""){
                             $notrequestederror = "Password (re)set request not sent";
@@ -188,7 +190,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 <head>
     <meta charset="UTF-8">
     <title>Reset Password</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -208,6 +210,10 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     <div class="wrapper <?php echo ($success) ? '' : 'invisible'; ?>"> 
         <h2>Set Password</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+        <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" name="username" value="<?php echo $username ?>" readonly><br>
+            </div>
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                 <label>New Password</label>
                 <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">

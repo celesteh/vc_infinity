@@ -137,7 +137,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Edit Profile</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <link rel="stylesheet" href="bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
@@ -150,6 +150,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" id="username" name="username" value="<?php echo $_SESSION["username"]; ?>" readonly><br>
+            </div>
 	        <div class="form-group <?php echo (!empty($name_status)) ? 'has-error' : ''; ?>">
                 <label>Full Name</label>
                 <input type="text" name="realname" class="form-control" value="<?php echo $_SESSION["realname"]; ?>">
