@@ -10,7 +10,29 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
  
 // Include config file
 require_once "config.php";
- 
+
+
+// Get marketing preference
+$legacy_marketing = False;
+if(isset($_SESSION["marketing"])) {
+    $legacy_marketing = $_SESSION["marketing"];
+} else {
+    $sql = "SELECT u_can_contact FROM users WHERE userid = :id";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $_SESSION["id"], PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $legacy_marketing = $row["u_can_contact"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+}
+
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
@@ -19,7 +41,8 @@ $renamed = FALSE;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
- 	
+     
+    // Change name
     $new_name = trim($_POST["realname"]);
     if (($new_name != "") and ($new_name != $_SESSION["realname"])){
 	$sql = "UPDATE users SET u_realname = :newname WHERE userid = :id";
@@ -29,12 +52,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":id", $_SESSION["id"], PDO::PARAM_INT);
 
             if($stmt->execute()){
-		$renamed = TRUE;
-		$_SESSION["realname"] = $new_name;
-		$name_status = _("Name updated");
+		        $renamed = TRUE;
+		        $_SESSION["realname"] = $new_name;
+		        $name_status = _("Name updated");
+	        }
 	    }
-	}
     }
+
+    // Change Marketing
+    $marketing = isset($_POST['marketing']);
+    if($marketing != $legacy_marketing) {
+
+        // Prepare an update statement
+         $sql = "UPDATE users SET u_can_contact = :marketing WHERE id = :id";
+        
+         if($stmt = $pdo->prepare($sql)){
+            $stmt->bindParam(":marketing", $marketing, PDO::PARAM_BOOL);
+ 
+            if($stmt->execute()){
+                $_SESSION["marketing"] = $marketing;
+            }
+        }
+    }
+
 
     //Validate new password
     if(empty(trim($_POST["new_password"]))){
@@ -95,7 +135,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reset Password</title>
+    <title>Edit Profile</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
@@ -106,12 +146,28 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2>Update Profile</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
-	    <div class="form-group <?php echo (!empty($name_status)) ? 'has-error' : ''; ?>">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" id="username" name="username" value="<?php echo $_SESSION["username"]; ?>" readonly><br>
+	        <div class="form-group <?php echo (!empty($name_status)) ? 'has-error' : ''; ?>">
                 <label>Full Name</label>
                 <input type="text" name="realname" class="form-control" value="<?php echo $_SESSION["realname"]; ?>">
                 <span class="help-block"><?php echo $name_status; ?></span>
             </div>
+            <!-- Marketing -->
+            <div class="form-group">
+                <label>May we contact you about news and events around this project?</label>
+                <input name="marketing" type="checkbox" value="true" <?php echo $legacy_marketing ? 'checked' : ''; ?>>
+                <span class="help-block">We will never give your name or email address to third parties.</span>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <a class="btn btn-link" href="welcome.php">Go Back</a>
+            </div>
+        </form>
 
+        <h2>Change Password</h2>
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
             <div class="form-group <?php echo (!empty($new_password_err)) ? 'has-error' : ''; ?>">
                 <label>New Password</label>
                 <input type="password" name="new_password" class="form-control" value="<?php echo $new_password; ?>">

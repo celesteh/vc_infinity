@@ -1,6 +1,7 @@
 <?php
 // Include config file
 require_once "config.php";
+require_once "functions.php";
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = $email = "";
@@ -40,7 +41,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Validate real name
-    $realname = trim($_POST["username"]);
+    $realname = trim($_POST["realname"]);
     if(empty($realname)){
         // They don't need to give one if they don't want to
         $realname = "";
@@ -74,7 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $email = trim($_POST["email"]);
                     }
                 } else{
-		    $email = "";
+		            $email = "";
                     echo _("Oops! Something went wrong. Please try again later.");
                 }
 
@@ -90,7 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     }
 
-   
+    /*
     // Validate password
     if(empty(trim($_POST["password"]))){
         $password_err = _("Please enter a password.");     
@@ -109,6 +110,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $confirm_password_err = _("Password did not match.");
         }
     }
+    */
+    //$password = randomPassword();
 
     // Check captcha
     $captchaResult = trim($_POST["captchaResult"]);
@@ -127,24 +130,32 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, u_password, u_email, u_org, u_realname) VALUES (:username, :password, :email, :orgcode, :realname)";
+        $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact) VALUES (:username,  :email, :orgcode, :realname, :marketing)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
             $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
             $stmt->bindParam(":orgcode", $orgcode, PDO::PARAM_STR);
             $stmt->bindParam(":realname", $realname, PDO::PARAM_STR);
+            $stmt->bindParam(":marketing", $param_marketing, PDO::PARAM_BOOL);
             // Set parameters
             $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
             $param_email = $email;
+            $param_marketing = isset($_POST['marketing']);
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                // Redirect to login page
-                header("location: login.php");
+            
+                $uid = get_userid($username);
+                $url = password_reset($uid);
+
+                $body = "Thank you for registering. To confirm your account click here: " . $url;
+                $headers = "From: infinity@vocalconstructivists.com";
+
+                mail($email, "Welcome to Construncting Infinity", $body, $headers);
+                // Redirect to email page
+                header("location: check-email.html");
             } else{
                 echo _("Something went wrong. Please try again later.");
             }
@@ -192,17 +203,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+            <!-- Real name -->
+            <div class="form-group">
+                <label>Real Name</label>
+                <input type="text" name="realname" class="form-control" value="<?php echo $realname; ?>">
+            </div>
+            <!-- Contact permission -->
+
+            <!-- Passwords
+            <div class="form-group <?php //echo (!empty($password_err)) ? 'has-error' : ''; ?>">
 
                 <label>Password</label>
-                <input type="password" name="password" class="form-control" value="<?php echo $password; ?>">
-                <span class="help-block"><?php echo $password_err; ?></span>
+                <input type="password" name="password" class="form-control" value="<?php //echo $password; ?>">
+                <span class="help-block"><?php //echo $password_err; ?></span>
             </div>
-            <div class="form-group <?php echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php //echo (!empty($confirm_password_err)) ? 'has-error' : ''; ?>">
                 <label>Confirm Password</label>
-                <input type="password" name="confirm_password" class="form-control" value="<?php echo $confirm_password; ?>">
-                <span class="help-block"><?php echo $confirm_password_err; ?></span>
-            </div> <!-- Organisation -->
+                <input type="password" name="confirm_password" class="form-control" value="<?php //echo $confirm_password; ?>">
+                <span class="help-block"><?php //echo $confirm_password_err; ?></span>
+            </div> -->
+            <!-- Organisation -->
             <div class="form-group ">
                 <label>Group</label>
                 <select name="orgcode" id="orgcode">
@@ -221,7 +241,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 ?>
                 </select>
-            </div> <!-- Captcha -->
+            </div> 
+            <!-- Marketing -->
+            <div class="form-group">
+                <label>May we contact you about news and events around this project?</label>
+                <input name="marketing" type="checkbox" value="true">
+                <span class="help-block">We will never give your name or email address to third parties.</span>
+            </div>
+            
+            <!-- Captcha -->
             <div class="form-group <?php echo (!empty($captcha_err)) ? 'has-error' : ''; ?>">
                 <label>Prove you're a human: <?php echo $random_number1 . ' + ' . $random_number2 . ' = '; ?></label>
                 <input name="captchaResult" type="text" />

@@ -10,6 +10,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
  
 // Include config file
 require_once "config.php";
+require_once "functions.php";
  
 // Define variables and initialize with empty values
 $username = $password = "";
@@ -52,7 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id = $row["userid"];
                         $username = $row["username"];
                         $hashed_password = $row["u_password"];
-			$realname = $row["u_realname"];
+			            $realname = $row["u_realname"];
 
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -63,12 +64,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username; 
 
-			    if ( is_null($realname) or ($realname == "")) {
-				$realname = $username;
-			    }
+			                if ( is_null($realname) or ($realname == "")) {
+				                $realname = $username;
+			                }
 
-			    $_SESSION["realname"] = $realname;                           
-                            
+                             $_SESSION["realname"] = $realname;  
+                                           
+                             // if there was a temporary password, get rid of it
+                             clear_temp_password($id);
+
                             // Redirect user to welcome page
                             header("location: welcome.php");
                         } else{
@@ -103,6 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
+
     </style>
 </head>
 <body>
