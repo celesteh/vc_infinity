@@ -25,6 +25,13 @@ $new_password_err = $confirm_password_err = "";
 
 function verify_user($fid, $fhash){
 
+    // using globals is bad practice and should not be done. 
+    global $iderror;
+    global $hasherror;
+    global $pdo;
+    global $unknownerror;
+
+
     $success = FALSE;
 
     if (empty($fid)){
@@ -32,7 +39,7 @@ function verify_user($fid, $fhash){
     }
 
     if (empty($fhash)){
-        $hasherror = _("Please make sure you use the entire link sent to you.");
+        $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
     }
 
     if ((empty($iderror) && empty($hasherror))){
@@ -58,6 +65,9 @@ function verify_user($fid, $fhash){
                         if(password_verify($fhash, $hashed_password)){
                             // we can show the password change form
                             $success = True;
+                        } else {
+                            $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
+                            $success = false;
                         }
                     }
                 } else {
