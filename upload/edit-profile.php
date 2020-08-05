@@ -64,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if($marketing != $legacy_marketing) {
 
         // Prepare an update statement
-         $sql = "UPDATE users SET u_can_contact = :marketing WHERE id = :id";
+         $sql = "UPDATE users SET u_can_contact = :marketing WHERE userid = :id";
         
          if($stmt = $pdo->prepare($sql)){
             $stmt->bindParam(":marketing", $marketing, PDO::PARAM_BOOL);
@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before updating the database
     if(empty($new_password_err) && empty($confirm_password_err)){
         // Prepare an update statement
-        $sql = "UPDATE users SET password = :password WHERE id = :id";
+        $sql = "UPDATE users SET password = :password WHERE userid = :id";
         
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
