@@ -57,7 +57,7 @@ function password_reset($fuid, $pdo){
         
         $param_password = $hash;
         $param_id = (int)$fuid;
-        
+
         // Attempt to execute the prepared statement
         if($stmt->execute()){
             // Password updated successfully. Destroy the session, and redirect to login page
@@ -76,9 +76,15 @@ function password_reset($fuid, $pdo){
 }
 
 function clear_temp_password($fuid, $pdo) {
-    $sql = "UPDATE users SET temp_password = '' WHERE userid = :id";
+    $sql = "UPDATE users SET temp_password = '' WHERE userid = :userid";
         
     if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":userid", $param_userid, PDO::PARAM_STR);
+            
+        // Set parameters
+        $param_userid = (int)$fuid;
+
         if($stmt->execute()){}
 
         unset($fstmt);
