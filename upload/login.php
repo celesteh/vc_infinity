@@ -77,7 +77,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = _("The password you entered was not valid.");
+                            $password_err = _("The password you entered was not valid.\n" . $password . " " . $hashed_password);
                         }
                     }
                 } else{
