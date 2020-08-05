@@ -1,6 +1,6 @@
 <?php
 // Include config file
-require_once "config.php";
+//require_once "config.php";
 
 function randomPassword() {
     $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -13,11 +13,11 @@ function randomPassword() {
     return implode($pass); //turn the array into a string
 }
 
-function get_userid($fusername){
+function get_userid($fusername, $pdo){
 
     $id = "";
 
-    $sql = "SELECT userid, username, u_password u_realname FROM users WHERE username = :username";
+    $sql = "SELECT userid  FROM users WHERE username = :username";
         
     if($fstmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
@@ -41,7 +41,7 @@ function get_userid($fusername){
 
 }
 
-function password_reset($fuid){
+function password_reset($fuid, $pdo){
 
     $password = randomPassword();
     $hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
@@ -73,7 +73,7 @@ function password_reset($fuid){
     return $url;
 }
 
-function clear_temp_password($fuid) {
+function clear_temp_password($fuid, $pdo) {
     $sql = "UPDATE users SET temp_password = '' WHERE id = :id";
         
     if($stmt = $pdo->prepare($sql)){

@@ -147,8 +147,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
             
-                $uid = get_userid($username);
-                $url = password_reset($uid);
+                $uid = get_userid($username, $pdo);
+                $url = password_reset($uid, $pdo);
 
                 $body = "Thank you for registering. To confirm your account click here: " . $url;
                 $headers = "From: infinity@vocalconstructivists.com";
