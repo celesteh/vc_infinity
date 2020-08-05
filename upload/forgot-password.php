@@ -38,35 +38,33 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 if($stmt->rowCount() == 1){
-                    if($row = $fstmt->fetch()){
+                    if($row = $stmt->fetch()){
                         $uid = $row["userid"];
     
 
-                    $url = password_reset($uid, $pdo);
+                        $url = password_reset($uid, $pdo);
 
-                    $body = "You have requested a password change on your account. To reset it, click here:  " . $url;
-                    $headers = "From: infinity@vocalconstructivists.com";
+                        $body = "You have requested a password change on your account. To reset it, click here:  " . $url;
+                        $headers = "From: infinity@vocalconstructivists.com";
     
-                    mail($email, "Construncting Infinity password reset", $body, $headers);
+                        mail($email, "Construncting Infinity password reset", $body, $headers);
                     
                     }
-
-
                 }
             }
 
-                // Close statement
-                unset($stmt);
-            }
+            // Close statement
+            unset($stmt);
+        }
 
-            // Redirect to email page
-            header("location: check-email.html");
-        }
-        else {
-            // invalid address
-	        $email = "";
-	        $email_err = _("Please enter a valid email address.");
-        }
+        // Redirect to email page
+        header("location: check-email.html");
+    }
+    else {
+        // invalid address
+	    $email = "";
+	    $email_err = _("Please enter a valid email address.");
+    }
 
     }
 
