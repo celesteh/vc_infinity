@@ -107,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     } else {
 
         $novalueserror = _("Please check your email for a link to this page and be sure to include everything after the ?");
-        $sucess = false;
+        $success = false;
 
     }
 
