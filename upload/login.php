@@ -71,7 +71,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                              $_SESSION["realname"] = $realname;  
                                            
                              // if there was a temporary password, get rid of it
-                             clear_temp_password($id);
+                             clear_temp_password($id, $pdo);
 
                             // Redirect user to welcome page
                             header("location: welcome.php");

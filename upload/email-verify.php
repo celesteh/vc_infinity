@@ -133,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
                 // Attempt to execute the prepared statement
                 if($stmt->execute()){
                     // Password updated successfully. Destroy the session, and redirect to login page
-                    clear_temp_password($userid);
+                    clear_temp_password($userid, $pdo);
                     session_destroy();
                     header("location: login.php");
                     exit();
