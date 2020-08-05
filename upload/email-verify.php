@@ -201,7 +201,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     <div class="wrapper <?php echo ($sucess) ? 'invisible' : ''; ?>">
         <h2>Error</h2>
         <p><?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?>
-            <?php echo $notrequestederror ?> <?php echo $sucess ?>
+            <?php echo $notrequestederror ?> <?php echo $success ?>
         </p>
     </div>
     <div class="wrapper <?php echo ($sucess) ? '' : 'invisible'; ?>"> 
