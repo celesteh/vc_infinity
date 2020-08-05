@@ -14,7 +14,7 @@ require "config.php";
 // Define variables and initialize with empty values
 $password = $confirm_password = $email = "";
 $password_err = $confirm_password_err = "";
-$iderror = $hasherror = $unknownerror = $novalueserror = "";
+$iderror = $hasherror = $unknownerror = $novalueserror = $notrequestederror = "";
 
 $success = FALSE;
 
@@ -30,6 +30,7 @@ function verify_user($fid, $fhash){
     global $hasherror;
     global $pdo;
     global $unknownerror;
+    global $notrequestederror;
 
 
     $success = FALSE;
@@ -48,7 +49,7 @@ function verify_user($fid, $fhash){
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":useris", $userid, PDO::PARAM_STR);
+            $stmt->bindParam(":userid", $userid, PDO::PARAM_STR);
             
             // Set parameters
             
@@ -60,16 +61,21 @@ function verify_user($fid, $fhash){
                         $id = $row["userid"];
                         $username = $row["username"];
                         $hashed_password = $row["temp_password"];
-			            $realname = $row["u_realname"];
-
-                        if(password_verify($fhash, $hashed_password)){
-                            // we can show the password change form
-                            $success = True;
+                        $realname = $row["u_realname"];
+                        
+                        if ($hashed_password == ""){
+                            $notrequestederror = "Password (re)set request not sent";
                         } else {
-                            $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
-                            $success = false;
+
+                            if(password_verify($fhash, $hashed_password)){
+                                // we can show the password change form
+                                $success = True;
+                            } else {
+                                $hasherror = _("Please make sure you use the entire link sent to you from the most recent email sent to you.");
+                                $success = false;
+                            }
                         }
-                    }
+                    }   
                 } else {
                     $unknownerror = _("Please make sure you use the entire link sent to you.");
                 }
@@ -191,7 +197,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 <body>
     <div class="wrapper <?php echo ($sucess) ? 'invisible' : ''; ?>">
         <h2>Error</h2>
-        <p><?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?></p>
+        <p><?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?>
+            <?php echo $notrequestederror ?>
+        </p>
     </div>
     <div class="wrapper <?php echo ($sucess) ? '' : 'invisible'; ?>"> 
         <h2>Set Password</h2>
