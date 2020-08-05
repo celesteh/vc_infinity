@@ -48,11 +48,11 @@ function password_reset($fuid, $pdo){
 
     $url = "Something went wrong";
 
-    $sql = "UPDATE users SET temp_password = :password WHERE id = :id";
+    $sql = "UPDATE users SET temp_password = :tpass WHERE id = :id";
         
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":password", $hash, PDO::PARAM_STR);
+        $stmt->bindParam(":tpass", $hash, PDO::PARAM_STR);
         $stmt->bindParam(":id", $fid, PDO::PARAM_INT);
         
         
