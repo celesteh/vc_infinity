@@ -10,6 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
  
 // Include config file
 require_once "config.php";
+require_once "functions.php";
 
 
 // Get marketing preference
