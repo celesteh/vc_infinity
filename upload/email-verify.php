@@ -23,7 +23,7 @@ $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 
 
-function verify_user($fid, $fhash){
+function verify_user($fuid, $fhash){
 
     // using globals is bad practice and should not be done. 
     global $iderror;
@@ -35,7 +35,7 @@ function verify_user($fid, $fhash){
 
     $success = FALSE;
 
-    if (empty($fid)){
+    if (empty($fuid)){
         $iderror = _("Please check your email for a link.");
     }
 
@@ -49,9 +49,10 @@ function verify_user($fid, $fhash){
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":userid", $userid, PDO::PARAM_STR);
+            $stmt->bindParam(":userid", $param_userid, PDO::PARAM_STR);
             
             // Set parameters
+            $param_userid = (int)$fuid;
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
@@ -149,10 +150,11 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
             if($stmt = $pdo->prepare($sql)){
                 // Bind variables to the prepared statement as parameters
                 $stmt->bindParam(":password", $param_password, PDO::PARAM_STR);
-                $stmt->bindParam(":id", $userid, PDO::PARAM_INT);
+                $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
                 
                 // Set parameters
                 $param_password = password_hash($new_password, PASSWORD_DEFAULT);
+                $param_id = (int)$userid;
                 //$param_id = $_SESSION["id"];
                 
                 // Attempt to execute the prepared statement
