@@ -217,7 +217,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     $orgname = $row["orgname"];
 
                                     echo "<option value='" . $orgcode . "'>" . $orgname . "</option>";
-                            }   
+                            }  
+                        } 
                     }
                 ?>
                 </select>
