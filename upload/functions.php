@@ -66,7 +66,7 @@ function password_reset($fuid, $pdo){
                 "hash" => $hash
             );
 
-            $url = http_build_query($data);
+            $url = "https://infinity.vocalconstructivists.com/upload/email-verify.php?" . http_build_query($data);
         }
         unset($fstmt);
     }

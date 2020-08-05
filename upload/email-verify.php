@@ -14,7 +14,7 @@ require_once "config.php";
 // Define variables and initialize with empty values
 $password = $confirm_password = $email = "";
 $password_err = $confirm_password_err = "";
-$iderror = $hasherror = $unknownerror = "";
+$iderror = $hasherror = $unknownerror = $novalueserror = "";
 
 $success = FALSE;
 
@@ -79,10 +79,19 @@ function verify_user($fid, $fhash){
 if($_SERVER["REQUEST_METHOD"] == "GET"){
  
     // check referral
-    $userid = trim($_GET["id"]);
-    $hash = trim($_GET["hash"]);
 
-    $success = verify_user($userid, $hash);
+    if (isset($_GET["id"]) && isset($_GET["hash"])) {
+        $userid = trim($_GET["id"]);
+        $hash = trim($_GET["hash"]);
+
+
+        $success = verify_user($userid, $hash);
+    } else {
+
+        $novalueserror = _("Please check your email for a link to this page and be sure to include everything after the ?");
+        $sucess = false;
+
+    }
 
     
     // Close connection
@@ -153,7 +162,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 }
 ?>
 
-?>
  
 <!DOCTYPE html>
 <html lang="en">
@@ -173,7 +181,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 <body>
     <div class="wrapper <?php echo ($sucess) ? 'hide' : ''; ?>">
         <h2>Error<h2>
-        <?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?></p>
+        <?php echo $iderror ?> <?php echo $hasherror ?> <?php echo $unknownerror ?> <?php echo $novalueserror ?></p>
     </div>
     <div class="wrapper<?php echo ($sucess) ? '' : 'hide'; ?>"> "
         <h2>Set Password</h2>
