@@ -156,7 +156,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     
     // Close connection
     unset($pdo);
-} else {
+} 
 
     // Create captcha
     $min_number = 1;
@@ -164,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 	$random_number1 = mt_rand($min_number, $max_number);
 	$random_number2 = mt_rand($min_number, $max_number);
-}
+
 ?>
  
 <!DOCTYPE html>
