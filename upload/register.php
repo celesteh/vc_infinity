@@ -121,7 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Organisation
-    $orgcode = trim($_POST[]("orgcode"));
+    $orgcode = trim($_POST["orgcode"]);
     
     // Check input errors before inserting in database
     if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err)){
