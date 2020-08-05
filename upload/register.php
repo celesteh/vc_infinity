@@ -154,8 +154,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
     
-    // Close connection
-    unset($pdo);
 } 
 
     // Create captcha
@@ -219,6 +217,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     echo "<option value='" . $orgcode . "'>" . $orgname . "</option>";
                             }  
                         } 
+                        unset($stmt);
                     }
                 ?>
                 </select>
@@ -239,3 +238,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>    
 </body>
 </html>
+<?php 
+    // Close connection
+    unset($pdo);
+?>
