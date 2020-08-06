@@ -11,6 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 if(!isset($_SESSION["powerlevel"])){
+    echo $_SESSION["id"];
     $_SESSION["powerlevel"] = get_power_level_for_user($_SESSION["id"], $pdo);
 }
 echo $_SESSION["powerlevel"];
