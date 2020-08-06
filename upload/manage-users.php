@@ -33,6 +33,7 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
     <div class="wrapper">
         <h2>Manage Users</h2>
         <p>Change user roles.</p>
+        <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
         <?php        
@@ -71,9 +72,12 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
 
 
                         $usrstr = <<< ENDUSR
-                        <div class="form-group">
-                            <label>$realname, $orgname</label>
-                            <select name="$userid" id="$userid">
+                        <div class="row">
+                            <div class="col-25">                    
+                                <label>$realname, $orgname</label>
+                            </div>
+                            <div class="col-75">
+                                <select name="$userid" id="$userid">
 ENDUSR;
                         foreach($role_arr as $rcode => $rname) {
                             if ($rcode == $role_code){
@@ -85,18 +89,19 @@ ENDUSR;
                             $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option>\n';  
                             }
                         }
-                        $usrstr = $usrstr ."</select>\n</div>";
+                        $usrstr = $usrstr ."</select>\n</div>\n</div>\n";
                         echo $usrstr;
                     }
                 }
 
 
                 ?>
-            <div class="form-group">
+            <div class="row">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
             </form>
+        </div>
     </div>    
 </body>
 </html>
