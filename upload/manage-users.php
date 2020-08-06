@@ -12,7 +12,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
-    header("localtion: welcome.php");
+    header("localtion: index.php");
 }
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -21,7 +21,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $my_powerlevel = get_power_level_for_user($_SESSION["id"], $pdo);
     $_SESSION["powerlevel"] = $my_powerlevel;
     if ($_SESSION["powerlevel"]< 80){
-        header("localtion: welcome.php");
+        header("localtion: index.php");
     }
 
     // step through users looking for changes
@@ -163,7 +163,7 @@ ENDUSR;
             </div>
             </form>
         </div>
-        <p><a href="welcome.php">Go back</a></p>
+        <p><a href="index.php">Go back</a></p>
     </div>    
 </body>
 </html>
