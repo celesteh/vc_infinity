@@ -164,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Go Back</a>
+                <a class="btn btn-link" href="index.php">Go Back</a>
             </div>
   
         <h2>Change Password</h2>
@@ -180,7 +180,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
-                <a class="btn btn-link" href="welcome.php">Go Back</a>
+                <a class="btn btn-link" href="index.php">Go Back</a>
             </div>
         </form>
     </div>    
