@@ -104,6 +104,7 @@ function get_power_level($rolecode, $pdo){
             if($stmt->rowCount() == 1){
                 if($row = $stmt->fetch()){
                     $powerlevel = $row["role_power_level"];
+                    echo $powerlevel;
                 }
             }
         }
