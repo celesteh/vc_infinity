@@ -17,7 +17,7 @@ $email = $email_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    $success = true;
+    $success = false;
     $uemail = $uid = "";
 
     if(!empty(trim($_POST["email"]))){
@@ -91,6 +91,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                     } else {
                         $username_err = _("No such user.");
+                        $success = false;
                     }
                 }
     
