@@ -22,6 +22,8 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
     <meta charset="UTF-8">
     <title>Manage Users</title>
     <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="infinity.css">
+
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
