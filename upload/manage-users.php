@@ -57,25 +57,30 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
                             }
                         }
 
+            $colours = array("white", "grey");
+            $index =0;
+            $size = sizeof($colours);
+
             $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
-                    echo $stmt->rowCount();
-                    while($row = $stmt->fetch()){
-                        echo "loop";
+                     while($row = $stmt->fetch()){
+ 
+
                         $userid = $row["userid"];
                         $realname = $row["u_realname"];
                         $orgcode = $row["u_org"];
                         $orgname = $orgs[$orgcode];
                         $role_code = $row["u_rolecode"];
 
-                        echo "data";
-
-
+ 
+                        // manage colours rotating
+                        $index = ($index + 1) % $size;
+                        $colour = $colours[$index];
 
                         $usrstr = <<< ENDUSR
                         <div class="row">
-                            <div class="col-50l">                    
+                            <div class="col-50l $colour">                    
                                 <label>$realname, $orgname</label>
                             </div>
                             <div class="col-50r">
@@ -90,12 +95,12 @@ ENDUSR;
                             }
                             $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option>\n';  
                             }
-                        }
+                        
                         $usrstr = $usrstr ."</select>\n</div>\n</div>\n";
                         echo $usrstr;
                     }
                 }
-
+            }
 
                 ?>
             <div class="row">

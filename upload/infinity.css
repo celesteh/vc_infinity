@@ -63,6 +63,14 @@ input[type=submit]:hover {
     margin-top: 6px;
   }
 
+.white {
+    background-color: white;
+}
+
+.grey {
+    background-color: lightgrey;
+}
+
 
 /* Clear floats after the columns */
 .row:after {
