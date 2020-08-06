@@ -15,7 +15,11 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
     header("location: index.php");
 }
 
+$update_msg = "";
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    $success = TRUE;
 
     // double check power level
     $my_powerlevel = get_power_level_for_user($_SESSION["id"], $pdo);
@@ -46,15 +50,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $ustmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
                         $ustmt->bindParam(":newrole", $newrole, PDO::PARAM_STR);
                         $param_userid = (int) $uid;
-                        if($ustmt->execute()){}
+                        if($ustmt->execute()){}else{$success = false;}
                         unset($ustmt);
                     }
                 }
             }
-        }
+        } else { $success = false; }
         unset($stmt);
     }
 
+    if ($success){
+        $update_msg = _("Updated successfully!");
+    } else {
+        $update_msg = _("Update failed. Try again later.");
+    }
 
 }
 
@@ -80,6 +89,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2>Manage Users</h2>
         <h3>Change user roles.</h3>
+
+        <div class="form-group <?php echo (!empty($update_msg)) ? 'has-error' : ''; ?>">
+                <span class="help-block"><?php echo $update_msg; ?></span>
+            </div>
+
+
+
+
         <p>Users - can log in, but can't do anyhting else.</p>
         <p>Musicians - can submit audio.</p>
         <p>Engineers - can modify audio others have submitted.</p>

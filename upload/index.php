@@ -39,22 +39,25 @@ if(!isset($_SESSION["powerlevel"])){
     }
     ?>
     <nav>
+        <ul>
+            <li><a href="../">View Site</a></li>
         <?php
          $powerlevel = $_SESSION["powerlevel"];
         
         if ($powerlevel >= 80){
-            echo '<p><a href="manage-users.php">Manage and approve users.</a></p>\n';
+            echo '<li><a href="manage-users.php">Manage and approve users.</a></li>';
         }
         if ($powerlevel >= 40) {
-            echo '<p><a href="edit-audio.php">Edit audio.</a></p>\n';
+            echo '<li><a href="edit-audio.php">Edit audio.</a></li>';
         }
         if ($powerlevel >= 20) {
-            echo '<p><a href="submit.php">Submit audio.<a/p></p>\n';
+            echo '<li><a href="submit.php">Submit audio.<a/p></li>';
         }
     ?>
-    <p>
-        <a href="edit-profile.php" class="btn btn-warning">Edit Profile</a>
-        <a href="logout.php" class="btn btn-danger">Logout</a>
+    
+        <li><a href="edit-profile.php">Edit Profile</a></li>
+    </ul>
+    <p>    <a href="logout.php" class="btn btn-danger">Logout</a>
     </p>
 </nav>
 </body>
