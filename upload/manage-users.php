@@ -80,7 +80,7 @@ ENDUSR;
                             } else {
                                 $selected = "";
                             }
-                            $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option\n';  
+                            $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option>\n';  
                             }
                         }
 
