@@ -98,13 +98,14 @@ function get_power_level($rolecode, $pdo){
     $sql = "SELECT role_power_level FROM `roles` where role_rolecode = :rolecode";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":rolecode", $role_code, PDO::PARAM_STR);
+        $stmt->bindParam(":rolecode", $param_rolecode, PDO::PARAM_STR);
+        $param_rolecode = $rolecode;
         if($stmt->execute()){
             // Check if rolecode exists, if yes then get powerlevel
             if($stmt->rowCount() == 1){
                 if($row = $stmt->fetch()){
                     $powerlevel = $row["role_power_level"];
-                    echo $powerlevel;
+                    //echo $powerlevel;
                 }
             }
         }
