@@ -13,6 +13,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 if(!isset($_SESSION["powerlevel"])){
     $_SESSION["powerlevel"] = get_power_level_for_user($_SESSION["id"], $pdo);
 }
+echo $_SESSION["powerlevel"];
 
 ?>
  
@@ -32,6 +33,7 @@ if(!isset($_SESSION["powerlevel"])){
     </div>
     <?php 
     session_start();
+    echo $_SESSION["powerlevel"];
     if ($_SESSION["powerlevel"] < 20){
         $approval_required = _("Your account must be approved before you can participate.");
         echo "<p>" . $approval_required . "</p>\n";
