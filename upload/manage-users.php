@@ -83,7 +83,7 @@ ENDUSR;
                             $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option>\n';  
                             }
                         }
-
+                        $usrstr = $usrstr ."</select>\n</div>";
                         echo $usrstr;
                     }
                 }
