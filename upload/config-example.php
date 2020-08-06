@@ -15,4 +15,6 @@ try{
     die("ERROR: Could not connect. " . $e->getMessage());
 }
 
+$_SITE = array("title" => "Constructing Infinity")
+
 ?>
