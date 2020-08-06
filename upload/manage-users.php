@@ -62,6 +62,7 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
                 if($stmt->execute()){
                     echo $stmt->rowCount();
                     while($row = $stmt->fetch()){
+                        echo "loop";
                         $userid = $row["userid"];
                         $realname = $row["u_realname"];
                         $orgcode = $row["u_org"];
@@ -97,9 +98,11 @@ ENDUSR;
 
 
                 ?>
-            <div class="form-group">
+            <div class="row">
+                <div class="col-50r">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
+            </div>
             </div>
             </form>
         </div>
