@@ -95,7 +95,7 @@ function get_power_level($rolecode, $pdo){
 
     $powerlevel = 0;
 
-    $sql = "SELECT role_power_level in roles where role_rolecode = :rolecode";
+    $sql = "SELECT role_power_level FROM `roles` where role_rolecode = :rolecode";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $stmt->bindParam(":rolecode", $role_code, PDO::PARAM_STR);
