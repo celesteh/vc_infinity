@@ -1,6 +1,7 @@
 <?php
 
 require_once "config.php";
+require_once "functions.php";
 // Initialize the session
 session_start();
  
@@ -13,6 +14,41 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
     header("localtion: welcome.php");
 }
+
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    // double check power level
+    $my_powerlevel = get_power_level_for_user($_SESSION["id"], $pdo);
+    $_SESSION["powerlevel"] = $my_powerlevel;
+    if ($_SESSION["powerlevel"]< 80){
+        header("localtion: welcome.php");
+    }
+
+    // step through users looking for changes
+    $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
+    if($stmt = $pdo->prepare($sql)){
+        if($stmt->execute()){
+             while($row = $stmt->fetch()){
+
+                $uid = $row["userid"];
+                $oldrole = $row["u_rolecode"];
+                $newrole = trim($_POST[$uid]);
+
+                // if we found a change
+                if ($newrole != $oldrole){
+
+                    // let's debug first, eh?
+                    echo $newrole;
+
+                }
+            }
+        }
+    }
+
+
+}
+
+
 
 ?>
  
@@ -32,7 +68,12 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
 <body>
     <div class="wrapper">
         <h2>Manage Users</h2>
-        <p>Change user roles.</p>
+        <h3>Change user roles.</h3>
+        <p>Users - can log in, but can't do anyhting else.</p>
+        <p>Musicians - can submit audio.</p>
+        <p>Engineers - can modify audio others have submitted.</p>
+        <p>Editors - can modify audio and metadata that others have submitted.</p>
+        <p>Administrators - can do everything above and can modify the roles of other users.</p>
         <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
@@ -111,6 +152,7 @@ ENDUSR;
             </div>
             </form>
         </div>
+        <p><a href="welcome.php">Go back</a></p>
     </div>    
 </body>
 </html>
