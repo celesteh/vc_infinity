@@ -25,7 +25,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // step through users looking for changes
-    $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
+    $sql = "SELECT userid, u_rolecode FROM `users` WHERE 1 ";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
              while($row = $stmt->fetch()){
@@ -38,11 +38,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if ($newrole != $oldrole){
 
                     // let's debug first, eh?
-                    echo $newrole;
+                    //echo $newrole;
 
+                    // update it
+                    $usql = "UPDATE users SET u_rolecode = :newrole WHERE userid = :userid";
+                    if($ustmt = $pdo->prepare($usql)){
+                        $ustmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
+                        $ustmt->bindParam(":newrole", $newrole, PDO::PARAM_STR);
+                        $param_userid = (int) $uid;
+                        if($ustmt->execute()){}
+                        unset($ustmt);
+                    }
                 }
             }
         }
+        unset($stmt);
     }
 
 
@@ -62,7 +72,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <style type="text/css">
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+        /*.wrapper{ width: 350px; padding: 20px; }*/
+        .wrapper { width:  90%; padding: 20px; }
     </style>
 </head>
 <body>
