@@ -17,9 +17,11 @@ $email = $email_err = "";
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if(empty(trim($_POST["email"]))){
-        $email_err = _("Please enter an email address.");
-    } else{
+    $success = true;
+    $uemail = $uid = "";
+
+    if(!empty(trim($_POST["email"]))){
+ 
 	
 	$email = trim($_POST["email"]);
 
@@ -40,14 +42,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $uid = $row["userid"];
+                        $uemail = $email;
+                        $success = true;
     
 
-                        $url = password_reset($uid, $pdo);
-
-                        $body = "You have requested a password change on your account. To reset it, click here:  " . $url;
-                        $headers = "From: infinity@vocalconstructivists.com";
-    
-                        mail($email, "Construncting Infinity password reset", $body, $headers);
                     
                     }
                 }
@@ -57,8 +55,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             unset($stmt);
         }
 
-        // Redirect to email page
-        header("location: check-email.html");
     }
     else {
         // invalid address
@@ -66,7 +62,62 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 	    $email_err = _("Please enter a valid email address.");
     }
 
+
+
+    } elseif(!empty(trim($_POST["username"]))){
+
+        $username = trim($_POST["username"]);
+
+            // Prepare a select statement
+            $sql = "SELECT userid, u_email FROM users WHERE username = :username";
+    
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+    
+                // Set parameters
+                $param_username = $username;
+    
+                // Attempt to execute the prepared statement
+                if($stmt->execute()){
+                    if($stmt->rowCount() == 1){
+                        if($row = $stmt->fetch()){
+                            $uid = $row["userid"];
+                            $uemail = $row["u_email"];
+                            $success = true;
+        
+    
+                        
+                        }
+                    } else {
+                        $username_err = _("No such user.");
+                    }
+                }
+    
+                // Close statement
+                unset($stmt);
+     
+            }
+    } else {
+        $email_err = _("Please enter a username or email address.");
+        $username_err = _("Please enter a username or email address.");
+        $success = false;
     }
+
+
+    if ($success){
+        $url = password_reset($uid, $pdo);
+
+        $body = _("You have requested a password change on your account. To reset it, click here:  ") . $url;
+        $headers = "From: infinity@vocalconstructivists.com";
+
+        mail($uemail, $_SITE["title"] . _(" password reset"), $body, $headers);
+
+        // Redirect to email page
+        header("location: check-email.html");
+
+    }
+
 
     // Close connection
     unset($pdo);
@@ -89,8 +140,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
     <div class="wrapper">
         <h2>Forgot Password</h2>
-        <p>Please enter your email address to get a reset link.</p>
+        <p>Please enter your username or email address to get a reset link.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                <label>Username</label>
+                <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                <span class="help-block"><?php echo $username_err; ?></span>
+            </div>
             <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
                 <input type="email" name="email" class="form-control" value="<?php echo $email; ?>">
