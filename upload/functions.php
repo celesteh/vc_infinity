@@ -117,7 +117,7 @@ function get_power_level_for_user($fuid, $pdo){
 
     $powerlevel = 0;
 
-    $sql = "SELECT u_rolecode in users where userid = :userid";
+    $sql = "SELECT u_rolecode FROM `users` where userid = :userid";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $stmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
