@@ -20,6 +20,7 @@ $update_msg = "";
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $success = TRUE;
+    $count = 0;
 
     // double check power level
     $my_powerlevel = get_power_level_for_user($_SESSION["id"], $pdo);
@@ -50,7 +51,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $ustmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
                         $ustmt->bindParam(":newrole", $newrole, PDO::PARAM_STR);
                         $param_userid = (int) $uid;
-                        if($ustmt->execute()){}else{$success = false;}
+                        if($ustmt->execute()){
+                            $count = $count +1;
+                        }else{
+                            $success = false;
+                        }
                         unset($ustmt);
                     }
                 }
@@ -60,7 +65,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     if ($success){
-        $update_msg = _("Updated successfully!");
+        if ($count > 0){    
+            $update_msg = _("Updated successfully!");
+        }
     } else {
         $update_msg = _("Update failed. Try again later.");
     }
