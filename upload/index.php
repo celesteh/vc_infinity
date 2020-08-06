@@ -31,6 +31,7 @@ if(!isset($_SESSION["powerlevel"])){
         <h1><b><?php echo htmlspecialchars($_SESSION["realname"]); ?></b> @ <?php echo $_SITE["title"]; ?></h1>
     </div>
     <?php 
+    session_start();
     if ($_SESSION["powerlevel"] < 20){
         $approval_required = _("Your account must be approved before you can participate.");
         echo "<p>" . $approval_required . "</p>\n";
@@ -38,6 +39,7 @@ if(!isset($_SESSION["powerlevel"])){
     ?>
     <nav>
         <?php
+        session_start();
         $powerlevel = $_SESSION["powerlevel"];
         
         if (powerlevel >= 80){
