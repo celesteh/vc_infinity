@@ -36,7 +36,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT userid, username, u_password, u_realname FROM users WHERE username = :username";
+        $sql = "SELECT userid, username, u_password, u_realname, u_rolecode FROM users WHERE username = :username";
         
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -53,7 +53,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $id = $row["userid"];
                         $username = $row["username"];
                         $hashed_password = $row["u_password"];
-			            $realname = $row["u_realname"];
+                        $realname = $row["u_realname"];
+                        $role_code = $row["u_rolecode"];
 
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
@@ -77,7 +78,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             header("location: welcome.php");
                         } else{
                             // Display an error message if password is not valid
-                            $password_err = _("The password you entered was not valid.\n" . $password . " " . $hashed_password);
+                            $password_err = _("The password you entered was not valid.");
                         }
                     }
                 } else{
@@ -91,6 +92,27 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             unset($stmt);
         }
+        if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
+            $sql = "SELECT role_power_level in roles where role_rolecode = :rolecode";
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                $stmt->bindParam(":rolecode", $role_code, PDO::PARAM_STR);
+                if($stmt->execute()){
+                    // Check if username exists, if yes then verify password
+                    if($stmt->rowCount() == 1){
+                        if($row = $stmt->fetch()){
+                            $powerlevel = $row["role_power_level"];
+                            $_SESSION["powerlevel"] = $powerlevel;
+                        }
+                    }
+                }
+
+                //close statement
+                unset($stmt);
+            }
+    
+        }
+
     }
     
     // Close connection
