@@ -69,7 +69,7 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
                         $orgname = $orgs[$orgcode];
                         $role_code = $row["u_rolecode"];
 
-                        
+                        echo "data";
 
 
 
@@ -99,7 +99,7 @@ ENDUSR;
 
                 ?>
             <div class="row">
-                <div class="col-50r">
+                <div class="col-50l">&nbsp;</div><div class="col-50r">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
