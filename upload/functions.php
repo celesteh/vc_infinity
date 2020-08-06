@@ -120,7 +120,7 @@ function get_power_level_for_user($fuid, $pdo){
     $sql = "SELECT u_rolecode in users where userid = :userid";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":userid", $fuid, PDO::PARAM_STR);
+        $stmt->bindParam(":userid", $fuid, PDO::PARAM_INT);
         if($stmt->execute()){
             // Check if rolecode exists, if yes then get powerlevel
             if($stmt->rowCount() == 1){
