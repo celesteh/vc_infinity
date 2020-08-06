@@ -60,6 +60,7 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
             $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
+                    echo $stmt->rowCount();
                     while($row = $stmt->fetch()){
                         $userid = $row["userid"];
                         $realname = $row["u_realname"];
@@ -73,10 +74,10 @@ if(!isset($_SESSION["powerlevel"]) || $_SESSION["powerlevel"]< 80){
 
                         $usrstr = <<< ENDUSR
                         <div class="row">
-                            <div class="col-25">                    
+                            <div class="col-50l">                    
                                 <label>$realname, $orgname</label>
                             </div>
-                            <div class="col-75">
+                            <div class="col-50r">
                                 <select name="$userid" id="$userid">
 ENDUSR;
                         foreach($role_arr as $rcode => $rname) {
@@ -96,7 +97,7 @@ ENDUSR;
 
 
                 ?>
-            <div class="row">
+            <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Submit">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>

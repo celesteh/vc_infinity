@@ -51,6 +51,19 @@ input[type=submit]:hover {
   margin-top: 6px;
 }
 
+.col-50l {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+  }
+  
+  .col-50r {
+    float: left;
+    width: 50%;
+    margin-top: 6px;
+  }
+
+
 /* Clear floats after the columns */
 .row:after {
   content: "";

@@ -69,7 +69,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 // Attempt to execute the prepared statement
                 if($stmt->execute()){
-                    if($stmt->rowCount() == 1){
+                    if($stmt->rowCount() >= 1){
                        $email_err = _("There is already an account for this email.");
                     } else{
                         $email = trim($_POST["email"]);
