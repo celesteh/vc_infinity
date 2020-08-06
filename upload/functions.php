@@ -76,7 +76,7 @@ function password_reset($fuid, $pdo){
 }
 
 function clear_temp_password($fuid, $pdo) {
-    $sql = "UPDATE users SET temp_password = '' WHERE userid = :userid";
+    $sql = "UPDATE users SET temp_password = 'N/A' WHERE userid = :userid";
         
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
@@ -120,7 +120,8 @@ function get_power_level_for_user($fuid, $pdo){
     $sql = "SELECT u_rolecode in users where userid = :userid";
     if($stmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $stmt->bindParam(":userid", $fuid, PDO::PARAM_INT);
+        $stmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
+        $param_userid = (int) $fuid;
         if($stmt->execute()){
             // Check if rolecode exists, if yes then get powerlevel
             if($stmt->rowCount() == 1){
