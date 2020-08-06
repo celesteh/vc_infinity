@@ -11,6 +11,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 if(!isset($_SESSION["powerlevel"])){
+    echo "unset";
     $_SESSION["powerlevel"] = get_power_level_for_user($_SESSION["id"], $pdo);
 } 
 
@@ -41,7 +42,7 @@ if(!isset($_SESSION["powerlevel"])){
         <?php
          $powerlevel = $_SESSION["powerlevel"];
         
-        if (powerlevel >= 80){
+        if ($powerlevel >= 80){
             echo '<p><a href="manage-users.php">Manage and approve users.</a></p>\n';
         }
         if ($powerlevel >= 40) {
