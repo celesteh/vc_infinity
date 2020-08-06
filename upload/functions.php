@@ -91,4 +91,49 @@ function clear_temp_password($fuid, $pdo) {
     }
 }
 
+function get_power_level($rolecode, $pdo){
+
+    $powerlevel = 0;
+
+    $sql = "SELECT role_power_level in roles where role_rolecode = :rolecode";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":rolecode", $role_code, PDO::PARAM_STR);
+        if($stmt->execute()){
+            // Check if rolecode exists, if yes then get powerlevel
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $powerlevel = $row["role_power_level"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+    return $powerlevel;
+
+}
+
+function get_power_level_for_user($fuid, $pdo){
+
+    $powerlevel = 0;
+
+    $sql = "SELECT u_rolecode in users where userid = :userid";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":userid", $fuid, PDO::PARAM_STR);
+        if($stmt->execute()){
+            // Check if rolecode exists, if yes then get powerlevel
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $rolecode = $row["u_rolecode"];
+                    $powerlevel = get_power_level($rolecode, $pdo);
+                }
+            }
+        }
+
+        unset($stmt);
+    }
+    return $powerlevel;
+}
+
 ?>

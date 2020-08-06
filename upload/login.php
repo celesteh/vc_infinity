@@ -93,23 +93,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             unset($stmt);
         }
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-            $sql = "SELECT role_power_level in roles where role_rolecode = :rolecode";
-            if($stmt = $pdo->prepare($sql)){
-                // Bind variables to the prepared statement as parameters
-                $stmt->bindParam(":rolecode", $role_code, PDO::PARAM_STR);
-                if($stmt->execute()){
-                    // Check if username exists, if yes then verify password
-                    if($stmt->rowCount() == 1){
-                        if($row = $stmt->fetch()){
-                            $powerlevel = $row["role_power_level"];
-                            $_SESSION["powerlevel"] = $powerlevel;
-                        }
-                    }
-                }
+            $powerlevel = get_power_level($role_code, $pdo);
+            $_SESSION["powerlevel"] = $powerlevel;
 
-                //close statement
-                unset($stmt);
-            }
     
         }
 
