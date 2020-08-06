@@ -93,7 +93,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             unset($stmt);
         }
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] == true){
-            $powerlevel = get_power_level($role_code, $pdo);
+            $powerlevel = get_power_level($id, $pdo);
             $_SESSION["powerlevel"] = $powerlevel;
 
     
