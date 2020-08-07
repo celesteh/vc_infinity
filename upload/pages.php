@@ -108,18 +108,22 @@ if(ISSET($_POST['upload'])){
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.css"/>
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="infinity.css">
+
+    <style type="text/css">
+        body{ font: 14px sans-serif; width:90%; padding: 20px;}
+    </style>
+</head>
 <body>
-	<div class="col-md-3"></div>
-	<div class="col-md-6 well">
-		<h3 class="text-primary">Upload score pages</h3>
-		<hr style="border-top:1px dotted #ccc;"/>
+    <div class="page-header">
+        <h1>Upload score pages</h1>
+    </div>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
             <div class="form-group <?php echo (!empty($img_err)) ? 'has-error' : ''; ?>">
@@ -185,7 +189,7 @@ if(ISSET($_POST['upload'])){
             }
         }
     }
-		?>
+		?><a class="btn btn-link" href="index.php">Go Home</a>
 	</div>
 </body>	
 </html>
