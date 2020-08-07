@@ -22,6 +22,8 @@ if(ISSET($_POST['upload'])){
         $score = trim($_POST["page_scorecode"]);
         echo $score;
     }
+    echo "test";
+    echo $score;
 
     if(isset($_POST["page_num"])){
         $page = trim($_POST["page_num"]);
