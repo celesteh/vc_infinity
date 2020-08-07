@@ -19,11 +19,11 @@ if(ISSET($_POST['upload'])){
 
 
     if(isset($_POST["page_scorecode"])){
-        $score = $_POST["page_scorecode"];
+        $score = trim($_POST["page_scorecode"]);
     }
 
     if(isset($_POST["page_num"])){
-        $page = $_POST["page_num"];
+        $page = trim($_POST["page_num"]);
 
         $sql = "SELECT page_id FROM score_pages WHERE page_num = :page_num AND page_scorecode = :page_scorecode";
 
