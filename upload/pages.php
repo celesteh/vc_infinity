@@ -23,7 +23,7 @@ if(ISSET($_POST['upload'])){
         //echo $score;
     }
  
-    
+
     if(isset($_POST["page_num"])){
         $page = trim($_POST["page_num"]);
 
@@ -179,7 +179,7 @@ if(ISSET($_POST['upload'])){
 
 		?>
 			<div style="border:1px solid #000; height:190px; width:190px; padding:4px; float:left; margin:10px;">
-				<a href="<?php echo $fetch['page_img_file']?>"><img src="<?php echo $fetch['locatpage_img_fileion']?>" width="180" height="180"/></a>
+				<a href="../score_pages/<?php echo $fetch['page_img_file']?>"><img src="../score_pages/<?php echo $fetch['page_img_file']?>" width="180" height="180"/></a>
 			</div>
 		<?php
             }
