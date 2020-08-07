@@ -57,7 +57,7 @@ if(!isset($_SESSION["powerlevel"])){
             echo '<li><a href="submit.php">Submit audio.<a/p></li>';
         }
     ?>
-    
+        <li><a href="prepare.html">Instructions on how to prepare audio.</a></li>
         <li><a href="edit-profile.php">Edit Profile</a></li>
     </ul>
     <p>    <a href="logout.php" class="btn btn-danger">Logout</a>
