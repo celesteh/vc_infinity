@@ -90,7 +90,7 @@ if(ISSET($_POST['upload'])){
                     if($stmt->execute()){
         
 
-                echo "<script>alert('Image uploaded!')</script>";
+                //echo "<script>alert('Image uploaded!')</script>";
                 //echo "<script>window.location = 'index.php'</script>";
             }
         }
@@ -127,13 +127,19 @@ if(ISSET($_POST['upload'])){
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
             <div class="form-group <?php echo (!empty($img_err)) ? 'has-error' : ''; ?>">
+            <div class="row">
+                            <div class="col-50l">  
 				<label>Upload here</label>
-                <input type="file" name="image" class="form-control" required="required"/>
-                <span class="help-block"><?php echo $img_err; ?></span>
+                </div>
+                            <div class="col-50r">
+               <input type="file" name="image" class="form-control" required="required"/>
+</div>
+</div>
+                 <span class="help-block"><?php echo $img_err; ?></span>
             </div>
-                <div class="form-group <?php echo (!empty($page_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($page_err)) ? 'has-error' : ''; ?>">
                         <div class="row">
-                            <div class="col-50l $colour">                    
+                            <div class="col-50l">                    
                                 <label>Page number</label>
                             </div>
                             <div class="col-50r">
@@ -144,7 +150,7 @@ if(ISSET($_POST['upload'])){
                     </div>
 
                             <div class="row">
-                            <div class="col-50l $colour">                    
+                            <div class="col-50l">                    
                                 <label>Score</label>
                             </div>
                             <div class="col-50r">

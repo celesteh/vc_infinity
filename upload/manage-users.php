@@ -155,8 +155,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $colour = $colours[$index];
 
                         $usrstr = <<< ENDUSR
-                        <div class="row">
-                            <div class="col-50l $colour">                    
+                        <div class="row $colour">
+                            <div class="col-50l">                    
                                 <label>$realname, $orgname</label>
                             </div>
                             <div class="col-50r">
