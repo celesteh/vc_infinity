@@ -20,11 +20,10 @@ if(ISSET($_POST['upload'])){
 
     if(isset($_POST["page_scorecode"])){
         $score = trim($_POST["page_scorecode"]);
-        echo $score;
+        //echo $score;
     }
-    echo "test";
-    echo $score;
-
+ 
+    
     if(isset($_POST["page_num"])){
         $page = trim($_POST["page_num"]);
 
@@ -152,7 +151,7 @@ if(ISSET($_POST['upload'])){
             if($arstmt = $pdo->prepare($arsql)){
                 if($arstmt->execute()){
                     while($row = $arstmt->fetch()){
-                        echo '<option value="' . $row["s_scorcode"] . '">' . $row["s_title"] . '</option>'; 
+                        echo '<option value="' . $row["s_scorecode"] . '">' . $row["s_title"] . '</option>'; 
                     }
                 }
             }
