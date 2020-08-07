@@ -47,6 +47,9 @@ if(!isset($_SESSION["powerlevel"])){
         if ($powerlevel >= 80){
             echo '<li><a href="manage-users.php">Manage and approve users.</a></li>';
         }
+        if ($powerlevel >= 60){
+            echo '<li><a href="pages.php">Upload and manage score pages.</a></li>';
+        }
         if ($powerlevel >= 40) {
             echo '<li><a href="edit-audio.php">Edit audio.</a></li>';
         }

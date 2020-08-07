@@ -139,4 +139,29 @@ function get_power_level_for_user($fuid, $pdo){
     return $powerlevel;
 }
 
+function lazy_power_check($fuid, $pdo, $must_be_this_powerful_to_ride){
+
+    $powerlevel = 0;
+    $do_query = false;
+
+    if(!isset($_SESSION)){ 
+        $do_query = true;
+
+    }elseif(!isset($_SESSION["powerlevel"])){
+        if(!isset($fuid)){
+            $fuid = $_SESSION["id"];
+        }
+        $do_query = true;
+    } else {
+        $powerlevel = $_SESSION["powerlevel"];
+    }
+
+    if($do_query){
+        $powerlevel = get_power_level_for_user($fuid, $pdo);
+    }
+
+    return ($powerlevel >= $must_be_this_powerful_to_ride);
+
+}
+
 ?>
