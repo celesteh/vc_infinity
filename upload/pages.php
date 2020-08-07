@@ -94,7 +94,7 @@ if(ISSET($_POST['upload'])){
         }
     }else{
 
-        $img_err = _("Invalid image format!");
+        $img_err = _("Invalid image format!") ." " . $end;
 
         echo '<script>alert("' . $img_err . '")</script>';
         //echo "<script>window.location = 'index.php'</script>";
