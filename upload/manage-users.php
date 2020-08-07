@@ -107,7 +107,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p>Users - can log in, but can't do anyhting else.</p>
         <p>Musicians - can submit audio.</p>
         <p>Engineers - can modify audio others have submitted.</p>
-        <p>Editors - can modify audio and metadata that others have submitted.</p>
+        <p>Editors - can upload new score pages and can modify audio and metadata that others have submitted.</p>
         <p>Administrators - can do everything above and can modify the roles of other users.</p>
         <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

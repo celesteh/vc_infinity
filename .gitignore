@@ -1,2 +1,9 @@
 # Database information
 upload/config.php
+
+# Score pages
+score_pages/*
+
+# Audio
+processed_audio/*
+unprocessed_audio/*
