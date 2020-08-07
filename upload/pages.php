@@ -126,35 +126,35 @@ if(ISSET($_POST['upload'])){
     </div>
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
-            <div class="form-group <?php echo (!empty($img_err)) ? 'has-error' : ''; ?>">
-            <div class="row">
-                            <div class="col-50l">  
-				<label>Upload here</label>
-                </div>
-                            <div class="col-50r">
-               <input type="file" name="image" class="form-control" required="required"/>
-</div>
-</div>
-                 <span class="help-block"><?php echo $img_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($page_err)) ? 'has-error' : ''; ?>">
-                        <div class="row">
-                            <div class="col-50l">                    
-                                <label>Page number</label>
-                            </div>
-                            <div class="col-50r">
-                                <input type="number" name="page_num" id="page_num" min="0" required="required">
-                            </div>
+                <div class="form-group <?php echo (!empty($img_err)) ? 'has-error' : ''; ?>">
+                    <div class="row">
+                        <div class="col-50l">  
+				            <label>Upload here</label>
                         </div>
-                        <span class="help-block"><?php echo $page_err; ?></span>
+                        <div class="col-50r">
+                            <input type="file" name="image" class="form-control" required="required"/>
+                        </div>
                     </div>
+                    <span class="help-block"><?php echo $img_err; ?></span>
+                </div>
+                <div class="form-group <?php echo (!empty($page_err)) ? 'has-error' : ''; ?>">
+                    <div class="row">
+                        <div class="col-50l">                    
+                            <label>Page number</label>
+                        </div>
+                        <div class="col-50r">
+                            <input type="number" name="page_num" id="page_num" min="0" required="required">
+                        </div>
+                    </div>
+                    <span class="help-block"><?php echo $page_err; ?></span>
+                </div>
 
-                            <div class="row">
-                            <div class="col-50l">                    
-                                <label>Score</label>
-                            </div>
-                            <div class="col-50r">
-                            <select name="page_scorecode" id="page_scorecode">
+                <div class="row">
+                    <div class="col-50l">                    
+                        <label>Score</label>
+                    </div>
+                    <div class="col-50r">
+                        <select name="page_scorecode" id="page_scorecode">
                             <?php        
             // get all scores
             $arsql = "SELECT s_scorecode, s_title FROM `scores` WHERE 1";
@@ -165,11 +165,11 @@ if(ISSET($_POST['upload'])){
                     }
                 }
             }
-            ?>
-                    </select>
+                            ?>
+                        </select>
 
                     </div>
-
+                </div>
 
                             
 
