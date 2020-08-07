@@ -50,7 +50,7 @@ if(ISSET($_POST['upload'])){
 
     }
 
-    if(isempty($page_err)){
+    if(empty($page_err)){
 
     $image_name = $_FILES['image']['name'];
     $image_temp = $_FILES['image']['tmp_name'];
@@ -105,7 +105,7 @@ if(ISSET($_POST['upload'])){
 }
 ?>
 
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 	<head>
@@ -164,7 +164,7 @@ if(ISSET($_POST['upload'])){
 			</div>
 		</form>
 		<br />
-		<div class="alert alert-info">My Gallery</div>
+		<div class="alert alert-info"><h3>Already Uploaded Pages</h3></div>
 		<?php
 
 
