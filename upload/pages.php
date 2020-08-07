@@ -124,6 +124,7 @@ if(ISSET($_POST['upload'])){
     <div class="page-header">
         <h1>Upload score pages</h1>
     </div>
+    <div class="container">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
                 <div class="form-group <?php echo (!empty($img_err)) ? 'has-error' : ''; ?>">
@@ -195,7 +196,9 @@ if(ISSET($_POST['upload'])){
             }
         }
     }
-		?><a class="btn btn-link" href="index.php">Go Home</a>
+        ?>
+        </div>
+        <a class="btn btn-link" href="index.php">Go Home</a>
 	</div>
 </body>	
 </html>
