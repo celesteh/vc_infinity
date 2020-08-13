@@ -3,6 +3,9 @@
 h1 {
   font-size: 2.25em;
 }
+html {
+  font-size: 100%;
+}
 
 body {
   font-size: 1em;
