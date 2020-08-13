@@ -53,12 +53,13 @@ div.overflow {
 }
 
 /* navigation menu */
-nav > ul {
+nav  ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   position:  sticky;
   background-color: #333;
+  width: 100%;
 }
 
 nav li {
