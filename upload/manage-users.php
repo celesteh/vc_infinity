@@ -111,6 +111,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p>Administrators - can do everything above and can modify the roles of other users.</p>
         <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class = "overflow">
         <table>
             <tr><th>Name</th><th>Organisation</th><th>URL</th><th>Role</th></tr>
         <?php        
@@ -188,6 +189,7 @@ ENDUSR;
 
                 ?>
                 </table>
+        </div>
             <div class="row">
                 <div class="col-50l">&nbsp;</div><div class="col-50r">
                 <input type="submit" class="btn btn-primary" value="Submit">
