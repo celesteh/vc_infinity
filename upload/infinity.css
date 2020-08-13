@@ -2,7 +2,7 @@
 
 
 /* Responsive form */
-* {
+infinity-form {
   box-sizing: border-box;
 }
 
@@ -37,6 +37,7 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+  margin: 20px;
 }
 
 .col-25 {
@@ -55,12 +56,14 @@ input[type=submit]:hover {
     float: left;
     width: 50%;
     margin-top: 6px;
+    min-width: 300px;
   }
   
   .col-50r {
     float: left;
     width: 50%;
     margin-top: 6px;
+    min-width: 300px;
   }
 
 .white {
