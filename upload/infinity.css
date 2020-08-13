@@ -89,7 +89,8 @@ nav a {
   text-decoration: none;
   outline-style: hidden;
   outline-color: red;
-  outline-width: 4px;
+  outline-width: thick;
+  outline-offset: 1em;
 }
 
 /* Change the link color to #111 (black) on hover */
