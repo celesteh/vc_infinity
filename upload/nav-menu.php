@@ -34,5 +34,6 @@ if ($powerlevel >= 20) {
 ?>
 <li><a href="prepare.html">Instructions on how to prepare audio.</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
+<li><a href="logout.php">Logout</a></li>
 </ul>
 </nav>
