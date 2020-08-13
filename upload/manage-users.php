@@ -88,8 +88,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </head>
 <body>
+<?php include 'nav-menu.php';?>
+<div class="page-header">
+    Manage Users
+</div>
     <div class="wrapper">
-        <h2>Manage Users</h2>
         <h3>Change user roles.</h3>
 
         <div class="form-group <?php echo (!empty($update_msg)) ? 'has-error' : ''; ?>">

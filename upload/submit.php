@@ -31,6 +31,8 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <div class="page-header">
         <h1>Upload Your Audio</h1>
 </div>
+<?php include 'nav-menu.php';?>
+
 <p>First, make sure you're ready. <a href="prepare.html">Read the guide</a>!</p>
 
 </body>

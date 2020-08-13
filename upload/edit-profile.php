@@ -141,6 +141,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="infinity.css">
 </head>
 <body>
+  <?php include 'nav-menu.php';?>
+
+
     <div class="wrapper">
         <h2>Update Profile</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
