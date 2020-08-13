@@ -1,5 +1,12 @@
 /* House style for Infinity project */
 
+h1 {
+  font-size: 2.25em;
+}
+
+body {
+  font-size: 1em;
+}
 
 /* Responsive form */
 .infinity-form {
