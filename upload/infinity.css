@@ -63,6 +63,12 @@ nav {
   background-color: #333;
   width: 100%;
   display: block;
+
+  outline-style: hidden;
+  outline-color: red;
+  outline-width: thick;
+  outline-offset: 1em;
+
 }  
 
 nav  ul {
@@ -87,10 +93,6 @@ nav a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  outline-style: hidden;
-  outline-color: red;
-  outline-width: thick;
-  outline-offset: 1em;
 }
 
 /* Change the link color to #111 (black) on hover */
