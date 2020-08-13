@@ -20,6 +20,12 @@ body {
   width: 90%;
 }
 
+.notes{
+  padding: 20px; 
+  width: 90%;
+ 
+}
+
 div.invisible {
   display:none;
 }
