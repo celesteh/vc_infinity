@@ -23,9 +23,8 @@ if(!isset($_SESSION["powerlevel"])){
     <meta charset="UTF-8">
     <title>Welcome</title>
     <link rel="stylesheet" href="bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; width:90%; padding: 20px;}
-    </style>
+    <link rel="stylesheet" href="infinity.css">
+
 </head>
 <body>
     <div class="page-header">
@@ -34,7 +33,7 @@ if(!isset($_SESSION["powerlevel"])){
 
     <?php include 'nav-menu.php';?>
 
-    
+
     <?php 
     //echo $_SESSION["powerlevel"];
     if ($_SESSION["powerlevel"] < 20){

@@ -6,6 +6,19 @@ h1 {
 
 body {
   font-size: 1em;
+  font-family: sans-serif;
+  width:90%; 
+  padding: 20px;
+}
+
+.wrapper{ 
+  max-width: 350px; 
+  padding: 20px; 
+  width: 90%;
+}
+
+div.invisible {
+  display:none;
 }
 
 /* Responsive form */
