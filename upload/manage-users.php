@@ -109,7 +109,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <p>Administrators - can do everything above and can modify the roles of other users.</p>
         <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-
+        <table>
+            <tr><th>Name</th><th>Organisation</th><th>URL</th><th>Role</th></tr>
         <?php        
             // get all roles
             $arsql = "SELECT role_rolecode, role_rolename FROM `roles` WHERE 1";
@@ -131,9 +132,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             }
                         }
 
-            $colours = array("white", "grey");
-            $index =0;
-            $size = sizeof($colours);
+            //$colours = array("white", "grey");
+            //$index =0;
+            //$size = sizeof($colours);
 
             $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
             if($stmt = $pdo->prepare($sql)){
@@ -147,7 +148,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $orgname = $orgs[$orgcode];
                         $role_code = $row["u_rolecode"];
 
- 
+                        /*
                         // manage colours rotating
                         $index = ($index + 1) % $size;
                         $colour = $colours[$index];
@@ -160,6 +161,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             <div class="col-50r">
                                 <select name="$userid" id="$userid">
 ENDUSR;
+                        */
+                        $usrstr = <<< ENDUSR
+                        <tr><td>$realname</td><td>$orgname</td><td>$url</td><td><select name="$userid" id="$userid">
+ENDUSR;
+
+
                         foreach($role_arr as $rcode => $rname) {
                             if ($rcode == $role_code){
                                 //match
@@ -167,16 +174,18 @@ ENDUSR;
                             } else {
                                 $selected = "";
                             }
-                            $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option>\n';  
+                            $usrstr = $usrstr . '<option value="' . $rcode . '" ' . $selected . ">" . $rname . '</option><\n';  
                             }
                         
-                        $usrstr = $usrstr ."</select>\n</div>\n</div>\n";
+                        //$usrstr = $usrstr ."</select>\n</div>\n</div>\n";
+                        $usrstr = $usrstr ."</select></td></tr>\n";
                         echo $usrstr;
                     }
                 }
             }
 
                 ?>
+                </table>
             <div class="row">
                 <div class="col-50l">&nbsp;</div><div class="col-50r">
                 <input type="submit" class="btn btn-primary" value="Submit">
