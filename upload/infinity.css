@@ -104,6 +104,7 @@ nav:after {
   content: "";
   display: table;
   clear: both;
+  padding-bottom: 1em;
 }
 
 /* Responsive form */
