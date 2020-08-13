@@ -90,7 +90,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <body>
 
 <div class="page-header">
-    Manage Users
+    <h1>Manage Users</h1>
 </div>
 
 <?php include 'nav-menu.php';?>

@@ -52,6 +52,17 @@ div.overflow {
   overflow-x:auto;
 }
 
+/* navigation menu */
+nav > ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  display: inline;
+}
+
 /* Responsive form */
 .infinity-form {
   box-sizing: border-box;
