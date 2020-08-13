@@ -6,6 +6,10 @@ infinity-form {
   box-sizing: border-box;
 }
 
+form-group {
+  width: 100%;
+}
+
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
