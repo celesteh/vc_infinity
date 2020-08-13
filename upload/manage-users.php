@@ -94,7 +94,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div>
 
 <?php include 'nav-menu.php';?>
-    <div class="wrapper">
+    <div class="notes">
         <h3>Change user roles.</h3>
 
         <div class="form-group <?php echo (!empty($update_msg)) ? 'has-error' : ''; ?>">
