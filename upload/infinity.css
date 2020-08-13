@@ -60,7 +60,7 @@ input[type=submit]:hover {
   }
   
   .col-50r {
-    float: left;
+    float: right;
     width: 50%;
     margin-top: 6px;
     min-width: 299px;
