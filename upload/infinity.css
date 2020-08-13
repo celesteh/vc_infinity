@@ -87,6 +87,9 @@ nav a {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  outline-style: hidden;
+  outline-color: red;
+  outline-width: 4px;
 }
 
 /* Change the link color to #111 (black) on hover */
@@ -104,7 +107,6 @@ nav:after {
   content: "";
   display: table;
   clear: both;
-  padding-bottom: 1em;
 }
 
 /* Responsive form */
