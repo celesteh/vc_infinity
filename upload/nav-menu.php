@@ -15,6 +15,7 @@ if(!isset($_SESSION["powerlevel"])){
 <nav>
 <ul>
     <li><a href="../">View Site</a></li>
+    <li><a href="./">Dashboard</a></li>
 <?php
  $powerlevel = $_SESSION["powerlevel"];
 
