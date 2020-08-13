@@ -2,11 +2,11 @@
 
 
 /* Responsive form */
-infinity-form {
+.infinity-form {
   box-sizing: border-box;
 }
 
-form-group {
+.form-group {
   width: 100%;
 }
 
