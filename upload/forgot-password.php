@@ -132,11 +132,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Login</title>
     <link rel="stylesheet" href="bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
+    <link rel="stylesheet" href="infinity.css">
 
-    </style>
 </head>
 <body>
     <div class="wrapper">

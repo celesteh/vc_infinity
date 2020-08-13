@@ -116,9 +116,6 @@ if(ISSET($_POST['upload'])){
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
 
-    <style type="text/css">
-        body{ font: 14px sans-serif; width:90%; padding: 20px;}
-    </style>
 </head>
 <body>
     <div class="page-header">

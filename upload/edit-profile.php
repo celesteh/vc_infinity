@@ -138,10 +138,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
+    <link rel="stylesheet" href="infinity.css">
 </head>
 <body>
     <div class="wrapper">
