@@ -85,6 +85,11 @@ nav li:last-child {
   border-right: none;
 }
 
+nav:after {
+  content: "";
+  display: table;
+  clear: both;
+}
 
 /* Responsive form */
 .infinity-form {

@@ -29,7 +29,7 @@ if ($powerlevel >= 40) {
     echo '<li><a href="edit-audio.php">Edit audio.</a></li>';
 }
 if ($powerlevel >= 20) {
-    echo '<li><a href="submit.php">Submit audio.<a/p></li>';
+    echo '<li><a href="submit.php">Submit audio.</a></li>';
 }
 ?>
 <li><a href="prepare.html">Instructions on how to prepare audio.</a></li>
