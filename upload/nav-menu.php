@@ -20,19 +20,19 @@ if(!isset($_SESSION["powerlevel"])){
  $powerlevel = $_SESSION["powerlevel"];
 
 if ($powerlevel >= 80){
-    echo '<li><a href="manage-users.php">Manage and approve users.</a></li>';
+    echo '<li><a href="manage-users.php">Manage users</a></li>';
 }
 if ($powerlevel >= 60){
-    echo '<li><a href="pages.php">Upload and manage score pages.</a></li>';
+    echo '<li><a href="pages.php">Manage score</a></li>';
 }
 if ($powerlevel >= 40) {
-    echo '<li><a href="edit-audio.php">Edit audio.</a></li>';
+    echo '<li><a href="edit-audio.php">Edit audio</a></li>';
 }
 if ($powerlevel >= 20) {
-    echo '<li><a href="submit.php">Submit audio.</a></li>';
+    echo '<li><a href="submit.php">Submit audio</a></li>';
 }
 ?>
-<li><a href="prepare.html">Instructions on how to prepare audio.</a></li>
+<li><a href="prepare.html">Audio Howto</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
 <li><a href="logout.php">Logout</a></li>
 </ul>
