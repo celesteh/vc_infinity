@@ -92,6 +92,7 @@ nav a:hover {
 
 nav li:last-child {
   border-right: none;
+  float:right;
 }
 
 nav:after {
