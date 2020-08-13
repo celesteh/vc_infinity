@@ -53,6 +53,14 @@ div.overflow {
 }
 
 /* navigation menu */
+nav {
+
+  position:  sticky;
+  background-color: #333;
+  width: 100%;
+  display: block;
+}  
+
 nav  ul {
   list-style-type: none;
   margin: 0;
