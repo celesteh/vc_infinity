@@ -121,6 +121,8 @@ if(ISSET($_POST['upload'])){
     <div class="page-header">
         <h1>Upload score pages</h1>
     </div>
+    <?php include 'nav-menu.php';?>
+    
     <div class="container infinity-form">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">

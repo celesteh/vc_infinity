@@ -88,10 +88,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </head>
 <body>
-<?php include 'nav-menu.php';?>
+
 <div class="page-header">
     Manage Users
 </div>
+
+<?php include 'nav-menu.php';?>
     <div class="wrapper">
         <h3>Change user roles.</h3>
 
