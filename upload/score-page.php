@@ -15,9 +15,9 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 60)){
     header("location: index.php");
 }
 
-if(ISSET($_POST['num'])){
+if(!empty(trim($_POST['num']))){
     $page_num = $_POST['num'];
-} elseif(ISSET($_GET['num'])){
+} elseif(!empty(trim($_GET['num']))){
     $page_num = $_GET['num'];
 }
 
