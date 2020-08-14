@@ -34,12 +34,38 @@ if(isset($_SESSION["marketing"])) {
     }
 }
 
+// Get url
+$url = "";
+
+if (isset($_SESSION["url"])){
+    $url = $_SESSION["url"];
+} else {
+    $sql = "SELECT u_url FROM users WHERE userid = :id";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $_SESSION["id"], PDO::PARAM_INT);
+
+        if($stmt->execute()){
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $url = $row["u_url"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+
+}
+
+
+
+
 // Define variables and initialize with empty values
 $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 $new_name = $name_status = "";
 $renamed = FALSE;
-$url = $url_err= "";
+$url_err= $newurl = "";
 $update_msg = "";
 
 $updated = FALSE;
@@ -83,30 +109,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // Validate url
-    $url_err="";
-
-    if(! (empty(trim($_POST["homepage"])))){
+    if( (empty(trim($_POST["homepage"])))){
+        $newurl = "";
+    } else {
     
-        $url = trim($_POST["homepage"]);
-                
-        if (url != ""){
-            if(filter_var($url, FILTER_VALIDATE_URL)) {
-                $url_err="";
-                $sql = "UPDATE users SET u_url = :url WHERE userid = :id";
-        
-                if($stmt = $pdo->prepare($sql)){
-                   $stmt->bindParam(":url", $url, PDO::PARAM_BOOL);
-        
-                   if($stmt->execute()){
-                       $updated = TRUE;
-                    }
-                }
-            } else {
-                $url_err = _("Please enter a valid url");
+        $newurl = trim($_POST["homepage"]);
+    }     
+    if(filter_var($url, FILTER_VALIDATE_URL) or ($newurl == "")) {
+        $url_err="";
+        $sql = "UPDATE users SET u_url = :url WHERE userid = :id";
+
+        if($stmt = $pdo->prepare($sql)){
+        $stmt->bindParam(":url", $newurl, PDO::PARAM_BOOL);
+
+        if($stmt->execute()){
+            $updated = TRUE;
             }
-        
-        }   
+        }
+    } else {
+        $url_err = _("Please enter a valid url");
     }
+        
+        
+    
     
 
 
