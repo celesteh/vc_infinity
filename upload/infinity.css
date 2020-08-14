@@ -112,6 +112,20 @@ nav:after {
   clear: both;
 }
 
+
+/* score gallery */
+
+.gallery {
+  border:1px solid #000; 
+  height:190px; 
+  min-width:190px; 
+  padding:4px; 
+  float:left; 
+  margin:10px;
+}
+
+
+
 /* Responsive form */
 .infinity-form {
   box-sizing: border-box;
