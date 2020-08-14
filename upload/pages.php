@@ -187,15 +187,15 @@ if(ISSET($_POST['upload'])){
                 if($stmt = $pdo->prepare($sql)){
                     if($stmt->execute()){
                          while($fetch = $stmt->fetch()){
-                            $imgfile = $fetch['page_img_file'];
+                            $imgfile = "../score_pages/" . $fetch['page_img_file'];
                             list($width, $height) = getimagesize($imgfile);
-                            echo("" . $width . " ". $height);
+                            //echo("" . $width . " ". $height);
                             $ratio = $width/$height;
                             $scaled = $ratio * 180;
 
 		?>
 			<div style="gallery">
-				<a href="../score_pages/<?php echo $imgfile?>"><img src="../score_pages/<?php echo $imgfile?>" width="<?php echo $scaled?>" height="180"/></a>
+				<a href="<?php echo $imgfile?>"><img src="<?php echo $imgfile?>" width="<?php echo $scaled?>" height="180"/></a>
 			</div>
 		<?php
             }
