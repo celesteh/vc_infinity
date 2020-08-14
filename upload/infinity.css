@@ -115,7 +115,7 @@ nav:after {
 
 /* score gallery */
 
-.gallery {
+div.gallery {
   border:1px solid #000; 
   height:190px; 
   min-width:190px; 
