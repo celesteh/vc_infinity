@@ -196,10 +196,16 @@ if(ISSET($_POST['upload'])){
                             $scaled = $ratio * 180;
                             $num = $fetch["page_num"];
 
+                            $data = array(
+                                "num" => $num,
+                            );
+                
+                            $url = "score-page.php?" . http_build_query($data);
+
                             echo<<<EOL
 			<div class="overflow score-gallery">
                 <!--<div class="page-num"><p>$num</p></div>-->
-				<a href="score-page.php?num=$num"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
+				<a href="$url"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
             </div>
 EOL;
             }
