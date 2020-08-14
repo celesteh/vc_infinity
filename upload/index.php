@@ -46,7 +46,5 @@ if(!isset($_SESSION["powerlevel"])){
 
 
 
-    <p>    <a href="logout.php" class="btn btn-danger">Logout</a>
-    </p>
 </body>
 </html>
