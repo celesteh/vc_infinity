@@ -4,8 +4,9 @@ require_once "config.php";
 require_once "functions.php";
  
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = $email = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = $confirm_password = $email = $url = "";
+$username_err = $password_err = $confirm_password_err = $url_err = "";
+
  
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -113,6 +114,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     */
     //$password = randomPassword();
 
+    // Validate url
+    if(! (empty(trim($_POST["homepage"])))){
+
+        $url = trim($_POST["homepage"]);
+        if ($url != ""){ 
+            if(filter_var($url, FILTER_VALIDATE_URL)) {
+                $url_err="";
+            } else {
+                $url_err = _("Please enter a valid url");
+            }
+        }
+
+    }
+
     // Check captcha
     $captchaResult = trim($_POST["captchaResult"]);
 	$firstNumber = trim($_POST["firstNumber"]);
@@ -127,10 +142,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $orgcode = trim($_POST["orgcode"]);
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err)){
+    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
         
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact) VALUES (:username,  :email, :orgcode, :realname, :marketing)";
+        $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact, u_url) VALUES (:username,  :email, :orgcode, :realname, :marketing, :url)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -139,6 +154,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":orgcode", $orgcode, PDO::PARAM_STR);
             $stmt->bindParam(":realname", $realname, PDO::PARAM_STR);
             $stmt->bindParam(":marketing", $param_marketing, PDO::PARAM_BOOL);
+            $stmt->bindParam(":url", $url, PDO::PARAM_STR);
+        
             // Set parameters
             $param_username = $username;
             $param_email = $email;
@@ -240,6 +257,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 ?>
                 </select>
             </div> 
+            <!-- Homepage -->
+            <div class="form-group <?php echo (!empty($url_err)) ? 'has-error' : ''; ?>">
+                <label>Homepage</label>
+                <input type="url" name="homepage" class="form-control" value="<?php echo $url; ?>">
+                <span class="help-block"><?php echo $url_err; ?></span>
+            </div>
+
             <!-- Marketing -->
             <div class="form-group">
                 <label>May we contact you about news and events around this project?</label>
