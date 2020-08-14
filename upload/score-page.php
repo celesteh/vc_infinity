@@ -23,10 +23,10 @@ if(!empty(trim($_POST['num']))){
 
 
 $sql = "SELECT page_img_file FROM `score_pages` WHERE page_num = :pnum";
-if($ustmt = $pdo->prepare($usql)){
-    $ustmt->bindParam(":pnum", $param_num, PDO::PARAM_INT);
+if($stmt = $pdo->prepare($sql)){
+    $stmt->bindParam(":pnum", $param_num, PDO::PARAM_INT);
     $param_num = (int) $page_num;
-    if($ustmt->execute()){
+    if($stmt->execute()){
 
         if($fetch = $stmt->fetch()){
         $imgfile = "../score_pages/" . $fetch['page_img_file'];
