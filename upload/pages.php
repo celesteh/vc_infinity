@@ -113,7 +113,7 @@ if(ISSET($_POST['upload'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome</title>
+    <title>Score</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
 
@@ -194,7 +194,7 @@ if(ISSET($_POST['upload'])){
                             $scaled = $ratio * 180;
 
 		?>
-			<div style="gallery">
+			<div class="gallery">
 				<a href="<?php echo $imgfile?>"><img src="<?php echo $imgfile?>" width="<?php echo $scaled?>" height="180"/></a>
 			</div>
 		<?php
