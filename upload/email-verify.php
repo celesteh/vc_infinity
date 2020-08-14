@@ -197,7 +197,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 </head>
 <body>
 
-<?php include 'nav-menu.php';?>
 
     <div class="wrapper <?php echo ($success) ? 'invisible' : ''; ?>">
         <h2>Error</h2>
