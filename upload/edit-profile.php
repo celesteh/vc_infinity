@@ -39,6 +39,10 @@ $new_password = $confirm_password = "";
 $new_password_err = $confirm_password_err = "";
 $new_name = $name_status = "";
 $renamed = FALSE;
+$url = $url_err= "";
+$update_msg = "";
+
+$updated = FALSE;
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -55,7 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
 		        $renamed = TRUE;
 		        $_SESSION["realname"] = $new_name;
-		        $name_status = _("Name updated");
+                $name_status = _("Name updated");
+                $updated = TRUE;
 	        }
 	    }
     }
@@ -72,9 +77,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
  
             if($stmt->execute()){
                 $_SESSION["marketing"] = $marketing;
+                $updated = TRUE;
             }
         }
     }
+
+    // Validate url
+    $url_err="";
+
+    if(! (empty(trim($_POST["homepage"])))){
+    
+        $url = trim($_POST["homepage"]);
+                
+        if (url != ""){
+            if(filter_var($url, FILTER_VALIDATE_URL)) {
+                $url_err="";
+                $sql = "UPDATE users SET u_url = :url WHERE userid = :id";
+        
+                if($stmt = $pdo->prepare($sql)){
+                   $stmt->bindParam(":url", $url, PDO::PARAM_BOOL);
+        
+                   if($stmt->execute()){
+                       $updated = TRUE;
+                    }
+                }
+            } else {
+                $url_err = _("Please enter a valid url");
+            }
+        
+        }   
+    }
+    
 
 
     //Validate new password
@@ -130,12 +163,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     unset($pdo);
 }
+
+if ($updated){
+    $update_msg = _("Updated successfully!");
+}
 ?>
  
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Edit Profile</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
@@ -147,6 +185,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2>Update Profile</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post"> 
+            <!-- Update message -->
+            <div class="form-group <?php echo (!empty($update_msg)) ? 'has-error' : ''; ?>">
+                <span class="help-block"><?php echo $update_msg; ?></span>
+            </div>
+            <!-- Name -->
             <div class="form-group">
                 <label>Username</label>
                 <input type="text" id="username" name="username" value="<?php echo $_SESSION["username"]; ?>" readonly><br>
@@ -156,6 +199,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="text" name="realname" class="form-control" value="<?php echo $_SESSION["realname"]; ?>">
                 <span class="help-block"><?php echo $name_status; ?></span>
             </div>
+            <!-- Homepage -->
+            <div class="form-group <?php echo (!empty($url_err)) ? 'has-error' : ''; ?>">
+                <label>Homepage</label>
+                <input type="url" name="homepage" class="form-control" value="<?php echo $url; ?>">
+                <span class="help-block"><?php echo $url_err; ?></span>
+            </div>
+
             <!-- Marketing -->
             <div class="form-group">
                 <label>May we contact you about news and events around this project?</label>

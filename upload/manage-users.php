@@ -82,6 +82,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Manage Users</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
@@ -139,7 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             //$index =0;
             //$size = sizeof($colours);
 
-            $sql = "SELECT userid, u_realname, u_org, u_rolecode FROM `users` WHERE 1 ";
+            $sql = "SELECT userid, u_realname, u_org, u_rolecode, u_url FROM `users` WHERE 1 ";
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                      while($row = $stmt->fetch()){
@@ -150,6 +151,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $orgcode = $row["u_org"];
                         $orgname = $orgs[$orgcode];
                         $role_code = $row["u_rolecode"];
+                        $url = $row["u_url"];
 
                         /*
                         // manage colours rotating

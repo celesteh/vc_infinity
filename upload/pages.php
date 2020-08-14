@@ -112,6 +112,7 @@ if(ISSET($_POST['upload'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
@@ -122,7 +123,7 @@ if(ISSET($_POST['upload'])){
         <h1>Upload score pages</h1>
     </div>
     <?php include 'nav-menu.php';?>
-    
+
     <div class="container infinity-form">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
