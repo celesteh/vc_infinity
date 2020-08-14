@@ -168,7 +168,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 ENDUSR;
                         */
                         $usrstr = <<< ENDUSR
-                        <tr><td>$realname</td><td>$orgname</td><td>$url</td><td><select name="$userid" id="$userid">
+                        <tr><td>$realname</td><td>$orgname</td><td><a href="$url" target="_blank">$url</a></td><td><select name="$userid" id="$userid">
 ENDUSR;
 
 
