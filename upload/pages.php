@@ -198,7 +198,7 @@ if(ISSET($_POST['upload'])){
 
                             echo<<<EOL
 			<div class="overflow score-gallery">
-                <div class="page-num"><p>$num</p></div>
+                <!--<div class="page-num"><p>$num</p></div>-->
 				<a href="score-page.php?num=$num"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
             </div>
 EOL;
