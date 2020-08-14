@@ -189,7 +189,7 @@ if(ISSET($_POST['upload'])){
                          while($fetch = $stmt->fetch()){
                             $imgfile = $fetch['page_img_file'];
                             list($width, $height) = getimagesize($imgfile);
-                            
+                            echo("" . $width . " ". $height);
                             $ratio = $width/$height;
                             $scaled = $ratio * 180;
 
