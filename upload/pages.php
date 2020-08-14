@@ -194,7 +194,7 @@ if(ISSET($_POST['upload'])){
                             $scaled = $ratio * 180;
 
 		?>
-			<div class="gallery">
+			<div class="infinity-gallery overflow">
 				<a href="<?php echo $imgfile?>"><img src="<?php echo $imgfile?>" width="<?php echo $scaled?>" height="180"/></a>
 			</div>
 		<?php
