@@ -183,7 +183,7 @@ if(ISSET($_POST['upload'])){
 		<?php
 
 
-                $sql = "SELECT page_img_file FROM `score_pages` WHERE 1 ";
+                $sql = "SELECT page_img_file, page_num FROM `score_pages` WHERE 1 ORDER BY page_num";
                 if($stmt = $pdo->prepare($sql)){
                     if($stmt->execute()){
                          while($fetch = $stmt->fetch()){
