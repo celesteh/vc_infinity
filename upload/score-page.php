@@ -16,15 +16,15 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 60)){
 }
 
 if(!empty(trim($_POST['num']))){
-    $page_num = $_POST['num'];
+    $page_num = trim($_POST['num']);
 } elseif(!empty(trim($_GET['num']))){
-    $page_num = $_GET['num'];
+    $page_num = trim($_GET['num']);
 }
 
 
-$sql = "SELECT page_img_file FROM `score_pages` WHERE page_num = :num";
+$sql = "SELECT page_img_file FROM `score_pages` WHERE page_num = :pnum";
 if($ustmt = $pdo->prepare($usql)){
-    $ustmt->bindParam(":num", $param_num, PDO::PARAM_INT);
+    $ustmt->bindParam(":pnum", $param_num, PDO::PARAM_INT);
     $param_num = (int) $page_num;
     if($ustmt->execute()){
 
