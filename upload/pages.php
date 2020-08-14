@@ -120,10 +120,11 @@ if(ISSET($_POST['upload'])){
 </head>
 <body>
     <div class="page-header">
-        <h1>Upload score pages</h1>
+        <h1>Manage Score</h1>
     </div>
     <?php include 'nav-menu.php';?>
 
+    <h2>Upload Pages</h2>
     <div class="container infinity-form">
 		<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
 			<div class="form-inline">
@@ -179,7 +180,8 @@ if(ISSET($_POST['upload'])){
         </form>
         </div>
 		<br />
-		<div class="alert alert-info"><h3>Already Uploaded Pages</h3></div>
+        <div class="alert alert-info"><h3>Already Uploaded Pages</h3></div>
+        <p>Click score image to set order/geometry</p>
 		<?php
 
 
@@ -192,18 +194,20 @@ if(ISSET($_POST['upload'])){
                             //echo("" . $width . " ". $height);
                             $ratio = $width/$height;
                             $scaled = $ratio * 180;
+                            $num = $fetch["page_num"];
 
-		?>
+                            echo<<<EOL
 			<div class="overflow score-gallery">
-				<a href="<?php echo $imgfile?>"><img src="<?php echo $imgfile?>" width="<?php echo $scaled?>" height="180"/></a>
-			</div>
-		<?php
+                <div class="page-num"><p>$num</p></div>
+				<a href="score-page.php?num=$num"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
+            </div>
+EOL;
             }
         }
     }
         ?>
-        
-        <a class="btn btn-link" href="index.php">Go Home</a>
+        <!--
+        <a class="btn btn-link" href="index.php">Go Home</a>-->
 	</div>
 </body>	
 </html>

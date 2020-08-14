@@ -124,6 +124,11 @@ div.score-gallery {
   margin:10px;
 }
 
+div.page-num {
+  float: left;
+  margin: 5px;
+}
+
 
 
 /* Responsive form */
