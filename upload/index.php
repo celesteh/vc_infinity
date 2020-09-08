@@ -40,12 +40,37 @@ if(!isset($_SESSION["powerlevel"])){
     if ($_SESSION["powerlevel"] < 20){
         $approval_required = _("Your account must be approved before you can participate.");
         echo "<p>" . $approval_required . "</p>\n";
+    } else {
+        // Get list of active pages
+        // Make links to submit audio pased on page_id
+        echo "<h2>Active Pages</h2>\n";
+        $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
+        if($stmt = $pdo->prepare($sql)){
+            if($stmt->execute()){
+                 while($fetch = $stmt->fetch()){
+                    $imgfile = "../score_pages/" . $fetch['page_img_file'];
+                    list($width, $height) = getimagesize($imgfile);
+                    //echo("" . $width . " ". $height);
+                    $ratio = $width/$height;
+                    $scaled = $ratio * 180;
+                    $id = $fetch["page_id"];
+
+                    $data = array(
+                        "id" => $id,
+                    );
+        
+                    $url = "upload.php?" . http_build_query($data);
+
+                    echo<<<EOL
+    <div class="overflow score-gallery">
+        <a href="$url"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
+    </div>
+EOL;
+                }
+            }
+        }
     }
-    ?>
-    
-   
-
-
+?>
 
 </body>
 </html>
