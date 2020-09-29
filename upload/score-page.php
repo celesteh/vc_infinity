@@ -15,17 +15,17 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 60)){
     header("location: index.php");
 }
 
-if(!empty(trim($_POST['num']))){
-    $page_num = trim($_POST['num']);
-} elseif(!empty(trim($_GET['num']))){
-    $page_num = trim($_GET['num']);
+if(!empty(trim($_POST['id']))){
+    $page_id = trim($_POST['id']);
+} elseif(!empty(trim($_GET['id']))){
+    $page_id = trim($_GET['id']);
 }
 
 
-$sql = "SELECT page_img_file FROM `score_pages` WHERE page_num = :pnum";
+$sql = "SELECT page_img_file FROM `score_pages` WHERE page_id = :pnum";
 if($stmt = $pdo->prepare($sql)){
-    $stmt->bindParam(":pnum", $param_num, PDO::PARAM_INT);
-    $param_num = (int) $page_num;
+    $stmt->bindParam(":pnum", $param_id, PDO::PARAM_INT);
+    $param_id = (int) $page_id;
     if($stmt->execute()){
 
         if($fetch = $stmt->fetch()){

@@ -185,7 +185,7 @@ if(ISSET($_POST['upload'])){
 		<?php
 
 
-                $sql = "SELECT page_img_file, page_num FROM `score_pages` WHERE 1 ORDER BY page_num";
+                $sql = "SELECT page_img_file, page_num, page_id FROM `score_pages` WHERE 1 ORDER BY page_num";
                 if($stmt = $pdo->prepare($sql)){
                     if($stmt->execute()){
                          while($fetch = $stmt->fetch()){
@@ -195,9 +195,10 @@ if(ISSET($_POST['upload'])){
                             $ratio = $width/$height;
                             $scaled = $ratio * 180;
                             $num = $fetch["page_num"];
+                            $id = $fetch["page_id"];
 
                             $data = array(
-                                "num" => $num,
+                                "id" => $id,
                             );
                 
                             $url = "score-page.php?" . http_build_query($data);

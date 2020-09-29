@@ -115,6 +115,69 @@ function get_power_level($rolecode, $pdo){
 
 }
 
+function get_score_for_user($fuid, $pdo) {}
+
+function get_group_for_user($fuid, $pdo) {}
+
+function get_score_for_group($gcode, $pdo){
+
+    $scorecode = "";
+
+    $sql = "SELECT org_scorcode FROM `organisations` where orgcode = :gcode";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":gcode", $param_gcode, PDO::PARAM_STR);
+        $param_gcode = $gcode;
+        if($stmt->execute()){
+            // Check if rolecode exists, if yes then get powerlevel
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $scorecode = $row["org_scorcode"];
+                }
+            }
+        }
+
+        unset($stmt);
+    }
+    return $scorecode;
+   
+}
+
+function get_page_called_for_score($scorecode, $pdo){
+
+    $page_called = "";
+
+    $sql = "SELECT s_page_called FROM `scores` where s_scorecode = :scorecode";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":scorecode", $param_gcode, PDO::PARAM_STR);
+        $param_gcode = $scorecode;
+        if($stmt->execute()){
+            // Check if rolecode exists, if yes then get powerlevel
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $page_called = $row["s_page_called"];
+                }
+            }
+        }
+
+        unset($stmt);
+    }
+    return $page_called;
+   
+}
+
+function get_page_called_for_group($gcode, $pdo){
+
+    $page_called = "";
+
+    $scorecode = get_score_for_group($gcode, $pdo);
+    $page_called = get_page_called_for_score($scorecode, $pdo);
+
+    return $page_called;
+
+}
+
 function get_power_level_for_user($fuid, $pdo){
 
     $powerlevel = 0;
