@@ -43,8 +43,8 @@ if(!isset($_SESSION["powerlevel"])){
     } else {
         // Get list of active pages
         // Make links to submit audio pased on page_id
-        echo "<h2>Active Pages</h2>\n";
-        echo "<p>Click to on a page to view and upload audio.</p>\n";
+        echo "<h2>Active Panels</h2>\n";
+        echo "<p>Click to on a papanelge to view and upload audio.</p>\n";
         $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
         if($stmt = $pdo->prepare($sql)){
             if($stmt->execute()){
