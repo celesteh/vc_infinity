@@ -32,7 +32,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     // check referral
 
     if (isset($_GET["id"])){
-        $panel = (int) trim($_GET["id"]);
+        $panel =  trim($_GET["id"]);
         $selected = true;
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     if (isset($_post["id"])){
 
         // check referral
-        $panel = (int) trim($_POST["id"]);
+        $panel = trim($_POST["id"]);
         $selected = true;
     }
 }
@@ -74,10 +74,11 @@ if ($selected){
 
     $active = false;
 
-    $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id ORDER BY page_num";
+    $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id";
     if($fstmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
-        $fstmt->bindParam(":id", $panel, PDO::PARAM_INT);
+        $fstmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+        $param_id = (int)$panel;
         // Attempt to execute the prepared statement
         if($fstmt->execute()){
             // Check if username exists, if yes then get id
