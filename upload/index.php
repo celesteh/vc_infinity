@@ -15,6 +15,14 @@ if(!isset($_SESSION["powerlevel"])){
     $_SESSION["powerlevel"] = get_power_level_for_user($_SESSION["id"], $pdo);
 } 
 
+if(isset($_SESSION["page_called"])){
+    $page_called = $_SESSION["page_called"];
+} else {
+    $page_called = get_page_called_for_user($_SESSION["id"], $pdo);
+    $_SESSION["page_called"] = $page_called;
+}
+$upper = ucfirst($page_called);
+
 ?>
  
 <!DOCTYPE html>
@@ -43,8 +51,8 @@ if(!isset($_SESSION["powerlevel"])){
     } else {
         // Get list of active pages
         // Make links to submit audio pased on page_id
-        echo "<h2>Active Panels</h2>\n";
-        echo "<p>Click to on a panel to view and upload audio.</p>\n";
+        echo "<h2>Active {$upper}s</h2>\n";
+        echo "<p>Click to on a {$page_called} to view and upload audio.</p>\n";
         $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
         if($stmt = $pdo->prepare($sql)){
             if($stmt->execute()){
