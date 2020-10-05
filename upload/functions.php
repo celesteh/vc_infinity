@@ -115,6 +115,13 @@ function get_power_level($rolecode, $pdo){
 
 }
 
+function get_page_called_for_user($fuid, $pdo){
+
+    // fix this properly soon
+
+    return "panel";
+
+}
 function get_score_for_user($fuid, $pdo) {}
 
 function get_group_for_user($fuid, $pdo) {}
@@ -177,6 +184,7 @@ function get_page_called_for_group($gcode, $pdo){
     return $page_called;
 
 }
+
 
 function get_power_level_for_user($fuid, $pdo){
 

@@ -15,6 +15,13 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     header("location: index.php");
 }
 
+if(isset($_SESSION["page_called"])){
+    $page_called = $_SESSION["page_called"];
+} else {
+    $page_called = get_page_called_for_user($_SESSION["id"], $pdo);
+    $_SESSION["page_called"] = $page_called;
+}
+$upper = ucfirst($page_called);
 
 $selected = false;
 $panel = -1;
@@ -55,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 </head>
 <body>
     <div class="page-header">
-        <h1>Upload Your Audio</h1>
+        <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
 
@@ -85,7 +92,7 @@ if ($selected){
 
     if (! $active) {
 
-        echo "<h2>Error</h2>\n<p>Please select and active panel!</p>\n\n";
+        echo "<h2>Error</h2>\n<p>Please select an active {$page_called}!</p>\n\n";
         $selected = false;
         $panel = -1;
 
@@ -99,8 +106,8 @@ if ($selected){
 } 
 
 if (! $selected) {
-    echo "<h2>Active Panels</h2>\n";
-    echo "<p>Click to on a panel to view and upload audio.</p>\n";
+    echo "<h2>Active {$upper}s</h2>\n";
+    echo "<p>Click to on a {$page_called} to view and upload audio.</p>\n";
     $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
