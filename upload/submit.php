@@ -85,8 +85,13 @@ if ($selected){
             if($fstmt->rowCount() == 1){
                 if($row = $fstmt->fetch()){
                     $active = (bool) $row["page_active"];
-                    $imgfile =  $row["page_img_file"];
+                    $imgfile =  "../score_pages/" . $row["page_img_file"];
                     $page_num = (int) $row["page_num"];
+
+                    list($width, $height) = getimagesize($imgfile);
+                    //echo("" . $width . " ". $height);
+                    $ratio = $width/$height;
+                    $scaled = $ratio * 180;
                 }
             }
         }
@@ -105,9 +110,10 @@ if ($selected){
         // click to pick an X,Y coordinate
 
         echo<<<EOL
-        <form action='' method=post>
-<input type="image" alt='$page_called $page_num' src='../score_pages/$imgfile'
+        <form action='upload.php' method=post>
+<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="180"
 name="$page_called" style=cursor:crosshair;/>
+<input type="hidden" id="id" name="id" value="$panel">
 </form>
 EOL;
     }
