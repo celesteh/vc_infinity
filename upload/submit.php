@@ -65,7 +65,40 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 
 if ($selected){
 
-} else {
+    $active = false;
+
+    $sql = "SELECT page_img_file, page_id, page_active FROM `score_pages` WHERE page_id = :id ORDER BY page_num";
+    if($fstmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $fstmt->bindParam(":id", $panel, PDO::PARAM_INT);
+        // Attempt to execute the prepared statement
+        if($fstmt->execute()){
+            // Check if username exists, if yes then get id
+            if($fstmt->rowCount() == 1){
+                if($row = $fstmt->fetch()){
+                    $active = (bool) $row["page_active"];
+                }
+            }
+        }
+        unset($fstmt);
+    }
+
+    if (! $active) {
+
+        echo "<h2>Error</h2>\n<p>Please select and active panel!</p>\n\n";
+        $selected = false;
+        $panel = -1;
+
+    } else {
+
+        // click to pick an X,Y coordinate
+
+    }
+
+
+} 
+
+if (! $selected) {
     echo "<h2>Active Panels</h2>\n";
     echo "<p>Click to on a panel to view and upload audio.</p>\n";
     $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
