@@ -98,6 +98,7 @@ if ($selected){
 
     } else {
 
+        echo "<h2>Coming Soon</h2>\n";
         // click to pick an X,Y coordinate
 
     }
