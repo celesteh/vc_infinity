@@ -85,7 +85,7 @@ if ($selected){
             if($fstmt->rowCount() == 1){
                 if($row = $fstmt->fetch()){
                     $active = (bool) $row["page_active"];
-                    $imgfile =  $fetch["page_img_file"];
+                    $imgfile =  $row["page_img_file"];
                     $page_num = (int) $row["page_num"];
                 }
             }
