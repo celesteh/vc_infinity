@@ -91,7 +91,7 @@ if ($selected){
                     list($width, $height) = getimagesize($imgfile);
                     //echo("" . $width . " ". $height);
                     $ratio = $width/$height;
-                    $scaled = $ratio * 180;
+                    $scaled = $ratio * 360;
                 }
             }
         }
@@ -110,11 +110,13 @@ if ($selected){
         // click to pick an X,Y coordinate
 
         echo<<<EOL
-        <form action='upload.php' method=post>
-<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="180"
+        <div class="overflow score-gallery">
+        <form action='upload.php' method=get>
+<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="360"
 name="$page_called" style=cursor:crosshair;/>
 <input type="hidden" id="id" name="id" value="$panel">
 </form>
+</div>
 EOL;
     }
 
