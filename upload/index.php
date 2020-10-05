@@ -60,7 +60,7 @@ if(!isset($_SESSION["powerlevel"])){
                         "id" => $id,
                     );
         
-                    $url = "upload.php?" . http_build_query($data);
+                    $url = "submit.php?" . http_build_query($data);
 
                     echo<<<EOL
     <div class="overflow score-gallery">
