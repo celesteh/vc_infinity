@@ -84,7 +84,7 @@ if ($selected){
             if($fstmt->rowCount() == 1){
                 if($row = $fstmt->fetch()){
                     $active = (bool) $row["page_active"];
-                    $imgfile = "../score_pages/" . $fetch['page_img_file'];
+                    $imgfile =  $fetch["page_img_file"];
                     $page_num = (int) $row["page_num"];
                 }
             }
@@ -105,7 +105,7 @@ if ($selected){
 
         echo<<<EOL
         <form action='' method=post>
-<input type="image" alt='$page_called $page_num' src="$imgfile"
+<input type="image" alt='$page_called $page_num' src='"../score_pages/$imgfile'
 name="$page_called" style=cursor:crosshair;/>
 </form>
 EOL;
