@@ -106,7 +106,7 @@ if ($selected){
 
         echo<<<EOL
         <form action='' method=post>
-<input type="image" alt='$page_called $page_num' src='"../score_pages/$imgfile'
+<input type="image" alt='$page_called $page_num' src='../score_pages/$imgfile'
 name="$page_called" style=cursor:crosshair;/>
 </form>
 EOL;
