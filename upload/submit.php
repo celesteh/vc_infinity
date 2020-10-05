@@ -74,7 +74,7 @@ if ($selected){
 
     $active = false;
 
-    $sql = "SELECT page_img_file, page_id, page_active FROM `score_pages` WHERE page_id = :id ORDER BY page_num";
+    $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id ORDER BY page_num";
     if($fstmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $fstmt->bindParam(":id", $panel, PDO::PARAM_INT);
@@ -84,6 +84,8 @@ if ($selected){
             if($fstmt->rowCount() == 1){
                 if($row = $fstmt->fetch()){
                     $active = (bool) $row["page_active"];
+                    $imgfile = "../score_pages/" . $fetch['page_img_file'];
+                    $page_num = (int) $row["page_num"];
                 }
             }
         }
@@ -101,6 +103,12 @@ if ($selected){
         echo "<h2>Coming Soon</h2>\n";
         // click to pick an X,Y coordinate
 
+        echo<<<EOL
+        <form action='' method=post>
+<input type="image" alt='$page_called $page_num' src="$imgfile"
+name="$page_called" style=cursor:crosshair;/>
+</form>
+EOL;
     }
 
 
