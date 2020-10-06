@@ -124,6 +124,15 @@ div.score-gallery {
   margin:10px;
 }
 
+div.score-panel {
+  border:1px solid #000; 
+  height:370px; 
+  min-width:370px; 
+  padding:4px; 
+  float:left; 
+  margin:10px;
+}
+
 div.page-num {
   float: left;
   margin: 5px;

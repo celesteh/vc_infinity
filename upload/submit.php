@@ -91,7 +91,8 @@ if ($selected){
                     list($width, $height) = getimagesize($imgfile);
                     //echo("" . $width . " ". $height);
                     $ratio = $width/$height;
-                    $scaled = $ratio * 360;
+                    $scaleh = 360;
+                    $scaledw = $ratio * $scaleh;
                 }
             }
         }
@@ -110,11 +111,13 @@ if ($selected){
         // click to pick an X,Y coordinate
 
         echo<<<EOL
-        <div class="overflow score-gallery">
+        <div class="overflow score-panel">
         <form action='upload.php' method=get>
-<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="360"
+<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="$scaleh"
 name="$page_called" style=cursor:crosshair;/>
 <input type="hidden" id="id" name="id" value="$panel">
+<input type="hidden" id="scaled_width", name = "scaled_width", value="$scalew">
+<input type="hidden" id="scaled_height", name = "scaled_height", value="$scaleh">
 </form>
 </div>
 EOL;
