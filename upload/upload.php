@@ -39,12 +39,12 @@ $panel = -1;
         $scaled_width = trim($_POST["scaled_width"]);
         $scaled_height = trim($_POST["scaled_height"]);
     } else {
-       // header("location: submit.php?id=" . $_POST["id"]);
+        header("location: submit.php?id=" . $_POST["id"]);
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET"){
 
     // panel.x=503& panel.y=187& id=8& scaled_width=2520& scaled_height=360
-    //if (isset($_GET["id"]) && isset($_GET["panel_x"]) && isset($_GET["panel_y"]) && isset($_GET["scaled_width"]) && isset($_GET["scaled_height"]) ){
+    if (isset($_GET["id"]) && isset($_GET["panel_x"]) && isset($_GET["panel_y"]) && isset($_GET["scaled_width"]) && isset($_GET["scaled_height"]) ){
 
         // check referral
         $panel = trim($_GET["id"]);
@@ -53,9 +53,9 @@ $panel = -1;
         $scaled_y = trim($_GET["panel_y"]);
         $scaled_width = trim($_GET["scaled_width"]);
         $scaled_height = trim($_GET["scaled_height"]);
-    //} else {
-        //header("location: submit.php?id=" . $_GET["id"]);
-    //}
+    } else {
+        header("location: submit.php?id=" . $_GET["id"]);
+    }
 }
 
 if ($selected){
@@ -108,17 +108,19 @@ if ($selected){
 </div>
 <?php include 'nav-menu.php';?>
 <?php echo "id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active}"; ?>
+<div class="wrapper">
 
-<?php echo keys($_GET) ?>
-
-<form action="upload.php" method="post" enctype="multipart/form-data">
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
   Select an audio file to upload:
-  <input type="file" name="fileToUpload" id="fileToUpload">
+  <div class="form-group">
+    <input type="file" name="fileToUpload" id="fileToUpload">
+  </div>
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
   <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
   <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
   <input type="submit" value="Upload Audio" name="submit">
 </form>
+</div>
 
 </body>
 </html>
