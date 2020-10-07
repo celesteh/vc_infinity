@@ -41,6 +41,20 @@ $panel = -1;
     } else {
         header("location: submit.php?id=" . $_POST["id"]);
     }
+} elseif ($_SERVER["REQUEST_METHOD"] == "GET"){
+
+    if (isset($_GET["id"]) && isset($_GET["panel.x"]) && isset($_GET["panel.y"]) && isset($_GET["scaled_width"]) && isset($_GET["scaled_height"]) ){
+
+        // check referral
+        $panel = trim($_GET["id"]);
+        $selected = true;
+        $scaled_x = trim($_GET["panel.x"]);
+        $scaled_y = trim($_GET["panel.y"]);
+        $scaled_width = trim($_GET["scaled_width"]);
+        $scaled_height = trim($_GET["scaled_height"]);
+    } else {
+        header("location: submit.php?id=" . $_GET["id"]);
+    }
 }
 
 if ($selected){
