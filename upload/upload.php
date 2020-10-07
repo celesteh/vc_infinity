@@ -99,6 +99,7 @@ if ($selected){
   <input type="file" name="fileToUpload" id="fileToUpload">
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
   <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
+  <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
   <input type="submit" value="Upload Audio" name="submit">
 </form>
 
