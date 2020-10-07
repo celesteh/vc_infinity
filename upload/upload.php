@@ -29,13 +29,13 @@ $panel = -1;
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if (isset($_POST["id"]) && isset($_POST["panel.x"]) && isset($_POST["panel.y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
+    if (isset($_POST["id"]) && isset($_POST["panel_x"]) && isset($_POST["panel_y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
 
         // check referral
         $panel = trim($_POST["id"]);
         $selected = true;
-        $scaled_x = trim($_POST["panel.x"]);
-        $scaled_y = trim($_POST["panel.y"]);
+        $scaled_x = trim($_POST["panel_x"]);
+        $scaled_y = trim($_POST["panel_y"]);
         $scaled_width = trim($_POST["scaled_width"]);
         $scaled_height = trim($_POST["scaled_height"]);
     } else {
@@ -44,13 +44,13 @@ $panel = -1;
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET"){
 
     // panel.x=503& panel.y=187& id=8& scaled_width=2520& scaled_height=360
-    //if (isset($_GET["id"]) && isset($_GET["panel.x"]) && isset($_GET["panel.y"]) && isset($_GET["scaled_width"]) && isset($_GET["scaled_height"]) ){
+    //if (isset($_GET["id"]) && isset($_GET["panel_x"]) && isset($_GET["panel_y"]) && isset($_GET["scaled_width"]) && isset($_GET["scaled_height"]) ){
 
         // check referral
         $panel = trim($_GET["id"]);
         $selected = true;
-        $scaled_x = trim($_GET["panel.x"]);
-        $scaled_y = trim($_GET["panel.y"]);
+        $scaled_x = trim($_GET["panel_x"]);
+        $scaled_y = trim($_GET["panel_y"]);
         $scaled_width = trim($_GET["scaled_width"]);
         $scaled_height = trim($_GET["scaled_height"]);
     //} else {
