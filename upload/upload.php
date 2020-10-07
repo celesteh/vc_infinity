@@ -92,7 +92,7 @@ if ($selected){
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
-<?php echo "X {$x} Y {$y}"; ?>
+<?php echo "X {$x} Y {$y} panel {$panel}"; ?>
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
   Select an audio file to upload:
