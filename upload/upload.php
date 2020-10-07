@@ -113,8 +113,9 @@ if ($selected){
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
   
   <div class="form-group">
-  <label class="custom-file-upload">
   Select an audio file to upload:
+  <label class="custom-file-upload">
+ 
     <input type="file" name="fileToUpload" id="fileToUpload">
     <i class="fa fa-cloud-upload"></i> Browse…
 </label>
