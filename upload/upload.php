@@ -109,6 +109,8 @@ if ($selected){
 <?php include 'nav-menu.php';?>
 <?php echo "id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active}"; ?>
 
+<?php echo keys($_GET) ?>
+
 <form action="upload.php" method="post" enctype="multipart/form-data">
   Select an audio file to upload:
   <input type="file" name="fileToUpload" id="fileToUpload">
