@@ -29,15 +29,17 @@ $panel = -1;
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if (isset($_post["id"])){
+    if (isset($_post["id"]) && isset($_POST["panel.x"]) && isset($_POST["panel.y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
 
         // check referral
         $panel = trim($_POST["id"]);
         $selected = true;
-        $x = trim($_POST["x"]);
-        $y = trim($_POST["y"]);
+        $scaled_x = trim($_POST["panel.x"]);
+        $scaled_y = trim($_POST["panel.y"]);
         $scaled_width = trim($_POST["scaled_width"]);
         $scaled_height = trim($_POST["scaled_height"]);
+    } else {
+        header("location: submit.php?id=" . $_POST["id"]);
     }
 }
 
@@ -61,6 +63,9 @@ if ($selected){
 
                     list($width, $height) = getimagesize($imgfile);
                     //echo("" . $width . " ". $height);
+
+                    $x = ($scaled_x * $width) / $scaled_width;
+                    $y = ($scaled_y + $height) / $scaled_height;
                 }
             }
         }
@@ -88,6 +93,14 @@ if ($selected){
 </div>
 <?php include 'nav-menu.php';?>
 <?php echo "X {$x} Y {$y}"; ?>
+
+<form action="upload.php" method="post" enctype="multipart/form-data">
+  Select an audio file to upload:
+  <input type="file" name="fileToUpload" id="fileToUpload">
+  <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
+  <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
+  <input type="submit" value="Upload Audio" name="submit">
+</form>
 
 </body>
 </html>

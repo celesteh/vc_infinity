@@ -114,7 +114,7 @@ if ($selected){
         <div class="overflow score-panel">
         <form action='upload.php' method=get>
 <input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaledw" height="$scaleh"
-name="$page_called" style=cursor:crosshair;/>
+name="panel" style=cursor:crosshair;/>
 <input type="hidden" id="id" name="id" value="$panel">
 <input type="hidden" id="scaled_width", name = "scaled_width", value="$scaledw">
 <input type="hidden" id="scaled_height", name = "scaled_height", value="$scaleh">
