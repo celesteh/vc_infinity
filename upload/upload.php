@@ -29,7 +29,7 @@ $panel = -1;
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    if (isset($_post["id"]) && isset($_POST["panel.x"]) && isset($_POST["panel.y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
+    if (isset($_POST["id"]) && isset($_POST["panel.x"]) && isset($_POST["panel.y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
 
         // check referral
         $panel = trim($_POST["id"]);
@@ -92,7 +92,7 @@ if ($selected){
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
-<?php echo "X {$x} Y {$y} panel {$panel}"; ?>
+<?php echo "X {$x} Y {$y} panel {$panel} active {$active}"; ?>
 
 <form action="upload.php" method="post" enctype="multipart/form-data">
   Select an audio file to upload:
