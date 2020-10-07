@@ -62,7 +62,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
 </head>
 <body>
     <div class="page-header">
-        <h1>Submit Your Audio</h1>
+        <h1>Select the location in the score</h1>
 </div>
 <?php include 'nav-menu.php';?>
 
@@ -107,16 +107,16 @@ if ($selected){
 
     } else {
 
-        echo "<h2>Coming Soon</h2>\n";
+        echo "<h2>Click where your sound belongs on the score</h2>\n";
         // click to pick an X,Y coordinate
 
         echo<<<EOL
         <div class="overflow score-panel">
         <form action='upload.php' method=get>
-<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaled" height="$scaleh"
+<input type="image" alt='$page_called $page_num' src='$imgfile' width="$scaledw" height="$scaleh"
 name="$page_called" style=cursor:crosshair;/>
 <input type="hidden" id="id" name="id" value="$panel">
-<input type="hidden" id="scaled_width", name = "scaled_width", value="$scalew">
+<input type="hidden" id="scaled_width", name = "scaled_width", value="$scaledw">
 <input type="hidden" id="scaled_height", name = "scaled_height", value="$scaleh">
 </form>
 </div>
