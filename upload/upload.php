@@ -33,11 +33,40 @@ $panel = -1;
 
         // check referral
         $panel = trim($_POST["id"]);
+        $selected = true;
         $x = trim($_POST["x"]);
         $y = trim($_POST["y"]);
+        $scaled_width = trim($_POST["scaled_width"]);
+        $scaled_height = trim($_POST["scaled_height"]);
     }
 }
 
+if ($selected){
+
+    $active = false;
+
+    $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id";
+    if($fstmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $fstmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+        $param_id = (int)$panel;
+        // Attempt to execute the prepared statement
+        if($fstmt->execute()){
+            // Check if username exists, if yes then get id
+            if($fstmt->rowCount() == 1){
+                if($row = $fstmt->fetch()){
+                    $active = (bool) $row["page_active"];
+                    $imgfile =  "../score_pages/" . $row["page_img_file"];
+                    $page_num = (int) $row["page_num"];
+
+                    list($width, $height) = getimagesize($imgfile);
+                    //echo("" . $width . " ". $height);
+                }
+            }
+        }
+        unset($fstmt);
+    }
+}
 
 
 ?>
@@ -58,6 +87,7 @@ $panel = -1;
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
+<?php echo "X {$x} Y {$y}"; ?>
 
 </body>
 </html>
