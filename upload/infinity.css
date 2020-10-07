@@ -149,6 +149,7 @@ div.page-num {
   width: 100%;
 }
 
+
 input[type=text], select, textarea {
   width: 100%;
   padding: 12px;
@@ -171,6 +172,18 @@ input[type=submit] {
   cursor: pointer;
   float: right;
 }
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  background-color: #23527c;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 
 input[type=submit]:hover {
   background-color: #23527c;
