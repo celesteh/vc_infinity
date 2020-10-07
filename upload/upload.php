@@ -25,6 +25,9 @@ $upper = ucfirst($page_called);
 
 $selected = false;
 $panel = -1;
+$upload = false;
+$ok = false;
+$active = false;
 
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -38,9 +41,26 @@ $panel = -1;
         $scaled_y = trim($_POST["panel_y"]);
         $scaled_width = trim($_POST["scaled_width"]);
         $scaled_height = trim($_POST["scaled_height"]);
+    
+    
+    }elseif (isset($_POST["submit"]) && isset($_POST["id"]) && isset($_POST["x"]) && isset($_POST["y"])) {
+        // is this an upload?
+        $panel = trim($_POST["id"]);
+        $x = trim($_POST["x"]);
+        $y = trim($_POST["y"]);
+
+        $target_dir = "../unprocessed_audio/";
+        $target_file = $target_dir . basename($_FILES["audio"]["name"]); // fix this to name the file correctly
+        //$uploadOk = 1;
+        $upload = true;
+
+        $file_type=$_FILES['audio']['type'];
+        $is_audio = preg_match("/^audio/", $file_type); 
+
     } else {
         header("location: submit.php?id=" . $_POST["id"]);
     }
+
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET"){
 
     // panel.x=503& panel.y=187& id=8& scaled_width=2520& scaled_height=360
@@ -58,9 +78,7 @@ $panel = -1;
     }
 }
 
-if ($selected){
-
-    $active = false;
+if ($selected || $upload ){
 
     $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id";
     if($fstmt = $pdo->prepare($sql)){
@@ -76,16 +94,23 @@ if ($selected){
                     $imgfile =  "../score_pages/" . $row["page_img_file"];
                     $page_num = (int) $row["page_num"];
 
-                    list($width, $height) = getimagesize($imgfile);
-                    //echo("" . $width . " ". $height);
+                    if (! $upload) {
 
-                    $x = ($scaled_x * $width) / $scaled_width;
-                    $y = ($scaled_y + $height) / $scaled_height;
+                        list($width, $height) = getimagesize($imgfile);
+                        //echo("" . $width . " ". $height);
+
+                        $x = ($scaled_x * $width) / $scaled_width;
+                        $y = ($scaled_y + $height) / $scaled_height;
+                    }
                 }
             }
         }
         unset($fstmt);
     }
+}
+
+if (! $active){
+    header("location: submit.php?err=inactive");
 }
 
 
@@ -107,7 +132,7 @@ if ($selected){
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
-<?php echo "id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active}"; ?>
+<?php echo "is_audio {$is_audio} id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active}"; ?>
 <div class="wrapper">
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
@@ -116,7 +141,7 @@ if ($selected){
   Select an audio file to upload:
   <label class="custom-file-upload">
  
-    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="file" name="audio" id="audio">
     <i class="fa fa-cloud-upload"></i> Browse…
 </label>
   </div>
