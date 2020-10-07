@@ -39,7 +39,7 @@ $panel = -1;
         $scaled_width = trim($_POST["scaled_width"]);
         $scaled_height = trim($_POST["scaled_height"]);
     } else {
-        header("location: submit.php?id=" . $_POST["id"]);
+       // header("location: submit.php?id=" . $_POST["id"]);
     }
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET"){
 
@@ -53,7 +53,7 @@ $panel = -1;
         $scaled_width = trim($_GET["scaled_width"]);
         $scaled_height = trim($_GET["scaled_height"]);
     } else {
-        header("location: submit.php?id=" . $_GET["id"]);
+        //header("location: submit.php?id=" . $_GET["id"]);
     }
 }
 
