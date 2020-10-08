@@ -14,7 +14,7 @@ if(!isset($_SESSION["powerlevel"])){
 
 <nav>
 <ul>
-    <li><a href="../">View Site</a></li>
+    <li><a href="../">Current Performance</a></li>
     <li><a href="./">Dashboard</a></li>
 <?php
  $powerlevel = $_SESSION["powerlevel"];
@@ -33,7 +33,7 @@ if ($powerlevel >= 20) {
     echo '<li><a href="submit.php">Submit audio</a></li>';
 }
 ?>
-<li><a href="prepare.html">Audio Howto</a></li>
+<li><a href="prepare.html">Audio How To</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
 <li><a href="logout.php">Logout</a></li>
 </ul>
