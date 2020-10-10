@@ -34,7 +34,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
 <!-- Title and author ..>
 <?php
-$scorecode = get_scorecode_for_user($_SESSION["id"], $pdo);
+$scorecode = get_score_for_user($_SESSION["id"], $pdo);
 list($title, $composer, $copyright) = get_score_title_and_composer($scorecode, $pdo);
 
 echo "<h2>$title by $composer</h2>\n";
