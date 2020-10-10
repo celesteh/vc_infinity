@@ -30,13 +30,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // step through users looking for changes
-    $sql = "SELECT userid, u_rolecode FROM `users` WHERE 1 ";
+    $sql = "SELECT userid, u_rolecode, u_email FROM `users` WHERE 1 ";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
              while($row = $stmt->fetch()){
 
                 $uid = $row["userid"];
                 $oldrole = $row["u_rolecode"];
+                $uemail = $row["u_email"];
                 $newrole = trim($_POST[$uid]);
 
                 // if we found a change
@@ -52,6 +53,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $ustmt->bindParam(":newrole", $newrole, PDO::PARAM_STR);
                         $param_userid = (int) $uid;
                         if($ustmt->execute()){
+                            // Send an email to the user
+
+                            $body = _("Your account at " .$_SITE["title"] . " has been modified. You are now a {$newrole}. Please log in to see what you are now allowed to do.");
+                            $headers = "From: infinity@vocalconstructivists.com";
+
+                            mail($uemail, $_SITE["title"] . _(" account modified"), $body, $headers);
+
+
+                            // ok, add this one to the counter
+
                             $count = $count +1;
                         }else{
                             $success = false;

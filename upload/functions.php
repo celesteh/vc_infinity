@@ -119,10 +119,50 @@ function get_page_called_for_user($fuid, $pdo){
 
     // fix this properly soon
 
+    // get score for user
+    // then query the page fname from the db
+
     return "panel";
 
 }
-function get_score_for_user($fuid, $pdo) {}
+function get_score_for_user($fuid, $pdo) {
+
+    // fix this properly soon
+
+    // get group for user
+    // then get score for group
+
+    return "metaphysics";
+
+}
+
+function get_score_title_and_composer($scorecode, $pdo){
+
+    $title = "";
+    $composer = "";
+    $copyright = "";
+
+    $sql = "SELECT s_title, s_composer, s_copyright_year FROM `scores` WHERE s_scorecode = :scorecode";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":scorecode", $param_scorecode, PDO::PARAM_STR);
+        $param_scorecode = $scorecode;
+        if($stmt->execute()){
+            // Check if rolecode exists, if yes then get powerlevel
+            if($stmt->rowCount() == 1){
+                if($row = $stmt->fetch()){
+                    $title = $row["s_title"];
+                    $composer = $row["s_composer"];
+                    $copyright = $row["s_copyright_year"];
+                }
+            }
+        }
+
+        unset($stmt);
+    }
+    return array ($title, $composer, $copyright);
+
+}
 
 function get_group_for_user($fuid, $pdo) {}
 
