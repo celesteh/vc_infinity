@@ -32,7 +32,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
         <h1>View Score</h1>
     </div>
     <?php include 'nav-menu.php';?>
-<!-- Title and author ..>
+<!-- Title and author -->
 <?php
 $scorecode = get_score_for_user($_SESSION["id"], $pdo);
 list($title, $composer, $copyright) = get_score_title_and_composer($scorecode, $pdo);
