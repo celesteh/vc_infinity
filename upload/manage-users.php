@@ -55,7 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if($ustmt->execute()){
                             // Send an email to the user
 
-                            $body = _("Your account at " .$_SITE["title"] . " has been modified. You are now a {$newrole}. Please log in to see what you are now allowed to do.");
+                            $url = url();
+                            $body = _("Your account at " .$_SITE["title"] . " has been modified. You are now a {$newrole}. \nPlease log in to see what you are now allowed to do. {$url}");
                             $headers = "From: infinity@vocalconstructivists.com";
 
                             mail($uemail, $_SITE["title"] . _(" account modified"), $body, $headers);
