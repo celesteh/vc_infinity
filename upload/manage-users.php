@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // step through users looking for changes
-    $sql = "SELECT userid, u_rolecode, u_email FROM `users` WHERE 1 ";
+    $sql = "SELECT userid, u_rolecode, u_emailv u_can_contact FROM `users` WHERE 1 ";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
              while($row = $stmt->fetch()){
@@ -38,6 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $uid = $row["userid"];
                 $oldrole = $row["u_rolecode"];
                 $uemail = $row["u_email"];
+                $should_email = $row["u_can_contact"];
                 $newrole = trim($_POST[$uid]);
 
                 // if we found a change
@@ -53,14 +54,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $ustmt->bindParam(":newrole", $newrole, PDO::PARAM_STR);
                         $param_userid = (int) $uid;
                         if($ustmt->execute()){
-                            // Send an email to the user
 
-                            $url = url_dir();
-                            $body = _("Your account at " .$_SITE["title"] . " has been modified. You are now a {$newrole}. \nPlease log in to see what you are now allowed to do. {$url}");
-                            $headers = "From: infinity@vocalconstructivists.com";
+                            if ($should_email){
+                                // Send an email to the user
 
-                            mail($uemail, $_SITE["title"] . _(" account modified"), $body, $headers);
+                                $url = url_dir();
+                                $body = _("Your account at " .$_SITE["title"] . " has been modified. You are now a {$newrole}. \nPlease log in to see what you are now allowed to do. {$url}");
+                                $headers = "From: infinity@vocalconstructivists.com";
 
+                                mail($uemail, $_SITE["title"] . _(" account modified"), $body, $headers);
+                            }
 
                             // ok, add this one to the counter
 
