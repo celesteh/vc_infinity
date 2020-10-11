@@ -276,14 +276,17 @@ function lazy_power_check($fuid, $pdo, $must_be_this_powerful_to_ride){
 }
 
 
-function url(){
+function url_dir(){
     if(isset($_SERVER['HTTPS'])){
         $protocol = ($_SERVER['HTTPS'] && $_SERVER['HTTPS'] != "off") ? "https" : "http";
     }
     else{
         $protocol = 'http';
     }
-    return $protocol . "://" . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+
+    $path = pathinfo($_SERVER['REQUEST_URI']);
+
+    return $protocol . "://" . $_SERVER['HTTP_HOST'] . $path['dirname'];
 }
 
 ?>
