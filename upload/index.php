@@ -51,6 +51,8 @@ $upper = ucfirst($page_called);
     } else {
         // Get list of active pages
         // Make links to submit audio pased on page_id
+        echo "<h2>News</h2>\n";
+        echo "<p>Uploading audio has been enabled! Please start uploading!</p>\n\n";
         echo "<h2>Active {$upper}s</h2>\n";
         echo "<p>Click to on a {$page_called} to view and upload audio.</p>\n";
         $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
