@@ -30,7 +30,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     }
 
     // step through users looking for changes
-    $sql = "SELECT userid, u_rolecode, u_emailv u_can_contact FROM `users` WHERE 1 ";
+    $sql = "SELECT userid, u_rolecode, u_email, u_can_contact FROM `users` WHERE 1 ";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
              while($row = $stmt->fetch()){
