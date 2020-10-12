@@ -151,7 +151,7 @@ if ($selected || $upload ){
 
                         // make a database record
 
-                        $sql = "INSERT INTO uploaded_audio (sa_userid, sa_pageid, sa_x, sa_y, sa_filename) VALUES (:userid,  :pageid, :x, :y, :filename)";
+                        $sql = "INSERT INTO submitted_audio (sa_userid, sa_pageid, sa_x, sa_y, sa_filename) VALUES (:userid,  :pageid, :x, :y, :filename)";
                         if($stmt = $pdo->prepare($sql)){
                             // Bind variables to the prepared statement as parameters
                             $stmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
