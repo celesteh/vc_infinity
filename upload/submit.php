@@ -35,6 +35,17 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         $panel =  trim($_GET["id"]);
         $selected = true;
     }
+
+    if (isset($_GET["success"])){
+        $message = array(_("Successful upload!"), _("Upload another recording?"));
+    }
+
+    if (isset($_GET["err"])){
+        // inactive
+        //<h2>Error</h2>\n<p>Please select an active {$page_called}!</p>\n\n"
+        $message = array(_("Error"), _("Please select an active {$page_called}!"));
+    }
+
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if (isset($_post["id"])){
@@ -65,6 +76,14 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
         <h1>Select the location in the score</h1>
 </div>
 <?php include 'nav-menu.php';?>
+
+<?php
+if (isset($message)){
+
+    echo "<h2>" .$message[0] . "</h2>\n";
+    echo "<p>" . $message[1] . "</p>\n";
+}
+?>
 
 <p>First, make sure you're ready. <a href="prepare.html">Read the guide</a>!</p>
 

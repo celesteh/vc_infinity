@@ -30,6 +30,7 @@ $ok = false;
 $active = false;
 
 
+
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
     if (isset($_POST["id"]) && isset($_POST["panel_x"]) && isset($_POST["panel_y"]) && isset($_POST["scaled_width"]) && isset($_POST["scaled_height"]) ){
@@ -49,13 +50,58 @@ $active = false;
         $x = trim($_POST["x"]);
         $y = trim($_POST["y"]);
 
-        $target_dir = "../unprocessed_audio/";
-        $target_file = $target_dir . basename($_FILES["audio"]["name"]); // fix this to name the file correctly
-        //$uploadOk = 1;
+        
         $upload = true;
 
         $file_type=$_FILES['audio']['type'];
-        $is_audio = preg_match("/^audio/", $file_type); 
+        $is_audio = preg_match("/^audio/", $file_type) && (! preg_match("/midi/", $file_type));
+
+        if (! $is_audio){
+            $error = _("Please upload an audio recording.");
+        } else {
+
+            // carry on
+
+            $file_size =$_FILES['audio']['size'];
+            // maximum file size should be 100 MB
+            // or can we get file duration??
+
+            if ($file_size > 104857600) {
+                $error = _("The maximum duration is 90 seconds and this file is too big.");
+            }  else{
+
+                // move the file
+
+                $target_dir = "../unprocessed_audio/";
+                //$target_file = $target_dir . basename($_FILES["audio"]["name"]); // fix this to name the file correctly
+
+                //get the file path
+                $finfo = pathinfo($_FILES["audio"]["name"]);
+
+                // generate a file name
+                $date = new DateTime();
+                        //echo $date->getTimestamp();
+                $filename = $date->getTimestamp() . "_" . $_SESSION["id"]  . "." . $finfo['extension']; 
+                $target_file = "{$target_dir}/{$filename}"; // hopefully unique
+
+                $i = 1;
+                while (file_exists($target_file)){
+                    $filename =  $date->getTimestamp() . "_" .  $_SESSION["id"]  . "_{$i}." . $finfo['extension']; // we'll get there
+                    $target_file = "{$target_dir}/{$filename}";
+                    $i = $i+1;
+                }
+
+                       
+                if (move_uploaded_file($_FILES["audio"]["tmp_name"], $target_file)) { 
+
+
+                    $ok = true;
+                }
+
+            }
+
+        }
+        
 
     } else {
         header("location: submit.php?id=" . $_POST["id"]);
@@ -100,7 +146,36 @@ if ($selected || $upload ){
                         //echo("" . $width . " ". $height);
 
                         $x = ($scaled_x * $width) / $scaled_width;
-                        $y = ($scaled_y + $height) / $scaled_height;
+                        $y = ($scaled_y * $height) / $scaled_height;
+                    } elseif( $ok) {
+
+                        // make a database record
+
+                        $sql = "INSERT INTO uploaded_audio (sa_userid, sa_pageid, sa_x, sa_y, sa_filename) VALUES (:userid,  :pageid, :x, :y, :filename)";
+                        if($stmt = $pdo->prepare($sql)){
+                            // Bind variables to the prepared statement as parameters
+                            $stmt->bindParam(":userid", $param_userid, PDO::PARAM_INT);
+                            $stmt->bindParam(":pageid", $param_pageid, PDO::PARAM_INT);
+                            $stmt->bindParam(":x", $param_x, PDO::PARAM_STR);
+                            $stmt->bindParam(":y", $param_y, PDO::PARAM_STR);
+                            $stmt->bindParam(":filename", $filename, PDO::PARAM_STR);
+
+                            $param_userid = $_SESSION["id"];
+                            $param_pageid = (int)$panel;
+                            $param_x = (string) $x;
+                            $param_y = (string) $y;
+
+                            if($stmt->execute()){
+                                // success!!
+
+                                header("location: submit.php?success=1");
+                            } else {
+
+                                $error = _("Upload failed");
+                            }
+
+                        }
+                        unset($stmt);
                     }
                 }
             }
@@ -136,13 +211,15 @@ if (! $active){
 <div class="wrapper">
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-  
+<div class="form-group <?php echo (!empty($error)) ? 'has-error' : ''; ?>">
+                <span class="help-block"><?php echo $error; ?></span>
+            </div>
   <div class="form-group">
   Select an audio file to upload:
   <label class="custom-file-upload">
  
     <input type="file" name="audio" id="audio">
-    <i class="fa fa-cloud-upload"></i> Browse…
+    <!--<i class="fa fa-cloud-upload"></i> Browse… -->
 </label>
   </div>
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
