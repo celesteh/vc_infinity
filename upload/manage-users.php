@@ -120,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 
 
-        <p>Users - can log in, but can't do anyhting else.</p>
+        <p>Users - can log in, but can't do anything else.</p>
         <p>Musicians - can submit audio.</p>
         <p>Engineers - can modify audio others have submitted.</p>
         <p>Editors - can upload new score pages and can modify audio and metadata that others have submitted.</p>
