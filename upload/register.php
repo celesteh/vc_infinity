@@ -259,7 +259,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div> 
             <!-- Homepage -->
             <div class="form-group <?php echo (!empty($url_err)) ? 'has-error' : ''; ?>">
-                <label>Homepage</label>
+                <label>Your Personal Webpage (optional)</label>
                 <input type="url" name="homepage" class="form-control" value="<?php echo $url; ?>">
                 <span class="help-block"><?php echo $url_err; ?></span>
             </div>
