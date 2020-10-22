@@ -126,7 +126,7 @@ if ($selected){
 
     } else {
 
-        echo "<h2>Click where your sound belongs on the score</h2>\n";
+        echo "<h2>Click where to anchor your sound to the score</h2>\n";
         // click to pick an X,Y coordinate
 
         echo<<<EOL
