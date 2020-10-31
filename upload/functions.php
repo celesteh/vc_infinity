@@ -45,8 +45,15 @@ function get_userid($fusername, $pdo){
 
 function password_reset($fuid, $pdo){
 
-    $password = randomPassword();
-    $hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+    // Make sure the hash doesn't end with punctuation, because the URL formatter chokes
+    do {
+
+        $password = randomPassword();
+        $hash = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
+
+        $lastchar = $hash[-1];
+    } while (ctype_punct($lastchar));
+
 
     $url = "Something went wrong";
 
