@@ -67,6 +67,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(!empty(trim($_POST["username"]))){
 
         $username = trim($_POST["username"]);
+        $username = strtolower($username);
 
             // Prepare a select statement
             $sql = "SELECT userid, u_email FROM users WHERE username = :username";

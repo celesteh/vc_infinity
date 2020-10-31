@@ -31,6 +31,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $username_err = _("This username is already taken.");
                 } else{
                     $username = trim($_POST["username"]);
+                    $username = strtolower($username);
                 }
             } else{
                 echo _("Oops! Something went wrong. Please try again later.");
@@ -74,6 +75,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                        $email_err = _("There is already an account for this email.");
                     } else{
                         $email = trim($_POST["email"]);
+                        $email = strtolower($email);
                     }
                 } else{
 		            $email = "";

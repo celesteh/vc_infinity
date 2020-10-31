@@ -16,6 +16,8 @@ function randomPassword() {
 function get_userid($fusername, $pdo){
 
     $id = "";
+    
+    $fusername =strtolower($fusername);
 
     $sql = "SELECT userid  FROM users WHERE username = :username";
         
