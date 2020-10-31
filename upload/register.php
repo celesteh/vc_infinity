@@ -172,7 +172,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 $body = "Thank you for registering. To confirm your account click here: " . $url;
                 $headers = "From: infinity@vocalconstructivists.com";
 
-                mail($email, "Welcome to Construncting Infinity", $body, $headers);
+                mail($email, "Welcome to Constructing Infinity", $body, $headers);
                 // Redirect to email page
                 header("location: check-email.html");
             } else{
