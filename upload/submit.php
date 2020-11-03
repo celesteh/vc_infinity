@@ -84,8 +84,8 @@ if (isset($message)){
     echo "<p>" . $message[1] . "</p>\n";
 }
 ?>
-
-<p>First, make sure you're ready. <a href="prepare.html">Read the guide</a>!</p>
+<h2>Be Ready</h2>
+<p>First, make sure you're ready. <a href="prepare.html">Read the how to</a>!</p>
 
 <?php
 
@@ -147,7 +147,7 @@ EOL;
 
 if (! $selected) {
     echo "<h2>Active {$upper}s</h2>\n";
-    echo "<p>Click to on a {$page_called} to view and upload audio.</p>\n";
+    echo "<p>Click on a {$page_called} to select your anchor point and upload audio.</p>\n";
     $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
     if($stmt = $pdo->prepare($sql)){
         if($stmt->execute()){
