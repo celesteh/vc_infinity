@@ -1,8 +1,8 @@
 DirectoryIndex index.php
 
 
-ErrorDocument 404 ./index.php
-ErrorDocument 500 ./index.php
+ErrorDocument 404 /upload/index.php
+ErrorDocument 500 /upload/index.php
 # or map them to one error document:
 # ErrorDocument 404 /pages/errors/error_redirect.php
 # ErrorDocument 500 /pages/errors/error_redirect.php
