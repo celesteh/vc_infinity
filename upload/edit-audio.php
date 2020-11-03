@@ -33,7 +33,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     </div>
     <?php include 'nav-menu.php';?>
     </div>
-    <h2>Upload to get started!</h2>
+    
     <p>This feature will unlock when 50 audio files are uploaded.</p>
 </body>	
 </html>
