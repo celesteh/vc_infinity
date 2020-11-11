@@ -116,9 +116,9 @@ if (! $ok){
 
             /* init */
             (async () => {
-                const btn = getElementById('rec');//document.querySelector("input");
-                const playb = getElementById('play');
-                const upld = getElementById('upload');
+                const btn = document.getElementById('rec');//document.querySelector("input");
+                const playb = document.getElementById('play');
+                const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
                 let audio; // filled in end cb
 
