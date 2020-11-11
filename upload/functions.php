@@ -298,4 +298,22 @@ function url_dir(){
     return $protocol . "://" . $_SERVER['HTTP_HOST'] . $path['dirname'];
 }
 
+
+function set_nonce(){
+
+    $_SESSION['nonce'] []= random_bytes(32);
+}
+
+function verify_nonce(){
+    if (isset($_SESSION['nonce'])){
+        $correct = ($_SESSION['nonce'] === $_POST['nonce']);
+    } else {
+        $correct = false;
+    }
+    $_SESSION['nonce'] = '';
+
+    return $correct;
+}
+
+
 ?>

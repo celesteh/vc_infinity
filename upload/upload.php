@@ -1,6 +1,7 @@
 <?php
 // Initialize the session
 session_start();
+ 
 include_once "config.php";
 include_once "functions.php";
  
@@ -29,6 +30,11 @@ $upload = false;
 $ok = false;
 $active = false;
 
+$correct_nonce = verify_nonce();
+//if (! $correct_nonce){
+    set_nonce();
+//}
+
 
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -45,7 +51,18 @@ $active = false;
     
     
     }elseif (isset($_POST["submit"]) && isset($_POST["id"]) && isset($_POST["x"]) && isset($_POST["y"])) {
+
+
+
         // is this an upload?
+
+        // was the nonce ok?
+
+
+        if (! $correct_nonce){
+            header("location: submit.php?err=doubled");
+        }
+        
         $panel = trim($_POST["id"]);
         $x = trim($_POST["x"]);
         $y = trim($_POST["y"]);
@@ -225,10 +242,21 @@ if (! $active){
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
   <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
   <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
+  <input type="hidden" id="nonce", name ="nonce", value="<?php echo $_SESSION['nonce'] ?>">
   <input type="submit" value="Upload Audio" name="submit">
 </form>
 </div>
+<!-- Record from phone -->
+<div class="wrapper">
 
+<form action="recorder.php" method="post" enctype="multipart/form-data">
+  <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
+  <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
+  <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
+  <input type="hidden" id="nonce", name ="nonce", value="<?php echo $_SESSION['nonce'] ?>">
+  <input type="submit" value="Record Audio" name="submit">
+</form>
+</div>
 </body>
 </html>
 
