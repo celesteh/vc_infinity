@@ -248,7 +248,10 @@ if (! $active){
 </div>
 <!-- Record from phone -->
 <div class="wrapper">
-
+<hr noshade>
+<div class="form-group">
+Phone and tablet users can record directly from their microphones:
+</div?
 <form action="recorder.php" method="post" enctype="multipart/form-data">
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
   <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
