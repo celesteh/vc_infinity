@@ -31,8 +31,9 @@
  $active = false;
 
  $correct_nonce = verify_nonce();
-
- $_SESSION['nonce'] = set_nonce();
+//if (! $correct_nonce){
+$_SESSION['nonce'] = set_nonce();
+    //}
 
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -46,7 +47,7 @@
 
 
         if (! $correct_nonce){
-            header("location: submit.php?err=doubled");
+            //header("location: submit.php?err=doubled");
         }
         
         $panel = trim($_POST["id"]);
