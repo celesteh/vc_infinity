@@ -121,6 +121,7 @@ if (! $ok){
                 const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
                 let audio; // filled in end cb
+                let blob;
 
                 playb.style.visibility = 'hidden';
                 upld.style.visibility = 'hidden';
@@ -158,9 +159,9 @@ if (! $ok){
                 }
 
                 const uploadAudio = async e => {
-                    a = audio.audioBlob;
+                    blob = audio.audioBlob;
 
-                    if (a.size > (10 * Math.pow(1024, 2))) {
+                    if (blob.size > (10 * Math.pow(1024, 2))) {
                         document.body.innerHTML += "Too big; could not upload";
                         return;
                     }
@@ -170,7 +171,7 @@ if (! $ok){
                     f.append("y", "<?php echo $y ?>");
                     f.append("id", "<?php echo $panel ?>");
  
-                    f.append("audio", a);
+                    f.append("audio", blob);
 
                     fetch("upload.php", {
                         method: "POST",
