@@ -75,7 +75,7 @@ if (! $ok){
     </head>
     <body>
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
-        <input type="button" class="btn" id="rec" value="press to record" />
+        <input type="button" class="btn" id="rec" value="Record" />
         <input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="upload" value="Upload" />
 
@@ -129,6 +129,8 @@ if (! $ok){
                     recorder.start();
                     btn.initialValue = btn.value;
                     btn.value = "press to stop recording";
+                    btn.removeEventListener("mousedown", recStart);
+                    btn.removeEventListener("touchstart", recStart);
                     btn.addEventListener("mousedown", recEnd);
                     btn.addEventListener("touchstart", recEnd);
                 }
@@ -137,6 +139,8 @@ if (! $ok){
                     audio = await recorder.stop();
                     //audio.play();
                     //uploadAudio(audio.audioBlob);
+                    btn.removeEventListener("mousedown", recEnd);
+                    btn.removeEventListener("touchstart", recEnd);
                     btn.addEventListener("mousedown", recStart);
                     btn.addEventListener("touchstart", recStart);
                     playb.style.visibility = 'visible';
@@ -145,7 +149,7 @@ if (! $ok){
                 }
 
                 const playAudio = async e => {
-                    ausio.play();
+                    audio.play();
                     upld.style.visibility = 'visible';
                 }
 
