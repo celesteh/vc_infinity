@@ -10,10 +10,14 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     exit;
 }
 
-
 if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     header("location: index.php");
 }
+
+$correct_nonce = verify_nonce();
+//if (! $correct_nonce){
+    set_nonce();
+//}
 
 if(isset($_SESSION["page_called"])){
     $page_called = $_SESSION["page_called"];
@@ -41,9 +45,14 @@ if($_SERVER["REQUEST_METHOD"] == "GET"){
     }
 
     if (isset($_GET["err"])){
+        // check error types
+        if ($_GET["err"] == "doubled"){
+            $message = array(_("Oops"), _("You already uploaded that recording!"));
+        } else {
         // inactive
         //<h2>Error</h2>\n<p>Please select an active {$page_called}!</p>\n\n"
-        $message = array(_("Error"), _("Please select an active {$page_called}!"));
+            $message = array(_("Error"), _("Please select an active {$page_called}!"));
+        }
     }
 
 } elseif ($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -126,6 +135,9 @@ if ($selected){
 
     } else {
 
+        $nonce = $_SESSION['nonce'];
+
+
         echo "<h2>Click where to anchor your sound to the score</h2>\n";
         // click to pick an X,Y coordinate
 
@@ -137,6 +149,7 @@ name="panel" style=cursor:crosshair;/>
 <input type="hidden" id="id" name="id" value="$panel">
 <input type="hidden" id="scaled_width", name = "scaled_width", value="$scaledw">
 <input type="hidden" id="scaled_height", name = "scaled_height", value="$scaleh">
+<input type="hidden" id="nonce", name ="nonce", value="$nonce">
 </form>
 </div>
 EOL;
