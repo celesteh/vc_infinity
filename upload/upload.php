@@ -253,7 +253,7 @@ if (! $active){
 <div class="form-group">
 <p><b>Testing</b></p>
 <p>Phone and tablet users can record directly from their microphones:</p>
-</div>
+</div> 
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
   <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
   <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
