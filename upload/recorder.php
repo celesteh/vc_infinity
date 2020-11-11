@@ -176,12 +176,12 @@ if (! $ok){
                         method: "POST",
                         body: f
                     })
-                    //.then(_ => {
-                    //    document.body.innerHTML += `
-                    //        <br/> <a href="audio.wav">saved; click here</a>
-                    //    `
-                    //});
-                    ;
+                    .then(_ => {
+                        document.body.innerHTML += `
+                            <br/> <a href="audio.wav">saved; click here</a>
+                        `
+                    });
+                    //;
                 }
 
 
