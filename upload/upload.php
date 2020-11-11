@@ -32,8 +32,8 @@ $active = false;
 
 $correct_nonce = verify_nonce();
 //if (! $correct_nonce){
-    set_nonce();
-//}
+$_SESSION['nonce'] [] = set_nonce();
+    //}
 
 
 

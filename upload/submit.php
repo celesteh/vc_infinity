@@ -16,7 +16,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
 
 $correct_nonce = verify_nonce();
 //if (! $correct_nonce){
-    set_nonce();
+    $_SESSION['nonce'] [] = set_nonce();
 //}
 
 if(isset($_SESSION["page_called"])){

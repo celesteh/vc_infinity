@@ -301,7 +301,7 @@ function url_dir(){
 
 function set_nonce(){
 
-    $_SESSION['nonce'] []= random_bytes(32);
+    return random_bytes(32);
 }
 
 function verify_nonce(){
