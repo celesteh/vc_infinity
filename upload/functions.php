@@ -301,7 +301,8 @@ function url_dir(){
 
 function set_nonce(){
 
-    return random_bytes(32);
+    // switching to a less secure string so i don't have to escape things
+    return  uniqid();//random_bytes(32);
 }
 
 function verify_nonce(){

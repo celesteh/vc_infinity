@@ -133,6 +133,8 @@ if (! $ok){
                     btn.removeEventListener("touchstart", recStart);
                     btn.addEventListener("mousedown", recEnd);
                     btn.addEventListener("touchstart", recEnd);
+                    playb.style.visibility = 'hidden';
+                    upld.style.visibility = 'hidden';
                 }
                 const recEnd = async e => {
                     btn.value = btn.initialValue;
@@ -151,9 +153,13 @@ if (! $ok){
                 const playAudio = async e => {
                     audio.play();
                     upld.style.visibility = 'visible';
+                    upld.addEventListener("mousedown", uploadAudio);
+                    upld.addEventListener("touchstart", uploadAudio);
                 }
 
-                const uploadAudio = a => {
+                const uploadAudio = async e => {
+                    a = audio.audioBlob;
+
                     if (a.size > (10 * Math.pow(1024, 2))) {
                         document.body.innerHTML += "Too big; could not upload";
                         return;
