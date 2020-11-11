@@ -74,7 +74,11 @@ if (! $ok){
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
     </head>
     <body>
-        <input type="button" class="btn" value="click and hold to record" />
+        <p>You can try recording, but uploading does not yet work. Coming soon!</p>
+        <input type="button" class="btn" id="rec" value="press to record" />
+        <input type="button" class="btn" id="play" value="Play" />
+        <input type="button" class="btn" id="upload" value="Upload" />
+
         <script type="text/javascript">
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
@@ -112,20 +116,37 @@ if (! $ok){
 
             /* init */
             (async () => {
-                const btn = document.querySelector("input");
+                const btn = getElementById('rec');//document.querySelector("input");
+                const playb = getElementById('play');
+                const upld = getElementById('upload');
                 const recorder = await recordAudio();
                 let audio; // filled in end cb
+
+                playb.style.visibility = 'hidden';
+                upld.style.visibility = 'hidden';
 
                 const recStart = e => {
                     recorder.start();
                     btn.initialValue = btn.value;
-                    btn.value = "recording...";
+                    btn.value = "press to stop recording";
+                    btn.addEventListener("mousedown", recEnd);
+                    btn.addEventListener("touchstart", recEnd);
                 }
                 const recEnd = async e => {
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    audio.play();
-                    uploadAudio(audio.audioBlob);
+                    //audio.play();
+                    //uploadAudio(audio.audioBlob);
+                    btn.addEventListener("mousedown", recStart);
+                    btn.addEventListener("touchstart", recStart);
+                    playb.style.visibility = 'visible';
+                    playb.addEventListener("mousedown", playAudio);
+                    playb.addEventListener("touchstart", playAudio);
+                }
+
+                const playAudio = async e => {
+                    ausio.play();
+                    upld.style.visibility = 'visible';
                 }
 
                 const uploadAudio = a => {
@@ -156,8 +177,8 @@ if (! $ok){
 
                 btn.addEventListener("mousedown", recStart);
                 btn.addEventListener("touchstart", recStart);
-                window.addEventListener("mouseup", recEnd);
-                window.addEventListener("touchend", recEnd);
+                //window.addEventListener("mouseup", recEnd);
+                //window.addEventListener("touchend", recEnd);
             })();
         </script>
     </body>
