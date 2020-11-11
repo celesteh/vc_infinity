@@ -32,7 +32,7 @@
 
  $correct_nonce = verify_nonce();
 
- $_SESSION['nonce'] [] = set_nonce();
+ $_SESSION['nonce'] = set_nonce();
 
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
