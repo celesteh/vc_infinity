@@ -217,6 +217,8 @@ if (! $ok){
                     //document.body.innerHTML += "Test";
                     //dummy.addEventListener("click", clicked);
                     //dummy.addEventListener("touchstart", clicked);
+                    blob.type="audio/wav";
+                    console.log(blob.type);
                     console.log("End of recEnd");
                 }
                 /*
