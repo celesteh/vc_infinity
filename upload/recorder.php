@@ -187,7 +187,7 @@ if (! $ok){
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    blob = Blob(audio.audioBlob, "audio/wav");
+                    blob = new Blob(audio.audioBlob, "audio/wav");
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                     uploadButton.disabled = false;
