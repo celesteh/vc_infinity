@@ -187,6 +187,9 @@ if (! $ok){
                     document.body.innerHTML += ` 
                     <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                     //upld.style.visibility = "visible";
+                    upld.style.visibility = 'visible';
+                    upld.addEventListener("mousedown", uploadAudio);
+                    upld.addEventListener("touchstart", uploadAudio);
                 }
 
                 const playAudio = async e => {
