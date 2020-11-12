@@ -88,7 +88,7 @@ if (! $ok){
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
             const recordAudio = () => {
               return new Promise(async resolve => {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                //const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const mediaRecorder = new MediaRecorder(stream);
                 const audioChunks = [];
 
@@ -128,6 +128,7 @@ if (! $ok){
                 const recorder = await recordAudio();
                 const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
                 const audioContext = new AudioContext();
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); // moved from recordAudio()
                 const mediaStreamSource = audioContext.createMediaStreamSource(stream);
                 const meter = createAudioMeter(audioContext);
                 let audio; // filled in end cb
