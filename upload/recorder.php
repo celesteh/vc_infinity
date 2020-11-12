@@ -213,8 +213,8 @@ if (! $ok){
                     //document.body.innerHTML += "\nWhat?\n";
                     
                     //document.body.innerHTML += "Test";
-                    dummy.addEventListener("mousedown", uploadAudio);
-                    dummy.addEventListener("touchstart", uploadAudio);
+                    dummy.addEventListener("click", clicked);
+                    //dummy.addEventListener("touchstart", clicked);
                     console.log("End of recEnd");
                 }
                 /*
@@ -329,6 +329,8 @@ if (! $ok){
                         `
                     });
         }
+
+        function clicked() { console.log("clicked");}
         uploadButton.addEventListener("mousedown", uploadAudio);
         uploadButton.addEventListener("touchstart", uploadAudio);
 
