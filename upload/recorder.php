@@ -170,6 +170,7 @@ if (! $ok){
                 //}
 
                 const recEnd = async e => {
+                    
                     try {
                         audioContext.disconnect(meter);
                     } catch (err){}
@@ -182,6 +183,7 @@ if (! $ok){
                     blob = audio.audioBlob;
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
+                    uploadButton.disabled = false;
                     stopb.disabled = true;
                     btn.disabled = true;
 
@@ -203,7 +205,7 @@ if (! $ok){
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     document.body.innerHTML += "\nWhat?\n";
-                    uploadButton.disabled = false;
+                    
                     document.body.innerHTML += "Test";
                 }
                 /*
