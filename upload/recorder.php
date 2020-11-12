@@ -201,7 +201,9 @@ if (! $ok){
                     } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
+                    document.body.innerHTML += "\nWhat?\n";
                     upld.disabled = false;
+                    document.body.innerHTML += "Test";
                 }
                 /*
                 const playAudio = async e => {
