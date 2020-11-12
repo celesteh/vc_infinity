@@ -80,7 +80,7 @@ if (! $ok){
         <input type="button" class="btn" id="recordButton" value="Record" />
   	    <! input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
-        <input type="button" class="btn" id="play" value="Play" />
+        <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
 
         <script type="text/javascript">
