@@ -172,6 +172,7 @@ if (! $ok){
                     audioContext.disconnect(meter);
                     meter.disconnect();
                     await meter.shutdown;
+                    meter = null;
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
@@ -269,8 +270,12 @@ if (! $ok){
                     canvasContext.fillStyle = "green";
 
                 // draw a bar based on the current volume
-                canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
-
+                try {
+                    canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+                } catch (err) {
+                    canvasContext.clearRect(0,0,WIDTH,HEIGHT);
+                    doMetering = false;
+                }
                 // set up the next visual callback
                 if (doMetering) 
                     rafID = window.requestAnimationFrame( drawLoop );
