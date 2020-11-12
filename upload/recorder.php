@@ -171,7 +171,7 @@ if (! $ok){
                 const recEnd = async e => {
                     try {
                         audioContext.disconnect(meter);
-                    }
+                    } catch (err){}
                     meter.disconnect();
                     await meter.shutdown;
                     meter = null;
