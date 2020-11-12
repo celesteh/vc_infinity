@@ -81,7 +81,7 @@ if (! $ok){
   	    <input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <input type="button" class="btn" id="play" value="Play" />
-        <input type="button" class="btn" id="upload" value="Upload" />
+        <input type="button" class="btn" id="upload" disabled value="Upload" />
 
         <script type="text/javascript">
             var WIDTH=500;
@@ -139,7 +139,7 @@ if (! $ok){
                 let audio; // filled in end cb
                 let blob;
 
-                playb.style.visibility = 'hidden';
+                //playb.style.visibility = 'hidden';
                 upld.style.visibility = 'hidden';
 
                 const recStart = e => {
@@ -156,7 +156,7 @@ if (! $ok){
                     pauseb.addEventListener("mousedown", recPause);
                     pauseb.addEventListener("touchstart", recPause);
                     playb.style.visibility = 'hidden';
-                    upld.style.visibility = 'hidden';
+                    //upld.style.visibility = 'hidden';
                 }
 
                 const recPause = async e => {
@@ -173,6 +173,7 @@ if (! $ok){
                     pauseb.disabled = true;
                     stopb.disabled = true;
                     btn.disabled = true;
+                    upld.disabled = false;
                     //audio.play();
                     //uploadAudio(audio.audioBlob);
                     //btn.removeEventListener("mousedown", recEnd);
@@ -185,7 +186,7 @@ if (! $ok){
                     blobURL = window.URL.createObjectURL(blob);
                     document.body.innerHTML += ` 
                     <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-                    upld.style.visibility = "visible";
+                    //upld.style.visibility = "visible";
                 }
 
                 const playAudio = async e => {
