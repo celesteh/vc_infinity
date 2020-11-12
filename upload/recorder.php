@@ -204,9 +204,9 @@ if (! $ok){
                     } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
-                    document.body.innerHTML += "\nWhat?\n";
+                    //document.body.innerHTML += "\nWhat?\n";
                     
-                    document.body.innerHTML += "Test";
+                    //document.body.innerHTML += "Test";
                 }
                 /*
                 const playAudio = async e => {
@@ -217,6 +217,7 @@ if (! $ok){
                 }
                 */
                 const uploadAudio = async e => {
+                    document.body.innerHTML += "Uploading";
                     uploadButton.disabled = true;
                     //blob = audio.audioBlob;
 
