@@ -88,7 +88,7 @@ if (! $ok){
             var HEIGHT=50;
             var meter;
             var doMetering = true;
-            var upld;
+            var uploadButton;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -131,7 +131,7 @@ if (! $ok){
                 //const pauseb = document.getElementById('pauseButton');
                 const stopb = document.getElementById('stopButton');
                 //const playb = document.getElementById('play');
-                upld = document.getElementById('uploadButton');
+                uploadButton = document.getElementById('uploadButton');
                 const recorder = await recordAudio();
                 
                 const audioContext = new AudioContext();
@@ -203,7 +203,7 @@ if (! $ok){
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     document.body.innerHTML += "\nWhat?\n";
-                    upld.disabled = false;
+                    uploadButton.disabled = false;
                     document.body.innerHTML += "Test";
                 }
                 /*
@@ -215,7 +215,7 @@ if (! $ok){
                 }
                 */
                 const uploadAudio = async e => {
-                    upld.disabled = true;
+                    uploadButton.disabled = true;
                     //blob = audio.audioBlob;
 
                     document.body.innerHTML += "\n<p>Uploading...</p>\n";
@@ -248,8 +248,8 @@ if (! $ok){
                 btn.addEventListener("touchstart", recStart);
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
-                upld.addEventListener("mousedown", uploadAudio);
-                upld.addEventListener("touchstart", uploadAudio);
+                uploadButton.addEventListener("mousedown", uploadAudio);
+                uploadButton.addEventListener("touchstart", uploadAudio);
                 stopb.addEventListener("mousedown", recEnd);
                 stopb.addEventListener("touchstart", recEnd);
                 //pauseb.addEventListener("mousedown", recPause);
