@@ -145,9 +145,9 @@ if (! $ok){
                 const recStart = e => {
                     recorder.start();
                     btn.initialValue = btn.value;
-                    pauseb.initialValue = "Pause";
+                    //pauseb.initialValue = "Pause";
                     btn.value = "Recording";
-                    pauseb.disabled = false;
+                    //pauseb.disabled = false;
                     stopb.disabled = false;
                     //btn.removeEventListener("mousedown", recStart);
                     //btn.removeEventListener("touchstart", recStart);
