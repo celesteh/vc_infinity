@@ -126,7 +126,8 @@ if (! $ok){
                 const playb = document.getElementById('play');
                 const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
-                const canvasContext = document.getElementById( "meter" ).getContext("2d");
+                const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
+                const audioContext = new AudioContext();
                 let audio; // filled in end cb
                 let blob;
 
