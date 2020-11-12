@@ -321,7 +321,7 @@ if (! $ok){
                     //<input type="submit" value="Upload Audio" name="submit">
                     f.append("submit", "UploadAudio");
  
-                    f.append("audio", blob, "blob.wav");
+                    f.append("audio", blob, window.nonce + ".wav");
 
                     fetch("upload.php", {
                         method: "POST",

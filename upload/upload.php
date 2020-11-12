@@ -225,7 +225,7 @@ if (! $active){
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
-<?php echo "<!-- is_audio {$is_audio} id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active} submit {$submit} ok {$ok} selected {$selected} upload {$upload} -->"; ?>
+<?php echo "<!-- is_audio {$is_audio} id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active} submit {$submit} ok {$ok} selected {$selected} upload {$upload} error {$error}  -->"; ?>
 <div class="wrapper">
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
