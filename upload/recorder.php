@@ -72,9 +72,11 @@ if (! $ok){
         <title>Simple audio recording demo</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <script src="volume-meter.js"></script>
     </head>
     <body>
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
+        <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button" class="btn" id="recordButton" value="Record" />
   	    <input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
@@ -124,6 +126,7 @@ if (! $ok){
                 const playb = document.getElementById('play');
                 const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
+                const canvasContext = document.getElementById( "meter" ).getContext("2d");
                 let audio; // filled in end cb
                 let blob;
 
@@ -213,7 +216,33 @@ if (! $ok){
                 btn.addEventListener("touchstart", recStart);
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
+
+                meter = createAudioMeter(audioContext);
+    mediaStreamSource.connect(meter);
+
+    // kick off the visual updating
+    drawLoop();
+ 
+
+
             })();
+
+            function drawLoop( time ) {
+    // clear the background
+    canvasContext.clearRect(0,0,WIDTH,HEIGHT);
+
+    // check if we're currently clipping
+    if (meter.checkClipping())
+        canvasContext.fillStyle = "red";
+    else
+        canvasContext.fillStyle = "green";
+
+    // draw a bar based on the current volume
+    canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+
+    // set up the next visual callback
+    rafID = window.requestAnimationFrame( drawLoop );
+}
         </script>
     </body>
 </html>
