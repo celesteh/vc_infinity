@@ -112,7 +112,7 @@ if (! $ok){
                 const stop = () =>
                   new Promise(resolve => {
                     mediaRecorder.addEventListener("stop", () => {
-                      const audioBlob = new Blob(audioChunks);
+                      const audioBlob = new Blob(audioChunks, "audio/wav");
                       const audioUrl = URL.createObjectURL(audioBlob);
                       const audio = new Audio(audioUrl);
                       const play = () => audio.play();
@@ -187,7 +187,7 @@ if (! $ok){
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    blob = new Blob(audio.audioBlob, "audio/wav");
+                    blob = audio.audioBlob;
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                     uploadButton.disabled = false;
@@ -217,7 +217,7 @@ if (! $ok){
                     //document.body.innerHTML += "Test";
                     //dummy.addEventListener("click", clicked);
                     //dummy.addEventListener("touchstart", clicked);
-                    //blob.type="audio/wav";
+                    blob.type="audio/wav";
                     console.log(blob.type);
                     console.log("End of recEnd");
                 }
