@@ -82,7 +82,7 @@ if (! $ok){
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
-        <input type="button" class ="btn" id="dummyButton" disabled value="Dummy" />
+        <input type="button" class ="btn" id="dummyButton"  value="Dummy" />
 
         <script type="text/javascript">
             var WIDTH=500;
@@ -189,7 +189,7 @@ if (! $ok){
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                     uploadButton.disabled = false;
-                    dummy.disabled = false;
+                    //dummy.disabled = false;
                     stopb.disabled = true;
                     btn.disabled = true;
 
