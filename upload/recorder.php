@@ -84,6 +84,9 @@ if (! $ok){
         <input type="button" class="btn" id="upload" value="Upload" />
 
         <script type="text/javascript">
+            var WIDTH=500;
+            var HEIGHT=50;
+
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
