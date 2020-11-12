@@ -87,6 +87,7 @@ if (! $ok){
             var WIDTH=500;
             var HEIGHT=50;
             var meter;
+            var doMetering = true;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -168,6 +169,7 @@ if (! $ok){
                 //}
 
                 const recEnd = async e => {
+                    doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
                     blob = audio.audioBlob;
@@ -175,6 +177,8 @@ if (! $ok){
                     //pauseb.disabled = true;
                     stopb.disabled = true;
                     btn.disabled = true;
+
+                    
                     
                     //audio.play();
                     //uploadAudio(audio.audioBlob);
@@ -250,20 +254,24 @@ if (! $ok){
             })();
 
         function drawLoop( time ) {
-            // clear the background
-            canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
-            // check if we're currently clipping
-            if (meter.checkClipping())
-                canvasContext.fillStyle = "red";
-            else
-                canvasContext.fillStyle = "green";
+            if (doMetering){
+                // clear the background
+                canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
-            // draw a bar based on the current volume
-            canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+                // check if we're currently clipping
+                if (meter.checkClipping())
+                    canvasContext.fillStyle = "red";
+                else
+                    canvasContext.fillStyle = "green";
 
-            // set up the next visual callback
-            rafID = window.requestAnimationFrame( drawLoop );
+                // draw a bar based on the current volume
+                canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+
+                // set up the next visual callback
+                if (doMetering) 
+                    rafID = window.requestAnimationFrame( drawLoop );
+            }
         }
         </script>
     </body>
