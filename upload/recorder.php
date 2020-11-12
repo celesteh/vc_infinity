@@ -149,6 +149,8 @@ if (! $ok){
                 //playb.style.visibility = 'hidden';
                 //upld.style.visibility = 'hidden';
 
+                uploadButton.addEventListener("click", clicked);
+
                 const recStart = e => {
                     recorder.start();
                     btn.initialValue = btn.value;
