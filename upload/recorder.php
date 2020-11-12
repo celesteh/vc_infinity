@@ -89,11 +89,15 @@ if (! $ok){
             var HEIGHT=50;
             var meter;
             var doMetering = true;
-            var uploadButton;
+            var uploadButton = document.getElementById('uploadButton');
             var audio;
             var blob;
             var dummy;
 
+
+            uploadButton.addEventListener("click", uploadAudio);
+            
+            
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
@@ -135,7 +139,7 @@ if (! $ok){
                 //const pauseb = document.getElementById('pauseButton');
                 const stopb = document.getElementById('stopButton');
                 //const playb = document.getElementById('play');
-                uploadButton = document.getElementById('uploadButton');
+                //uploadButton = document.getElementById('uploadButton');
                 dummy = document.getElementById('dummyButton');
                 const recorder = await recordAudio();
                 
@@ -337,8 +341,8 @@ if (! $ok){
         }
 
         function clicked() { console.log("clicked");}
-        uploadButton.addEventListener("mousedown", uploadAudio);
-        uploadButton.addEventListener("touchstart", uploadAudio);
+        //uploadButton.addEventListener("mousedown", uploadAudio);
+        //uploadButton.addEventListener("touchstart", uploadAudio);
 
         </script>
     </body>
