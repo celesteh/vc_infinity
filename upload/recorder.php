@@ -75,7 +75,9 @@ if (! $ok){
     </head>
     <body>
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
-        <input type="button" class="btn" id="rec" value="Record" />
+        <input type="button" class="btn" id="recordButton" value="Record" />
+  	    <input type="button" class="btn" id="pauseButton" disabled value="Pause" />
+  	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="upload" value="Upload" />
 
@@ -116,7 +118,9 @@ if (! $ok){
 
             /* init */
             (async () => {
-                const btn = document.getElementById('rec');//document.querySelector("input");
+                const btn = document.getElementById('recordButton');//document.querySelector("input");
+                const pauseb = document.getElementById('pauseButton');
+                const stopb = document.getElementById('stopButton');
                 const playb = document.getElementById('play');
                 const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
@@ -129,26 +133,45 @@ if (! $ok){
                 const recStart = e => {
                     recorder.start();
                     btn.initialValue = btn.value;
-                    btn.value = "press to stop recording";
-                    btn.removeEventListener("mousedown", recStart);
-                    btn.removeEventListener("touchstart", recStart);
-                    btn.addEventListener("mousedown", recEnd);
-                    btn.addEventListener("touchstart", recEnd);
+                    pauseb.initialValue = "Pause";
+                    btn.value = "Recording";
+                    pauseb.disabled = false;
+                    stopb.disabled = false;
+                    //btn.removeEventListener("mousedown", recStart);
+                    //btn.removeEventListener("touchstart", recStart);
+                    stopb.addEventListener("mousedown", recEnd);
+                    stopb.addEventListener("touchstart", recEnd);
+                    pauseb.addEventListener("mousedown", recPause);
+                    pauseb.addEventListener("touchstart", recPause);
                     playb.style.visibility = 'hidden';
                     upld.style.visibility = 'hidden';
                 }
+
+                const recPause = async e => {
+                    //btn.value = btn.initialValue;
+                    audio = await recorder.stop();
+                    pauseb.value = "Paused";
+                }
+
                 const recEnd = async e => {
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
+                    blob = audio.audioBlob;
+                    pauseb.value = pauseb.initialValue;
+                    pauseb.disabled = true;
+                    stopb.disabled = true;
                     //audio.play();
                     //uploadAudio(audio.audioBlob);
-                    btn.removeEventListener("mousedown", recEnd);
-                    btn.removeEventListener("touchstart", recEnd);
-                    btn.addEventListener("mousedown", recStart);
-                    btn.addEventListener("touchstart", recStart);
-                    playb.style.visibility = 'visible';
-                    playb.addEventListener("mousedown", playAudio);
-                    playb.addEventListener("touchstart", playAudio);
+                    //btn.removeEventListener("mousedown", recEnd);
+                    //btn.removeEventListener("touchstart", recEnd);
+                    //btn.addEventListener("mousedown", recStart);
+                    //btn.addEventListener("touchstart", recStart);
+                    //playb.style.visibility = 'visible';
+                    //playb.addEventListener("mousedown", playAudio);
+                    //playb.addEventListener("touchstart", playAudio);
+                    blobURL = window.URL.createObjectURL(blob);
+                    document.body.innerHTML += ` 
+                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`
                 }
 
                 const playAudio = async e => {
@@ -159,7 +182,7 @@ if (! $ok){
                 }
 
                 const uploadAudio = async e => {
-                    blob = audio.audioBlob;
+                    //blob = audio.audioBlob;
 
                     if (blob.size > (10 * Math.pow(1024, 2))) {
                         document.body.innerHTML += "Too big; could not upload";
