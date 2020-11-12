@@ -191,13 +191,13 @@ if (! $ok){
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    blob = audio.audioBlob;
+                        blob = audio.audioBlob;
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
-                    uploadButton.disabled = false;
+                        uploadButton.disabled = false;
                     //dummy.disabled = false;
-                    stopb.disabled = true;
-                    btn.disabled = true;
+                        stopb.disabled = true;
+                        btn.disabled = true;
 
                     
                     
@@ -210,10 +210,10 @@ if (! $ok){
                     //playb.style.visibility = 'visible';
                     //playb.addEventListener("mousedown", playAudio);
                     //playb.addEventListener("touchstart", playAudio);
-                    try {
-                        blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
-                        document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-                    } catch(err){}
+                        try {
+                            blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
+                            document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                        } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     //document.body.innerHTML += "\nWhat?\n";
@@ -221,9 +221,13 @@ if (! $ok){
                     //document.body.innerHTML += "Test";
                     //dummy.addEventListener("click", clicked);
                     //dummy.addEventListener("touchstart", clicked);
-                    blob.type="audio/wav";
-                    console.log(blob.type);
-                    console.log("End of recEnd");
+                    //blob.type="audio/wav";
+
+                        console.log(blob.type);
+                        recorder = null;
+                        uploadButton.addEventListener("click", uploadAudio);
+                        console.log("End of recEnd");
+                    
                 }
                 /*
                 const playAudio = async e => {
@@ -311,33 +315,35 @@ if (! $ok){
         function uploadAudio(){
             console.log("Upload");
             document.body.innerHTML += "Uploading";
-                    uploadButton.disabled = true;
-                    //blob = audio.audioBlob;
-
-                    document.body.innerHTML += "\n<p>Uploading...</p>\n";
-                    if (blob.size > (10 * Math.pow(1024, 2))) {
-                        document.body.innerHTML += "Too big; could not upload";
-                        return;
-                    }
-                    const f = new FormData();
-                    f.append("nonce", window.nonce);
-                    f.append("x","<?php echo $x ?>");
-                    f.append("y", "<?php echo $y ?>");
-                    f.append("id", "<?php echo $panel ?>");
-                    //<input type="submit" value="Upload Audio" name="submit">
-                    f.append("submit", "UploadAudio");
+            uploadButton.disabled = true;
+            if (! blob) {
+                blob = await audio.audioBlob;
+            }
+                        document.body.innerHTML += "\n<p>Uploading...</p>\n";
+                        if (blob.size > (10 * Math.pow(1024, 2))) {
+                            document.body.innerHTML += "Too big; could not upload";
+                            return;
+                        }
+                        const f = new FormData();
+                        f.append("nonce", window.nonce);
+                        f.append("x","<?php echo $x ?>");
+                        f.append("y", "<?php echo $y ?>");
+                        f.append("id", "<?php echo $panel ?>");
+                        //<input type="submit" value="Upload Audio" name="submit">
+                        f.append("submit", "UploadAudio");
  
-                    f.append("audio", blob, window.nonce + ".wav");
+                       f.append("audio", blob, window.nonce + ".wav");
 
-                    fetch("upload.php", {
-                        method: "POST",
-                        body: f
-                    })
-                    .then(_ => {
-                        document.body.innerHTML += `
-                            <br/> <a href="audio.wav">saved; click here</a>
-                        `
-                    });
+                        fetch("upload.php", {
+                            method: "POST",
+                            body: f
+                        })
+                        .then(_ => {
+                            document.body.innerHTML += `
+                                <br/> <a href="audio.wav">saved; click here</a>
+                            `
+                        });
+                    
         }
 
         function clicked() { console.log("clicked");}
