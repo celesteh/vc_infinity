@@ -191,14 +191,14 @@ if (! $ok){
                     upld.addEventListener("mousedown", uploadAudio);
                     upld.addEventListener("touchstart", uploadAudio);
                 }
-
+                /*
                 const playAudio = async e => {
                     audio.play();
                     upld.style.visibility = 'visible';
                     upld.addEventListener("mousedown", uploadAudio);
                     upld.addEventListener("touchstart", uploadAudio);
                 }
-
+                */
                 const uploadAudio = async e => {
                     //blob = audio.audioBlob;
 
