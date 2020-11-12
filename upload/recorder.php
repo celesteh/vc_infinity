@@ -128,6 +128,8 @@ if (! $ok){
                 const recorder = await recordAudio();
                 const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
                 const audioContext = new AudioContext();
+                const mediaStreamSource = audioContext.createMediaStreamSource(stream);
+                const meter = createAudioMeter(audioContext);
                 let audio; // filled in end cb
                 let blob;
 
@@ -218,8 +220,7 @@ if (! $ok){
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
 
-                mediaStreamSource = audioContext.createMediaStreamSource(stream);
-                meter = createAudioMeter(audioContext);
+                
                 mediaStreamSource.connect(meter);
 
                 // kick off the visual updating
