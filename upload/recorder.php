@@ -318,6 +318,8 @@ if (! $ok){
                     f.append("x","<?php echo $x ?>");
                     f.append("y", "<?php echo $y ?>");
                     f.append("id", "<?php echo $panel ?>");
+                    //<input type="submit" value="Upload Audio" name="submit">
+                    f.append("submit", "UploadAudio");
  
                     f.append("audio", blob, "blob.wav");
 
