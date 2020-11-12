@@ -169,6 +169,7 @@ if (! $ok){
                 //}
 
                 const recEnd = async e => {
+                    audioContext.disconnect(meter);
                     meter.disconnect();
                     await meter.shutdown;
                     doMetering = false; // avoid a race condition, maybe
