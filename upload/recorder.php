@@ -254,8 +254,6 @@ if (! $ok){
                 btn.addEventListener("touchstart", recStart);
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
-                uploadButton.addEventListener("mousedown", uploadAudio);
-                uploadButton.addEventListener("touchstart", uploadAudio);
                 stopb.addEventListener("mousedown", recEnd);
                 stopb.addEventListener("touchstart", recEnd);
                 //pauseb.addEventListener("mousedown", recPause);
@@ -322,10 +320,10 @@ if (! $ok){
                             <br/> <a href="audio.wav">saved; click here</a>
                         `
                     });
-
-
-
         }
+        uploadButton.addEventListener("mousedown", uploadAudio);
+        uploadButton.addEventListener("touchstart", uploadAudio);
+
         </script>
     </body>
 </html>
