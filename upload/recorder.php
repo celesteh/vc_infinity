@@ -81,13 +81,14 @@ if (! $ok){
   	    <! input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <input type="button" class="btn" id="play" value="Play" />
-        <input type="button" class="btn" id="upload" disabled value="Upload" />
+        <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
 
         <script type="text/javascript">
             var WIDTH=500;
             var HEIGHT=50;
             var meter;
             var doMetering = true;
+            var upld;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -129,8 +130,8 @@ if (! $ok){
                 const btn = document.getElementById('recordButton');//document.querySelector("input");
                 //const pauseb = document.getElementById('pauseButton');
                 const stopb = document.getElementById('stopButton');
-                const playb = document.getElementById('play');
-                const upld = document.getElementById('upload');
+                //const playb = document.getElementById('play');
+                upld = document.getElementById('uploadButton');
                 const recorder = await recordAudio();
                 
                 const audioContext = new AudioContext();
@@ -140,7 +141,7 @@ if (! $ok){
                 let audio; // filled in end cb
                 let blob;
 
-                playb.style.visibility = 'hidden';
+                //playb.style.visibility = 'hidden';
                 //upld.style.visibility = 'hidden';
 
                 const recStart = e => {
@@ -158,7 +159,7 @@ if (! $ok){
                     //pauseb.addEventListener("touchstart", recPause);
                     //upld.addEventListener("mousedown", uploadAudio);
                     //upld.addEventListener("touchstart", uploadAudio);
-                    playb.style.visibility = 'hidden';
+                    //playb.style.visibility = 'hidden';
                     //upld.style.visibility = 'hidden';
                 }
 
