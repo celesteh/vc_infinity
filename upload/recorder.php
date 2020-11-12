@@ -312,7 +312,7 @@ if (! $ok){
             }
         }
 
-        function uploadAudio(){
+        async function uploadAudio(){
             console.log("Upload");
             document.body.innerHTML += "Uploading";
             uploadButton.disabled = true;
