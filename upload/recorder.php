@@ -85,6 +85,7 @@ if (! $ok){
 
         <script type="text/javascript">
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
+            const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
             const recordAudio = () => {
               return new Promise(async resolve => {
@@ -126,7 +127,7 @@ if (! $ok){
                 const playb = document.getElementById('play');
                 const upld = document.getElementById('upload');
                 const recorder = await recordAudio();
-                const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
+                
                 const audioContext = new AudioContext();
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); // moved from recordAudio()
                 const mediaStreamSource = audioContext.createMediaStreamSource(stream);
