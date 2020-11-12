@@ -151,12 +151,12 @@ if (! $ok){
                     stopb.disabled = false;
                     //btn.removeEventListener("mousedown", recStart);
                     //btn.removeEventListener("touchstart", recStart);
-                    stopb.addEventListener("mousedown", recEnd);
-                    stopb.addEventListener("touchstart", recEnd);
+                    //stopb.addEventListener("mousedown", recEnd);
+                    //stopb.addEventListener("touchstart", recEnd);
                     //pauseb.addEventListener("mousedown", recPause);
                     //pauseb.addEventListener("touchstart", recPause);
-                    upld.addEventListener("mousedown", uploadAudio);
-                    upld.addEventListener("touchstart", uploadAudio);
+                    //upld.addEventListener("mousedown", uploadAudio);
+                    //upld.addEventListener("touchstart", uploadAudio);
                     playb.style.visibility = 'hidden';
                     //upld.style.visibility = 'hidden';
                 }
@@ -175,7 +175,7 @@ if (! $ok){
                     //pauseb.disabled = true;
                     stopb.disabled = true;
                     btn.disabled = true;
-                    upld.disabled = false;
+                    
                     //audio.play();
                     //uploadAudio(audio.audioBlob);
                     //btn.removeEventListener("mousedown", recEnd);
@@ -185,11 +185,11 @@ if (! $ok){
                     //playb.style.visibility = 'visible';
                     //playb.addEventListener("mousedown", playAudio);
                     //playb.addEventListener("touchstart", playAudio);
-                    blobURL = window.URL.createObjectURL(blob);
+                    blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
                     document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
-                    
+                    upld.disabled = false;
                 }
                 /*
                 const playAudio = async e => {
@@ -200,6 +200,7 @@ if (! $ok){
                 }
                 */
                 const uploadAudio = async e => {
+                    upld.disabled = true;
                     //blob = audio.audioBlob;
 
                     document.body.innerHTML += "\n<p>Uploading...</p>\n";
