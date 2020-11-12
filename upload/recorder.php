@@ -82,6 +82,7 @@ if (! $ok){
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
+        <input type="button" class ="btn" id="dummyButton" disabled value="Dummy" />
 
         <script type="text/javascript">
             var WIDTH=500;
@@ -91,6 +92,7 @@ if (! $ok){
             var uploadButton;
             var audio;
             var blob;
+            var dummy;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -134,6 +136,7 @@ if (! $ok){
                 const stopb = document.getElementById('stopButton');
                 //const playb = document.getElementById('play');
                 uploadButton = document.getElementById('uploadButton');
+                dummy = document.getElementById('dummyButton');
                 const recorder = await recordAudio();
                 
                 const audioContext = new AudioContext();
@@ -186,6 +189,7 @@ if (! $ok){
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                     uploadButton.disabled = false;
+                    dummy.disabled = false;
                     stopb.disabled = true;
                     btn.disabled = true;
 
@@ -209,8 +213,8 @@ if (! $ok){
                     //document.body.innerHTML += "\nWhat?\n";
                     
                     //document.body.innerHTML += "Test";
-                    uploadButton.addEventListener("mousedown", uploadAudio);
-        uploadButton.addEventListener("touchstart", uploadAudio);
+                    dummy.addEventListener("mousedown", uploadAudio);
+                    dummy.addEventListener("touchstart", uploadAudio);
                 }
                 /*
                 const playAudio = async e => {
