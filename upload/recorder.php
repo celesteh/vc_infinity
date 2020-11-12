@@ -139,8 +139,8 @@ if (! $ok){
                 let audio; // filled in end cb
                 let blob;
 
-                //playb.style.visibility = 'hidden';
-                upld.style.visibility = 'hidden';
+                playb.style.visibility = 'hidden';
+                //upld.style.visibility = 'hidden';
 
                 const recStart = e => {
                     recorder.start();
