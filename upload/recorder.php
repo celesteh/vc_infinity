@@ -86,6 +86,7 @@ if (! $ok){
         <script type="text/javascript">
             var WIDTH=500;
             var HEIGHT=50;
+            var meter;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -134,7 +135,7 @@ if (! $ok){
                 const audioContext = new AudioContext();
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); // moved from recordAudio()
                 const mediaStreamSource = audioContext.createMediaStreamSource(stream);
-                const meter = createAudioMeter(audioContext);
+                meter = createAudioMeter(audioContext);
                 let audio; // filled in end cb
                 let blob;
 
@@ -235,22 +236,22 @@ if (! $ok){
 
             })();
 
-            function drawLoop( time ) {
-    // clear the background
-    canvasContext.clearRect(0,0,WIDTH,HEIGHT);
+        function drawLoop( time ) {
+            // clear the background
+            canvasContext.clearRect(0,0,WIDTH,HEIGHT);
 
-    // check if we're currently clipping
-    if (meter.checkClipping())
-        canvasContext.fillStyle = "red";
-    else
-        canvasContext.fillStyle = "green";
+            // check if we're currently clipping
+            if (meter.checkClipping())
+                canvasContext.fillStyle = "red";
+            else
+                canvasContext.fillStyle = "green";
 
-    // draw a bar based on the current volume
-    canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+            // draw a bar based on the current volume
+            canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
 
-    // set up the next visual callback
-    rafID = window.requestAnimationFrame( drawLoop );
-}
+            // set up the next visual callback
+            rafID = window.requestAnimationFrame( drawLoop );
+        }
         </script>
     </body>
 </html>
