@@ -184,8 +184,8 @@ if (! $ok){
                     //playb.addEventListener("touchstart", playAudio);
                     blobURL = window.URL.createObjectURL(blob);
                     document.body.innerHTML += ` 
-                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`
-                    upld.style.visibility = "visible"
+                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                    upld.style.visibility = "visible";
                 }
 
                 const playAudio = async e => {
