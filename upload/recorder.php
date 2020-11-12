@@ -183,7 +183,15 @@ if (! $ok){
                     //playb.addEventListener("touchstart", playAudio);
                     blobURL = window.URL.createObjectURL(blob);
                     document.body.innerHTML += ` 
-                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`
+                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n
+                    <form action="upload.php" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="audio" name = "audio" value="` + blob + `">
+                        <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
+                        <input type="hidden" id="y", name = "y", value="<?php echo $y ?>">
+                        <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
+                        <input type="hidden" id="nonce", name ="nonce", value="<?php echo $_SESSION['nonce'] ?>">
+                        <input type="submit" value="Upload Audio" name="submit">
+                    </form>
                 }
 
                 const playAudio = async e => {
