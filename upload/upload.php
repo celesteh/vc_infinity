@@ -53,6 +53,7 @@ $_SESSION['nonce'] = set_nonce();
     }elseif (isset($_POST["submit"]) && isset($_POST["id"]) && isset($_POST["x"]) && isset($_POST["y"])) {
 
 
+        $submit = $_POST["submit"];
 
         // is this an upload?
 
@@ -224,7 +225,7 @@ if (! $active){
         <h1>Submit Your Audio</h1>
 </div>
 <?php include 'nav-menu.php';?>
-<?php echo "<!-- is_audio {$is_audio} id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active} -->"; ?>
+<?php echo "<!-- is_audio {$is_audio} id {$panel} scaled_x {$scaled_x} scaled_y {$scaled_y} scaled_width {$scaled_width} scaled height {$scaled_height} X {$x} Y {$y} panel {$panel} active {$active} submit {$submit} ok {$ok}-->"; ?>
 <div class="wrapper">
 
 <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
