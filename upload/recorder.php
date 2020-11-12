@@ -218,11 +218,12 @@ if (! $ok){
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
 
+                mediaStreamSource = audioContext.createMediaStreamSource(stream);
                 meter = createAudioMeter(audioContext);
-    mediaStreamSource.connect(meter);
+                mediaStreamSource.connect(meter);
 
-    // kick off the visual updating
-    drawLoop();
+                // kick off the visual updating
+                drawLoop();
  
 
 
