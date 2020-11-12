@@ -169,6 +169,7 @@ if (! $ok){
                 //}
 
                 const recEnd = async e => {
+                    meter.shutdown;
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
