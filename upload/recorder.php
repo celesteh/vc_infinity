@@ -209,6 +209,8 @@ if (! $ok){
                     //document.body.innerHTML += "\nWhat?\n";
                     
                     //document.body.innerHTML += "Test";
+                    uploadButton.addEventListener("mousedown", uploadAudio);
+        uploadButton.addEventListener("touchstart", uploadAudio);
                 }
                 /*
                 const playAudio = async e => {
