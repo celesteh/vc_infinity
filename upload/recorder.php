@@ -78,7 +78,7 @@ if (! $ok){
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button" class="btn" id="recordButton" value="Record" />
-  	    <input type="button" class="btn" id="pauseButton" disabled value="Pause" />
+  	    <! input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="upload" disabled value="Upload" />
@@ -126,7 +126,7 @@ if (! $ok){
             /* init */
             (async () => {
                 const btn = document.getElementById('recordButton');//document.querySelector("input");
-                const pauseb = document.getElementById('pauseButton');
+                //const pauseb = document.getElementById('pauseButton');
                 const stopb = document.getElementById('stopButton');
                 const playb = document.getElementById('play');
                 const upld = document.getElementById('upload');
@@ -153,26 +153,26 @@ if (! $ok){
                     //btn.removeEventListener("touchstart", recStart);
                     stopb.addEventListener("mousedown", recEnd);
                     stopb.addEventListener("touchstart", recEnd);
-                    pauseb.addEventListener("mousedown", recPause);
-                    pauseb.addEventListener("touchstart", recPause);
+                    //pauseb.addEventListener("mousedown", recPause);
+                    //pauseb.addEventListener("touchstart", recPause);
                     upld.addEventListener("mousedown", uploadAudio);
                     upld.addEventListener("touchstart", uploadAudio);
                     playb.style.visibility = 'hidden';
                     //upld.style.visibility = 'hidden';
                 }
 
-                const recPause = async e => {
+                //const recPause = async e => {
                     //btn.value = btn.initialValue;
-                    audio = await recorder.stop();
-                    pauseb.value = "Paused";
-                }
+                //    audio = await recorder.stop();
+                //    pauseb.value = "Paused";
+                //}
 
                 const recEnd = async e => {
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
                     blob = audio.audioBlob;
-                    pauseb.value = pauseb.initialValue;
-                    pauseb.disabled = true;
+                    //pauseb.value = pauseb.initialValue;
+                    //pauseb.disabled = true;
                     stopb.disabled = true;
                     btn.disabled = true;
                     upld.disabled = false;
@@ -236,8 +236,8 @@ if (! $ok){
                 upld.addEventListener("touchstart", uploadAudio);
                 stopb.addEventListener("mousedown", recEnd);
                 stopb.addEventListener("touchstart", recEnd);
-                pauseb.addEventListener("mousedown", recPause);
-                pauseb.addEventListener("touchstart", recPause);
+                //pauseb.addEventListener("mousedown", recPause);
+                //pauseb.addEventListener("touchstart", recPause);
                 
                 mediaStreamSource.connect(meter);
 
