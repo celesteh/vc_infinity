@@ -155,6 +155,8 @@ if (! $ok){
                     stopb.addEventListener("touchstart", recEnd);
                     pauseb.addEventListener("mousedown", recPause);
                     pauseb.addEventListener("touchstart", recPause);
+                    upld.addEventListener("mousedown", uploadAudio);
+                    upld.addEventListener("touchstart", uploadAudio);
                     playb.style.visibility = 'hidden';
                     //upld.style.visibility = 'hidden';
                 }
@@ -184,8 +186,7 @@ if (! $ok){
                     //playb.addEventListener("mousedown", playAudio);
                     //playb.addEventListener("touchstart", playAudio);
                     blobURL = window.URL.createObjectURL(blob);
-                    document.body.innerHTML += ` 
-                    <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                    document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     
@@ -201,7 +202,7 @@ if (! $ok){
                 const uploadAudio = async e => {
                     //blob = audio.audioBlob;
 
-                    document.body.innerHTML += "Uploading...";
+                    document.body.innerHTML += "\n<p>Uploading...</p>\n";
                     if (blob.size > (10 * Math.pow(1024, 2))) {
                         document.body.innerHTML += "Too big; could not upload";
                         return;
