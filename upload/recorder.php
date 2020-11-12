@@ -89,6 +89,8 @@ if (! $ok){
             var meter;
             var doMetering = true;
             var uploadButton;
+            var audio;
+            var blob;
 
             window.nonce = "<?php echo $_SESSION['nonce']; ?>"
             const canvasContext = document.getElementById( "meter" ).getContext("2d"); 
@@ -138,8 +140,8 @@ if (! $ok){
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true }); // moved from recordAudio()
                 const mediaStreamSource = audioContext.createMediaStreamSource(stream);
                 meter = createAudioMeter(audioContext);
-                let audio; // filled in end cb
-                let blob;
+                //let audio; // filled in end cb
+                //let blob;
 
                 //playb.style.visibility = 'hidden';
                 //upld.style.visibility = 'hidden';
@@ -216,6 +218,7 @@ if (! $ok){
                     upld.addEventListener("touchstart", uploadAudio);
                 }
                 */
+               /*
                 const uploadAudio = async e => {
                     document.body.innerHTML += "Uploading";
                     uploadButton.disabled = true;
@@ -244,8 +247,8 @@ if (! $ok){
                         `
                     });
                     //;
-                }
-
+                }*/
+                
 
                 btn.addEventListener("mousedown", recStart);
                 btn.addEventListener("touchstart", recStart);
@@ -290,6 +293,38 @@ if (! $ok){
                 if (doMetering) 
                     rafID = window.requestAnimationFrame( drawLoop );
             }
+        }
+
+        function uploadAudio(){
+            document.body.innerHTML += "Uploading";
+                    uploadButton.disabled = true;
+                    //blob = audio.audioBlob;
+
+                    document.body.innerHTML += "\n<p>Uploading...</p>\n";
+                    if (blob.size > (10 * Math.pow(1024, 2))) {
+                        document.body.innerHTML += "Too big; could not upload";
+                        return;
+                    }
+                    const f = new FormData();
+                    f.append("nonce", window.nonce);
+                    f.append("x","<?php echo $x ?>");
+                    f.append("y", "<?php echo $y ?>");
+                    f.append("id", "<?php echo $panel ?>");
+ 
+                    f.append("audio", blob, "blob.wav");
+
+                    fetch("upload.php", {
+                        method: "POST",
+                        body: f
+                    })
+                    .then(_ => {
+                        document.body.innerHTML += `
+                            <br/> <a href="audio.wav">saved; click here</a>
+                        `
+                    });
+
+
+
         }
         </script>
     </body>
