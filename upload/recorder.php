@@ -202,6 +202,7 @@ if (! $ok){
                 const uploadAudio = async e => {
                     //blob = audio.audioBlob;
 
+                    document.body.innerHTML += "Uploading...";
                     if (blob.size > (10 * Math.pow(1024, 2))) {
                         document.body.innerHTML += "Too big; could not upload";
                         return;
