@@ -191,7 +191,7 @@ if (! $ok){
                         <input type="hidden" id="id", name = "id", value="<?php echo $panel ?>">
                         <input type="hidden" id="nonce", name ="nonce", value="<?php echo $_SESSION['nonce'] ?>">
                         <input type="submit" value="Upload Audio" name="submit">
-                    </form>
+                    </form>\n`
                 }
 
                 const playAudio = async e => {
