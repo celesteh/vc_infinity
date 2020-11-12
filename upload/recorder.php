@@ -215,6 +215,7 @@ if (! $ok){
                     //document.body.innerHTML += "Test";
                     dummy.addEventListener("mousedown", uploadAudio);
                     dummy.addEventListener("touchstart", uploadAudio);
+                    console.log("End of recEnd");
                 }
                 /*
                 const playAudio = async e => {
@@ -300,6 +301,7 @@ if (! $ok){
         }
 
         function uploadAudio(){
+            console.log("Upload");
             document.body.innerHTML += "Uploading";
                     uploadButton.disabled = true;
                     //blob = audio.audioBlob;
