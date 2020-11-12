@@ -88,7 +88,7 @@ if (! $ok){
             // courtesy https://medium.com/@bryanjenningz/how-to-record-and-play-audio-in-javascript-faa1b2b3e49b
             const recordAudio = () => {
               return new Promise(async resolve => {
-                //const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
                 const mediaRecorder = new MediaRecorder(stream);
                 const audioChunks = [];
 
