@@ -187,7 +187,7 @@ if (! $ok){
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                    blob = audio.audioBlob;
+                    blob = Blob(audio.audioBlob, "audio/wav");
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                     uploadButton.disabled = false;
@@ -217,7 +217,7 @@ if (! $ok){
                     //document.body.innerHTML += "Test";
                     //dummy.addEventListener("click", clicked);
                     //dummy.addEventListener("touchstart", clicked);
-                    blob.type="audio/wav";
+                    //blob.type="audio/wav";
                     console.log(blob.type);
                     console.log("End of recEnd");
                 }
