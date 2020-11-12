@@ -188,8 +188,7 @@ if (! $ok){
                     <audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
-                    upld.addEventListener("mousedown", uploadAudio);
-                    upld.addEventListener("touchstart", uploadAudio);
+                    
                 }
                 /*
                 const playAudio = async e => {
@@ -232,7 +231,12 @@ if (! $ok){
                 btn.addEventListener("touchstart", recStart);
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
-
+                upld.addEventListener("mousedown", uploadAudio);
+                upld.addEventListener("touchstart", uploadAudio);
+                stopb.addEventListener("mousedown", recEnd);
+                stopb.addEventListener("touchstart", recEnd);
+                pauseb.addEventListener("mousedown", recPause);
+                pauseb.addEventListener("touchstart", recPause);
                 
                 mediaStreamSource.connect(meter);
 
