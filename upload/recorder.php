@@ -195,8 +195,10 @@ if (! $ok){
                     //playb.style.visibility = 'visible';
                     //playb.addEventListener("mousedown", playAudio);
                     //playb.addEventListener("touchstart", playAudio);
-                    blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
-                    document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                    try {
+                        blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
+                        document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                    } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     upld.disabled = false;
