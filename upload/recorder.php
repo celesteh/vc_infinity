@@ -87,6 +87,7 @@ if (! $ok){
         <input type="button" class ="btn" id="dummyButton"  value="Dummy" />
     </div>
     <div id="player">
+        <p id = "p1"></p>
     </div>
     </div>
         <script type="text/javascript">
@@ -190,6 +191,7 @@ if (! $ok){
 
                     var htmlplayer;
                     const playerDiv = document.getElementById('player');
+                    const p1 = document.getElementById('p1');
                     
                     e.preventDefault();
                     
@@ -222,9 +224,12 @@ if (! $ok){
                     //playb.addEventListener("mousedown", playAudio);
                     //playb.addEventListener("touchstart", playAudio);
                         try {
+                            console.log("bloburl")
                             blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
-                            htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-                            playerDiv.appendChild(htmlplayer); 
+                            console.append(blobURL);
+                            //htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                            htmlplayer = "player!"
+                            p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             console.log("appended the htmlplayer")
                         } catch(err){}
