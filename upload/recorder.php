@@ -309,12 +309,14 @@ if (! $ok){
                 }*/
                 
 
-                btn.addEventListener("mousedown", recStart);
-                btn.addEventListener("touchstart", recStart);
+                //btn.addEventListener("mousedown", recStart);
+                //btn.addEventListener("touchstart", recStart);
+                btn.addEventListener("click", recStart);
                 //window.addEventListener("mouseup", recEnd);
                 //window.addEventListener("touchend", recEnd);
-                stopb.addEventListener("mousedown", recEnd);
-                stopb.addEventListener("touchstart", recEnd);
+                //stopb.addEventListener("mousedown", recEnd);
+                //stopb.addEventListener("touchstart", recEnd);
+                stopb.addEventListener("click", recEnd);
                 //pauseb.addEventListener("mousedown", recPause);
                 //pauseb.addEventListener("touchstart", recPause);
                 
