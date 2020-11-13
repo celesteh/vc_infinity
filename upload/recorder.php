@@ -75,6 +75,8 @@ if (! $ok){
         <script src="volume-meter.js"></script>
     </head>
     <body>
+    <div class="wrapper">
+    <div id="controls">
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button" class="btn" id="recordButton" value="Record" />
@@ -83,7 +85,10 @@ if (! $ok){
         <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
         <input type="button" class ="btn" id="dummyButton"  value="Dummy" />
-
+    </div>
+    <div id="player">
+    </div>
+    </div>
         <script type="text/javascript">
             var WIDTH=500;
             var HEIGHT=50;
@@ -93,6 +98,7 @@ if (! $ok){
             var audio;
             var blob;
             var dummy;
+            
 
 
             uploadButton.addEventListener("click", uploadAudio);
@@ -181,6 +187,9 @@ if (! $ok){
                 //}
 
                 const recEnd = async e => {
+
+                    const htmlplayer;
+                    const playerDiv = document.getElementById('player');
                     
                     e.preventDefault();
                     
@@ -214,7 +223,10 @@ if (! $ok){
                     //playb.addEventListener("touchstart", playAudio);
                         try {
                             blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
-                            document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                            htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+                            playerDiv.appendChild(htmlplayer); 
+                            //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
+
                         } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
