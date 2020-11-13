@@ -232,13 +232,17 @@ if (! $ok){
                             //blobURL = audio.audioUrl; //
                             //blobURL = window.URL.createObjectURL(blob);
                             //console.append(blobURL);
-                            htmlplayer = document.createTextNode(`\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" id ="aplay" />\n`);
+                            //htmlplayer = document.createTextNode(`\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" id ="aplay" />\n`);
                             //htmlplayer = document.createTextNode("player!");
-                            p1.appendChild(htmlplayer); 
+                            //htmlplayer = 
+                            //p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-                            console.log("appended the htmlplayer")
+                            //console.log("appended the htmlplayer")
 
-                            aplay = document.getElementById('aplay');
+                            //aplay = document.getElementById('aplay');
+
+                            aplay = new Audio(blobURL);
+                            p1.appendChild(aplay);
                             aplay.addEventListener("play", listen)
 
                         } catch(err){console.log("caught error");}
