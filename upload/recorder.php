@@ -242,6 +242,7 @@ if (! $ok){
                             //aplay = document.getElementById('aplay');
 
                             aplay = new Audio(blobURL);
+                            aplay.controls = true;
                             p1.appendChild(aplay);
                             aplay.addEventListener("play", listen)
 
