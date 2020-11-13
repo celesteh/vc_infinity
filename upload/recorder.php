@@ -225,7 +225,8 @@ if (! $ok){
                     //playb.addEventListener("touchstart", playAudio);
                         try {
                             console.log("bloburl")
-                            blobURL = audio.audioUrl; //window.URL.createObjectURL(blob);
+                            //blobURL = audio.audioUrl; //
+                            blobURL = window.URL.createObjectURL(blob);
                             console.append(blobURL);
                             //htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             htmlplayer = "player!"
