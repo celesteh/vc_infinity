@@ -232,8 +232,8 @@ if (! $ok){
                             //blobURL = audio.audioUrl; //
                             //blobURL = window.URL.createObjectURL(blob);
                             //console.append(blobURL);
-                            //htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-                            htmlplayer = "player!"
+                            //htmlplayer = document.createTextNode(`\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`);
+                            htmlplayer = document.createTextNode("player!");
                             p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             console.log("appended the htmlplayer")
