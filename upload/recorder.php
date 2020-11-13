@@ -69,12 +69,19 @@ if (! $ok){
 <!DOCYTPE html>
 <html>
     <head>
-        <title>Simple audio recording demo</title>
+        <title>Audio Recorder</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <script src="volume-meter.js"></script>
+        <link rel="stylesheet" href="bootstrap.css">
+        <link rel="stylesheet" href="infinity.css">
+
     </head>
     <body>
+        <div class="page-header">
+            <h1>Audio Recorder for phones and tablets</h1>
+        </div>
+<?php include 'nav-menu.php';?>
     <div class="wrapper">
     <div id="controls">
         <p>You can try recording, but uploading does not yet work. Coming soon!</p>
@@ -84,7 +91,7 @@ if (! $ok){
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
-        <input type="button" class ="btn" id="dummyButton"  value="Dummy" />
+        <!input type="button" class ="btn" id="dummyButton"  value="Dummy" />
     </div>
     <div id="player">
         <p id = "p1"></p>
@@ -98,7 +105,7 @@ if (! $ok){
             var uploadButton = document.getElementById('uploadButton');
             var audio;
             var blob;
-            var dummy;
+            //var dummy;
             var aplay;
 
 
@@ -147,7 +154,7 @@ if (! $ok){
                 const stopb = document.getElementById('stopButton');
                 //const playb = document.getElementById('play');
                 //uploadButton = document.getElementById('uploadButton');
-                dummy = document.getElementById('dummyButton');
+                //dummy = document.getElementById('dummyButton');
                 const recorder = await recordAudio();
                 
                 const audioContext = new AudioContext();
@@ -160,7 +167,7 @@ if (! $ok){
                 //playb.style.visibility = 'hidden';
                 //upld.style.visibility = 'hidden';
 
-                dummy.addEventListener("click", clicked);
+                //dummy.addEventListener("click", clicked);
 
                 const recStart = e => {
                     recorder.start();
@@ -233,9 +240,9 @@ if (! $ok){
                             //blobURL = window.URL.createObjectURL(blob);
                             //console.append(blobURL);
                             //htmlplayer = document.createTextNode(`\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" id ="aplay" />\n`);
-                            //htmlplayer = document.createTextNode("player!");
+                            htmlplayer = document.createTextNode("Pisten to the audio before deciding to upload.");
                             //htmlplayer = 
-                            //p1.appendChild(htmlplayer); 
+                            p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             //console.log("appended the htmlplayer")
 
@@ -243,7 +250,7 @@ if (! $ok){
 
                             aplay = new Audio(blobURL);
                             aplay.controls = true;
-                            p1.appendChild(aplay);
+                            playerDiv.appendChild(aplay);
                             aplay.addEventListener("play", listen)
 
                         } catch(err){console.log("caught error");}
