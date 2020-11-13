@@ -226,7 +226,7 @@ if (! $ok){
                             htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             playerDiv.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
-
+                            console.log("appended the htmlplayer")
                         } catch(err){}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
@@ -303,25 +303,26 @@ if (! $ok){
 
         function drawLoop( time ) {
 
+            
+            // clear the background
+            canvasContext.clearRect(0,0,WIDTH,HEIGHT);
             if (doMetering){
-                // clear the background
-                canvasContext.clearRect(0,0,WIDTH,HEIGHT);
-
-                // check if we're currently clipping
-                if (meter.checkClipping())
-                    canvasContext.fillStyle = "red";
-                else
-                    canvasContext.fillStyle = "green";
-
-                // draw a bar based on the current volume
                 try {
+                    // check if we're currently clipping
+                    if (meter.checkClipping())
+                        canvasContext.fillStyle = "red";
+                    else
+                        canvasContext.fillStyle = "green";
+
+                    // draw a bar based on the current volume
+               
                     canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
                 } catch (err) {
                     canvasContext.clearRect(0,0,WIDTH,HEIGHT);
                     doMetering = false;
                 }
                 // set up the next visual callback
-                if (doMetering) 
+               
                     rafID = window.requestAnimationFrame( drawLoop );
             }
         }
