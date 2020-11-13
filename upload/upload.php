@@ -252,7 +252,7 @@ if (! $active){
 <hr noshade>
 <form action="recorder.php" method="post">
 <div class="form-group">
-<p><b>Testing</b></p>
+<p><b>Phone users</b></p>
 <p>Phone and tablet users can record directly from their microphones:</p>
 </div> 
   <input type="hidden" id="x", name = "x", value="<?php echo $x ?>">
