@@ -190,8 +190,9 @@ if (! $ok){
                 const recEnd = async e => {
 
                     var htmlplayer;
+                    var blobURL;
                     const playerDiv = document.getElementById('player');
-                    const p1 = document.getElementById('p1');
+                    var p1 = document.getElementById('p1');
                     
                     e.preventDefault();
                     
@@ -204,7 +205,9 @@ if (! $ok){
                     doMetering = false; // avoid a race condition, maybe
                     btn.value = btn.initialValue;
                     audio = await recorder.stop();
-                        blob = await audio.audioBlob;
+                        
+                    blob = await audio.audioBlob;
+                    blobURL = await audio.audioUrl;
                     //pauseb.value = pauseb.initialValue;
                     //pauseb.disabled = true;
                         uploadButton.disabled = false;
@@ -225,15 +228,16 @@ if (! $ok){
                     //playb.addEventListener("touchstart", playAudio);
                         try {
                             console.log("bloburl")
+                            p1 = document.getElementById('p1');
                             //blobURL = audio.audioUrl; //
-                            blobURL = window.URL.createObjectURL(blob);
-                            console.append(blobURL);
+                            //blobURL = window.URL.createObjectURL(blob);
+                            //console.append(blobURL);
                             //htmlplayer = `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             htmlplayer = "player!"
                             p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
                             console.log("appended the htmlplayer")
-                        } catch(err){}
+                        } catch(err){console.log("caught error");}
                     //upld.style.visibility = "visible";
                     //upld.style.visibility = 'visible';
                     //document.body.innerHTML += "\nWhat?\n";
