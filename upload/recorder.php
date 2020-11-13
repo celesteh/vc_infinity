@@ -238,7 +238,7 @@ if (! $ok){
                     //blob.type="audio/wav";
 
                         console.log(blob.type);
-                        recorder = null;
+                        //recorder = null;
                         uploadButton.addEventListener("click", uploadAudio);
                         console.log("End of recEnd");
                     
