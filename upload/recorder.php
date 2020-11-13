@@ -83,8 +83,8 @@ if (! $ok){
         </div>
 <?php include 'nav-menu.php';?>
     <div class="wrapper">
-    <div id="controls">
-        <p>You can try recording, but uploading does not yet work. Coming soon!</p>
+    <div id="controls" class="form-group">
+        <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button" class="btn" id="recordButton" value="Record" />
   	    <! input type="button" class="btn" id="pauseButton" disabled value="Pause" />
