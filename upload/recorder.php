@@ -188,7 +188,7 @@ if (! $ok){
 
                 const recEnd = async e => {
 
-                    const htmlplayer;
+                    var htmlplayer;
                     const playerDiv = document.getElementById('player');
                     
                     e.preventDefault();
