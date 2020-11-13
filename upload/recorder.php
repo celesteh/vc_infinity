@@ -96,6 +96,9 @@ if (! $ok){
     <div id="player">
         <p id = "p1"></p>
     </div>
+    <div id ="uploading">
+        <p id= "p2"></p> 
+    </div>
     </div>
         <script type="text/javascript">
             var WIDTH=500;
@@ -356,8 +359,16 @@ if (! $ok){
         }
 
         async function uploadAudio(){
+            var p2 = document.getElementById('p2');
+            var msg;
+
             console.log("Upload");
-            document.body.innerHTML += "Uploading";
+            //document.body.innerHTML += "Uploading";
+
+            msg = document.createTextNode("Uploading . . . ..");
+                            //htmlplayer = 
+            p2.appendChild(msg); 
+
             uploadButton.disabled = true;
             if (! blob) {
                 blob = await audio.audioBlob;
@@ -382,9 +393,12 @@ if (! $ok){
                             body: f
                         })
                         .then(_ => {
-                            document.body.innerHTML += `
-                                <br/> <a href="audio.wav">saved; click here</a>
-                            `
+                            //document.body.innerHTML += `
+                            //    <br/> <a href="audio.wav">saved; click here</a>
+                            //`
+                            msg = document.createTextNode("Success!");
+                            p2.appendChild(msg); 
+                            window.location.replace("submit.php?success=1");
                         });
                     
         }
