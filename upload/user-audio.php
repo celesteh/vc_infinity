@@ -45,7 +45,7 @@ $offset = ($pageno-1) * $no_of_records_per_page;
     <div>
 <?php
 
-$csql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page"; 
+$csql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) "; 
 if($cstmt = $pdo->prepare($csql)){
     if($cstmt->execute()){
         $count = $cstmt->rowCount();
