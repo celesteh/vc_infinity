@@ -72,7 +72,7 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
                         //echo "<p>$total_pages pages</p>\n";
                         $self = htmlspecialchars($_SERVER["PHP_SELF"]);
                         $first = "$self?pageno=1";
-                        if ($pageno <= 1) { $prev = "#"; $pclass = "disbaled";} else { $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; }
+                        if ($pageno <= 1) { $prev = "#"; $pclass = "disabled";} else { $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; }
                         if($pageno >= $total_pages){  $next = '#'; $nclass = "disabled";}  else { $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; }
                         $last = $self. "?pageno=". $total_pages; 
                         echo <<< EOT
