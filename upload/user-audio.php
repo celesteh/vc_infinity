@@ -48,7 +48,7 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     $count = $stmt->rowCount();
-                    if($count >= 50 ){
+                    //if($count >= 50 ){
                         $total_pages = ceil($count / $no_of_records_per_page);
                         echo <<< EOT
 <ul class="pagination">
@@ -71,10 +71,10 @@ EOT;
 
                         };
                         echo "</ol>\n";
-                    } else {
-                        echo "<p>This feature will unlock when 50 audio files are uploaded.</p>\n";
-                        echo "<p>There are currently " . strval($count) . " submissions. </p>\n";
-                    }
+                    //} else {
+                    //    echo "<p>This feature will unlock when 50 audio files are uploaded.</p>\n";
+                    //    echo "<p>There are currently " . strval($count) . " submissions. </p>\n";
+                    //}
                 }
             }
     
