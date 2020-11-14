@@ -21,6 +21,7 @@ if (isset($_GET['pageno'])) {
 } else {
     $pageno = 1;
 }
+$no_of_records_per_page = 20;
 
 $count = $pdo->query("select count(*) FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1)")->fetchColumn(); 
 $total_pages = ceil($count / $no_of_records_per_page);
@@ -32,7 +33,6 @@ if ($pageno < 1) {
 }
 
 
-$no_of_records_per_page = 20;
 $offset = ($pageno-1) * $no_of_records_per_page; 
 
 ?>
