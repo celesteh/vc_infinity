@@ -62,19 +62,19 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
                     //$count = $stmt->rowCount();
                     //if($count >= 50 ){
                         $total_pages = ceil($count / $no_of_records_per_page);
-                        echo "<p>$total_pages pages</p>\n";
+                        //echo "<p>$total_pages pages</p>\n";
                         $self = htmlspecialchars($_SERVER["PHP_SELF"]);
                         $first = "$self?pageno=1";
-                        if ($pageno <= 1) { $prev = "#"; } else { $prev = $self . "?pageno=".($pageno - 1); }
-                        if($pageno >= $total_pages){  $next = '#';}  else { $next = $self.  "?pageno=".($pageno + 1); }
+                        if ($pageno <= 1) { $prev = "#"; $pclass = "disbaled";} else { $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; }
+                        if($pageno >= $total_pages){  $next = '#'; $nclass = "disabled";}  else { $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; }
                         $last = $self. "?pageno=". $total_pages; 
                         echo <<< EOT
 <ul class="pagination">
 <li><a href="$first">First</a></li>
-<li>
+<li class="$pclass">
     <a href="$prev">Prev</a>
 </li>
-<li>
+<li class ="$nclass">
     <a href="$next">Next</a>
 </li>
 <li><a href="$last">Last</a></li>
