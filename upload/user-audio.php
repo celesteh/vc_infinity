@@ -34,7 +34,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
     <div>
 <?php
-$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE NOT `sa_accepted` = `0` "; 
+$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE NOT `sa_accepted` != 0 "; 
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     $count = $stmt->rowCount();
