@@ -44,10 +44,18 @@ $offset = ($pageno-1) * $no_of_records_per_page;
     <?php include 'nav-menu.php';?>
     <div>
 <?php
+
+$csql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page"; 
+if($cstmt = $pdo->prepare($csql)){
+    if($cstmt->execute()){
+        $count = $cstmt->rowCount();
+    }
+}
+ 
 $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page"; 
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
-                    $count = $stmt->rowCount();
+                    //$count = $stmt->rowCount();
                     //if($count >= 50 ){
                         $total_pages = ceil($count / $no_of_records_per_page);
                         echo "<p>$total_pages pages</p>\n";
