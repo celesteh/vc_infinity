@@ -34,7 +34,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
     <div>
 <?php
-$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE 1"; //`sa_accepted` = NULL 
+$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE NOT `sa_accepted` = 0 "; 
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     $count = $stmt->rowCount();
@@ -42,7 +42,8 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE 1"
                         echo "\n<ol>\n";
                         while($row = $stmt->fetch()){
                             $local = "../unprocessed_audio/" . $row['sa_filename'];
-                            echo '<li><audio controls="controls" src="'.$local.'" type="audio/wav" /></li>\n';
+                            echo '<li><audio controls="controls" src="'.$local.'" type="audio/wav" /></li>';
+                            echo "\n";
 
                         };
                         echo "</ol>\n";
