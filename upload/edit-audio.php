@@ -22,14 +22,14 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listen to Uploaded Audio</title>
+    <title>Edit Audio</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
 
 </head>
 <body>
     <div class="page-header">
-        <h1>Locked Feature</h1>
+        <h1>Edit Audio</h1>
     </div>
     <?php include 'nav-menu.php';?>
     </div>

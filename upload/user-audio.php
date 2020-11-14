@@ -39,7 +39,7 @@ $offset = ($pageno-1) * $no_of_records_per_page;
 </head>
 <body>
     <div class="page-header">
-        <h1>Locked Feature</h1>
+        <h1>Listen to Uploaded Audio</h1>
     </div>
     <?php include 'nav-menu.php';?>
     <div>
