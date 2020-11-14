@@ -50,16 +50,21 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
                     $count = $stmt->rowCount();
                     //if($count >= 50 ){
                         $total_pages = ceil($count / $no_of_records_per_page);
+                        $self = htmlspecialchars($_SERVER["PHP_SELF"]);
+                        $first = "$self?pageno=1";
+                        if ($pageno <= 1) { $prev = "#"; } else { $prev = $self . "?pageno=".($pageno - 1); }
+                        if($pageno >= $total_pages){  $next = '#';}  else { $next = $self.  "?pageno=".($pageno + 1); }
+                        $last = $self. "?pageno=". $total_pages; 
                         echo <<< EOT
 <ul class="pagination">
-<li><a href="?pageno=1">First</a></li>
-<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
-    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+<li><a href="$first">First</a></li>
+<li>
+    <a href="$prev">Prev</a>
 </li>
-<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
-    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+<li>
+    <a href="$next">Next</a>
 </li>
-<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+<li><a href="$last">Last</a></li>
 </ul>
 EOT;
 
