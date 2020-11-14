@@ -68,7 +68,7 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
 </ul>
 EOT;
 
-                        echo "\n<ol>\n";
+                        echo "\n<ol start=\"". (($no_of_records_per_page * ($pageno - 1)) + 1) ."\">\n";
                         while($row = $stmt->fetch()){
                             $local = "../unprocessed_audio/" . $row['sa_filename'];
                             echo '<li><audio controls="controls" src="'.$local.'" type="audio/wav" /></li>';
