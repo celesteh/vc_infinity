@@ -34,7 +34,7 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
     <div>
 <?php
-$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE sa_accepted != 0 ";
+$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE `sa_accepted` != 0 ";
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     $count = $stmt->rowCount();
@@ -48,7 +48,7 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE sa
                         echo "</ol>\n";
                     } else {
                         echo "<p>This feature will unlock when 50 audio files are uploaded.</p>\n";
-                        echo "<p>There are currently " . strval($count) . " submissions.</p>\n";
+                        echo "<p>There are currently " . strval($count) . " submissions. (If that still says '0', I#m fixing the bug now. - Dr H)</p>\n";
                     }
                 }
             }
