@@ -34,6 +34,6 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
     </div>
     
-    <p>This feature will unlock when 50 audio files are uploaded.</p>
+    <p>This is next on my todo list.</p>
 </body>	
 </html>
