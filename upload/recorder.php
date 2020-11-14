@@ -83,15 +83,12 @@ if (! $ok){
         </div>
 <?php include 'nav-menu.php';?>
     <div class="wrapper">
-    <div id="controls" class="form-group">
+    <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button" class="btn" id="recordButton" value="Record" />
-  	    <! input type="button" class="btn" id="pauseButton" disabled value="Pause" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
-        <!input type="button" class="btn" id="play" value="Play" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
-        <!input type="button" class ="btn" id="dummyButton"  value="Dummy" />
     </div>
     <div id="player">
         <p id = "p1"></p>
