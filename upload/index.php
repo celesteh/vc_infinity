@@ -52,7 +52,8 @@ $upper = ucfirst($page_called);
         // Get list of active pages
         // Make links to submit audio pased on page_id
         echo "<h2>News</h2>\n";
-        echo "<p>It is now possible to record directly from your phone or tablet!</p>\n\n";
+        echo '<p>We have passed the 50 upload threshold! <a href="https://infinity.vocalconstructivists.com/upload/user-audio.php">Listen here</a> to what others have submitted!</p>';
+        echo "\n<p>It is now possible to record directly from your phone or tablet!</p>\n\n";
         echo "<h2>Active {$upper}s</h2>\n";
         echo "<p>Click on a {$page_called} to zoom in and upload audio.</p>\n";
         $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
