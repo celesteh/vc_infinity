@@ -55,7 +55,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $param_userid = (int) $uid;
                         if($ustmt->execute()){
 
-                            if ($should_email){
+                            //if ($should_email){
+                                // Always email!
                                 // Send an email to the user
 
                                 $url = url_dir();
@@ -63,7 +64,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 $headers = "From: infinity@vocalconstructivists.com";
 
                                 mail($uemail, $_SITE["title"] . _(" account modified"), $body, $headers);
-                            }
+                            //}
 
                             // ok, add this one to the counter
 
