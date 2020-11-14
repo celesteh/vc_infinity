@@ -53,15 +53,20 @@ $offset = ($pageno-1) * $no_of_records_per_page;
 #}
 
 $count = $pdo->query("select count(*) FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page")->fetchColumn(); 
-//echo $nRows;
+$total_pages = ceil($count / $no_of_records_per_page);
 
+if ($pageno < 1) {
+    $pageno = 1;
+} elseif ($pageno > $total_pages) {
+    $pageno  = $total_pages;
+}
  
 $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page"; 
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     //$count = $stmt->rowCount();
                     //if($count >= 50 ){
-                        $total_pages = ceil($count / $no_of_records_per_page);
+                        
                         //echo "<p>$total_pages pages</p>\n";
                         $self = htmlspecialchars($_SERVER["PHP_SELF"]);
                         $first = "$self?pageno=1";
