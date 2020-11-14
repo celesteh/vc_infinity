@@ -50,6 +50,7 @@ $sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   
                     $count = $stmt->rowCount();
                     //if($count >= 50 ){
                         $total_pages = ceil($count / $no_of_records_per_page);
+                        echo "<p>$total_pages pages</p>\n";
                         $self = htmlspecialchars($_SERVER["PHP_SELF"]);
                         $first = "$self?pageno=1";
                         if ($pageno <= 1) { $prev = "#"; } else { $prev = $self . "?pageno=".($pageno - 1); }
