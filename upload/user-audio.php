@@ -15,6 +15,16 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     header("location: index.php");
 }
 
+
+if (isset($_GET['pageno'])) {
+    $pageno = $_GET['pageno'];
+} else {
+    $pageno = 1;
+}
+
+$no_of_records_per_page = 20;
+$offset = ($pageno-1) * $no_of_records_per_page; 
+
 ?>
 
 <!DOCTYPE html>
@@ -34,11 +44,25 @@ if (! lazy_power_check($_SESSION["id"], $pdo, 20)){
     <?php include 'nav-menu.php';?>
     <div>
 <?php
-$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) "; 
+$sql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) LIMIT $offset, $no_of_records_per_page"; 
             if($stmt = $pdo->prepare($sql)){
                 if($stmt->execute()){
                     $count = $stmt->rowCount();
                     if($count >= 50 ){
+                        $total_pages = ceil($count / $no_of_records_per_page);
+                        echo <<< EOT
+<ul class="pagination">
+<li><a href="?pageno=1">First</a></li>
+<li class="<?php if($pageno <= 1){ echo 'disabled'; } ?>">
+    <a href="<?php if($pageno <= 1){ echo '#'; } else { echo "?pageno=".($pageno - 1); } ?>">Prev</a>
+</li>
+<li class="<?php if($pageno >= $total_pages){ echo 'disabled'; } ?>">
+    <a href="<?php if($pageno >= $total_pages){ echo '#'; } else { echo "?pageno=".($pageno + 1); } ?>">Next</a>
+</li>
+<li><a href="?pageno=<?php echo $total_pages; ?>">Last</a></li>
+</ul>
+EOT;
+
                         echo "\n<ol>\n";
                         while($row = $stmt->fetch()){
                             $local = "../unprocessed_audio/" . $row['sa_filename'];
