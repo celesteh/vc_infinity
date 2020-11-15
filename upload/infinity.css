@@ -298,4 +298,9 @@ input[type=submit]:hover {
     display: block;
     text-align: left;
   }
+  nav.responsive:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
 } 
