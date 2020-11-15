@@ -69,7 +69,7 @@ nav {
   outline-offset: 1em;
 
 }  
-
+/*
 nav  ul {
   list-style-type: none;
   margin: 0;
@@ -91,6 +91,7 @@ nav a {
   padding: 14px 16px;
   text-decoration: none;
 }
+*/
 
 /* Change the link color to #111 (black) on hover */
 nav a:hover {
