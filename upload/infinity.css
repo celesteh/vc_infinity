@@ -111,10 +111,11 @@ nav li:nth-last-child(2){
   border-right: none;
   float:right;
 }
+/*
 nav .icon {
   display: none;
 }
-
+*/
 nav:after {
   content: "";
   display: table;
@@ -273,7 +274,7 @@ input[type=submit]:hover {
     padding: 14px 16px;
     text-decoration: none;
   }
-  .icon{
+  nav .icon{
     float: right;
     display: block;
     color: white;
