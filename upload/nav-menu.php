@@ -43,10 +43,11 @@ if ($powerlevel >= 20) {
 <ul class="nav navbar-nav navbar-right">
 
 <li><a href="logout.php">Logout</a></li>
-<li id="hamburger" class="icon"><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>
+<!--<li id="hamburger" class="icon"><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>-->
 </ul>
   </div>
 </nav> 
+<!--
 <script>
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 function menuFunc() {
@@ -66,3 +67,4 @@ if (screen.width <= 600){
 }
 
 </script>
+-->
