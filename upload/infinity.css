@@ -293,7 +293,7 @@ input[type=submit]:hover {
     right: 0;
     top: 0;
   }
-  nav.responsive a {
+  nav.responsive li {
     float: none;
     display: block;
     text-align: left;
