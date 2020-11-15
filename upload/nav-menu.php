@@ -52,7 +52,7 @@ function menuFunc() {
   }
 } 
 
-var rtmenu = document.getElementById('hamburger');
+var hamburger = document.getElementById('hamburger');
 if (screen.width <= 600){
     hamburger.style.display = "block";
 } else {
