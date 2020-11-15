@@ -60,8 +60,7 @@ nav {
   top: 0;
 
   
-  background-color: #333;
-  width: 100%;
+   width: 100%;
   display: block;
 
   outline-style: hidden;
@@ -76,7 +75,6 @@ nav  ul {
   margin: 0;
   padding: 0;
   position:  sticky;
-  background-color: #333;
   width: 100%;
   display: block;
 }
@@ -87,7 +85,6 @@ nav li {
 }
 
 nav a {
-  background-color: #333;
   display: block;
   color: white;
   text-align: center;
@@ -100,7 +97,7 @@ nav a:hover {
   background-color: #23527c;
   color: white;
 }
-
+/*
 nav li:last-child {
   border-right: none;
   float:right;
@@ -111,6 +108,7 @@ nav li:nth-last-child(2){
   border-right: none;
   float:right;
 }
+*/
 /*
 nav .icon {
   display: none;
@@ -269,8 +267,7 @@ input[type=submit]:hover {
     float: right;
     display: block;
     color: white;
-    background-color: #333;
-    text-align: center;
+     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
@@ -278,8 +275,7 @@ input[type=submit]:hover {
     float: right;
     display: block;
     color: white;
-    background-color: #333;
-    text-align: center;
+     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
