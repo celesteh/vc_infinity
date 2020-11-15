@@ -38,7 +38,7 @@ if ($powerlevel >= 20) {
 <li><a href="prepare.html">How To</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
 <li><a href="logout.php">Logout</a></li>
-<li><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>
+<li id="hamburger"><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>
 </ul>
 </nav>
 <script>
@@ -51,4 +51,12 @@ function menuFunc() {
     x.className = "";
   }
 } 
+
+var rtmenu = document.getElementById('hamburger');
+if (screen.width <= 600){
+    hamburger.style.display = "block";
+} else {
+    hamburger.style.display = "none";
+}
+
 </script>
