@@ -263,7 +263,7 @@ input[type=submit]:hover {
 
  /* When the screen is less than 600 pixels wide, hide all links, except for the second one ("Dashboard"). Show the link that contains should open and close the topnav (.icon) */
  @media screen and (max-width: 600px) {
-  nav li:not(:first-child) {display: none;}
+  nav li:not(:first-child, :last-child) {display: none;}
   nav li:last-child {
     float: right;
     display: block;
