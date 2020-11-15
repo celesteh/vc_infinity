@@ -89,6 +89,7 @@ if (! $ok){
         <input type="button" class="btn" id="recordButton" value="Record" />
   	    <input type="button" class="btn" id="stopButton" disabled value ="Stop" />
         <input type="button" class="btn" id="uploadButton" disabled value="Upload" />
+        <input type="button" class="btn" id ="reset" disabled value ="Try Again" /> 
     </div>
     <div id="player">
         <p id = "p1"></p>
@@ -404,6 +405,10 @@ if (! $ok){
 
             uploadButton.addEventListener("click", uploadAudio);
             uploadButton.disabled = false;
+            
+            reset = document.getElementById('reset');
+            reset.addEventListener("click", location.reload());
+            reset.disabled = false;
 
         }
 
