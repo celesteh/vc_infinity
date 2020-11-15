@@ -40,8 +40,6 @@ if ($powerlevel >= 20) {
 <li><a href="prepare.html">How To</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
 <ul class="nav navbar-nav navbar-right">
-      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
 <li><a href="logout.php">Logout</a></li>
 <li id="hamburger" class="icon"><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>
