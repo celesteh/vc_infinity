@@ -12,8 +12,14 @@ if(!isset($_SESSION["powerlevel"])){
 
 ?>
 
-<nav id="myTopnav" class="">
-<ul>
+<nav class="navbar navbar-inverse" id="myTopnav">
+  <div class="container-fluid">
+   <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+    </ul>
+ 
     <li><a href="../">Future Site</a></li>
     <li><a href="./">Dashboard</a></li>
 <?php
@@ -37,10 +43,15 @@ if ($powerlevel >= 20) {
 ?>
 <li><a href="prepare.html">How To</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
+<ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+
 <li><a href="logout.php">Logout</a></li>
 <li id="hamburger" class="icon"><a href="javascript:void(0);" class="icon" onclick="menuFunc()">&equiv; Menu</a></li>
 </ul>
-</nav>
+  </div>
+</nav> 
 <script>
     /* Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon */
 function menuFunc() {
