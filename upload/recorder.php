@@ -401,13 +401,20 @@ if (! $ok){
                     
         }
 
+
+        function reload (){
+
+            location.reload();
+
+        }
+
         function listen () {
 
             uploadButton.addEventListener("click", uploadAudio);
             uploadButton.disabled = false;
             
             reset = document.getElementById('reset');
-            reset.addEventListener("click", location.reload());
+            reset.addEventListener("click", reload);
             reset.disabled = false;
 
         }
