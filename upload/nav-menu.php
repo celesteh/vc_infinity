@@ -39,6 +39,7 @@ if ($powerlevel >= 20) {
 ?>
 <li><a href="prepare.html">How To</a></li>
 <li><a href="edit-profile.php">Edit Profile</a></li>
+</ul>
 <ul class="nav navbar-nav navbar-right">
 
 <li><a href="logout.php">Logout</a></li>
