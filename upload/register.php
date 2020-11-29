@@ -60,7 +60,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($realname)){
         // They don't need to give one if they don't want to
         $realname = "";
-    } elseif ( preg_match('/[^\p{L}\p{N}\'\-\ ]/', $realname)) {
+    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\-\ ]/', $realname)) {
 
         //! ctype_alnum($username) ) {
         $realname_err = _("Please use only visible characters for your name.");
