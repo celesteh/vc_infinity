@@ -15,30 +15,43 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["username"]))){
         $username_err = _("Please enter a username.");
     } else{
-        // Prepare a select statement
-        $sql = "SELECT userid FROM users WHERE username = :username";
         
-        if($stmt = $pdo->prepare($sql)){
-            // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            
-            // Set parameters
-            $param_username = trim($_POST["username"]);
-            
-            // Attempt to execute the prepared statement
-            if($stmt->execute()){
-                if($stmt->rowCount() == 1){
-                    $username_err = _("This username is already taken.");
-                } else{
-                    $username = trim($_POST["username"]);
-                    $username = strtolower($username);
-                }
-            } else{
-                echo _("Oops! Something went wrong. Please try again later.");
-            }
+        $username = trim($_POST["username"]);
 
-            // Close statement
-            unset($stmt);
+        // check if it's alphanumeric and lower case
+
+        if (( ! ctype_alnum($username) ) || preg_match('/[A-Z]/', $username)) {
+
+            $username_err = _("Please use only numbers and lowercase letters for your username.");
+        
+        } else {
+
+
+            // Prepare a select statement
+            $sql = "SELECT userid FROM users WHERE username = :username";
+            
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+                
+                // Set parameters
+                $param_username = $username;
+                
+                // Attempt to execute the prepared statement
+                if($stmt->execute()){
+                    if($stmt->rowCount() == 1){
+                        $username_err = _("This username is already taken.");
+                    } else{
+                        $username = trim($_POST["username"]);
+                        $username = strtolower($username);
+                    }
+                } else{
+                    echo _("Oops! Something went wrong. Please try again later.");
+                }
+
+                // Close statement
+                unset($stmt);
+            }
         }
     }
 
@@ -47,6 +60,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($realname)){
         // They don't need to give one if they don't want to
         $realname = "";
+    } elseif ( ! ctype_alnum($username) ) {
+        $realname_err = _("Please use only numbers and lowercase letters for your name.");
     }
  
     // Validate email
@@ -144,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $orgcode = trim($_POST["orgcode"]);
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
+    if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
         
         // Prepare an insert statement
         $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact, u_url) VALUES (:username,  :email, :orgcode, :realname, :marketing, :url)";
@@ -221,9 +236,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <span class="help-block"><?php echo $username_err; ?></span>
             </div>
             <!-- Real name -->
-            <div class="form-group">
+            <div class="form-group <?php echo (!empty($realname_err)) ? 'has-error' : ''; ?>">
                 <label>Real Name</label>
                 <input type="text" name="realname" class="form-control" value="<?php echo $realname; ?>">
+                <span class="help-block"><?php echo $realname_err; ?></span>
             </div>
             <!-- Contact permission -->
 
