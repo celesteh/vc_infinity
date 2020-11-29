@@ -60,11 +60,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($realname)){
         // They don't need to give one if they don't want to
         $realname = "";
-    } elseif ( preg_match('/^[A-Za-z0-9-_\ ]+$/', $realname)) {
+    } elseif ( preg_match('/[[:^print:]]/', $realname)) {
 
         //! ctype_alnum($username) ) {
-        $realname_err = _("Please use only numbers and letters for your name.");
+        $realname_err = _("Please use only visible characters for your name.");
     }
+        
+    $realname = filter_var($realname,FILTER_SANITIZE_SPECIAL_CHARS);
+    
  
     // Validate email
     if(empty(trim($_POST["email"]))){
