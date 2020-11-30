@@ -280,7 +280,7 @@ if (! $ok){
                             //blobURL = window.URL.createObjectURL(blob);
                             //console.append(blobURL);
                             //htmlplayer = document.createTextNode(`\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" id ="aplay" />\n`);
-                            htmlplayer = document.createTextNode("Pisten to the audio before deciding to upload.");
+                            htmlplayer = document.createTextNode("Please listen to the audio before deciding to upload.");
                             //htmlplayer = 
                             p1.appendChild(htmlplayer); 
                             //document.body.innerHTML += `\n<audio controls="controls" src="` + blobURL + `" type="audio/wav" />\n`;
@@ -470,14 +470,14 @@ if (! $ok){
             a.title = "Upload";  
                   
             // Set the href property. 
-            a.href = "https://infinity.vocalconstructivists.com";
+            //a.href = "#";
             //var f = () => {uploadAudio(); return false;}
-            //a.onclick = f();  
+            a.onclick = uploadAudio();
                   
             // Append the anchor element to the body. 
             //document.body.appendChild(a);
             var up = document.getElementById('uploadlink');
-            //up.appendChild(a);
+            up.appendChild(a);
 
         }
 
