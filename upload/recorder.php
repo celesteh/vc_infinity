@@ -86,7 +86,7 @@ if (! $ok){
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
-        <input type="button"  id="recordButton" value="Record" />
+        <input type="button"  id="recordButton" value="Record"  class="record-button" />
   	    <input type="button"  id="stopButton" disabled value ="Stop" />
         <input type="button"  id="uploadButton" disabled value="Upload" />
         <input type="button"  id ="reset" disabled value ="Try Again" /> 

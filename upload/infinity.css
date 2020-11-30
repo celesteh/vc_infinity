@@ -244,6 +244,12 @@ input[type=submit]:hover {
   width: 100%;
 }
 
+.record-button {
+
+  background-color: #f44336;
+  border-radius: 50%;
+}
+
 /* Clear floats after the columns */
 /*
 .row:after {
