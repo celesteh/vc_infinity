@@ -94,6 +94,7 @@ if (! $ok){
     </div>
     <div id="player">
         <p id = "p1"></p>
+        <p id="uploadlink"></p>
     </div>
     <div id ="uploading">
         <p id= "p2"></p> 
@@ -454,6 +455,29 @@ if (! $ok){
             reset = document.getElementById('reset');
             reset.addEventListener("click", reload);
             reset.disabled = false;
+
+            //<a id="myLink" title="Click to do something"
+            //href="PleaseEnableJavascript.html" onclick="MyFunction();return false;">link text</a>
+            var a = document.createElement('a');  
+                  
+            // Create the text node for anchor element. 
+            var link = document.createTextNode("Upload"); 
+                  
+            // Append the text node to anchor element. 
+            a.appendChild(link);  
+                  
+            // Set the title. 
+            a.title = "Upload";  
+                  
+            // Set the href property. 
+            a.href = "https://infinity.vocalconstructivists.com";
+            var f = () => {uploadAudio(); return false;}
+            a.onclick = f();  
+                  
+            // Append the anchor element to the body. 
+            //document.body.appendChild(a);
+            var up = document.getElementById('uploadlink');
+            up.appendChild(a);
 
         }
 
