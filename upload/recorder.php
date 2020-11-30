@@ -87,9 +87,9 @@ if (! $ok){
         <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
-  	    <input type="button"  title="Stop" id="stopButton" disabled value ="&#x23F9;" />
-        <input type="button"  title="Upload" id="uploadButton" disabled value="&#x21E7;" />
-        <input type="button"  title="Try Again" id ="reset" disabled value ="&#x21BB;" /> 
+  	    <input type="button"  title="Stop" id="stopButton" disabled value ="&#x23F9;" class="media-button" />
+        <input type="button"  title="Upload" id="uploadButton" disabled value="&#x21E7;"  class="media-button" />
+        <input type="button"  title="Try Again" id ="reset" disabled value ="&#x21BB;"  class="media-button" /> 
     </div>
     <div id="player">
         <p id = "p1"></p>

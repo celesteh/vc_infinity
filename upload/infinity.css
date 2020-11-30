@@ -250,6 +250,10 @@ input[type=submit]:hover {
   border-radius: 50%;
 }
 
+.media-button {
+  border-radius: 25%;
+}
+
 /* Clear floats after the columns */
 /*
 .row:after {
