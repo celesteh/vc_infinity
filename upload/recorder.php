@@ -472,7 +472,7 @@ if (! $ok){
             // Set the href property. 
             //a.href = "#";
             //var f = () => {uploadAudio(); return false;}
-            a.onclick = {uploadAudio();}
+            a.onclick = () {uploadAudio(); return false;}
                   
             // Append the anchor element to the body. 
             //document.body.appendChild(a);
