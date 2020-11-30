@@ -254,6 +254,10 @@ input[type=submit]:hover {
   border-radius: 25%;
 }
 
+.counter{
+  font-size: 150%;
+}
+
 /* Clear floats after the columns */
 /*
 .row:after {
