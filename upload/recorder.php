@@ -86,10 +86,10 @@ if (! $ok){
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
-        <input type="button"  id="recordButton" value="&#x23FA;"  class="record-button" />
-  	    <input type="button"  id="stopButton" disabled value ="&#x23F9;" />
-        <input type="button"  id="uploadButton" disabled value="Upload" />
-        <input type="button"  id ="reset" disabled value ="Try Again" /> 
+        <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
+  	    <input type="button"  title="Stop" id="stopButton" disabled value ="&#x23F9;" />
+        <input type="button"  title="Upload" id="uploadButton" disabled value="&#x21E7;" />
+        <input type="button"  title="Try Again" id ="reset" disabled value ="&#x21BB;" /> 
     </div>
     <div id="player">
         <p id = "p1"></p>
