@@ -198,7 +198,7 @@ if (! $ok){
                             // Display the result in the element with id="demo"
                             //document.getElementById("counter").innerHTML = minutes + ":" + seconds;
                             var textnode = document.createTextNode(minutes + ":" + seconds);
-                            var item = document.getElementById("counter").childNodes[0];
+                            var item = document.getElementById("counter");
                             item.replaceChild(textnode, item.childNodes[0]);
 
 
