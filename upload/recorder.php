@@ -86,6 +86,7 @@ if (! $ok){
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
         <canvas id="meter" width="500" height="50">Level Meter</canvas>
+        <p id="counter" class = "counter">00:00</p>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
   	    <input type="button"  title="Stop" id="stopButton" disabled value ="&#x23F9;" class="media-button" />
         <input type="button"  title="Upload" id="uploadButton" disabled value="&#x21E7;"  class="media-button" />
@@ -108,6 +109,8 @@ if (! $ok){
             var blob;
             //var dummy;
             var aplay;
+            var startTime;
+            var isRecording = false;
 
 
             uploadButton.addEventListener("click", uploadAudio);
@@ -177,6 +180,34 @@ if (! $ok){
                     btn.value = "Recording";
                     //pauseb.disabled = false;
                     stopb.disabled = false;
+
+                    // do the timer
+                    startTime = new Date().getTime();
+                    isRecording = true;
+
+                    var recTimer = setInterval(function() {
+
+                        if (isRecording) {
+
+                            var now = new Date().getTime();
+                            var distance = now - startTime;
+
+                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                            // Display the result in the element with id="demo"
+                            //document.getElementById("counter").innerHTML = minutes + ":" + seconds;
+                            var textnode = document.createTextNode(minutes + ":" + seconds);
+                            var item = document.getElementById("counter").childNodes[0];
+                            item.replaceChild(textnode, item.childNodes[0]);
+
+
+
+                        } else {
+                            clearInterval(recTimer);
+                        }
+                    }, 1000 );
+
                     //btn.removeEventListener("mousedown", recStart);
                     //btn.removeEventListener("touchstart", recStart);
                     //stopb.addEventListener("mousedown", recEnd);
@@ -222,6 +253,7 @@ if (! $ok){
                     //dummy.disabled = false;
                         stopb.disabled = true;
                         btn.disabled = true;
+                        isRecording = false;
 
                     
                     
