@@ -193,9 +193,9 @@ if (! $ok){
                             var distance = now - startTime;
 
                             var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                            minutes = '0' + parseInt(minutes).slice(-2)
+                            minutes = '0' + parseInt(minutes).slice(-2);
                             var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                            seconds = '0' + parseInt(seconds).slice(-2)
+                            seconds = '0' + parseInt(seconds).slice(-2);
 
                             // Display the result in the element with id="demo"
                             //document.getElementById("counter").innerHTML = minutes + ":" + seconds;
