@@ -477,7 +477,7 @@ if (! $ok){
             // Append the anchor element to the body. 
             //document.body.appendChild(a);
             var up = document.getElementById('uploadlink');
-            up.appendChild(a);
+            //up.appendChild(a);
 
         }
 
