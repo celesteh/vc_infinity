@@ -85,7 +85,7 @@ if (! $ok){
     <div class="wrapper">
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
-        <canvas id="meter" width="500" height="50">Level Meter</canvas>
+        <canvas id="meter" width="400" height="50">Level Meter</canvas>
         <p id="counter" class = "counter">00:00</p>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
   	    <input type="button"  title="Stop" id="stopButton" disabled value ="&#x23F9;" class="media-button" />
@@ -391,6 +391,7 @@ if (! $ok){
             var lc = '#f2f2f2';
             var divs = 5;
             var wd = WIDTH/divs;
+            var len;
 
             // clear the background
             canvasContext.clearRect(0,0,WIDTH,HEIGHT);
@@ -414,8 +415,13 @@ if (! $ok){
                         canvasContext.fillStyle = "green";
 
                     // draw a bar based on the current volume
+                    // scale via the decibels so it looks better.
+
+                    len = Math.max(meter.db, -60);
+                    len = (len + 60) / 60;
+
                
-                    canvasContext.fillRect(0, 0, meter.volume*WIDTH*1.4, HEIGHT);
+                    canvasContext.fillRect(0, 0, len*WIDTH*1.4, HEIGHT);
                 } catch (err) {
                     canvasContext.clearRect(0,0,WIDTH,HEIGHT);
                     doMetering = false;

@@ -44,6 +44,7 @@ function createAudioMeter(audioContext,clipLevel,averaging,clipLag) {
 	processor.clipping = false;
 	processor.lastClip = 0;
 	processor.volume = 0;
+	processor.db= -60;
 	processor.clipLevel = clipLevel || 0.98;
 	processor.averaging = averaging || 0.95;
 	processor.clipLag = clipLag || 750;
@@ -92,5 +93,6 @@ function volumeAudioProcess( event ) {
     // Now smooth this out with the averaging factor applied
     // to the previous sample - take the max here because we
     // want "fast attack, slow release."
-    this.volume = Math.max(rms, this.volume*this.averaging);
+	this.volume = Math.max(rms, this.volume*this.averaging);
+	this.db = 20 * Math.log10(this.volume);
 }
