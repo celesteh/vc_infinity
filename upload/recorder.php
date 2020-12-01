@@ -101,8 +101,8 @@ if (! $ok){
     </div>
     </div>
         <script type="text/javascript">
-            var WIDTH=500;
-            var HEIGHT=50;
+            var WIDTH=document.getElementById( "meter" ).width;
+            var HEIGHT=document.getElementById( "meter" ).height;
             var meter;
             var doMetering = true;
             var uploadButton = document.getElementById('uploadButton');
