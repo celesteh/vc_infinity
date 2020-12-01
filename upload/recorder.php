@@ -94,7 +94,7 @@ if (! $ok){
     </div>
     <div id="player">
         <p id = "p1"></p>
-        <p id="uploadlink"></p>
+        <p id = "uploadlink"></p>
     </div>
     <div id ="uploading">
         <p id= "p2"></p> 
@@ -369,11 +369,38 @@ if (! $ok){
 
             })();
 
+            /*
+            function drawBoard(){
+    for (var x = 0; x <= bw; x += 40) {
+        context.moveTo(0.5 + x + p, p);
+        context.lineTo(0.5 + x + p, bh + p);
+    }
+
+    for (var x = 0; x <= bh; x += 40) {
+        context.moveTo(p, 0.5 + x + p);
+        context.lineTo(bw + p, 0.5 + x + p);
+    }
+    context.strokeStyle = "black";
+    context.stroke();
+}
+        */
+
+        
         function drawLoop( time ) {
 
-            
+            var lc = '#f2f2f2';
+            var divs = 5;
+            var wd = WIDTH/divs;
+
             // clear the background
             canvasContext.clearRect(0,0,WIDTH,HEIGHT);
+            for (var x = 0; x <= divs, x +=wd) {
+                context.moveTo(x, 0);
+                context.lineTo(x, HEIGHT);
+            }
+            context.strokeStyle = lc;
+            context.stroke();
+
             if (doMetering){
                 try {
                     // check if we're currently clipping
