@@ -385,7 +385,7 @@ if (! $ok){
 }
         */
 
-        
+
         function drawLoop( time ) {
 
             var lc = '#f2f2f2';
@@ -394,7 +394,7 @@ if (! $ok){
 
             // clear the background
             canvasContext.clearRect(0,0,WIDTH,HEIGHT);
-            for (var x = 0; x <= divs, x +=wd) {
+            for (var x = 0; x <= divs; x +=wd) {
                 context.moveTo(x, 0);
                 context.lineTo(x, HEIGHT);
             }
