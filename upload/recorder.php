@@ -395,11 +395,11 @@ if (! $ok){
             // clear the background
             canvasContext.clearRect(0,0,WIDTH,HEIGHT);
             for (var x = 0; x <= divs; x +=wd) {
-                context.moveTo(x, 0);
-                context.lineTo(x, HEIGHT);
+                canvasContext.moveTo(x, 0);
+                canvasContext.lineTo(x, HEIGHT);
             }
-            context.strokeStyle = lc;
-            context.stroke();
+            canvasContext.strokeStyle = lc;
+            canvasContext.stroke();
 
             if (doMetering){
                 try {
