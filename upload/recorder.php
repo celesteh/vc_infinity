@@ -396,6 +396,7 @@ if (! $ok){
             canvasContext.clearRect(0,0,WIDTH,HEIGHT);
             canvasContext.strokeStyle = "#000000";
             for (var x = 0; x <= divs; x +=wd) {
+                canvasContext.beginPath();
                 canvasContext.moveTo(x, 0);
                 canvasContext.lineTo(x, HEIGHT);
                 canvasContext.stroke();
