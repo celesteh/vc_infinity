@@ -138,8 +138,7 @@ if (! $ok){
             var startTime;
             var isRecording = false;
 
-            //var score_img = document.getElementById( "score" );
-            //score_img.object-position = "<?php echo $percent ?>% 0";
+            document.getElementById( "score" ).style.objectPosition = "<?php echo $percent ?>% 0";
 
 
             uploadButton.addEventListener("click", uploadAudio);
