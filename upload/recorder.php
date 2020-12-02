@@ -111,7 +111,7 @@ if (! $ok){
     <div class="wrapper">
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
-        <<p><img class="anchor-img" src = "<?php echo $imgfile ?>" id = "score"   width="200" height = "200" /></p>
+        <<p><img class="anchor-img" src = "<?php echo $imgfile ?>" id = "score"   width="300" height = "200" /></p>
         <canvas id="meter" width="400" height="50">Level Meter</canvas>
         <p id="counter" class = "counter">00:00</p>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
