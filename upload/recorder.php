@@ -54,6 +54,7 @@ $_SESSION['nonce'] = set_nonce();
         $x = trim($_POST["x"]);
         $y = trim($_POST["y"]);
 
+        /*
         $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id";
         if($fstmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -77,6 +78,7 @@ $_SESSION['nonce'] = set_nonce();
             }
             unset($fstmt);
         }
+        */
 
         $ok = true;
     }
