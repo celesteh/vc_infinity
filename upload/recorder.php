@@ -54,6 +54,30 @@ $_SESSION['nonce'] = set_nonce();
         $x = trim($_POST["x"]);
         $y = trim($_POST["y"]);
 
+        $sql = "SELECT page_img_file, page_id, page_active, page_num FROM `score_pages` WHERE page_id = :id";
+        if($fstmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $fstmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+            $param_id = (int)$panel;
+            // Attempt to execute the prepared statement
+            if($fstmt->execute()){
+                // Check if username exists, if yes then get id
+                if($fstmt->rowCount() == 1){
+                    if($row = $fstmt->fetch()){
+                        $active = (bool) $row["page_active"];
+                        $imgfile =  "../score_pages/" . $row["page_img_file"];
+                        $page_num = (int) $row["page_num"];
+    
+                        list($width, $height) = getimagesize($imgfile);
+                        //echo("" . $width . " ". $height);
+                        $ratio = $width/$height;
+                        $percent = $x/$width;
+                    }
+                }
+            }
+            unset($fstmt);
+        }
+
         $ok = true;
     }
 }
@@ -85,6 +109,7 @@ if (! $ok){
     <div class="wrapper">
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
+        <p><img class="anchor-img" src = "<?php echo $imgfile ?>" id = "score"/></p>
         <canvas id="meter" width="400" height="50">Level Meter</canvas>
         <p id="counter" class = "counter">00:00</p>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
@@ -112,6 +137,9 @@ if (! $ok){
             var aplay;
             var startTime;
             var isRecording = false;
+
+            var score_img = document.getElementById( "score" );
+            score_img.object-position = "<?php echo $percent ?>% 0";
 
 
             uploadButton.addEventListener("click", uploadAudio);
