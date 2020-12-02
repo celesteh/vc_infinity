@@ -71,7 +71,7 @@ $_SESSION['nonce'] = set_nonce();
                         list($width, $height) = getimagesize($imgfile);
                         //echo("" . $width . " ". $height);
                         $ratio = $width/$height;
-                        $percent = $x/$width;
+                        $percent = ($x/$width) * 100;
                     }
                 }
             }
