@@ -111,7 +111,7 @@ if (! $ok){
     <div class="wrapper">
     <div id="controls" class="form-group ">
         <p>New! Record directly from your phone!</p>
-        <!--<p><img class="anchor-img" src = "<?php echo $imgfile ?>" id = "score" object-position = "<?php echo $percent ?>% 0" /></p>-->
+        <<p><img class="anchor-img" src = "<?php echo $imgfile ?>" id = "score"   width="200" height = "200" /></p>
         <canvas id="meter" width="400" height="50">Level Meter</canvas>
         <p id="counter" class = "counter">00:00</p>
         <input type="button"  title="Record" id="recordButton" value="&#x23FA;"  class="record-button" />
@@ -140,7 +140,7 @@ if (! $ok){
             var startTime;
             var isRecording = false;
 
-            //document.getElementById( "score" ).style.objectPosition = "<?php echo $percent ?>% 0";
+            document.getElementById( "score" ).style.objectPosition = "<?php echo $percent ?>% 0";
 
 
             uploadButton.addEventListener("click", uploadAudio);
