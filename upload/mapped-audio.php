@@ -248,6 +248,7 @@ EOL;
     
 
         var areas = document.getElementsByTagName("area"); 
+        console.log(areas);
         console.log(typeof areas);
         areas.forEach (function (item, index) {
             var coordStr = item.getAttribute("coords");
