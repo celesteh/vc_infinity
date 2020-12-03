@@ -220,7 +220,7 @@ EOL;
     
         var x, y, w, h;
 
-        img.height = img.width * (img.clientHeight / img.clientWidth);
+        img.height = $ratio / img.width; //img.width * (img.clientHeight / img.clientWidth);
     
         // get it's position and width+height
         x = img.offsetLeft;
@@ -244,7 +244,7 @@ EOL;
         can.setAttribute('width', $scalew + 'px'); //was w
         can.setAttribute('height', $scaleh + 'px'); //was h
 
-        can.height = can.width * (can.clientHeight / can.clientWidth);
+        can.height = $ratio / can.width; //can.width * (can.clientHeight / can.clientWidth);
     
         // get it's context
         hdc = can.getContext('2d');
