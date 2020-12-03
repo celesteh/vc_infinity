@@ -219,6 +219,8 @@ EOL;
         var img = document.getElementById('mape'); //byId('mape');
     
         var x, y, w, h;
+
+        img.width = img.height * (img.clientWidth / img.clientHeight);
     
         // get it's position and width+height
         x = img.offsetLeft;
@@ -250,10 +252,10 @@ EOL;
         hdc.strokeStyle = 'red';
         hdc.lineWidth = 2;
 
-        function arrD(item, index) {
-            var coordStr = item.getAttribute("coords");
-            drawCir(coordStr);
-        }
+        //function arrD(item, index) {
+        //    var coordStr = item.getAttribute("coords");
+        //    drawCir(coordStr);
+        //}
     
 
         var areas = Array.prototype.slice.call(document.getElementsByTagName("area")); 
