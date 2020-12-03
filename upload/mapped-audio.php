@@ -65,7 +65,8 @@ if ($selected){
                     list($width, $height) = getimagesize($imgfile);
                     //echo("" . $width . " ". $height);
                     $ratio = $width/$height;
-                    $percent = ($x/$width) * 100;
+                    $scaleh = 360;
+                    $scalew = $ratio * $scaleh;
                 }
             }
         }
@@ -159,7 +160,7 @@ EOL;
     echo<<<EOL
     <div class="overflow score-panel" id="con">
                     <canvas id="myCanvas"></canvas>
-                    <img src="$imgfile" alt="" id="mape" usemap="#img_map">
+                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh">
                     <map name="img_map">
 EOL;
 
@@ -172,12 +173,20 @@ EOL;
         // Attempt to execute the prepared statement
         if($fstmt->execute()){
             while($fetch = $fstmt->fetch()){
-                $x = floor($fetch["sa_x"]);
-                $y = floor($fetch["sa_y"]);
+                $x = $fetch["sa_x"];
+                $y = $fetch["sa_y"];
+
+                $percentx = ($x/$width); //* 100;
+                $percenty = ($y/$height);
+                $scalex = floor($scalew * $percentx);
+                $scaley = floor($scaleh * $percenty);
+
+
+
                 $audio ="../unprocessed_audio/" . $fetch['sa_filename'];
 
                 echo <<<EOL
-                        <area class="snippet" shape="circle" coords="$x,$y,5" href="$audio">\n
+                        <area class="snippet" shape="circle" coords="$scalex,$scaley,5" href="$audio">\n
 EOL;
             }
         }
