@@ -163,7 +163,7 @@ EOL;
 EOL;
 
     
-    $sql = "SELECT sa_x, sa_y, sa_filename FROM `submitted_audio` WHERE sa_page_id = :id";
+    $sql = "SELECT sa_x, sa_y, sa_filename FROM `submitted_audio` WHERE sa_pageid = :id";
     if($fstmt = $pdo->prepare($sql)){
         // Bind variables to the prepared statement as parameters
         $fstmt->bindParam(":id", $param_id, PDO::PARAM_INT);
