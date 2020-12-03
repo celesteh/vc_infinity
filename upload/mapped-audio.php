@@ -219,7 +219,7 @@ EOL;
     
         // move the canvas, so it's contained by the same parent as the image
         var imgParent = img.parentNode;
-        var can = byId('myCanvas');
+        var can = document.getElementById('myCanvas');
         // imgParent.appendChild(can);
     
         // place the canvas in front of the image
