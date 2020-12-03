@@ -159,7 +159,7 @@ EOL;
 } else {
     echo<<<EOL
     <div class="overflow score-panel" id="con" width="$scalew" height=$scaleh">
-                    <canvas id="myCanvas" width="$scalew" height=$scaleh"></canvas>
+                    <canvas id="myCanvas" class="overflow" width="$scalew" height=$scaleh"></canvas>
                     <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh">
                     <map name="img_map">
 EOL;
