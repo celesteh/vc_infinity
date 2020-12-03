@@ -241,6 +241,12 @@ EOL;
         hdc.strokeStyle = 'red';
         hdc.lineWidth = 2;
 
+        function arrD(item, index) {
+            var coordStr = item.getAttribute("coords");
+            drawCir(coordStr);
+        }
+    
+
         var areas = document.getElementsByTagName("area"); 
         areas.forEach (arrD);
 
@@ -255,11 +261,7 @@ EOL;
     
     }
     
-    function arrD(item, index) {
-        var coordStr = item.getAttribute("coords");
-        drawCir(coordStr);
-    }
-
+    
 
     myInit();
     </script>
