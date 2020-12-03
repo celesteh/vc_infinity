@@ -247,7 +247,7 @@ EOL;
         }
     
 
-        var areas = document.getElementsByTagName("area"); 
+        var areas = Array.prototype.slice.call(document.getElementsByTagName("area")); 
         console.log(areas);
         console.log(typeof areas);
         areas.forEach (function (item, index) {
