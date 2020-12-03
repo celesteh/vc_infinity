@@ -220,7 +220,7 @@ EOL;
     
         var x, y, w, h;
 
-        img.width = img.height * (img.clientWidth / img.clientHeight);
+        img.height = img.width * (img.clientHeight / img.clientWidth);
     
         // get it's position and width+height
         x = img.offsetLeft;
