@@ -247,6 +247,7 @@ EOL;
         can.setAttribute('height', $scaleh + 'px'); //was h
 
         //can.height = can.width * (can.clientHeight / can.clientWidth);
+        can.height = can.width / $ratio;
     
         // get it's context
         hdc = can.getContext('2d');
