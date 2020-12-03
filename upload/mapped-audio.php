@@ -160,7 +160,7 @@ EOL;
     echo<<<EOL
     <div class="overflow score-panel" id="con" width="$scalew" height=$scaleh">
                     <canvas id="myCanvas" class="overflow" width="$scalew" height=$scaleh"></canvas>
-                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh">
+                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh" class="overflow">
                     <map name="img_map">
 EOL;
 
@@ -239,8 +239,8 @@ EOL;
         can.style.top = y + 'px';
     
         // make same size as the image
-        can.setAttribute('width', w + 'px');
-        can.setAttribute('height', h + 'px');
+        can.setAttribute('width', $scalew + 'px'); //was w
+        can.setAttribute('height', $scaleh + 'px'); //was h
     
         // get it's context
         hdc = can.getContext('2d');
