@@ -153,6 +153,7 @@ if (! $selected) {
 EOL;
             }
         }
+        unset($stmt);
     }
 } else {
     echo<<<EOL
@@ -170,8 +171,7 @@ EOL;
         $param_id = (int)$panel;
         // Attempt to execute the prepared statement
         if($fstmt->execute()){
-            // Check if username exists, if yes then get id
-            while($fetch = $stmt->fetch()){
+            while($fetch = $fstmt->fetch()){
                 $x = $fetch["sa_x"];
                 $y = $fetch["sa_y"];
                 $audio ="../unprocessed_audio/" . $fetch['sa_filename'];
@@ -181,6 +181,7 @@ EOL;
 EOL;
             }
         }
+        unset($fstmt);
     }
         
     // <area shape="circle" coords="90,58,3" href="mercur.htm" alt="Mercury">
