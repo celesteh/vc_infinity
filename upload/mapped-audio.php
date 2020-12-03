@@ -172,8 +172,8 @@ EOL;
         // Attempt to execute the prepared statement
         if($fstmt->execute()){
             while($fetch = $fstmt->fetch()){
-                $x = $fetch["sa_x"];
-                $y = $fetch["sa_y"];
+                $x = floor($fetch["sa_x"]);
+                $y = floor($fetch["sa_y"]);
                 $audio ="../unprocessed_audio/" . $fetch['sa_filename'];
 
                 echo <<<EOL
