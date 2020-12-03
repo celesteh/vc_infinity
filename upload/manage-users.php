@@ -162,12 +162,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                      while($row = $stmt->fetch()){
  
 
-                        $userid = $row["userid"];
-                        $realname = $row["u_realname"];
+                        $userid = htmlspecialchars($row["userid"]);
+                        $realname = htmlspecialchars($row["u_realname"]);
                         $orgcode = $row["u_org"];
                         $orgname = $orgs[$orgcode];
                         $role_code = $row["u_rolecode"];
-                        $url = $row["u_url"];
+                        $url = htmlspecialchars($row["u_url"]);
 
                         /*
                         // manage colours rotating
