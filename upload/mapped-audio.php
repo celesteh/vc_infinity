@@ -248,7 +248,10 @@ EOL;
     
 
         var areas = document.getElementsByTagName("area"); 
-        areas.forEach (arrD);
+        areas.forEach (function (item, index) {
+            var coordStr = item.getAttribute("coords");
+            drawCir(coordStr);
+        }
 
 
     
