@@ -177,7 +177,7 @@ EOL;
                 $audio ="../unprocessed_audio/" . $fetch['sa_filename'];
 
                 echo <<<EOL
-                        <area class="snippet" shape="circle" coords="$x,$y,5" href="$audio">
+                        <area class="snippet" shape="circle" coords="$x,$y,5" href="$audio">\n
 EOL;
             }
         }
@@ -190,8 +190,7 @@ EOL;
     echo<<<EOL
                     </map>
     </div>
-               //fucntion to draw  called in body tag
-
+              
     <script type="text/javascript">
     function drawCir(coOrdStr) {
         var mCoords = coOrdStr.split(',');
@@ -208,7 +207,7 @@ EOL;
     
     function myInit() {
         // get the target image
-        var img = byId('mape');
+        var img = document.getElementById('mape'); //byId('mape');
     
         var x, y, w, h;
     
@@ -241,16 +240,27 @@ EOL;
         hdc.fillStyle = 'red';
         hdc.strokeStyle = 'red';
         hdc.lineWidth = 2;
+
+        var areas = document.getElementsByTagName("area"); 
+        areas.forEach (arrD);
+
+
     
-        $("area").each(function() {
+        //$("area").each(function() {
     
-            var coordStr = $(this).attr('coords');
-            drawCir(coordStr);
-        });
+        //    var coordStr = $(this).attr('coords');
+        //    drawCir(coordStr);
+        //});
     
     
     }
     
+    function arrD(item, index) {
+        var coordStr = item.getAttribute("coords");
+        drawCir(coordStr);
+    }
+
+
     myInit();
     </script>
 EOL;
@@ -258,6 +268,6 @@ EOL;
 
 
 ?>
-</div>
+
 </body>	
 </html>
