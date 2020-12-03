@@ -243,6 +243,8 @@ EOL;
         // make same size as the image
         can.setAttribute('width', $scalew + 'px'); //was w
         can.setAttribute('height', $scaleh + 'px'); //was h
+
+        can.height = can.width * (can.clientHeight / can.clientWidth);
     
         // get it's context
         hdc = can.getContext('2d');
