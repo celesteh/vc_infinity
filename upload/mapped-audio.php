@@ -147,7 +147,7 @@ if (! $selected) {
                 $url = "mapped-audio.php?" . http_build_query($data);
 
                 echo<<<EOL
-<div class="overflow score-gallery">
+<div class="scroller score-gallery">
 <!--<div class="page-num"><p>$num</p></div>-->
 <a href="$url"><img src="$imgfile" width="$scaled" height="180" alt="$num"/></a>
 </div>
@@ -158,8 +158,8 @@ EOL;
     }
 } else {
     echo<<<EOL
-    <div class="overflow score-panel" id="con" width="$scalew" height=$scaleh">
-                    <canvas id="myCanvas" class="overflow" width="$scalew" height=$scaleh"></canvas>
+    <div class="scroller score-panel" id="con" width="$scalew" height=$scaleh">
+                    <canvas id="myCanvas" class="scroller" width="$scalew" height=$scaleh"></canvas>
                     <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh" class="overflow">
                     <map name="img_map">
 EOL;
@@ -227,8 +227,8 @@ EOL;
         // get it's position and width+height
         x = img.offsetLeft;
         y = img.offsetTop;
-        w = img.clientWidth;
-        h = img.clientHeight;
+        w = img.height;//img.clientWidth;
+        h = img.width; //img.clientHeight;
     
         // move the canvas, so it's contained by the same parent as the image
         var imgParent = img.parentNode;
