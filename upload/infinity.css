@@ -52,6 +52,10 @@ tr:nth-child(odd) {background-color: #ffffff;}
   overflow-x:auto;
 }
 
+.scroller {
+  overflow-x:scroll;
+}
+
 
 /* navigation menu */
 nav {
