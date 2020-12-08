@@ -233,7 +233,8 @@ EOL;
         // move the canvas, so it's contained by the same parent as the image
         var imgParent = img.parentNode;
         var can = document.getElementById('myCanvas');
-        // imgParent.appendChild(can);
+        //
+         imgParent.appendChild(can);
     
         // place the canvas in front of the image
         can.style.zIndex = 1;
@@ -243,11 +244,11 @@ EOL;
         can.style.top = y + 'px';
     
         // make same size as the image
-        can.setAttribute('width', w + 'px'); //was w
-        can.setAttribute('height', h + 'px'); //was h
+        //can.setAttribute('width', w + 'px'); //was w
+        //can.setAttribute('height', h + 'px'); //was h
 
-        //can.height = can.width * (can.clientHeight / can.clientWidth);
-        can.height = can.width / $ratio;
+        //////can.height = can.width * (can.clientHeight / can.clientWidth);
+        //can.height = can.width / $ratio;
     
         // get it's context
         hdc = can.getContext('2d');
