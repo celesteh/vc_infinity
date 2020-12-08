@@ -96,7 +96,7 @@ if ($selected){
 }
 
 #con{
-overflow: hidden;
+/* overflow: hidden; */
 height: 600px;
 width: 100%;
 }
@@ -158,9 +158,9 @@ EOL;
     }
 } else {
     echo<<<EOL
-    <div class="scroller score-panel" id="con" width="$scalew" height=$scaleh">
+    <div class="scroller score-panel" id="con" width="$scalew" height="$scaleh">
                     <canvas id="myCanvas" class="scroller" width="$scalew" height=$scaleh"></canvas>
-                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh" class="overflow">
+                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height=$scaleh" class="scroller">
                     <map name="img_map">
 EOL;
 
