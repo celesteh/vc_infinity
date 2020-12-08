@@ -53,6 +53,9 @@ $offset = ($pageno-1) * $no_of_records_per_page;
     </div>
     <?php include 'nav-menu.php';?>
     <div>
+        <div>
+            <p><a href="mapped-audio.php">View audio locations.</a></p>
+</div>
 <?php
 
 #$csql = "SELECT sa_userid, sa_pageid, sa_filename FROM `submitted_audio` WHERE   (`sa_accepted` is NULL) OR (`sa_accepted` = 1) "; 
