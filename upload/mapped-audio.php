@@ -97,12 +97,18 @@ if ($selected){
 
 #con{
 /* overflow: hidden; */
-height: 600px;
-width: 100%;
+/* height: 600px;
+width: 100%; */
+height: <?php echo $scaleh ?>px;
+width: <?php echo $scaled ?>px;
 }
 #mape{
+    /*
 width:100%;
 height:100%;
+*/
+height: <?php echo $scaleh ?>px;
+width: <?php echo $scaled ?>px;
 position:relative;
 
 }
