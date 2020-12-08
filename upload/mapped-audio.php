@@ -164,9 +164,9 @@ EOL;
     }
 } else {
     echo<<<EOL
-    <div class="scroller full-width" id="con" width="$scalew" min-width="$scalew" height="$scaleh">
-                    <canvas id="myCanvas" class="scroller" width="$scalew" height="$scaleh"></canvas>
-                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height="$scaleh" class="scroller">
+    <div class="overflow full-width" id="con" width="$scalew" min-width="$scalew" height="$scaleh">
+                    <canvas id="myCanvas" class="overflow" width="$scalew" height="$scaleh"></canvas>
+                    <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height="$scaleh" class="overflow">
                     <map name="img_map">
 EOL;
 
