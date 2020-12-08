@@ -227,8 +227,8 @@ EOL;
         // get it's position and width+height
         x = img.offsetLeft;
         y = img.offsetTop;
-        w = img.height;//img.clientWidth;
-        h = img.width; //img.clientHeight;
+        w = img.clientWidth;
+        h = img.clientHeight;
     
         // move the canvas, so it's contained by the same parent as the image
         var imgParent = img.parentNode;
