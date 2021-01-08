@@ -284,9 +284,9 @@ EOL;
 
     <div>
     <h2>Download an Archive</h2>
-    <h2>Don't use this yet</h2>
+    <p>Each file corresponds to one section of the score.</p>
     <p>This system does <em>not</em> yet track if anyone else has already gotten any particular
-    arive, so please communicate with your fellow engineers to ensure that you are not duplicating
+    archive, so please communicate with your fellow engineers to ensure that you are not duplicating
     effort.</p>
     <p>Each file comes in it's own folder. Every folder is named a number after the file's database ID.</p>
     <p>As you edit, please <em>replace</em> the original file with your edited file(s).</p>
