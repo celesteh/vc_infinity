@@ -162,8 +162,9 @@ if ($selected) {
                             unset($fstmt);
                         }
 
-                        $arc->buildFromDirectory($working_dir, "/.*[^t][^a][^r]$/");
-                        //$arc->buildFromDirectory($working_dir);
+                        //$arc->buildFromDirectory($working_dir, "/.*[^t][^a][^r]$/");
+                        $arc->buildFromDirectory($working_dir, `/.*/`);
+                        $arc->buildFromDirectory($working_dir); // this is dumb
                     } 
                     catch (Exception $e) 
                     {
