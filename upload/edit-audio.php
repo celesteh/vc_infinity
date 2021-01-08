@@ -107,7 +107,7 @@ if ($selected) {
     // 1. check permissions
     if (lazy_power_check($_SESSION["id"], $pdo, 50)){
         // 2. check if active
-        if (! in_array($id, $active)) {
+        if (! in_array($panel, $active)) {
 
             // what file name will we use
             $record = $inactive[$panel];
@@ -177,14 +177,14 @@ if ($selected) {
                     } catch (Exception $e) {}
 
                     // Delete the working directory
-                    //foreach($files as $file){
-                    //    unlink($file);
-                    //}
-                    //foreach($dirs as $dir){
-                    //    rmdir($dir);
-                    //}
-                    //unlink($working_dir . $tar_target);
-                    //rmdir($working_dir);
+                    foreach($files as $file){
+                        unlink($file);
+                    }
+                    foreach($dirs as $dir){
+                        rmdir($dir);
+                    }
+                    unlink($working_dir . $tar_target);
+                    rmdir($working_dir);
 
 
                 } else {
@@ -239,7 +239,7 @@ $tars = glob($tar_dir . '*.tar.gz');
     //}
     //echo "</table>\n";
 
-    echo var_dump($inactive) . "<br>";
+    //echo var_dump($inactive) . "<br>";
 
 // Make a form for powerful users
 if (lazy_power_check($_SESSION["id"], $pdo, 50)){
