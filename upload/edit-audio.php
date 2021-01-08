@@ -30,7 +30,7 @@ $active = array();
 // And more information about inactive panels
 $inactive = array();
 
-$sql = "SELECT page_id, page_active, page_num, page_scorecode FROM `score_pages` WHERE 1";
+$sql = "SELECT page_id, page_active, page_num, page_scorecode FROM `score_pages` WHERE 1 ORDER BY page_num";
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
          while($fetch = $stmt->fetch()){
@@ -110,7 +110,7 @@ if ($selected) {
         if (! in_array($id, $active)) {
 
             // what file name will we use
-            $record = $inactive[$id];
+            $record = $inactive[$panel];
             $code = $record[0];
             $num = $record[1];
             $tar_target = $code . "_" . $num . ".tar";
