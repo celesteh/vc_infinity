@@ -134,7 +134,7 @@ if ($selected) {
                         // get the list of files to include
                         $dirs = array();
                         $files = array();
-                        $sql = "SELECT id, sa_filename FROM `submitted_audio` WHERE (`sa_accepted` is NULL) AND (sa_pageid = :id)";
+                        $sql = "SELECT id, sa_filename FROM `submitted_audio` WHERE (`sa_accepted` is NULL) AND (sa_pageid = :id) ORDER BY id";
                         if($fstmt = $pdo->prepare($sql)){
                             // Bind variables to the prepared statement as parameters
                             $fstmt->bindParam(":id", $param_id, PDO::PARAM_INT);
