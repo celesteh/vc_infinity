@@ -204,7 +204,13 @@ if ($selected) {
         $err = "I'm sorry Dave. I'm afraid I can't do that.";
     }
 }
-            
+  
+// Now, again! Get a list of all files in ../to_process
+
+$tar_dir = '../to_process/';
+$tars = glob($tar_dir . '*.tar.gz');
+
+
 
 ?>
 
@@ -227,11 +233,13 @@ if ($selected) {
     <div><?php
 
     // debug
-    echo "<table>\n";
-    foreach($inactive as $record){
-        echo "<tr><td>$record[0]</td><<td>$record[1]</td><td>$record[2]</td></tr>\n";
-    }
-    echo "</table>\n";
+    //echo "<table>\n";
+    //foreach($inactive as $record){
+    //    echo "<tr><td>$record[0]</td><<td>$record[1]</td><td>$record[2]</td></tr>\n";
+    //}
+    //echo "</table>\n";
+
+    echo var_dump($inactive) . "<br>";
 
 // Make a form for powerful users
 if (lazy_power_check($_SESSION["id"], $pdo, 50)){
