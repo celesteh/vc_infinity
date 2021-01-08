@@ -253,7 +253,7 @@ EOL;
 
     echo<<<EOL
             </select>
-            <span class="help-block"><?php echo $err; ?></span>
+            <span class="help-block">$err</span>
         </div>
         <div class="form-group">
             <input type="submit" class="btn btn-primary" value="Submit">
