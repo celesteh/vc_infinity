@@ -110,8 +110,9 @@ if ($selected) {
         if (! in_array($id, $active)) {
 
             // what file name will we use
-            $code = $inactive[$id][0];
-            $num = $inactive[$id][1];
+            $record = $inactive[$id];
+            $code = $record[0];
+            $num = $record[1];
             $tar_target = $code . "_" . $num . ".tar";
             $target_filename =  $tar_target . ".gz";
             // 3. check if the tar.gz already exists
@@ -176,14 +177,14 @@ if ($selected) {
                     } catch (Exception $e) {}
 
                     // Delete the working directory
-                    foreach($files as $file){
-                        unlink($file);
-                    }
-                    foreach($dirs as $dir){
-                        rmdir($dir);
-                    }
+                    //foreach($files as $file){
+                    //    unlink($file);
+                    //}
+                    //foreach($dirs as $dir){
+                    //    rmdir($dir);
+                    //}
 
-                    rmdir($working_dir);
+                    //rmdir($working_dir);
 
 
                 } else {
