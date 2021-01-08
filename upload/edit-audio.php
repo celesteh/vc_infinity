@@ -183,7 +183,7 @@ if ($selected) {
                     //foreach($dirs as $dir){
                     //    rmdir($dir);
                     //}
-
+                    //unlink($working_dir . $tar_target);
                     //rmdir($working_dir);
 
 
@@ -224,8 +224,14 @@ if ($selected) {
     </div>
     <?php include 'nav-menu.php';?>
     </div>
-
     <div><?php
+
+    // debug
+    echo "<table>\n";
+    foreach($inactive as $record){
+        echo "<tr><td>$record[0]</td><<td>$record[1]</td><td>$record[2]</td></tr>\n";
+    }
+    echo "</table>\n";
 
 // Make a form for powerful users
 if (lazy_power_check($_SESSION["id"], $pdo, 50)){
