@@ -177,14 +177,14 @@ if ($selected) {
                     } catch (Exception $e) {}
 
                     // Delete the working directory
-                    foreach($files as $file){
-                        unlink($file);
-                    }
-                    foreach($dirs as $dir){
-                        rmdir($dir);
-                    }
-                    unlink($working_dir . $tar_target);
-                    rmdir($working_dir);
+                    //foreach($files as $file){
+                    //    unlink($file);
+                    //}
+                    //foreach($dirs as $dir){
+                    //    rmdir($dir);
+                    //}
+                    //unlink($working_dir . $tar_target);
+                    //rmdir($working_dir);
 
 
                 } else {
@@ -281,7 +281,8 @@ EOL;
     ?>
 
     <div>
-    <h2>Download A Generated file</h2>
+    <h2>Download an Archive</h2>
+    <h2>Don't use this yet</h2>
     <p>This system does <em>not</em> yet track if anyone else has already gotten any particular
     arive, so please communicate with your fellow engineers to ensure that you are not duplicating
     effort.</p>
