@@ -179,14 +179,14 @@ if ($selected) {
                     } catch (Exception $e) {}
 
                     // Delete the working directory
-                    //foreach($files as $file){
-                    //    unlink($file);
-                    //}
-                    //foreach($dirs as $dir){
-                    //    rmdir($dir);
-                    //}
-                    //unlink($tar_dir . $tar_target);
-                    //rmdir($working_dir);
+                    foreach($files as $file){
+                        unlink($file);
+                    }
+                    foreach($dirs as $dir){
+                        rmdir($dir);
+                    }
+                    unlink($tar_dir . $tar_target);
+                    rmdir($working_dir);
 
 
                 } else {
