@@ -129,7 +129,7 @@ if ($selected) {
 
                     try 
                     {
-                        $arc = new PharData($working_dir . $tar_target);
+                        $arc = new PharData($tar_dir . $tar_target);
 
                         // get the list of files to include
                         $dirs = array();
@@ -174,7 +174,7 @@ if ($selected) {
                     try {
                     //Now compress to tar.gz
                     //file_put_contents('archive.tar.gz' , gzencode(file_get_contents('archive.tar')));
-                    file_put_contents($tar_dir . $target_filename,  gzencode(file_get_contents($working_dir . $tar_target)));
+                    file_put_contents($tar_dir . $target_filename,  gzencode(file_get_contents($tar_dir . $tar_target)));
                     } catch (Exception $e) {}
 
                     // Delete the working directory
@@ -184,7 +184,7 @@ if ($selected) {
                     //foreach($dirs as $dir){
                     //    rmdir($dir);
                     //}
-                    //unlink($working_dir . $tar_target);
+                    //unlink($tar_dir . $tar_target);
                     //rmdir($working_dir);
 
 
