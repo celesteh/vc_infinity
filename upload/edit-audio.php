@@ -155,14 +155,14 @@ if ($selected) {
                                     $files[] = $new_file;
                                     copy($source, $new_file);
 
-                                    $arc->buildFromDirectory($new_dir);
+                                    //$arc->buildFromDirectory($new_dir);
                 
                                 }
                             }   
                             unset($fstmt);
                         }
 
-
+                        $arc->buildFromDirectory($working_dir, "/.*[^t][^a][^r]$/");
                     } 
                     catch (Exception $e) 
                     {
