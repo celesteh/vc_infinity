@@ -151,7 +151,7 @@ if ($selected) {
                                     $new_dir = $working_dir . $sa_id;
                                     mkdir($new_dir);
                                     $dirs[] = $new_dir;
-                                    $new_file = $new_dir . $audio_file;
+                                    $new_file = $new_dir . "/" . $audio_file;
                                     $files[] = $new_file;
                                     copy($source, $new_file);
 
