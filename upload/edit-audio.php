@@ -30,7 +30,7 @@ $active = array();
 // And more information about inactive panels
 $inactive = array();
 
-$sql = "SELECT page_id, page_active, page_num, page_scorecode FROM `score_pages` WHERE 1";
+$sql = "SELECT page_id, page_active, page_num, page_scorecode FROM `score_pages` WHERE 1 ORDER BY page_num";
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
          while($fetch = $stmt->fetch()){
@@ -107,10 +107,10 @@ if ($selected) {
     // 1. check permissions
     if (lazy_power_check($_SESSION["id"], $pdo, 50)){
         // 2. check if active
-        if (! in_array($id, $active)) {
+        if (! in_array($panel, $active)) {
 
             // what file name will we use
-            $record = $inactive[$id];
+            $record = $inactive[$panel];
             $code = $record[0];
             $num = $record[1];
             $tar_target = $code . "_" . $num . ".tar";
@@ -177,14 +177,14 @@ if ($selected) {
                     } catch (Exception $e) {}
 
                     // Delete the working directory
-                    //foreach($files as $file){
-                    //    unlink($file);
-                    //}
-                    //foreach($dirs as $dir){
-                    //    rmdir($dir);
-                    //}
-                    //unlink($working_dir . $tar_target);
-                    //rmdir($working_dir);
+                    foreach($files as $file){
+                        unlink($file);
+                    }
+                    foreach($dirs as $dir){
+                        rmdir($dir);
+                    }
+                    unlink($working_dir . $tar_target);
+                    rmdir($working_dir);
 
 
                 } else {
@@ -239,7 +239,7 @@ $tars = glob($tar_dir . '*.tar.gz');
     //}
     //echo "</table>\n";
 
-    echo var_dump($inactive) . "<br>";
+    //echo var_dump($inactive) . "<br>";
 
 // Make a form for powerful users
 if (lazy_power_check($_SESSION["id"], $pdo, 50)){
