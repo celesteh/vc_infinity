@@ -42,9 +42,9 @@ $upper = ucfirst($page_called);
 
     <?php include 'nav-menu.php';?>
     <div>
-        <h2>Site Moving - Please log out!</h2>
 
         <h2>News</h2>
+            <p>We have new webhosting, which will give us new features (and which is also not scheduled to shutdown, unlike the old hosting!)</p>
             <p><a href=" https://drive.google.com/drive/folders/1VC-zzSXsKdw8d9Q9BDMyomGY8dglAX3x?usp=sharing">Upload your videos!</a> For our film for the festival.</p>
             <p>New <a href="prepare.html">how-to video</a> for phone users!</p>
             <p><a href="mapped-audio.php">View anchor points</a> used so far!</p>
