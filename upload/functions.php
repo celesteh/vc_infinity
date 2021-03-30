@@ -120,9 +120,9 @@ function get_power_level($rolecode, $pdo){
         }
         unset($stmt);
     }
-    //return $powerlevel;
+    return $powerlevel;
     // Server Move
-    return 0;
+    //return 0;
 
 }
 

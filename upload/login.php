@@ -121,8 +121,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="wrapper">
-        <h2>This website is unavailable during a server move</h2>
-        <!--
+        
         <h2>Login</h2>
         <p>Please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
@@ -142,7 +141,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Forgot your password? <a href="forgot-password.php">Password reset</a>.</p>
             <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
-        -->
+
     </div>
 </body>
 </html>
