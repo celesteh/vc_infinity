@@ -42,6 +42,8 @@ $upper = ucfirst($page_called);
 
     <?php include 'nav-menu.php';?>
     <div>
+        <h2>Site Moving - Please log out!</h2>
+
         <h2>News</h2>
             <p><a href=" https://drive.google.com/drive/folders/1VC-zzSXsKdw8d9Q9BDMyomGY8dglAX3x?usp=sharing">Upload your videos!</a> For our film for the festival.</p>
             <p>New <a href="prepare.html">how-to video</a> for phone users!</p>
