@@ -105,14 +105,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         
         // Prepare an insert statement
-        $sql = "INSERT INTO available_tags (tag_shortcode, tag_text, tag_parent, tag_hidden) VALUES (:shortcode,  :text, :parent, :hidden)";
+        $sql = "INSERT INTO available_tags (tag_shortcode, tag_text, tag_parent, tag_hidden) VALUES (:shortcode,  :ttext, :parent, :thidden)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-            $stmt->bindParam(":text", $param_text, PDO::PARAM_STR);
+            $stmt->bindParam(":ttext", $param_text, PDO::PARAM_STR);
             $stmt->bindParam(":parent", $param_parent, PDO::PARAM_STR);
-            $stmt->bindParam(":hidden", $param_hidden, PDO::PARAM_BOOL);
+            $stmt->bindParam(":thidden", $param_hidden, PDO::PARAM_BOOL);
         
             // Set parameters
             $param_shortcode = $shortcode;
@@ -202,7 +202,7 @@ Create table available_tags (
 ENDUSR;
                         */
                         $tagstr = <<< ENDTAG
-                        <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>
+            <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>\n
 ENDTAG;
                         echo $tagstr;
                     }
