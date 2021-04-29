@@ -26,15 +26,11 @@ $upper = ucfirst($page_called);
 
 
 $correct_nonce = verify_nonce();
-//if (! $correct_nonce){
 $_SESSION['nonce'] = set_nonce();
-    //}
-
-
 
 ?>
 
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
