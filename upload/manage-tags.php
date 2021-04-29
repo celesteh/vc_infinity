@@ -161,7 +161,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="container">
         <div class = "overflow">
         <table>
-            <tr><th>Tag Text</th><th>Short Code</th><th>Parent</th><th>Hidden</th></tr>
+            <tr><th>Short Code</th><th>Tag Text</th><th>Parent</th><th>Hidden</th></tr>
         <?php 
 /*
 Create table available_tags (
