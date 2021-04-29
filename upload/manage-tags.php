@@ -185,7 +185,7 @@ Create table available_tags (
                         $parent  = htmlspecialchars($row["tag_text"]);
                         $hidden = $row["tag_hidden"];
 
-                        array_push($atgs, $shortcode);
+                        array_push($tags, $shortcode);
 
                         /*
                         // manage colours rotating
