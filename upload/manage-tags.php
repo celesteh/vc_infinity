@@ -201,9 +201,10 @@ Create table available_tags (
                                 <select name="$userid" id="$userid">
 ENDUSR;
                         */
-                        $usrstr = <<< ENDUSR
+                        $tagstr = <<< ENDTAG
                         <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>
-ENDUSR;
+ENDTAG;
+                        echo $tagstr;
                     }
                 }
             }
