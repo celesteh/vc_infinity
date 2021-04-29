@@ -55,6 +55,9 @@ $edior = lazy_power_check($_SESSION["id"], $pdo, 60)
     <div>
     <h2>Coming Soon<h2>
     <p>Tag your audio!</p>
+    <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
+    <div>
+    
     </body>
 </html>
