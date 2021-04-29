@@ -28,6 +28,124 @@ $upper = ucfirst($page_called);
 $correct_nonce = verify_nonce();
 $_SESSION['nonce'] = set_nonce();
 
+
+// Define variables and initialize with empty values
+$shortcode = $text = $parent = $hidden ="";
+ 
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+ 
+    // Validate shortcode
+    if(empty(trim($_POST["shortcode"]))){
+        $shortcode_err = _("Please enter a shortcode.");
+    } else{
+        
+        $shortcode = trim($_POST["shortcode"]);
+        $shortcode = strtolower($shortcode);
+
+        // check if it's alphanumeric and lower case
+
+        if (( ! ctype_alnum($shortcode) ) || preg_match('/[A-Z]/', $shortcode)) {
+
+            $shortcode_err = _("Please use only numbers and lowercase letters for your shortcode.");
+        
+        } else {
+
+
+            // Prepare a select statement
+            $sql = "SELECT tag_id FROM available_tags WHERE tag_shortcode = :shortcode";
+            
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                
+                // Set parameters
+                $param_shortcode = $shortcode;
+                
+                // Attempt to execute the prepared statement
+                if($stmt->execute()){
+                    if($stmt->rowCount() == 1){
+                        $shortcode_err = _("This shortcode is already taken.");
+                    } else{
+                        $shortcode = trim($_POST["shortcode"]);
+                        $shortcode = strtolower($shortcode);
+                    }
+                } else{
+                    echo _("Oops! Something went wrong. Please try again later.");
+                }
+
+                // Close statement
+                unset($stmt);
+            }
+        }
+    }
+
+    // Validate tag text
+    $text = trim($_POST["tag_text"]);
+    if(empty($text)){
+        $tag_text_err = "Please specify the visible version of this tag";
+    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\p{Pd}\ ]/u', $text)) {
+
+        //! ctype_alnum($username) ) {
+        $tag_text_err = _("Please use only visible characters for your tag.");
+    }
+        
+    $text = filter_var($text,FILTER_SANITIZE_SPECIAL_CHARS);
+
+ 
+    
+    // Optional Parent
+    $parent = trim($_POST["parent"]);
+
+    // Visible
+    $idden = isset($_POST['hidden']);
+    
+    // Check input errors before inserting in database
+    if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
+        
+        /*
+        // Prepare an insert statement
+        $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact, u_url) VALUES (:username,  :email, :orgcode, :realname, :marketing, :url)";
+         
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
+            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
+            $stmt->bindParam(":orgcode", $orgcode, PDO::PARAM_STR);
+            $stmt->bindParam(":realname", $realname, PDO::PARAM_STR);
+            $stmt->bindParam(":marketing", $param_marketing, PDO::PARAM_BOOL);
+            $stmt->bindParam(":url", $url, PDO::PARAM_STR);
+        
+            // Set parameters
+            $param_username = $username;
+            $param_email = $email;
+            $param_marketing = isset($_POST['marketing']);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+            
+                $uid = get_userid($username, $pdo);
+                $url = password_reset($uid, $pdo);
+
+                $body = "Thank you for registering. To confirm your account click here: " . $url;
+                $headers = "From: infinity@vocalconstructivists.com";
+
+                mail($email, "Welcome to Constructing Infinity", $body, $headers);
+                // Redirect to email page
+                header("location: check-email.html");
+            } else{
+                echo _("Something went wrong. Please try again later.");
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+        */
+    }
+    
+} 
+
+
 ?>
 
  <!DOCTYPE html>
@@ -103,13 +221,17 @@ ENDUSR;
         </table>
     </div>
     </div>
+    <div>
+    <h2>Add tag:<h2>
+    </div>
+  
     <div class="wrapper">
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-       <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+       <div class="form-group <?php echo (!empty($shortcode_err)) ? 'has-error' : ''; ?>">
                 <label>Shortcode</label>
                 <input type="text" name="shortcode" class="form-control">
             </div>  
-            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+            <div class="form-group <?php echo (!empty($tag_text_err)) ? 'has-error' : ''; ?>">
                 <label>Text</label>
                 <input type="text" name="tag_text" class="form-control">
             </div>
