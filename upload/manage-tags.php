@@ -172,7 +172,7 @@ Create table available_tags (
     tag_hidden tinyint(1)
 ) ENGINE = InnoDB;
 */
-            $tags = array();
+            $tags = array("");
 
             $sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE 1 ";
             if($stmt = $pdo->prepare($sql)){
