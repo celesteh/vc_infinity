@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $parent = trim($_POST["parent"]);
 
     // Visible
-    $idden = isset($_POST['hidden']);
+    $hidden = isset($_POST['hidden']);
     
     // Check input errors before inserting in database
     if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
@@ -182,7 +182,7 @@ Create table available_tags (
 
                         $shortcode = htmlspecialchars($row["tag_shortcode"]);
                         $text = htmlspecialchars($row["tag_text"]);
-                        $parent  = htmlspecialchars($row["tag_text"]);
+                        $parent  = htmlspecialchars($row["tag_parent"]);
                         $hidden = $row["tag_hidden"];
 
                         array_push($tags, $shortcode);
