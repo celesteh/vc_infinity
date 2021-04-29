@@ -48,12 +48,13 @@ $edior = lazy_power_check($_SESSION["id"], $pdo, 60)
 </head>
 <body>
     <div class="page-header">
-        <h1><b><?php echo htmlspecialchars($_SESSION["realname"]); ?></b> @ <?php echo $_SITE["title"]; ?></h1>
+        <h1><b>Audio Tagging</b<</h1>
     </div>
 
     <?php include 'nav-menu.php';?>
     <div>
     <h2>Coming Soon<h2>
+    <p>Tag your audio!</p>
     </div>
     </body>
 </html>
