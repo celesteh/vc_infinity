@@ -103,36 +103,26 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before inserting in database
     if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
         
-        /*
+        
         // Prepare an insert statement
-        $sql = "INSERT INTO users (username, u_email, u_org, u_realname, u_can_contact, u_url) VALUES (:username,  :email, :orgcode, :realname, :marketing, :url)";
+        $sql = "INSERT INTO available_tags (tag_shortcode, tag_text, tag_parent, tag_hidden) VALUES (:shortcode,  :text, :parent, :hidden)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
-            $stmt->bindParam(":email", $param_email, PDO::PARAM_STR);
-            $stmt->bindParam(":orgcode", $orgcode, PDO::PARAM_STR);
-            $stmt->bindParam(":realname", $realname, PDO::PARAM_STR);
-            $stmt->bindParam(":marketing", $param_marketing, PDO::PARAM_BOOL);
-            $stmt->bindParam(":url", $url, PDO::PARAM_STR);
+            $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+            $stmt->bindParam(":text", $param_text, PDO::PARAM_STR);
+            $stmt->bindParam(":parent", $param_parent, PDO::PARAM_STR);
+            $stmt->bindParam(":hidden", $param_hidden, PDO::PARAM_BOOL);
         
             // Set parameters
-            $param_username = $username;
-            $param_email = $email;
-            $param_marketing = isset($_POST['marketing']);
+            $param_shortcode = $shortcode;
+            $param_text = $text;
+            $param_parent = $parent;
+            $param_hidden = $hidden;
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
             
-                $uid = get_userid($username, $pdo);
-                $url = password_reset($uid, $pdo);
-
-                $body = "Thank you for registering. To confirm your account click here: " . $url;
-                $headers = "From: infinity@vocalconstructivists.com";
-
-                mail($email, "Welcome to Constructing Infinity", $body, $headers);
-                // Redirect to email page
-                header("location: check-email.html");
             } else{
                 echo _("Something went wrong. Please try again later.");
             }
@@ -140,7 +130,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Close statement
             unset($stmt);
         }
-        */
+        
     }
     
 } 
@@ -160,12 +150,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </head>
 <body>
     <div class="page-header">
-        <h1><b>Manage Available Tags</b<</h1>
+        <h1><b>Manage Available Tags</b></h1>
     </div>
 
     <?php include 'nav-menu.php';?>
     <div>
-    <h2>Current tags:<h2>
+    <h2>Current tags:</h2>
     </div>
   
     <div class="container">
@@ -222,7 +212,7 @@ ENDUSR;
     </div>
     </div>
     <div>
-    <h2>Add tag:<h2>
+    <h2>Add tag:</h2>
     </div>
   
     <div class="wrapper">
