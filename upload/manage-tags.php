@@ -103,7 +103,7 @@ ENDUSR;
         </table>
     </div>
     </div>
-    <div>
+    <div class="wrapper">
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
        <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Shortcode</label>
