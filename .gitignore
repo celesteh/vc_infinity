@@ -1,6 +1,5 @@
 # Database information
 upload/config.php
-upload/sql-commands.sql
 
 # Score pages
 score_pages/*
@@ -59,3 +58,7 @@ Temporary Items
 .apdisk
 
 # End of https://www.toptal.com/developers/gitignore/api/osx,linux
+
+
+#scatch files
+sql-commands.sql
