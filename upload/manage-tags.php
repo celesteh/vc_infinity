@@ -47,7 +47,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         if (( ! ctype_alnum($shortcode) ) || preg_match('/[A-Z]/', $shortcode)) {
 
-            $shortcode_err = _("Please use only numbers and lowercase letters for your shortcode.");
+            $shortcode_err = _("Please use only lowercase letters for your shortcode.");
         
         } else {
 
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $text = trim($_POST["tag_text"]);
     if(empty($text)){
         $tag_text_err = "Please specify the visible version of this tag";
-    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\p{Pd}\ ]/u', $text)) {
+    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\p{Pd}]/u', $text)) {
 
         //! ctype_alnum($username) ) {
         $tag_text_err = _("Please use only visible characters for your tag.");
@@ -121,11 +121,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_hidden = $hidden;
 
             // Attempt to execute the prepared statement
-            //if($stmt->execute()){
-            //
-            //} else{
-            //    echo _("Something went wrong. Please try again later.");
-            //}
+            if($stmt->execute()){
+                $shortcode = $text = $parent = $hidden ="";
+            } else{
+                echo _("Something went wrong. Please try again later.");
+            }
 
             // Close statement
             unset($stmt);
@@ -224,11 +224,11 @@ ENDTAG;
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
        <div class="form-group <?php echo (!empty($shortcode_err)) ? 'has-error' : ''; ?>">
                 <label>Shortcode</label>
-                <input type="text" name="shortcode" class="form-control" value="<?php echo $shortcode; ?>" required>
+                <input type="text" name="shortcode" class="form-control" value="<?php echo $shortcode; ?>" required placeholder="No spaces">
             </div>  
             <div class="form-group <?php echo (!empty($tag_text_err)) ? 'has-error' : ''; ?>">
                 <label>Text</label>
-                <input type="text" name="tag_text" class="form-control" value="<?php echo $text; ?>" required>
+                <input type="text" name="tag_text" class="form-control" value="<?php echo $text; ?>" required placeholder="Capitalisation encouraged. Spaces allowed.">
             </div>
             <div class="form-group ">
                 <label>Parent</label>
