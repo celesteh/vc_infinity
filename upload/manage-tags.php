@@ -121,11 +121,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_hidden = $hidden;
 
             // Attempt to execute the prepared statement
-            if($stmt->execute()){
-            
-            } else{
-                echo _("Something went wrong. Please try again later.");
-            }
+            //if($stmt->execute()){
+            //
+            //} else{
+            //    echo _("Something went wrong. Please try again later.");
+            //}
 
             // Close statement
             unset($stmt);
@@ -155,6 +155,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     <?php include 'nav-menu.php';?>
     <div>
+    <h2>Adding</h2>
+    <p><?php echo "$shortcode $text $parent $hidden \n"; ?></p>
+    </div>
+    <div>
     <h2>Current tags:</h2>
     </div>
   
@@ -180,12 +184,12 @@ Create table available_tags (
                     while($row = $stmt->fetch()){
 
 
-                        $shortcode = htmlspecialchars($row["tag_shortcode"]);
-                        $text = htmlspecialchars($row["tag_text"]);
-                        $parent  = htmlspecialchars($row["tag_parent"]);
-                        $hidden = $row["tag_hidden"];
+                        $fshortcode = htmlspecialchars($row["tag_shortcode"]);
+                        $ftext = htmlspecialchars($row["tag_text"]);
+                        $fparent  = htmlspecialchars($row["tag_parent"]);
+                        $fhidden = $row["tag_hidden"];
 
-                        array_push($tags, $shortcode);
+                        array_push($tags, $fshortcode);
 
                         /*
                         // manage colours rotating
@@ -202,7 +206,7 @@ Create table available_tags (
 ENDUSR;
                         */
                         $tagstr = <<< ENDTAG
-            <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>\n
+            <tr><td>$fshortcode</td><td>$ftext</td><td>$fparent</td><td>$fhidden</td></tr>\n
 ENDTAG;
                         echo $tagstr;
                     }
@@ -220,11 +224,11 @@ ENDTAG;
        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
        <div class="form-group <?php echo (!empty($shortcode_err)) ? 'has-error' : ''; ?>">
                 <label>Shortcode</label>
-                <input type="text" name="shortcode" class="form-control">
+                <input type="text" name="shortcode" class="form-control" value="<?php echo $shortcode; ?>" required>
             </div>  
             <div class="form-group <?php echo (!empty($tag_text_err)) ? 'has-error' : ''; ?>">
                 <label>Text</label>
-                <input type="text" name="tag_text" class="form-control">
+                <input type="text" name="tag_text" class="form-control" value="<?php echo $text; ?>" required>
             </div>
             <div class="form-group ">
                 <label>Parent</label>
@@ -236,6 +240,7 @@ ENDTAG;
                         } 
                 ?>
                 </select>
+                <span class="help-block">Optional</span>
             </div> 
             <div class="form-group">
                 <label>Hidden</label>
