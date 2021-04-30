@@ -98,7 +98,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $parent = trim($_POST["parent"]);
 
     // Visible
-    $hidden = isset($_POST['hidden']);
+    $hidden = isset($_POST['hidden_t']);
     
     // Check input errors before inserting in database
     if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
@@ -239,7 +239,7 @@ ENDTAG;
             </div> 
             <div class="form-group">
                 <label>Hidden</label>
-                <input name="hidden" type="checkbox" value="false">
+                <input name="hidden_t" type="checkbox" value="false">
                 <span class="help-block">Hidden tags are parents to other tags, but can't be selected directly.</span>
             </div>
             <div class="form-group">
