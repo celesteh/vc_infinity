@@ -98,21 +98,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $parent = trim($_POST["parent"]);
 
     // Visible
-    $idden = isset($_POST['hidden']);
+    $hidden = isset($_POST['hidden']);
     
     // Check input errors before inserting in database
     if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
         
         
         // Prepare an insert statement
-        $sql = "INSERT INTO available_tags (tag_shortcode, tag_text, tag_parent, tag_hidden) VALUES (:shortcode,  :text, :parent, :hidden)";
+        $sql = "INSERT INTO available_tags (tag_shortcode, tag_text, tag_parent, tag_hidden) VALUES (:shortcode,  :ttext, :parent, :thidden)";
          
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-            $stmt->bindParam(":text", $param_text, PDO::PARAM_STR);
+            $stmt->bindParam(":ttext", $param_text, PDO::PARAM_STR);
             $stmt->bindParam(":parent", $param_parent, PDO::PARAM_STR);
-            $stmt->bindParam(":hidden", $param_hidden, PDO::PARAM_BOOL);
+            $stmt->bindParam(":thidden", $param_hidden, PDO::PARAM_BOOL);
         
             // Set parameters
             $param_shortcode = $shortcode;
@@ -182,7 +182,7 @@ Create table available_tags (
 
                         $shortcode = htmlspecialchars($row["tag_shortcode"]);
                         $text = htmlspecialchars($row["tag_text"]);
-                        $parent  = htmlspecialchars($row["tag_text"]);
+                        $parent  = htmlspecialchars($row["tag_parent"]);
                         $hidden = $row["tag_hidden"];
 
                         array_push($tags, $shortcode);
@@ -202,7 +202,7 @@ Create table available_tags (
 ENDUSR;
                         */
                         $tagstr = <<< ENDTAG
-                        <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>
+            <tr><td>$shortcode</td><td>$text</td><td>$parent</td><td>$hidden</td></tr>\n
 ENDTAG;
                         echo $tagstr;
                     }
