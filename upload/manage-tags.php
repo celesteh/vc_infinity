@@ -154,11 +154,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 
     <?php include 'nav-menu.php';?>
-    <div>
-    <h2>Adding</h2>
-    <p><?php echo "$shortcode $text $parent $hidden \n"; ?></p>
-    </div>
-    <div>
+      <div>
     <h2>Current tags:</h2>
     </div>
   
