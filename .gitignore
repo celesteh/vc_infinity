@@ -1,5 +1,6 @@
 # Database information
 upload/config.php
+#config.php
 
 # Score pages
 score_pages/*
@@ -61,4 +62,5 @@ Temporary Items
 
 
 #scatch files
+upload/sql-commands.sql
 sql-commands.sql
