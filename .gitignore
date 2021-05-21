@@ -8,6 +8,10 @@ score_pages/*
 # Audio
 processed_audio/*
 unprocessed_audio/*
+wavs/*.wav
+wavs/*/*.wav
+wavs/*.flac
+wavs/*/*.flac
 soundscape_appraisal_enactive_cognition_fpsyg-09-01129.pdf
 
 
