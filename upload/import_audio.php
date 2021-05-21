@@ -289,6 +289,6 @@ if ($handle = opendir($wav_dir)) {
     </div>
 
     <?php include 'nav-menu.php';?>
-    <div><p>We tried to put new files in the DB.</p></div>
+    <div><p>We tried to put new files in the DB. <php? echo $error ?></p></div>
 </body>
 </html>    
