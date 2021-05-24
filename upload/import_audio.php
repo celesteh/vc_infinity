@@ -110,12 +110,12 @@ if ($handle = opendir($wav_dir)) {
                                         echo "found $found rejected $rejected\n";
 
                                         // check if a flac version exists of this file
-                                        $flac_path = "$flac_dir/$file/$name\.flac";
+                                        $flac_path = "$flac_dir/$file/$name.flac";
                                         echo "flac file $flac_path\n";
 
                                         $flac_in_db = false;
 
-                                        /*
+                                        
                                         
                                         // check if the edited audio table already includes this ID.
                                         // if present, does it have a compressed and uncompressed version?
@@ -142,7 +142,7 @@ if ($handle = opendir($wav_dir)) {
                                                             if (isset($flac)){
                                                                 //$exists = true;
                                                                 echo "flac is $flac name is $name\n";
-                                                                if ($flac == $flac_path){
+                                                                if ($flac == "$name.flac"){
                                                                     $exists = true;
                                                                     $flac_in_db = true;
                                                                 }
@@ -165,7 +165,7 @@ if ($handle = opendir($wav_dir)) {
                                                 unset($stmt);
                                             }
                                         }
-                                        
+                                        /*
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
                                         if (not file_exists($flac_path)){
