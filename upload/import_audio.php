@@ -144,7 +144,7 @@ if ($handle = opendir($wav_dir)) {
                                                         $exists = true;
                                                         // does flac version of the file exist, though?
                                                         $flac_in_db = false;
-                                                        while($row = $fstmt->fetch()){
+                                                        while($row = $stmt->fetch()){
                                                             $flac = $row["compressed_format"];
                                                             $wav = $row["audio_filename"];
                                                             if (isset($flac)){
