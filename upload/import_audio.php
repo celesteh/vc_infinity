@@ -263,7 +263,7 @@ if ($handle = opendir($wav_dir)) {
                                         } //$flac_path is a file
                                         
                                     } //not a duplicate
-                                    /*   
+                                       
                                     // check if the file is processed
                                     // if processed - auto-tag it
                                     //unset($tag);
@@ -299,7 +299,7 @@ if ($handle = opendir($wav_dir)) {
                                         }
                                         
                                     }
-                                    */
+                                    
                                 } else {// is a reject
                                     //$sql = "UPDATE users SET u_password = :password WHERE userid = :id";
                                     // set the rejection flag
