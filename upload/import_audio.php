@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="page-header">
-        <h1><b>This might have worked</h1>
+        <h1><b>Testing directory traversal</h1>
     </div>
 
     <?php include 'nav-menu.php';?>
@@ -61,7 +61,7 @@ if ($handle = opendir($wav_dir)) {
                             $new_id = -1;
                             $rejected = false;
 
-                            echo "<li>$wavfile\n";
+                            echo "<li>$name\n";
                             
                             
                             // check if the file is a reject
