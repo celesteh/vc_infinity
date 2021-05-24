@@ -222,7 +222,7 @@ if ($handle = opendir($wav_dir)) {
                                                     $param_id = $id;
                                         
 
-                                                    /*
+                                                    
                                                     if($stmt->execute()){
                                                         // success!!
 
@@ -251,8 +251,9 @@ if ($handle = opendir($wav_dir)) {
                                                         } else {
 
                                                         //$error = _("Upload failed");
+                                                        }
                                                     }
-                                                    */
+                                                    
 
                                                 }
                                                 unset($stmt);
