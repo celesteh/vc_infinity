@@ -108,7 +108,14 @@ if ($handle = opendir($wav_dir)) {
                                         }
 
                                         echo "found $found rejected $rejected\n";
-                                        /*
+
+                                        // check if a flac version exists of this file
+                                        $flac_path = "$flac_dir/$file/$name\.flac";
+                                        echo "flac file $flac_path\n";
+
+                                        $flac_in_db = false;
+
+                                        
                                         // check if the edited audio table already includes this ID.
                                         // if present, does it have a compressed and uncompressed version?
                                         if ($found && (not $rejected)){
@@ -124,20 +131,28 @@ if ($handle = opendir($wav_dir)) {
                                                 
                                                 // Attempt to execute the prepared statement
                                                 if($stmt->execute()){
-                                                    if($stmt->rowCount() == 1){
+                                                    if($stmt->rowCount() >= 1){
                                                         $exists = true;
                                                         // does flac version of the file exist, though?
-                                                        if($row = $fstmt->fetch()){
+                                                        $flac_in_db = false;
+                                                        while($row = $fstmt->fetch()){
                                                             $flac = $row["compressed_format"];
                                                             $wav = $row["audio_filename"];
                                                             if (isset($flac)){
-                                                                $exists = true;
+                                                                //$exists = true;
+                                                                echo "flac is $flac name is $name\n";
+                                                                if ($flac == $flac_path){
+                                                                    $exists = true;
+                                                                    $flac_in_db = true;
+                                                                }
                                                             } else {
-                                                                $exists = false;
+                                                                //$exists = false;
+                                                                // we can't make assumptions
                                                             }
                                                         } else{
                                                             $exists = false;
                                                         }
+                                                        $exists = $flac_in_db;
                                                     } else {
                                                         $exists = false;
                                                     }
@@ -149,8 +164,7 @@ if ($handle = opendir($wav_dir)) {
                                                 unset($stmt);
                                             }
                                         }
-                                        // check if a flac version exists of this file
-                                        $flac_path = "$flac_dir/$file/$name\.flac";
+                                        
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
                                         if (not file_exists($flac_path)){
@@ -166,16 +180,18 @@ if ($handle = opendir($wav_dir)) {
                                                     $param_id = $id;
                                         
 
-                                                    if($stmt->execute()){
+                                                    //if($stmt->execute()){
                                                         // success!!
                                                         //$conn->exec($sql);
-                                                        $new_id = $pdo->lastInsertId();
+                                                    //    $new_id = $pdo->lastInsertId();
 
                                                         //header("location: submit.php?success=1");
-                                                    } else {
+                                                    //} else {
 
-                                                        $error = _("Failed");
-                                                    }
+                                                    //    $error = _("Failed");
+                                                    //}
+
+                                                    echo "no flac $sql\n";
 
                                                 }
                                                 unset($stmt);
@@ -183,9 +199,10 @@ if ($handle = opendir($wav_dir)) {
                                             $flacless[] = $id;
                                         }
                                         else {
-                                            if (not $exists && not $rejected){
+                                            if (not $flac_in_db && not $rejected){
                                                 // if no record, add the file and the flac version to the DB
                                                 $sql = "INSERT INTO edited_audio (compressed_format, audio_filename, original_id) VALUES (:flac_file,  :wav_file, :id)";
+                                                echo "$sgl\n";
                                                 if($stmt = $pdo->prepare($sql)){
                                                     // Bind variables to the prepared statement as parameters
                                                     //stopped here
@@ -197,13 +214,13 @@ if ($handle = opendir($wav_dir)) {
                                                     $param_wav = "$file/$name\.wav";
                                                     $param_id = $id;
                                         
-
+                                                    /*
                                                     if($stmt->execute()){
                                                         // success!!
 
                                                         //header("location: submit.php?success=1");
-                                                        $sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
-                                                        if($astmt = $pdo->prepare($sql)){
+                                                        $sa_sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
+                                                        if($astmt = $pdo->prepare($sa_sql)){
                                                             // Bind variables to the prepared statement as parameters
                                                             $astmt->bindParam(":accept", $param_accept, PDO::PARAM_INT);
                                                             $astmt->bindParam(":id", $param_id, PDO::PARAM_INT);
@@ -226,6 +243,7 @@ if ($handle = opendir($wav_dir)) {
 
                                                         //$error = _("Upload failed");
                                                     }
+                                                    */
 
                                                 }
                                                 unset($stmt);
