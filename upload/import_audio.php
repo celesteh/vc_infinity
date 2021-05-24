@@ -166,10 +166,11 @@ if ($handle = opendir($wav_dir)) {
                                             }
                                             
                                         }
-                                        //echo "flac_in_db $flac_in_db\n";
+                                        echo "flac_in_db $flac_in_db\n";
                                         /*
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
+                                        // so we'll skip it
                                         if (not file_exists($flac_path)){
                                             if (not isset($wav)){
                                                 $sql = "INSERT INTO edited_audio (audio_filename, original_id) VALUES (:wav_file, :id)";
@@ -201,11 +202,12 @@ if ($handle = opendir($wav_dir)) {
                                             }
                                             $flacless[] = $id;
                                         }
-                                        else {
+                                        else {*/
+                                        if (file_exists($flac_path)){
                                             if (not $flac_in_db && not $rejected){
                                                 // if no record, add the file and the flac version to the DB
                                                 $sql = "INSERT INTO edited_audio (compressed_format, audio_filename, original_id) VALUES (:flac_file,  :wav_file, :id)";
-                                                echo "$sgl\n";
+                                                echo "$sql\n";
                                                 if($stmt = $pdo->prepare($sql)){
                                                     // Bind variables to the prepared statement as parameters
                                                     //stopped here
@@ -213,10 +215,11 @@ if ($handle = opendir($wav_dir)) {
                                                     $stmt->bindParam(":wav_file", $param_wav, PDO::PARAM_STR);
                                                     $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
 
-                                                    $param_flac = "$file/$name\.flac";
-                                                    $param_wav = "$file/$name\.wav";
+                                                    $param_flac = "$name.flac";
+                                                    $param_wav = "$name.wav";
                                                     $param_id = $id;
                                         
+
                                                     
                                                     if($stmt->execute()){
                                                         // success!!
@@ -230,7 +233,7 @@ if ($handle = opendir($wav_dir)) {
                                                             
                                                             // Set parameters
                                                             $param_accept = 1; //accept
-                                                            $param_id = (int)$userid;
+                                                            $param_id = (int)$id;
                                                             //$param_id = $_SESSION["id"];
                                                             
                                                             // Attempt to execute the prepared statement
@@ -253,7 +256,7 @@ if ($handle = opendir($wav_dir)) {
                                             }
 
                                         } // else // $flac_path is a file
-                                        */
+                                        
                                     } //not a duplicate
                                     /*   
                                     // check if the file is processed
