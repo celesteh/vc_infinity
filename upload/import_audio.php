@@ -233,11 +233,11 @@ if ($handle = opendir($wav_dir)) {
                                                         if($astmt = $pdo->prepare($sa_sql)){
                                                             // Bind variables to the prepared statement as parameters
                                                             $astmt->bindParam(":accept", $param_accept, PDO::PARAM_INT);
-                                                            $astmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+                                                            $astmt->bindParam(":id", $param_id, PDO::PARAM_INT);
                                                             
                                                             // Set parameters
                                                             $param_accept = 1; //accept
-                                                            $param_id = $id;
+                                                            $param_id = (int)$id;
                                                             //$param_id = $_SESSION["id"];
                                                             
                                                             // Attempt to execute the prepared statement
@@ -283,7 +283,7 @@ if ($handle = opendir($wav_dir)) {
                                                 // Bind variables to the prepared statement as parameters
                                                 //stopped here
                                                 $stmt->bindParam(":tag_code", $param_tag, PDO::PARAM_STR);
-                                                $stmt->bindParam(":id", $param_id, PDO::PARAM_INT;
+                                                $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
 
                                                 $param_tag = $tag;
                                                 $param_id = $new_id;
