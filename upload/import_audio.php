@@ -288,7 +288,7 @@ if ($handle = opendir($wav_dir)) {
                             
                                         // Close statement
                                         unset($stmt);
-                                        echo "$sql UPDATE submitted_audio SET sa_accepted = $param_Accept WHERE id = $param_id";
+                                        echo "$sql UPDATE submitted_audio SET sa_accepted = $param_accept WHERE id = $param_id\n";
                                     }
                                     
                                     echo "rejected\n";
