@@ -205,6 +205,7 @@ if ($handle = opendir($wav_dir)) {
                                         else {*/
                                         if (file_exists($flac_path)){ 
                                             if (! $flac_in_db && ! $rejected){ 
+                                                /*
                                                 // if no record, add the file and the flac version to the DB
                                                 $sql = "INSERT INTO edited_audio (compressed_format, audio_filename, original_id) VALUES (:flac_file,  :wav_file, :id)";
                                                 echo "$sql\n";
@@ -254,7 +255,7 @@ if ($handle = opendir($wav_dir)) {
 
                                                 }
                                                 unset($stmt);
-                                                
+                                                */
                                             }
                                             
                                         } //$flac_path is a file
