@@ -226,6 +226,8 @@ if ($handle = opendir($wav_dir)) {
                                                     if($stmt->execute()){
                                                         // success!!
 
+                                                        $new_id = $pdo->lastInsertId();
+
                                                         //header("location: submit.php?success=1");
                                                         $sa_sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
                                                         if($astmt = $pdo->prepare($sa_sql)){
@@ -271,7 +273,7 @@ if ($handle = opendir($wav_dir)) {
                                     if (str_contains($name, 'REP')) {
                                         // repeats
                                         $tags[] = "rep";
-                                    } else if (str_contains($name, 'REV')) {
+                                    } elseif (str_contains($name, 'REV')) {
                                         $tags[] = "rev";
                                     }
                                     if ($new_id > -1) {
