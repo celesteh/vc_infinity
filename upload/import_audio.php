@@ -57,15 +57,15 @@ if ($handle = opendir($wav_dir)) {
                         $wav_path = "$wav_dir/$file/$wavfile";
                         if (is_file($wav_path)){
                             $path = pathinfo($wav_path);
-                            $name = $path['filename'];
+                            $name = (string) $path['filename']; // it must be a string
                             $new_id = -1;
-                            $rejected = false;
+                            $rejected = str_ends_with($name, 'REJECT');
 
                             echo "<li>$name\n";
                             
                             
                             // check if the file is a reject
-                            if (! str_ends_with($name, 'REJECT')) {
+                            if (! $rejected) {
                                 echo "not rejected";
                             /*
                                 // check if the file is a duplicate
