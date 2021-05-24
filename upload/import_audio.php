@@ -290,8 +290,10 @@ if ($handle = opendir($wav_dir)) {
                     echo "</ul>\n";
                 } // if we opened the wav_handle
                    
+            
+            } else {// if we're in a sub directory
                 echo "not a directory\n";
-            }// if we're in a sub directory
+            }
         } // if not a .file
     } // while reading wav_dir
     closedir($handle);
