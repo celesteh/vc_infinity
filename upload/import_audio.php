@@ -285,6 +285,7 @@ if ($handle = opendir($wav_dir)) {
                                 // Close statement
                                 unset($stmt);
                             }
+                            echo "rejected\n";
                         }     
                         
                     } // while wav_handle
