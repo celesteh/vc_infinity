@@ -124,7 +124,7 @@ if ($handle = opendir($wav_dir)) {
                                             $sql = "SELECT compressed_format, audio_filename FROM edited_audio WHERE original_id = :id";
                                             echo "$sql\n";
                                             
-                                            /*
+                                            
                                             if($stmt = $pdo->prepare($sql)){
                                                 // Bind variables to the prepared statement as parameters
                                                 $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
@@ -166,8 +166,9 @@ if ($handle = opendir($wav_dir)) {
                                                 // Close statement
                                                 unset($stmt);
                                             }
-                                            */
+                                            
                                         }
+                                        echo "flac_in_db $flac_in_db\n";
                                         /*
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
