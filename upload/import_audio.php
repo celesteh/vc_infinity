@@ -1,3 +1,22 @@
+<?php
+// Initialize the session
+session_start();
+ 
+include_once "config.php";
+include_once "functions.php";
+ 
+// Check if the user is logged in, if not then redirect him to login page
+//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+//    header("location: login.php");
+//    exit;
+//}
+
+
+//if (! lazy_power_check($_SESSION["id"], $pdo, 60)){
+//    header("location: index.php");
+//}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,23 +35,10 @@
     <?php include 'nav-menu.php';?>
     <div>
     <ul>
+
+
+
 <?php
-// Initialize the session
-session_start();
- 
-include_once "config.php";
-include_once "functions.php";
- 
-// Check if the user is logged in, if not then redirect him to login page
-//if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
-//    header("location: login.php");
-//    exit;
-//}
-
-
-//if (! lazy_power_check($_SESSION["id"], $pdo, 60)){
-//    header("location: index.php");
-//}
 
 
 $wav_dir = "../wavs/";
