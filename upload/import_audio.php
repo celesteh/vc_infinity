@@ -45,9 +45,9 @@ $error = "";
 
 if ($handle = opendir($wav_dir)) {
     while (false !== ($file = readdir($handle))) {
-        echo "reading files\n";
+        //echo "reading files\n";
         if ($file != "." && $file != "..") {
-            echo "$wav_dir/$file\n";
+            //echo "$wav_dir/$file\n";
             if( is_dir( "$wav_dir/$file" ) ){
                 $id = $file;
                 echo "<li> $id\n";
@@ -61,10 +61,11 @@ if ($handle = opendir($wav_dir)) {
 
                         echo "<li>$name\n";
                         
-                        /*
+                        
                         // check if the file is a reject
                         if (! str_ends_with($name, 'REJECT')) {
-                        
+                            echo "not rejected";
+                        /*
                             // check if the file is a duplicate
                             if (str_contains($name, 'DUP')) {
                                 // If so, add it to an array of duplicates -- we'll get to them later
@@ -259,7 +260,7 @@ if ($handle = opendir($wav_dir)) {
                                     }
                                 }
                             }
-
+                            */
                         } else {// is a reject
                             //$sql = "UPDATE users SET u_password = :password WHERE userid = :id";
                             // set the rejection flag
@@ -275,16 +276,16 @@ if ($handle = opendir($wav_dir)) {
                                 //$param_id = $_SESSION["id"];
                                 
                                 // Attempt to execute the prepared statement
-                                if($stmt->execute()){
+                                //if($stmt->execute()){
                                     
-                                } else{
-                                    echo _("Oops! Something went wrong. Please try again later.");
-                                }
+                                //} else{
+                                //    echo _("Oops! Something went wrong. Please try again later.");
+                                //}
                     
                                 // Close statement
                                 unset($stmt);
                         }     
-                        */ 
+                        
                     } // while wav_handle
                     closedir($wav_handle);
                     echo "</ul>\n";
