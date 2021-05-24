@@ -284,6 +284,7 @@ if ($handle = opendir($wav_dir)) {
                     
                                 // Close statement
                                 unset($stmt);
+                            }
                         }     
                         
                     } // while wav_handle
