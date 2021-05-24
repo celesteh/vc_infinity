@@ -1,3 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>This may have worked</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="infinity.css">
+
+</head>
+<body>
+    <div class="page-header">
+        <h1><b>This might have worked</h1>
+    </div>
+
+    <?php include 'nav-menu.php';?>
+    <div>
+    <ul>
 <?php
 // Initialize the session
 session_start();
@@ -31,12 +49,16 @@ if ($handle = opendir($wav_dir)) {
             //echo "$file\n";
             if( is_dir( "$$wav_dir/$file" ) ){
                 $id = $file;
+                echo "<li> $id\n";
                 if($wav_handle = opendir("$wav_dir/$file")) {
+                    echo "<ul>\n";
                     while (false !== ($wavfile = readdir($wav_handle))) {
                         $path = pathinfo("$wav_dir/$file/$wavfile");
                         $name = $path['filename'];
                         $new_id = -1;
                         $rejected = false;
+
+                        echo "<li>$name\n";
                         
                         // check if the file is a reject
                         if (! str_ends_with($name, 'REJECT')) {
@@ -262,6 +284,7 @@ if ($handle = opendir($wav_dir)) {
                         }      
                     } // while wav_handle
                     closedir($wav_handle);
+                    echo "</ul>\n";
                 } // if we opened the wav_handle
                    
                 
@@ -272,23 +295,8 @@ if ($handle = opendir($wav_dir)) {
 }// open wav dir
 
 ?>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>This may have worked</title>
-    <link rel="stylesheet" href="bootstrap.css">
-    <link rel="stylesheet" href="infinity.css">
-
-</head>
-<body>
-    <div class="page-header">
-        <h1><b>This might have worked</h1>
+    </ul>
     </div>
-
-    <?php include 'nav-menu.php';?>
     <div><p>We tried to put new files in the DB. <php? echo $error ?></p></div>
 </body>
 </html>    
