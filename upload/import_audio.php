@@ -59,11 +59,12 @@ if ($handle = opendir($wav_dir)) {
                             $path = pathinfo($wav_path);
                             $name = (string) $path['filename']; // it must be a string
                             $new_id = -1;
-                            $rejected = str_ends_with($name, 'REJECT'); 
+                            
 
                             echo "<li>$name\n";
                             
-                            
+                            $rejected = str_ends_with($name, 'REJECT'); 
+                            echo "$rejected\n";
                             // check if the file is a reject
                             if (! $rejected) {
                                 echo "not rejected";
