@@ -233,11 +233,11 @@ if ($handle = opendir($wav_dir)) {
                                                         if($astmt = $pdo->prepare($sa_sql)){
                                                             // Bind variables to the prepared statement as parameters
                                                             $astmt->bindParam(":accept", $param_accept, PDO::PARAM_INT);
-                                                            $astmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+                                                            $astmt->bindParam(":id", $param_id, PDO::PARAM_STR);
                                                             
                                                             // Set parameters
                                                             $param_accept = 1; //accept
-                                                            $param_id = (int)$id;
+                                                            $param_id = $id;
                                                             //$param_id = $_SESSION["id"];
                                                             
                                                             // Attempt to execute the prepared statement
@@ -252,7 +252,7 @@ if ($handle = opendir($wav_dir)) {
                                                             unset($astmt);
                                                         } else {
 
-                                                        //$error = _("Upload failed");
+                                                            //$error = _("Upload failed");
                                                         }
                                                     }
                                                     
