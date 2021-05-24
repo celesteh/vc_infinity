@@ -289,6 +289,7 @@ if ($handle = opendir($wav_dir)) {
                                         // Close statement
                                         unset($stmt);
                                     }
+                                    echo "$sql\n";
                                     echo "rejected\n";
                                 }     
                             } // if not a dot file
