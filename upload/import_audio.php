@@ -120,9 +120,9 @@ if ($handle = opendir($wav_dir)) {
                                         // check if the edited audio table already includes this ID.
                                         // if present, does it have a compressed and uncompressed version?
                                         if ($found && (! $rejected)){
-                                        //    $exists = true; //assume we're NOT going to add it
-                                        //    $sql = "SELECT compressed_format, audio_filename FROM edited_audio WHERE original_id = :id";
-                                        //    echo "$sql\n";
+                                            //$exists = true; //assume we're NOT going to add it
+                                            $sql = "SELECT compressed_format, audio_filename FROM edited_audio WHERE original_id = :id";
+                                            echo "$sql\n";
                                             
                                             /*
                                             if($stmt = $pdo->prepare($sql)){
