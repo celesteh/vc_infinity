@@ -47,8 +47,8 @@ if ($handle = opendir($wav_dir)) {
     while (false !== ($file = readdir($handle))) {
         echo "reading files\n";
         if ($file != "." && $file != "..") {
-            echo "$file\n";
-            if( is_dir( /*"$$wav_dir/$file"*/ $file ) ){
+            echo "$wav_dir/$file\n";
+            if( is_dir( "$wav_dir/$file" ) ){
                 $id = $file;
                 echo "<li> $id\n";
                 if($wav_handle = opendir("$wav_dir/$file")) {
