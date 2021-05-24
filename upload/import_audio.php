@@ -69,10 +69,11 @@ if ($handle = opendir($wav_dir)) {
                                 // check if the file is a reject
                                 if (! $rejected) {
                                     echo "not rejected";
-                                /*
+                                
                                     // check if the file is a duplicate
                                     if (str_contains($name, 'DUP')) {
                                         // If so, add it to an array of duplicates -- we'll get to them later
+                                        echo "duplicated\n";
                                     } else {
                                         // check if the ID exists in the DB as a submitted file -
                                         $found = false;
@@ -105,6 +106,9 @@ if ($handle = opendir($wav_dir)) {
                                             // Close statement
                                             unset($stmt);
                                         }
+
+                                        echo "found $found rejected $rejected\n";
+                                        /*
                                         // check if the edited audio table already includes this ID.
                                         // if present, does it have a compressed and uncompressed version?
                                         if ($found && (not $rejected)){
@@ -228,6 +232,7 @@ if ($handle = opendir($wav_dir)) {
                                             }
 
                                         } // else // $flac_path is a file
+                                        
                                     } //not a duplicate
                                         
                                     // check if the file is processed
@@ -263,6 +268,7 @@ if ($handle = opendir($wav_dir)) {
                                                 }
                                             }
                                         }
+                                        
                                     }
                                     */
                                 } else {// is a reject
@@ -280,11 +286,11 @@ if ($handle = opendir($wav_dir)) {
                                         //$param_id = $_SESSION["id"];
                                         
                                         // Attempt to execute the prepared statement
-                                        //if($stmt->execute()){
-                                            
-                                        //} else{
-                                        //    echo _("Oops! Something went wrong. Please try again later.");
-                                        //}
+                                        if($stmt->execute()){
+                                            echo "reject logged\n";    
+                                        } else{
+                                            echo _("Oops! Something went wrong. Please try again later.");
+                                        }
                             
                                         // Close statement
                                         unset($stmt);
