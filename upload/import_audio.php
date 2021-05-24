@@ -294,11 +294,12 @@ if ($handle = opendir($wav_dir)) {
         } // if not a .file
     } // while reading wav_dir
     closedir($handle);
-}// open wav dir
-
+} else {// open wav dir
+    echo "$wav_dir did not open\n";
+}
 ?>
     </ul>
     </div>
-    <div><p>We tried to put new files in the DB. <php? echo $error ?></p></div>
+    <div><p>We tried to put new files in the DB. <?php echo $error ?></p></div>
 </body>
 </html>    
