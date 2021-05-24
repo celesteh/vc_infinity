@@ -115,6 +115,7 @@ if ($handle = opendir($wav_dir)) {
 
                                         $flac_in_db = false;
 
+                                        /*
                                         
                                         // check if the edited audio table already includes this ID.
                                         // if present, does it have a compressed and uncompressed version?
@@ -214,7 +215,7 @@ if ($handle = opendir($wav_dir)) {
                                                     $param_wav = "$file/$name\.wav";
                                                     $param_id = $id;
                                         
-                                                    /*
+                                                    
                                                     if($stmt->execute()){
                                                         // success!!
 
@@ -243,7 +244,7 @@ if ($handle = opendir($wav_dir)) {
 
                                                         //$error = _("Upload failed");
                                                     }
-                                                    */
+                                                    
 
                                                 }
                                                 unset($stmt);
