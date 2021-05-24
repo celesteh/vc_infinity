@@ -60,6 +60,7 @@ if ($handle = opendir($wav_dir)) {
 
                         echo "<li>$name\n";
                         
+                        /*
                         // check if the file is a reject
                         if (! str_ends_with($name, 'REJECT')) {
                         
@@ -281,7 +282,8 @@ if ($handle = opendir($wav_dir)) {
                     
                                 // Close statement
                                 unset($stmt);
-                        }      
+                        }     
+                        */ 
                     } // while wav_handle
                     closedir($wav_handle);
                     echo "</ul>\n";
