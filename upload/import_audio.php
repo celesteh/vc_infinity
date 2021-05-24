@@ -45,8 +45,9 @@ $error = "";
 
 if ($handle = opendir($wav_dir)) {
     while (false !== ($file = readdir($handle))) {
+        echo "reading files\n";
         if ($file != "." && $file != "..") {
-            //echo "$file\n";
+            echo "$file\n";
             if( is_dir( "$$wav_dir/$file" ) ){
                 $id = $file;
                 echo "<li> $id\n";
