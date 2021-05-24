@@ -276,7 +276,7 @@ if ($handle = opendir($wav_dir)) {
                                         
                                         // Set parameters
                                         $param_accept = 0; // reject
-                                        $param_id = (int)$userid;
+                                        $param_id = (int)$id;
                                         //$param_id = $_SESSION["id"];
                                         
                                         // Attempt to execute the prepared statement
@@ -288,8 +288,9 @@ if ($handle = opendir($wav_dir)) {
                             
                                         // Close statement
                                         unset($stmt);
+                                        echo "$sql UPDATE submitted_audio SET sa_accepted = $param_Accept WHERE id = $param_id";
                                     }
-                                    echo "$sql\n";
+                                    
                                     echo "rejected\n";
                                 }     
                             } // if not a dot file
