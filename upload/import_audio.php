@@ -59,7 +59,7 @@ if ($handle = opendir($wav_dir)) {
                         $new_id = -1;
                         $rejected = false;
 
-                        echo "<li>$name\n";
+                        echo "<li>$wavfile\n";
                         
                         
                         // check if the file is a reject
