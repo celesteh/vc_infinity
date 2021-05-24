@@ -232,9 +232,9 @@ if ($handle = opendir($wav_dir)) {
                                             }
 
                                         } // else // $flac_path is a file
-                                        
+                                        */
                                     } //not a duplicate
-                                        
+                                    /*   
                                     // check if the file is processed
                                     // if processed - auto-tag it
                                     //unset($tag);
