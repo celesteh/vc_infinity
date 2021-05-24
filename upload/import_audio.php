@@ -51,7 +51,7 @@ if ($handle = opendir($wav_dir)) {
             if( is_dir( "$$wav_dir/$file" ) ){
                 $id = $file;
                 echo "<li> $id\n";
-                if($wav_handle = opendir("$wav_dir/$file")) {
+                if($wav_handle = opendir(/*"$wav_dir/$file"*/$file)) {
                     echo "<ul>\n";
                     while (false !== ($wavfile = readdir($wav_handle))) {
                         $path = pathinfo("$wav_dir/$file/$wavfile");
