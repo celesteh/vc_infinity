@@ -152,9 +152,7 @@ if ($handle = opendir($wav_dir)) {
                                                                 //$exists = false;
                                                                 // we can't make assumptions
                                                             }
-                                                        } else{
-                                                            $exists = false;
-                                                        }
+                                                        } 
                                                         $exists = $flac_in_db;
                                                     } else {
                                                         $exists = false;
@@ -168,7 +166,7 @@ if ($handle = opendir($wav_dir)) {
                                             }
                                             
                                         }
-                                        echo "flac_in_db $flac_in_db\n";
+                                        //echo "flac_in_db $flac_in_db\n";
                                         /*
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
