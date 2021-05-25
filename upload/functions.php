@@ -449,8 +449,9 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                         }
                     }
                 
+                }
+                unset($stmts);
             }
-            unset($stmts);
         }
     }
     return $versions;
