@@ -432,29 +432,57 @@ if ($handle = opendir($wav_dir)) {
 
         foreach ($found as $processed){
 
-            $sql = "INSERT INTO duplicates (o_id_a, o_id_b, ed_audio_id) VALUES (:old_id, :new_id, :edited_id)";
-            if($stmt = $pdo->prepare($sql)){
+            // check if it's already in the table
+            $sqls = "SELECT o_id_a FROM duplicates WHERE ed_audio_id = :edited_id AND o_id_b = :o_new_id";
+            //echo "$sql\n";
+            
+            
+            if($stmts = $pdo->prepare($sqls)){
+
+                // do this one time and then remove this line after running:
+                accept($newid);
+
                 // Bind variables to the prepared statement as parameters
-                //stopped here
-                $stmt->bindParam(":old_id", $param_oldid, PDO::PARAM_STR);
-                $stmt->bindParam(":new_id", $param_newid, PDO::PARAM_STR);
-                $stmt->bindParam(":edited_id", $param_eddid, PDO::PARAM_STR);
-
-                $param_oldid = $oldid;
-                $param_newid = $newid;
-                $param_eddid = $processed;
-
-
+                $stmt->bindParam(":edited_id", $param_edited_id, PDO::PARAM_STR);
+                $stmt->bindParam(":o_new_id", $param_o_new_id, PDO::PARAM_STR);
+                
+                // Set parameters
+                $param_edited_id = $processed;
+                $param_o_new_id = $newid;
+                
+                // Attempt to execute the prepared statement
                 if($stmt->execute()){
-                    // success!!
+                    if($stmt->rowCount() < 1){
 
-                    //header("location: submit.php?success=1");
-                } else {
+                        // if it's not already in the table, put it in
+                        $sql = "INSERT INTO duplicates (o_id_a, o_id_b, ed_audio_id) VALUES (:old_id, :new_id, :edited_id)";
+                        if($stmt = $pdo->prepare($sql)){
+                            // Bind variables to the prepared statement as parameters
+                            //stopped here
+                            $stmt->bindParam(":old_id", $param_oldid, PDO::PARAM_STR);
+                            $stmt->bindParam(":new_id", $param_newid, PDO::PARAM_STR);
+                            $stmt->bindParam(":edited_id", $param_eddid, PDO::PARAM_STR);
 
-                    $error = _("Failed");
+                            $param_oldid = $oldid;
+                            $param_newid = $newid;
+                            $param_eddid = $processed;
+
+
+                            if($stmt->execute()){
+                                // success!!
+
+                                //header("location: submit.php?success=1");
+                                accept($newid);
+                            } else {
+
+                                $error = _("Failed");
+                            }
+                            unset($stmt);
+                        }
+                    }
                 }
+                unset($stmts);
             }
-
         }
     }
 
