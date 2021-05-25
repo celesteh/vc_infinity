@@ -439,9 +439,6 @@ if ($handle = opendir($wav_dir)) {
             
             if($stmts = $pdo->prepare($sqls)){
 
-                // do this one time and then remove this line after running:
-                accept($newid);
-
                 // Bind variables to the prepared statement as parameters
                 $stmts->bindParam(":edited_id", $param_edited_id, PDO::PARAM_STR);
                 $stmts->bindParam(":o_new_id", $param_o_new_id, PDO::PARAM_STR);
