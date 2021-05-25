@@ -61,6 +61,8 @@ function reject($rejected_id){
 
 function set_accepted($accepted, $id){
 
+    global $pdo;
+
     $sa_sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
     if($astmt = $pdo->prepare($sa_sql)){
         // Bind variables to the prepared statement as parameters
@@ -91,6 +93,8 @@ function set_accepted($accepted, $id){
 
 
 function get_ids($original_id){
+
+    global $pdo;
 
     $ids = array();
 
