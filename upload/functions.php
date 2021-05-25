@@ -420,7 +420,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
             $stmts->bindParam(":o_id", $param_o_id, PDO::PARAM_STR);
                 
                 // Set parameters
-            $param_o_id = $oid
+            $param_o_id = $oid;
                 
             // Attempt to execute the prepared statement
             if($stmts->execute()){
