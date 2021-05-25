@@ -29,3 +29,6 @@ prompt_confirm "Rsync wavs?" && rsync -avz --exclude '*' --include '*/' --includ
 
 #prompt_confirm "Rsync flacs?" && rsync -avz  --exclude '*.zip' --exclude '*.py'  --exclude '*.sh' --exclude '\.*' ./ celesteh@opal9.opalstack.com:/home/celesteh/apps/vc_infinity/processed_audio/
 prompt_confirm "Rsync flacs?" && rsync -avz --exclude '*' --include '*/' --include '*.flac' ./ celesteh@opal9.opalstack.com:/home/celesteh/apps/vc_infinity/processed_audio/
+
+
+prompt_confirm "Update db?" && ssh celesteh@opal9.opalstack.com "cd apps/vc_infinity/upload/ && php80 import_audio.php"

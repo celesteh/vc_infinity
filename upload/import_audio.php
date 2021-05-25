@@ -45,8 +45,84 @@ $wav_dir = "../wavs/";
 $flac_dir = "../processed_audio/";
 
 $flacless = array();
+$duplicates = array();
 
 $error = "";
+
+function accept($accedpted_id){
+    set_accepted(1,$accedpted_id);
+}
+
+
+function reject($rejected_id){
+    set_accepted(0, $rejected_id;)
+}
+
+
+function set_accepted($accepted, $id)
+
+    $sa_sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
+    if($astmt = $pdo->prepare($sa_sql)){
+        // Bind variables to the prepared statement as parameters
+        $astmt->bindParam(":accept", $param_accept, PDO::PARAM_INT);
+        $astmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+        
+        // Set parameters
+        $param_accept = $accepted;
+        $param_id = (int)$id;
+        //$param_id = $_SESSION["id"];
+        
+        // Attempt to execute the prepared statement
+        if($astmt->execute()){
+            
+            echo "added to the database and marked as accepted\n";
+        } else{
+            echo _("Oops! Something went wrong. Please try again later.");
+        }
+
+        // Close statement
+        unset($astmt);
+    } else {
+
+        //$error = _("Upload failed");
+    }
+
+}
+
+
+function get_ids($original_id){
+
+    $ids = array();
+
+    $sql = "SELECT audio_id FROM edited_audio WHERE original_id = :id";
+    //echo "$sql\n";
+    
+    
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+        
+        // Set parameters
+        $param_id = $id;
+        
+        // Attempt to execute the prepared statement
+        if($stmt->execute()){
+            if($stmt->rowCount() >= 1){
+                $exists = true;
+                // does flac version of the file exist, though?
+                $flac_in_db = false;
+                while($row = $stmt->fetch()){
+                    $ids[] = $row["audio_id"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+    return $ids;
+
+}
+
+
 
 
 if ($handle = opendir($wav_dir)) {
@@ -68,10 +144,10 @@ if ($handle = opendir($wav_dir)) {
                                 $new_id = -1;
                                 
 
-                                echo "<li>$name\n";
+                                //echo "<li>$name\n";
                                 
                                 $rejected = str_ends_with($name, 'REJECT'); 
-                                echo "$rejected\n";
+                                //echo "$rejected\n";
                                 // check if the file is a reject
                                 if (! $rejected) {
                                     echo "not rejected";
@@ -79,7 +155,14 @@ if ($handle = opendir($wav_dir)) {
                                     // check if the file is a duplicate
                                     if (str_contains($name, 'DUP')) {
                                         // If so, add it to an array of duplicates -- we'll get to them later
-                                        echo "duplicated\n";
+                                        //echo "duplicated\n";
+                                        // Parse the file name to find the duplication
+
+                                        list($prefix, $oldid) = explode("DUP",$name);
+
+                                        $duplicates[] = array($oldid, $id);
+                                        echo "<li>$name $oldid\n";
+
                                     } else {
                                         // check if the ID exists in the DB as a submitted file -
                                         $found = false;
@@ -113,11 +196,11 @@ if ($handle = opendir($wav_dir)) {
                                             unset($stmt);
                                         }
 
-                                        echo "found $found rejected $rejected\n";
+                                        //echo "found $found rejected $rejected\n";
 
                                         // check if a flac version exists of this file
                                         $flac_path = "$flac_dir/$file/$name.flac";
-                                        echo "flac file $flac_path\n";
+                                        //echo "flac file $flac_path\n";
 
                                         $flac_in_db = false;
 
@@ -128,7 +211,7 @@ if ($handle = opendir($wav_dir)) {
                                         if ($found && (! $rejected)){
                                             //$exists = true; //assume we're NOT going to add it
                                             $sql = "SELECT compressed_format, audio_filename FROM edited_audio WHERE original_id = :id";
-                                            echo "$sql\n";
+                                            //echo "$sql\n";
                                             
                                             
                                             if($stmt = $pdo->prepare($sql)){
@@ -149,7 +232,7 @@ if ($handle = opendir($wav_dir)) {
                                                             $wav = $row["audio_filename"];
                                                             if (isset($flac)){
                                                                 //$exists = true;
-                                                                echo "flac is $flac name is $name\n";
+                                                                //echo "flac is $flac name is $name\n";
                                                                 if ($flac == "$name.flac"){
                                                                     $exists = true;
                                                                     $flac_in_db = true;
@@ -172,7 +255,7 @@ if ($handle = opendir($wav_dir)) {
                                             }
                                             
                                         }
-                                        echo "flac_in_db $flac_in_db\n";
+                                        //echo "flac_in_db $flac_in_db\n";
                                         /*
                                         // if no flac version, and the wav isn't in the table, save the ID to an array and just add the wav
                                         // this really shouldn't happen
@@ -214,7 +297,7 @@ if ($handle = opendir($wav_dir)) {
                                                 
                                                 // if no record, add the file and the flac version to the DB
                                                 $sql = "INSERT INTO edited_audio (compressed_format, audio_filename, original_id) VALUES (:flac_file,  :wav_file, :id)";
-                                                echo "$sql\n";
+                                                //echo "$sql\n";
                                                 if($stmt = $pdo->prepare($sql)){
                                                     
                                                     // Bind variables to the prepared statement as parameters
@@ -235,36 +318,12 @@ if ($handle = opendir($wav_dir)) {
                                                         $new_id = $pdo->lastInsertId();
 
                                                         //header("location: submit.php?success=1");
-                                                        $sa_sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
-                                                        if($astmt = $pdo->prepare($sa_sql)){
-                                                            // Bind variables to the prepared statement as parameters
-                                                            $astmt->bindParam(":accept", $param_accept, PDO::PARAM_INT);
-                                                            $astmt->bindParam(":id", $param_id, PDO::PARAM_INT);
-                                                            
-                                                            // Set parameters
-                                                            $param_accept = 1; //accept
-                                                            $param_id = (int)$id;
-                                                            //$param_id = $_SESSION["id"];
-                                                            
-                                                            // Attempt to execute the prepared statement
-                                                            if($astmt->execute()){
-                                                                
-                                                                echo "added to the database and marked as accepted\n";
-                                                            } else{
-                                                                echo _("Oops! Something went wrong. Please try again later.");
-                                                            }
-                                                
-                                                            // Close statement
-                                                            unset($astmt);
-                                                        } else {
-
-                                                            //$error = _("Upload failed");
-                                                        }
+                                                        accept($id);
                                                     }
                                                     
-
+                                                    unset($stmt);
                                                 }
-                                                unset($stmt);
+                                                
                                                 
                                             }
                                             
@@ -284,6 +343,8 @@ if ($handle = opendir($wav_dir)) {
                                     }
                                     if ($new_id > -1) {
                                         foreach ($tags as $tag){
+                                            set_tag($tag, $new_id, $pdo);
+                                            /*
                                             $sql = "INSERT INTO tags (tag_shortcode, ed_audio_id) VALUES (:tag_code, :id)";
                                             if($stmt = $pdo->prepare($sql)){
                                                 // Bind variables to the prepared statement as parameters
@@ -304,6 +365,7 @@ if ($handle = opendir($wav_dir)) {
                                                     $error = _("Failed");
                                                 }
                                             }
+                                            */
                                         }
                                         
                                     }
@@ -311,6 +373,7 @@ if ($handle = opendir($wav_dir)) {
                                 } else {// is a reject
                                     //$sql = "UPDATE users SET u_password = :password WHERE userid = :id";
                                     // set the rejection flag
+                                    /*
                                     $sql = "UPDATE submitted_audio SET sa_accepted =:accept WHERE id = :id";
                                     if($stmt = $pdo->prepare($sql)){
                                         // Bind variables to the prepared statement as parameters
@@ -333,8 +396,11 @@ if ($handle = opendir($wav_dir)) {
                                         unset($stmt);
                                         echo "$sql UPDATE submitted_audio SET sa_accepted = $param_accept WHERE id = $param_id\n";
                                     }
+                                    */
+
+                                    reject($id);
                                     
-                                    echo "rejected\n";
+                                    //echo "rejected\n";
                                 }     
                             } // if not a dot file
                         } // if is_file()     
@@ -345,11 +411,51 @@ if ($handle = opendir($wav_dir)) {
                    
             
             } else {// if we're in a sub directory
-                echo "not a directory\n";
+                echo "<li>not a directory\n";
             }
         } // if not a .file
     } // while reading wav_dir
     closedir($handle);
+
+    // handle duplicates
+    foreach ($duplicates as $duplicate){
+        //$duplicates[] = array($oldid, $id);
+        $oldid = $duplicate[0];
+        $newid = $duplicate[1];
+
+        // get the edited audio id for the old id
+        $found = get_ids($oldid);
+
+        foreach ($found as $processed){
+
+            $sql = "INSERT INTO duplicates (o_id_a, o_id_b, ed_audio_id) VALUES (:old_id, :new_id, :edited_id)";
+            if($stmt = $pdo->prepare($sql)){
+                // Bind variables to the prepared statement as parameters
+                //stopped here
+                $stmt->bindParam(":old_id", $param_oldid, PDO::PARAM_STR);
+                $stmt->bindParam(":new_id", $param_newid, PDO::PARAM_STR);
+                $stmt->bindParam(":edited_id", $param_eddid, PDO::PARAM_STR);
+
+                $param_oldid = $oldid;
+                $param_newid = $newid;
+                $param_eddid = $processed;
+
+
+                if($stmt->execute()){
+                    // success!!
+
+                    //header("location: submit.php?success=1");
+                } else {
+
+                    $error = _("Failed");
+                }
+            }
+
+        }
+    }
+
+
+
 } else {// open wav dir
     echo "$wav_dir did not open\n";
 }

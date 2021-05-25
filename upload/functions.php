@@ -322,4 +322,32 @@ function verify_nonce(){
 }
 
 
+function set_tag($shortcode, $id, $pdo){
+
+    $sql = "INSERT INTO tags (tag_shortcode, ed_audio_id) VALUES (:tag_code, :id)";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        //stopped here
+        $stmt->bindParam(":tag_code", $param_tag, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+
+        $param_tag = $shortcode;
+        $param_id = $id;
+
+
+        if($stmt->execute()){
+            // success!!
+
+            //header("location: submit.php?success=1");
+        } else {
+
+            $error = _("Failed");
+        }
+
+        unset($stmt);
+    }
+    
+}
+
+
 ?>
