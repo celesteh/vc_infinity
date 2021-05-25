@@ -359,7 +359,7 @@ function get_tags($ed_id, $pdo){ // get tags for an id
     
     if($stmt = $pdo->prepare($sql)){        
         // Attempt to execute the prepared statement
-        $stmt->bindParam(":sed_id", $param_ed_id, PDO::PARAM_STR);
+        $stmt->bindParam(":ed_id", $param_ed_id, PDO::PARAM_STR);
 
         $param_ed_id = $ed_id;
         if($stmt->execute()){
