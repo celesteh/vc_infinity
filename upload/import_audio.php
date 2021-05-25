@@ -107,7 +107,7 @@ function get_ids($original_id){
         $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
         
         // Set parameters
-        $param_id = $id;
+        $param_id = $original_id;
         
         // Attempt to execute the prepared statement
         if($stmt->execute()){
