@@ -349,5 +349,112 @@ function set_tag($shortcode, $id, $pdo){
     
 }
 
+function get_tags($ed_id, $pdo){ // get tags for an id
+ 
+    $tags = array();
+
+    $sql = "SELECT tag_shortcode FROM tags WHERE ed_audio_id = :ed_id";
+    //echo "$sql\n";
+    
+    
+    if($stmt = $pdo->prepare($sql)){        
+        // Attempt to execute the prepared statement
+        $stmt->bindParam(":sed_id", $param_ed_id, PDO::PARAM_STR);
+
+        $param_ed_id = $ed_id;
+        if($stmt->execute()){
+            if($stmt->rowCount() >= 1){
+                while($row = $stmt->fetch()){
+                    $tags[] = $row["tag_shortcode"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+    return $tags;
+}
+
+
+function do_ed_query($oid, $pdo){ // look in the editted audio for an id
+
+    //e_id, wav, flac
+    $versions = array();
+
+    $sql = "SELECT audio_id, audio_filename, compressed_format FROM edited_audio WHERE original_id = :o_id";
+    //echo "$sql\n";
+    
+    
+    if($stmt = $pdo->prepare($sql)){        
+        // Attempt to execute the prepared statement
+        $stmt->bindParam(":o_id", $param_o_id, PDO::PARAM_STR);
+
+        $param_o_id = $oid;
+        if($stmt->execute()){
+            if($stmt->rowCount() >= 1){
+                while($row = $stmt->fetch()){
+                    $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"]];
+                }
+            }
+        }
+        unset($stmt);
+    }
+    return $versions;
+}
+
+
+
+
+
+function get_editted($oid, $pdo){ // look in edited audio and duplicates to chase down an id
+    
+    $versions = do_ed_query($oid, $pdo);
+    if (size_of($versions) < 1){
+
+        // check in duplicates
+        $sqls = "SELECT ed_audio_id FROM duplicates WHERE  o_id_b = :o_id";
+            //echo "$sql\n";
+            
+            
+        if($stmts = $pdo->prepare($sqls)){
+
+            $stmts->bindParam(":o_id", $param_o_id, PDO::PARAM_STR);
+                
+                // Set parameters
+            $param_o_id = $oid
+                
+            // Attempt to execute the prepared statement
+            if($stmts->execute()){
+                if($stmts->rowCount() < 1){
+                    while($row = $stmt->fetch()){
+                        $eid = $row["ed_audio_id"];
+
+                        // ok, get the data for the edited id
+                        $sql = "SELECT audio_id, audio_filename, compressed_format FROM edited_audio WHERE audio_id = :e_id";
+                        //echo "$sql\n";
+
+
+                        if($stmt = $pdo->prepare($sql)){        
+                        // Attempt to execute the prepared statement
+                            $stmt->bindParam(":e_id", $param_e_id, PDO::PARAM_STR);
+
+                            $param_e_id = $eid;
+                            if($stmt->execute()){
+                                if($stmt->rowCount() >= 1){
+                                    while($row = $stmt->fetch()){
+                                        $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"]];
+                                    }
+                                }
+                            }
+                            unset($stmt);
+                        }
+                    }
+                
+            }
+            unset($stmts);
+        }
+    }
+    return $versions;
+}
+
 
 ?>

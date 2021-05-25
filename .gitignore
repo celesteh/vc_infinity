@@ -14,6 +14,9 @@ wavs/*.flac
 wavs/*/*.flac
 soundscape_appraisal_enactive_cognition_fpsyg-09-01129.pdf
 
+#json files
+json/*.json
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/osx,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=osx,linux
