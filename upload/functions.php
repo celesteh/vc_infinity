@@ -408,7 +408,7 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
 function get_editted($oid, $pdo){ // look in edited audio and duplicates to chase down an id
     
     $versions = do_ed_query($oid, $pdo);
-    if (size_of($versions) < 1){
+    if (sizeof($versions) < 1){
 
         // check in duplicates
         $sqls = "SELECT ed_audio_id FROM duplicates WHERE  o_id_b = :o_id";
