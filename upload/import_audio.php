@@ -55,7 +55,7 @@ function accept($accedpted_id){
 
 
 function reject($rejected_id){
-    set_accepted(0, $rejected_id;)
+    set_accepted(0, $rejected_id);
 }
 
 
