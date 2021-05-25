@@ -443,16 +443,16 @@ if ($handle = opendir($wav_dir)) {
                 accept($newid);
 
                 // Bind variables to the prepared statement as parameters
-                $stmt->bindParam(":edited_id", $param_edited_id, PDO::PARAM_STR);
-                $stmt->bindParam(":o_new_id", $param_o_new_id, PDO::PARAM_STR);
+                $stmts->bindParam(":edited_id", $param_edited_id, PDO::PARAM_STR);
+                $stmts->bindParam(":o_new_id", $param_o_new_id, PDO::PARAM_STR);
                 
                 // Set parameters
                 $param_edited_id = $processed;
                 $param_o_new_id = $newid;
                 
                 // Attempt to execute the prepared statement
-                if($stmt->execute()){
-                    if($stmt->rowCount() < 1){
+                if($stmts->execute()){
+                    if($stmts->rowCount() < 1){
 
                         // if it's not already in the table, put it in
                         $sql = "INSERT INTO duplicates (o_id_a, o_id_b, ed_audio_id) VALUES (:old_id, :new_id, :edited_id)";
