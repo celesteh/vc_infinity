@@ -29,7 +29,7 @@ include_once "functions.php";
 // 1 get panels
 
 $panels = array();
-$sql = "SELECT page_num, page_id FROM score_pages WHERE page_scorecode = metaphysics";
+$sql = "SELECT page_num, page_id FROM score_pages WHERE page_scorecode = `metaphysics`";
     //echo "$sql\n";
     
     
