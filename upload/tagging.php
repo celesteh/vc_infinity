@@ -88,6 +88,11 @@ function allowDrop(ev) {
 //  ev.preventDefault();
 }
 
+function dragstart_handler(ev) {
+ console.log("dragStart");
+ ev.dataTransfer.setData("text", ev.target.id);
+}
+
 function drag(item) {
     //ev.dataTransfer.setData("text", ev.target.id);
     console.log("drag");
@@ -124,7 +129,7 @@ function make_tag_list(){
         //li.addEventListener("drop", function (evt) {
             //
         //});
-        li.ondragstart=drag(li);
+        li.ondragstart=dragstart_handler(event);
 
         ul.appendChild(li);
         li.innerHTML += key;
