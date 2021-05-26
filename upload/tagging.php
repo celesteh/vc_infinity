@@ -30,12 +30,12 @@ $correct_nonce = verify_nonce();
 $_SESSION['nonce'] = set_nonce();
     //}
 
-$edior = lazy_power_check($_SESSION["id"], $pdo, 60)
+$edior = lazy_power_check($_SESSION["id"], $pdo, 60);
 
 
 // get tags
 
-$tags = array();
+//$tags = array();
 
 $sql = "SELECT tag_shortcode, tag_text, tag_parent FROM `available_tags` WHERE tag_hidden = 0";
 if($stmt = $pdo->prepare($sql)){
@@ -49,7 +49,7 @@ if($stmt = $pdo->prepare($sql)){
             //$fhidden = $row["tag_hidden"];
 
             //array_push($tags, $fshortcode);
-            $text = $row["tag_text"];
+            $text = htmlspecialchars($row["tag_text"]);
             $shortcode = $row["tag_shortcode"];
             $tags[$text] = $shortcode;
         }
