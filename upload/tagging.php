@@ -33,6 +33,33 @@ $_SESSION['nonce'] = set_nonce();
 $edior = lazy_power_check($_SESSION["id"], $pdo, 60)
 
 
+// get tags
+
+$tags = array();
+
+$sql = "SELECT tag_shortcode, tag_text, tag_parent FROM `available_tags` WHERE tag_hidden = 0";
+if($stmt = $pdo->prepare($sql)){
+    if($stmt->execute()){
+        while($row = $stmt->fetch()){
+
+
+            //$fshortcode = htmlspecialchars($row["tag_shortcode"]);
+            //$ftext = htmlspecialchars($row["tag_text"]);
+            //$fparent  = htmlspecialchars($row["tag_parent"]);
+            //$fhidden = $row["tag_hidden"];
+
+            //array_push($tags, $fshortcode);
+            $text = $row["tag_text"];
+            $shortcode = $row["tag_shortcode"];
+            tags[$text] = $shortcode;
+        }
+    }
+
+    // Close statement
+    unset($stmt);
+}
+
+
 
 ?>
 
@@ -44,6 +71,30 @@ $edior = lazy_power_check($_SESSION["id"], $pdo, 60)
     <title>Tagging</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
+    <style>
+#target {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+</style>
+<script>
+//function allowDrop(ev) {
+//  ev.preventDefault();
+//}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+}
+</script>
+
 
 </head>
 <body>
@@ -53,11 +104,34 @@ $edior = lazy_power_check($_SESSION["id"], $pdo, 60)
 
     <?php include 'nav-menu.php';?>
     <div>
-    <h2>Coming Soon</h2>
-    <p>Tag your audio!</p>
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
     <div>
-    
+    <p>This is experimental dev code below</p>
+    <h3>Tags</h3>
+    <div id="tags"></div>
+		<script type="text/javascript">
+		//var names = ['vitosh','academy','dot','com'];
+        var ul = document.createElement('ul');
+		document.getElementById('tags').appendChild(ul);
+
+        var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+        $.each(words, function(key, value) {
+			var li = document.createElement('li');
+			ul.appendChild(li);
+			li.innerHTML += name;
+
+        });
+ 
+		</script>
+    </div>
+    <p>Drag the W3Schools image into the rectangle:</p>
+
+
+<div id="target" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+<br>
+<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
+
+
     </body>
 </html>

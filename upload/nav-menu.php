@@ -26,6 +26,7 @@ if ($powerlevel >= 80){
 }
 if ($powerlevel >= 60){
     echo '<li><a href="pages.php">Manage score</a></li>';
+    echo '<li><a href="tagging.php">Audio Tagging</a></li>';
 }
 if ($powerlevel >= 40) {
     echo '<li><a href="edit-audio.php">Edit Audio</a></li>';
@@ -34,7 +35,6 @@ if ($powerlevel >= 20) {
     echo '<li><a href="view-score.php">View Full Score</a></li>';
     echo '<li><a href="submit.php">Submit audio</a></li>';
     echo '<li><a href="user-audio.php">Audio Repository</a></li>';
-    echo '<li><a href="tagging.php">Audio Tagging</a></li>';
 }
 ?>
 <li><a href="prepare.html">How To</a></li>
