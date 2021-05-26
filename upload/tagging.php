@@ -93,11 +93,30 @@ function drop(ev) {
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
 }
+
+function make_tag_list(){
+    var ul = document.createElement('ul');
+    document.getElementById('tags').appendChild(ul);
+
+    var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+    //$.each(tags, function(key, value) {
+    var value;
+    Object.keys(tags).forEach((key) => {
+        value = tags[key];
+        console.log('stuff : ' + key + ", " + value);
+        var li = document.createElement('li');
+        ul.appendChild(li);
+        li.innerHTML += key;
+
+    });
+
+}
+
 </script>
 
 
 </head>
-<body>
+<body  onload="make_tag_list();">
     <div class="page-header">
         <h1><b>Audio Tagging</b></h1>
     </div>
@@ -110,24 +129,6 @@ function drop(ev) {
     <p>This is experimental dev code below</p>
     <h3>Tags</h3>
     <div id="tags"></div>
-		<script type="text/javascript">
-		//var names = ['vitosh','academy','dot','com'];
-        var ul = document.createElement('ul');
-		document.getElementById('tags').appendChild(ul);
-
-        var tags = <?php echo json_encode($tags) ?>;// don't use quotes
-        //$.each(tags, function(key, value) {
-        var value;
-        Object.keys(tags).forEach((key) => {
-            value = tags[key];
-            console.log('stuff : ' + key + ", " + value);
-			var li = document.createElement('li');
-			ul.appendChild(li);
-			li.innerHTML += key;
-
-        });
- 
-		</script>
     </div>
     <p>Drag the W3Schools image into the rectangle:</p>
 
