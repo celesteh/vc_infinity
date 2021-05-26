@@ -119,7 +119,7 @@ function drop(ev) {
         $.each(tags, function(key, value) {
 			var li = document.createElement('li');
 			ul.appendChild(li);
-			li.innerHTML += name;
+			li.innerHTML += key;
 
         });
  
