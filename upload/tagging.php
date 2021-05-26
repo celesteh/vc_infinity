@@ -93,12 +93,14 @@ function drag(ev) {
     dragee = ev.target;
 }
 
-function drop(ev) {
+function drop(ev, destination) {
     //ev.preventDefault();
     var key = dragee.id; //ev.dataTransfer.getData("text");
   
     //ev.target.appendChild(document.getElementById(data));
-    ev.target.innerHTML += key;
+    //ev.target.innerHTML += key;
+    var dest = document.getElementById(destination);
+    dest.innerHTML += key;
 }
 
 function make_tag_list(){
@@ -150,7 +152,7 @@ function make_tag_list(){
     </div>
     <h3>Target</h3>
     <table id="audiolist">
-        <tr id="tr1"><td>Sample 1</td><td id="row1" ondrop="drop(event)"></td></tr>
+        <tr id="tr1" ondrop="drop(event, 'row1')"><td>Sample 1</td><td id="row1" ></td></tr>
         <tr id="tr2"><td>Sample 1</td><td id="row2" ondrop="drop(event)"></td></tr>
     </table>
     <p>Drag the W3Schools image into the rectangle:</p>
