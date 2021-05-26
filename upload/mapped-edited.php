@@ -177,7 +177,7 @@ EOL;
 
     foreach ($json_arr as $record){
 
-        //$json_contents[] = [$x, $y, $wav, $flac, $meta, $tags];
+        //$json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags];
 
         $x = $record[0];
         $y = $record[1];
@@ -189,7 +189,7 @@ EOL;
 
 
 
-        $audio ="../wavs/" . $record[2];
+        $audio ="../wavs/" . $record[2] . "/".  $record[3];
 
         echo <<<EOL
             <area class="snippet" shape="circle" coords="$scalex,$scaley,5" href="$audio">\n

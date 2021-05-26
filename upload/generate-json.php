@@ -96,13 +96,14 @@ foreach ($panels as $panel) {
             $e_id = $ver[0]; 
             $wav = $ver[1]; 
             $flac = $ver[2];
+            $dir = $ver[3]
     
             $tags = get_tags($e_id, $pdo);
 
             // metadata is not yet online
             $meta = array();
 
-            $json_contents[] = [$x, $y, $wav, $flac, $meta, $tags];
+            $json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags];
         }
     }
 

@@ -392,7 +392,7 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
         if($stmt->execute()){
             if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                    $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"]];
+                    $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $oid];
                 }
             }
         }
@@ -411,7 +411,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
     if (sizeof($versions) < 1){
 
         // check in duplicates
-        $sqls = "SELECT ed_audio_id FROM duplicates WHERE  o_id_b = :o_id";
+        $sqls = "SELECT ed_audio_id, o_id_a FROM duplicates WHERE  o_id_b = :o_id";
             //echo "$sql\n";
             
             
@@ -427,6 +427,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                 if($stmts->rowCount() < 1){
                     while($row = $stmt->fetch()){
                         $eid = $row["ed_audio_id"];
+                        $o_id_a = $row["o_id_a"];
 
                         // ok, get the data for the edited id
                         $sql = "SELECT audio_id, audio_filename, compressed_format FROM edited_audio WHERE audio_id = :e_id";
@@ -441,7 +442,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                             if($stmt->execute()){
                                 if($stmt->rowCount() >= 1){
                                     while($row = $stmt->fetch()){
-                                        $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"]];
+                                        $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a];
                                     }
                                 }
                             }
