@@ -91,9 +91,11 @@ function allowDrop(ev) {
 function drag(ev) {
     //ev.dataTransfer.setData("text", ev.target.id);
     dragee = ev.target;
+    console.log("picked up" + dragee.id);
 }
 
 function drop(ev, destination) {
+    console.log("dropping" + dragee.id);
     //ev.preventDefault();
     var key = dragee.id; //ev.dataTransfer.getData("text");
   
@@ -101,6 +103,7 @@ function drop(ev, destination) {
     //ev.target.innerHTML += key;
     var dest = document.getElementById(destination);
     dest.innerHTML += key;
+    console.log("onto" + destination);
 }
 
 function make_tag_list(){
@@ -114,7 +117,7 @@ function make_tag_list(){
     var value;
     Object.keys(tags).forEach((key) => {
         value = tags[key];
-        console.log('stuff : ' + key + ", " + value);
+        //console.log('stuff : ' + key + ", " + value);
         var li = document.createElement('li');
         li.draggable = true;
         //li.addEventListener("drop", function (evt) {
