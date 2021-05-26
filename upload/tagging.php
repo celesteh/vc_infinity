@@ -95,8 +95,10 @@ function drop(ev) {
 }
 
 function make_tag_list(){
-    var ul = document.createElement('ul');
-    document.getElementById('tags').appendChild(ul);
+    //var ul = document.createElement('ul');
+    //document.getElementById('tags').appendChild(ul);
+
+    var ul = document.getElementById("taglist");
 
     var tags = <?php echo json_encode($tags) ?>;// don't use quotes
     //$.each(tags, function(key, value) {
@@ -105,6 +107,7 @@ function make_tag_list(){
         value = tags[key];
         console.log('stuff : ' + key + ", " + value);
         var li = document.createElement('li');
+        li.draggable = true;
         ul.appendChild(li);
         li.innerHTML += key;
 
@@ -129,6 +132,8 @@ function make_tag_list(){
     <p>This is experimental dev code below</p>
     <h3>Tags</h3>
     <div id="tags"></div>
+        <ul id="taglist">
+        </ul>
     </div>
     <p>Drag the W3Schools image into the rectangle:</p>
 
