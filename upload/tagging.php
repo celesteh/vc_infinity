@@ -82,21 +82,23 @@ if($stmt = $pdo->prepare($sql)){
 <script>
 
 var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+var dragee;
 
 function allowDrop(ev) {
 //  ev.preventDefault();
 }
 
 function drag(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+    //ev.dataTransfer.setData("text", ev.target.id);
+    dragee = ev.target;
 }
 
 function drop(ev) {
-  //ev.preventDefault();
-  var key = ev.dataTransfer.getData("text");
+    //ev.preventDefault();
+    var key = dragee.id; //ev.dataTransfer.getData("text");
   
-  //ev.target.appendChild(document.getElementById(data));
-  ev.target.innerHTML += key;
+    //ev.target.appendChild(document.getElementById(data));
+    ev.target.innerHTML += key;
 }
 
 function make_tag_list(){
@@ -148,8 +150,8 @@ function make_tag_list(){
     </div>
     <h3>Target</h3>
     <table id="audiolist">
-        <tr id="tr1"><td>Sample 1</td><td id="row1"></td></tr>
-        <tr id="tr2"><td>Sample 1</td><td id="row2"></td></tr>
+        <tr id="tr1"><td>Sample 1</td><td id="row1" ondrop="drop(event)"></td></tr>
+        <tr id="tr2"><td>Sample 1</td><td id="row2" ondrop="drop(event)"></td></tr>
     </table>
     <p>Drag the W3Schools image into the rectangle:</p>
 
