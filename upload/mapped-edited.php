@@ -150,7 +150,7 @@ if (! $selected) {
                     "id" => $id,
                 );
 
-                $url = "mapped-audio.php?" . http_build_query($data);
+                $url = htmlspecialchars($_SERVER["PHP_SELF"]) . "?" . http_build_query($data);
 
                 echo<<<EOL
 <div class="scroller score-gallery">
