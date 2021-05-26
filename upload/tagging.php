@@ -51,7 +51,7 @@ if($stmt = $pdo->prepare($sql)){
             //array_push($tags, $fshortcode);
             $text = $row["tag_text"];
             $shortcode = $row["tag_shortcode"];
-            tags[$text] = $shortcode;
+            $tags[$text] = $shortcode;
         }
     }
 
