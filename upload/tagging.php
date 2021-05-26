@@ -93,8 +93,10 @@ function drag(ev) {
 
 function drop(ev) {
   //ev.preventDefault();
-  var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+  var key = ev.dataTransfer.getData("text");
+  
+  //ev.target.appendChild(document.getElementById(data));
+  ev.target.innerHTML += key;
 }
 
 function make_tag_list(){
@@ -111,8 +113,14 @@ function make_tag_list(){
         console.log('stuff : ' + key + ", " + value);
         var li = document.createElement('li');
         li.draggable = true;
+        //li.addEventListener("drop", function (evt) {
+            //
+        //});
+        li.ondragstart=drag(event);
+
         ul.appendChild(li);
         li.innerHTML += key;
+        li.id = key;
 
     });
 
@@ -138,6 +146,11 @@ function make_tag_list(){
         <ul id="taglist">
         </ul>
     </div>
+    <h3>Target</h3>
+    <table id="audiolist">
+        <tr id="tr1"><td>Sample 1</td><td id="row1"></td></tr>
+        <tr id="tr2"><td>Sample 1</td><td id="row2"></td></tr>
+    </table>
     <p>Drag the W3Schools image into the rectangle:</p>
 
 
