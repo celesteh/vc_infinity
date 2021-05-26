@@ -90,7 +90,7 @@ function allowDrop(ev) {
 
 function dragstart_handler(ev) {
  console.log("dragStart");
- ev.dataTransfer.setData("text", ev.target.id);
+ //ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function drag(item) {
@@ -130,8 +130,8 @@ function make_tag_list(){
             //
         //});
         //li.ondragstart="dragstart_handler(event)";
-        li.addEventListener("ondragstart", function(event) {
-            dragstart_handler(event);
+        li.addEventListener("ondragstart", function() {
+            dragstart_handler(li);
         });
 
 
