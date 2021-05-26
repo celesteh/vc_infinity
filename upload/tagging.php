@@ -131,9 +131,10 @@ function make_tag_list(){
         //});
         //li.ondragstart="dragstart_handler(event)";
         li.addEventListener("ondragstart", function() {
-            dragstart_handler(li);
+            dragstart_handler();
         });
 
+        li.addEventListener("click", function() {console.log("click")});
 
         ul.appendChild(li);
         li.innerHTML += key;
