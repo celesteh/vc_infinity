@@ -116,7 +116,7 @@ function drop(ev) {
 		document.getElementById('tags').appendChild(ul);
 
         var tags = <?php echo json_encode($tags) ?>;// don't use quotes
-        $.each(words, function(key, value) {
+        $.each(tags, function(key, value) {
 			var li = document.createElement('li');
 			ul.appendChild(li);
 			li.innerHTML += name;
