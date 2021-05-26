@@ -90,6 +90,7 @@ function allowDrop(ev) {
 
 function drag(ev) {
     //ev.dataTransfer.setData("text", ev.target.id);
+    console.log("drag");
     dragee = ev.target;
     console.log("picked up" + dragee.id);
 }
