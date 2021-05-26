@@ -96,7 +96,7 @@ foreach ($panels as $panel) {
             $e_id = $ver[0]; 
             $wav = $ver[1]; 
             $flac = $ver[2];
-            $dir = $ver[3]
+            $dir = $ver[3];
     
             $tags = get_tags($e_id, $pdo);
 
