@@ -80,6 +80,9 @@ if($stmt = $pdo->prepare($sql)){
 }
 </style>
 <script>
+
+var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+
 function allowDrop(ev) {
 //  ev.preventDefault();
 }
@@ -89,7 +92,7 @@ function drag(ev) {
 }
 
 function drop(ev) {
-  ev.preventDefault();
+  //ev.preventDefault();
   var data = ev.dataTransfer.getData("text");
   ev.target.appendChild(document.getElementById(data));
 }
@@ -100,7 +103,7 @@ function make_tag_list(){
 
     var ul = document.getElementById("taglist");
 
-    var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+   
     //$.each(tags, function(key, value) {
     var value;
     Object.keys(tags).forEach((key) => {
