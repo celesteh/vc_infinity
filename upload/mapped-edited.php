@@ -84,7 +84,7 @@ if ($selected){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Listen In Context</title>
+    <title>Editted Audio In Context</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
     <style>
@@ -118,7 +118,7 @@ position:relative;
 </head>
 <body>
     <div class="page-header">
-        <h1>Listen in Context</h1>
+        <h1>Editted Audio in Context</h1>
 </div>
 <?php include 'nav-menu.php';?>
 
