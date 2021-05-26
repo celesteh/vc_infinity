@@ -129,7 +129,7 @@ function make_tag_list(){
         //li.addEventListener("drop", function (evt) {
             //
         //});
-        li.ondragstart=dragstart_handler(event);
+        li.ondragstart="dragstart_handler(event)";
 
         ul.appendChild(li);
         li.innerHTML += key;
