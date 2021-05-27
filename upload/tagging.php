@@ -230,9 +230,9 @@ function make_tag_list(){
         <ul id="taglist">
         </ul>
         <td></tr>
-</div>
+        </div>
     </div>
-    <div>
+    
     <div>
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
