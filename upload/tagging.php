@@ -222,9 +222,6 @@ function make_tag_list(){
     </div>
 
     <?php include 'nav-menu.php';?>
-    <div>
-    <p><a href="manage-tags.php">Manage available tags</a></p>
-    </div>
     <div class="tagbox container" id = "tags">
         <table>
         <tr><th>Tags</th></tr>
@@ -235,6 +232,10 @@ function make_tag_list(){
 
     </div>
     <div>
+    <div>
+    <p><a href="manage-tags.php">Manage available tags</a></p>
+    </div>
+    
     
     <?php
         echo <<< EOT
