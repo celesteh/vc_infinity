@@ -227,6 +227,14 @@ function make_tag_list(){
     <div>
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
+    <div>
+    <div class="tagbox overflow">
+        <h3>Tags</h3>
+        <div id="tags">
+            <ul id="taglist">
+            </ul>
+        </div>
+    </div>
     <?php
         echo <<< EOT
         <ul class="pagination">
@@ -337,6 +345,6 @@ EOT;
 <br>
 <img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
     -->
-
+        </div>
     </body>
 </html>
