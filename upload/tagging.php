@@ -300,8 +300,8 @@ EOT;
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
                     $hidden = $hidden . $avail_tags[$tag] . ", ";
                 }
-                echo "<ul></td>";
-                echo $hidden . '">';
+                echo '</ul>'. $hidden . '"></td>';
+                
 
 
                 // end the row
