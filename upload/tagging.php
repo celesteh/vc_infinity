@@ -204,9 +204,10 @@ function make_tag_list(){
 
         li.addEventListener("click", function() {console.log("click")});
 
-        ul.appendChild(li);
         li.innerHTML += key;
         li.id = key;
+
+        ul.appendChild(li);
 
     });
 
