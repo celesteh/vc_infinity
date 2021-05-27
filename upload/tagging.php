@@ -151,7 +151,7 @@ if($stmt = $pdo->prepare($sql)){
 </style>
 <script>
 
-var tags = <?php echo json_encode($tags) ?>;// don't use quotes
+var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 var dragee;
 
 function allowDrop(ev) {
