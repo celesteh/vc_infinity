@@ -273,7 +273,7 @@ EOT;
                     }
 
                     $id = $key . "_" . $shortcode;
-                    echo '<td><select name="' . $id . '" id="' . $id '">';
+                    echo '<td><select name="' . $id . '" id="' . $id  . '">';
                     
                     for ($x = 1; $x <= 5; $x++) {
                         $selected = "";
