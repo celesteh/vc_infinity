@@ -378,7 +378,7 @@ function get_tags($ed_id, $pdo){ // get tags for an id
 function get_metadata($ed_id, $pdo){ // get tags for an id
  
 
-    $sql = "SELECT metadata_shortcode, metadata_value FROM tags WHERE ed_audio_id = :ed_id";
+    $sql = "SELECT metadata_shortcode, metadata_value FROM metadata WHERE ed_audio_id = :ed_id";
     //echo "$sql\n";
     
     
