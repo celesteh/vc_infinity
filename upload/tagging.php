@@ -218,7 +218,7 @@ function make_tag_list(){
 
 
 </head>
-<body> <! onload="make_tag_list();">
+<body onload="make_tag_list();">
     <div class="page-header">
         <h1><b>Audio Metadata</b></h1>
     </div>
@@ -228,7 +228,7 @@ function make_tag_list(){
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
     <div>
-    <div class="tagbox overflow">
+    <div class="tagbox">
         <h3>Tags</h3>
         <div id="tags">
             <ul id="taglist">
