@@ -32,6 +32,34 @@ $_SESSION['nonce'] = set_nonce();
 
 $edior = lazy_power_check($_SESSION["id"], $pdo, 60);
 
+// Navigation
+
+if (isset($_GET['pageno'])) {
+    $pageno = $_GET['pageno'];
+} else {
+    $pageno = 1;
+}
+$no_of_records_per_page = 10;
+
+$count = $pdo->query("select count(*) FROM `edited_audio` WHERE   `compressed_format` IS NOT NULL")->fetchColumn(); 
+$total_pages = ceil($count / $no_of_records_per_page);
+
+if ($pageno < 1) {
+    $pageno = 1;
+} elseif ($pageno > $total_pages) {
+    $pageno  = $total_pages;
+}
+
+
+$offset = ($pageno-1) * $no_of_records_per_page; 
+
+
+$self = htmlspecialchars($_SERVER["PHP_SELF"]);
+$first = "$self?pageno=1";
+if ($pageno <= 1) { $prev = "#"; $pclass = "disabled";} else { $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; }
+if($pageno >= $total_pages){  $next = '#'; $nclass = "disabled";}  else { $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; }
+$last = $self. "?pageno=". $total_pages; 
+
 
 // get tags
 
@@ -59,6 +87,46 @@ if($stmt = $pdo->prepare($sql)){
     unset($stmt);
 }
 
+$avail_metadata = array();
+// metadata_shortcode, metadata_text, metadata_low_label, metadata_high_label
+$sql = "SELECT metadata_shortcode, metadata_text, metadata_low_label, metadata_high_label FROM `available_metadata` WHERE 1";
+if($stmt = $pdo->prepare($sql)){
+    if($stmt->execute()){
+        while($row = $stmt->fetch()){
+
+
+            //$fshortcode = htmlspecialchars($row["tag_shortcode"]);
+            //$ftext = htmlspecialchars($row["tag_text"]);
+            //$fparent  = htmlspecialchars($row["tag_parent"]);
+            //$fhidden = $row["tag_hidden"];
+
+            //array_push($tags, $fshortcode);
+            $text = htmlspecialchars($row["metadata_text"]);
+            $shortcode = htmlspecialchars($$row["metadata_shortcode"]);
+            $low = htmlspecialchars($$row["metadata_low_label"]);
+            $high = htmlspecialchars($$row["metadata_low_label"]);
+            $avail_metadata[] = [$text, $shortcode, $low, $high]; 
+        }
+    }
+
+    // Close statement
+    unset($stmt);
+}
+
+// Audio files
+$sql = "SELECT audio_id, compressed_format, original_id  FROM `edited_audio` WHERE   `compressed_format` IS NOT NULL) LIMIT $offset, $no_of_records_per_page"; 
+if($stmt = $pdo->prepare($sql)){
+    if($stmt->execute()){
+        while($row = $stmt->fetch()){
+            $audio_id = $row["audio_id"];
+            // tags & metdata
+            $tags = get_tags($audio_id, $pdo);
+            $metadata = get_metadata($audio_id, $pdo);
+            $audio[$audio_id] = [$row["original_id"], $row["compressed_format"], $tags, $metadata];
+        }
+    }
+    unset($stmt);
+}
 
 
 ?>
@@ -68,7 +136,8 @@ if($stmt = $pdo->prepare($sql)){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Tagging</title>
+    <title>Metadata</title>
+    <link rel="stylesheet" href="range.css">
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
     <style>
@@ -148,15 +217,93 @@ function make_tag_list(){
 
 
 </head>
-<body  onload="make_tag_list();">
+<body> <! onload="make_tag_list();">
     <div class="page-header">
-        <h1><b>Audio Tagging</b></h1>
+        <h1><b>Audio Metadata</b></h1>
     </div>
 
     <?php include 'nav-menu.php';?>
     <div>
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
+    <?php
+        echo <<< EOT
+        <ul class="pagination">
+            <li><a href="$first">First</a></li>
+            <li class="$pclass"><a href="$prev">Prev</a></li>
+            <li class ="$nclass"><a href="$next">Next</a></li>
+            <li><a href="$last">Last</a></li>
+        </ul>
+EOT;
+    ?>
+    <div class="container">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <div class = "overflow">
+        <table>
+
+            <?php
+            echo "<tr><th>Audio</th>"; 
+            foreach($avail_metadata as $datum){
+                //$avail_metadata[] = [$text, $shortcode, $low, $high];
+                echo "<th>" . $datum[0] . " (" . $datum[2] . " - " .  $datum[3] . ")</th>";
+            }
+            echo "<th>Tags</th></tr>\n";
+
+            foreach ($audio as $key => $values){
+                //echo "Key is: ".$key.", "."Value is: ".$val;
+                //echo "<br>";
+                //$audio[$audio_id] = [$row["original_id"], $row["compressed_format"], $tags, $metadata];
+                $dir = $values[0];
+                $file = $values[1];
+                $local = "../processed_audio/$dir/$file";
+
+                $metadata = $values[3];
+
+                // first column, the ouput:
+                echo "<tr><td><audio controls="controls" src="'.$local.'" type="audio/flac" /></td>";
+
+                // next n columns - the scores
+                foreach($avail_metadata as $datum){
+                    $shortcode = $datum[1];
+                    unset($score);
+
+                    if (isset($metadata)) {
+                        $score = $metadata[$shortcode];
+                    }
+
+                    $id = $key . "_" . $shortcode;
+                    echo"<td><select name=\"" . $id . "\" id=\"" . $id "\">";
+                    
+                    for ($x = 1; $x <= 5; $x++) {
+                        $selected = "";
+                        if (isset($score)){
+                            if ($score == $x){
+                                $selected = "selected";
+                            }
+                        }
+                        echo '<option value="' . $x . '" ' . $selected . ">" . $x . '</option>\n'; 
+                    }
+                    echo "</select></td>";
+                }
+
+                // last cloumn, tags
+                echo "<td> </td>";
+
+
+                // end the row
+                echo "</tr>\n";
+            }
+
+            //<div class="range-slider">
+            //<input class="range-slider__range" type="range" value="3" min="1" max="5">
+            //<span class="range-slider__value">3</span>
+            //</div>
+            ?>
+        </table>
+    </div>
+
+
+    <!--
     <div>
     <p>This is experimental dev code below</p>
     <h3>Tags</h3>
@@ -175,7 +322,7 @@ function make_tag_list(){
 <div id="target" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
 <br>
 <img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
-
+    -->
 
     </body>
 </html>

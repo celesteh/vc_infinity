@@ -375,6 +375,31 @@ function get_tags($ed_id, $pdo){ // get tags for an id
 }
 
 
+function get_metadata($ed_id, $pdo){ // get tags for an id
+ 
+
+    $sql = "SELECT metadata_shortcode, metadata_value FROM tags WHERE ed_audio_id = :ed_id";
+    //echo "$sql\n";
+    
+    
+    if($stmt = $pdo->prepare($sql)){        
+        // Attempt to execute the prepared statement
+        $stmt->bindParam(":ed_id", $param_ed_id, PDO::PARAM_STR);
+
+        $param_ed_id = $ed_id;
+        if($stmt->execute()){
+            if($stmt->rowCount() >= 1){
+                while($row = $stmt->fetch()){
+                    $metadata[$row["metadata_shortcode"]] = $row["metadata_value"];
+                }
+            }
+        }
+        unset($stmt);
+    }
+    return $metadata;
+}
+
+
 function do_ed_query($oid, $pdo){ // look in the editted audio for an id
 
     //e_id, wav, flac
