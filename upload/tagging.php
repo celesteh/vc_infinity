@@ -225,6 +225,15 @@ function make_tag_list(){
     <div>
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
+    <div class="tagbox container" id = "tags">
+        <table>
+        <tr><th>Tags</th></tr>
+        <tr><td>    
+        <ul id="taglist">
+        </ul>
+        <td></tr>
+
+    </div>
     <div>
     
     <?php
@@ -237,15 +246,7 @@ function make_tag_list(){
         </ul>
 EOT;
     ?>
-    <div class="tagbox container" id = "tags">
-        <table>
-        <tr><th>Tags</th></tr>
-        <tr><td>    
-        <ul id="taglist">
-        </ul>
-        <td></tr>
-
-    </div>
+    
     <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class = "overflow">
