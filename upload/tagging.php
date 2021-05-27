@@ -295,11 +295,13 @@ EOT;
 
                 // last cloumn, tags
                 echo "<td><ul>";
-
+                $hidden = '<input name="' . $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
+                    $hidden = $hidden . $avail_tags[$tag] . ", ";
                 }
                 echo "<ul></td>";
+                echo $hidden . '">';
 
 
                 // end the row
