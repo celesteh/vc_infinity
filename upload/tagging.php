@@ -115,7 +115,7 @@ if($stmt = $pdo->prepare($sql)){
 }
 
 // Audio files
-$sql = "SELECT audio_id, compressed_format, original_id  FROM `edited_audio` WHERE   `compressed_format` IS NOT NULL) LIMIT $offset, $no_of_records_per_page"; 
+$sql = "SELECT audio_id, compressed_format, original_id  FROM `edited_audio` WHERE   `compressed_format` IS NOT NULL LIMIT $offset, $no_of_records_per_page"; 
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         while($row = $stmt->fetch()){
