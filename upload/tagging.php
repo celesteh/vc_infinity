@@ -243,7 +243,7 @@ EOT;
         <table>
 
             <?php
-            echo "<tr><th>Audio</th>"; 
+            echo "<tr><th>ID</th><th>Audio</th>"; 
             foreach($avail_metadata as $datum){
                 //$avail_metadata[] = [$text, $shortcode, $low, $high];
                 echo "<th>" . $datum[0] . " (" . $datum[2] . " - " .  $datum[3] . ")</th>";
@@ -261,7 +261,7 @@ EOT;
                 $metadata = $values[3];
 
                 // first column, the ouput:
-                echo '<tr><td><audio controls="controls" src="'.$local.'" type="audio/flac" /></td>';
+                echo '<tr><td>' . $key . '</td><td><audio controls="controls" src="'.$local.'" type="audio/flac" /></td>';
 
                 // next n columns - the scores
                 foreach($avail_metadata as $datum){
