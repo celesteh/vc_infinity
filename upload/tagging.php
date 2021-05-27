@@ -6,6 +6,7 @@ include_once "config.php";
 include_once "functions.php";
  
 // Check if the user is logged in, if not then redirect him to login page
+
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
@@ -260,7 +261,7 @@ EOT;
                 $metadata = $values[3];
 
                 // first column, the ouput:
-                echo "<tr><td><audio controls="controls" src="'.$local.'" type="audio/flac" /></td>";
+                echo '<tr><td><audio controls="controls" src="'.$local.'" type="audio/flac" /></td>';
 
                 // next n columns - the scores
                 foreach($avail_metadata as $datum){
