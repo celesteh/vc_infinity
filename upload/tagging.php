@@ -241,16 +241,12 @@ EOT;
     ?>
     
 
-    <div class="tagbox">
-        <div class = "container" id = "tags">
-            <table>
-                <tr><th>Tags</th></tr>
-                <tr><td>    
-                    <ul id="taglist">
-                    </ul>
-                </td></tr>
-            </table>
-        </div>
+    <div class="tagbox" id="tags">
+        <!div class = "container" id = "tags">
+            <h3>Tags</h3>
+            <ul id="taglist">
+            </ul>
+         <!/div>
     </div>
 
 

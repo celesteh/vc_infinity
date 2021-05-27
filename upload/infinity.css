@@ -289,6 +289,11 @@ div.tagbox {
   /*background-color: green;*/
   width: 300px;
   /*border: 2px solid #4CAF50;*/
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+  margin: 20px;
+
 }
 
 /* Clear floats after the columns */
