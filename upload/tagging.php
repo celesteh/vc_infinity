@@ -66,7 +66,7 @@ $last = $self. "?pageno=". $total_pages;
 
 //$tags = array();
 
-$sql = "SELECT tag_shortcode, tag_text, tag_parent FROM `available_tags` WHERE tag_hidden = 0";
+$sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE 1";
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         while($row = $stmt->fetch()){
@@ -80,7 +80,7 @@ if($stmt = $pdo->prepare($sql)){
             //array_push($tags, $fshortcode);
             $text = htmlspecialchars($row["tag_text"]);
             $shortcode = $row["tag_shortcode"];
-            $tags[$text] = $shortcode;
+            $avail_tags[$shortcode] = $text;
         }
     }
 
@@ -258,6 +258,7 @@ EOT;
                 $file = $values[1];
                 $local = "../processed_audio/$dir/$file";
 
+                $tags = $values[2];
                 $metadata = $values[3];
 
                 // first column, the ouput:
@@ -293,7 +294,12 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo "<td> </td>";
+                echo "<td>";
+
+                foreach ($tags as $tag){
+                    echo $avail_tags[$tag] . ", ";
+                }
+                echo "</td>";
 
 
                 // end the row
