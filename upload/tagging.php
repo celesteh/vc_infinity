@@ -222,17 +222,7 @@ function make_tag_list(){
     </div>
 
     <?php include 'nav-menu.php';?>
-    <div class="tagbox">
-        <div class = "container" id = "tags">
-            <table>
-                <tr><th>Tags</th></tr>
-                <tr><td>    
-                    <ul id="taglist">
-                    </ul>
-                </td></tr>
-            </table>
-        </div>
-    </div>
+    
     
     <div>
     <p><a href="manage-tags.php">Manage available tags</a></p>
@@ -250,6 +240,20 @@ function make_tag_list(){
 EOT;
     ?>
     
+
+    <div class="tagbox">
+        <div class = "container" id = "tags">
+            <table>
+                <tr><th>Tags</th></tr>
+                <tr><td>    
+                    <ul id="taglist">
+                    </ul>
+                </td></tr>
+            </table>
+        </div>
+    </div>
+
+
     <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class = "overflow">
