@@ -285,7 +285,8 @@ div.tagbox {
   position: sticky;
   top: 0;
   right: 0;
-  background-color: green;
+  /*background-color: green;*/
+  width: 300px;
   border: 2px solid #4CAF50;
 }
 
