@@ -342,8 +342,12 @@ if ($handle = opendir($wav_dir)) {
                                     if (str_contains($name, 'REP')) {
                                         // repeats
                                         $tags[] = "rep";
-                                    } elseif (str_contains($name, 'REV')) {
+                                    } 
+                                    if (str_contains($name, 'REV')) {
                                         $tags[] = "rev";
+                                    }
+                                    if (str_contains($name, 'SLOW')) {
+                                        $tags[] = "slow";
                                     }
                                     if ($new_id > -1) {
                                         foreach ($tags as $tag){
