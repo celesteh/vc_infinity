@@ -274,6 +274,11 @@ EOT;
 
                     $id = $key . "_" . $shortcode;
                     echo '<td><select name="' . $id . '" id="' . $id  . '">';
+                    $selected = "";
+                    if (! isset($score)) {
+                        $selected = "selected";
+                    }
+                    echo '<option value="-1" ' . $selected . '> </option>\n';
                     
                     for ($x = 1; $x <= 5; $x++) {
                         $selected = "";
