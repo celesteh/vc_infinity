@@ -288,7 +288,7 @@ div.tagbox {
   float: right;
   /*background-color: green;*/
   width: 300px;
-  border: 2px solid #4CAF50;
+  /*border: 2px solid #4CAF50;*/
 }
 
 /* Clear floats after the columns */

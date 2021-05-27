@@ -228,13 +228,7 @@ function make_tag_list(){
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
     <div>
-    <div class="tagbox">
-        <h3>Tags</h3>
-        <div id="tags">
-            <ul id="taglist">
-            </ul>
-        </div>
-    </div>
+    
     <?php
         echo <<< EOT
         <ul class="pagination">
@@ -244,7 +238,13 @@ function make_tag_list(){
             <li><a href="$last">Last</a></li>
         </ul>
 EOT;
-    ?>
+    ?><div class="tagbox container">
+    <h3>Tags</h3>
+    <div id="tags">
+        <ul id="taglist">
+        </ul>
+    </div>
+</div>
     <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
         <div class = "overflow">
