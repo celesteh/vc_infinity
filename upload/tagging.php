@@ -224,12 +224,13 @@ function make_tag_list(){
     <?php include 'nav-menu.php';?>
     <div class="tagbox">
         <div class = "container" id = "tags">
-        <table>
-        <tr><th>Tags</th></tr>
-        <tr><td>    
-        <ul id="taglist">
-        </ul>
-        <td></tr>
+            <table>
+                <tr><th>Tags</th></tr>
+                <tr><td>    
+                    <ul id="taglist">
+                    </ul>
+                </td></tr>
+            </table>
         </div>
     </div>
     
