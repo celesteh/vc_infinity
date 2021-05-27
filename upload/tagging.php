@@ -294,12 +294,12 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo "<td>";
+                echo "<td><ul>";
 
                 foreach ($tags as $tag){
-                    echo $avail_tags[$tag] . ", ";
+                    echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
                 }
-                echo "</td>";
+                echo "<ul></td>";
 
 
                 // end the row
