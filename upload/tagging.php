@@ -103,9 +103,9 @@ if($stmt = $pdo->prepare($sql)){
 
             //array_push($tags, $fshortcode);
             $text = htmlspecialchars($row["metadata_text"]);
-            $shortcode = htmlspecialchars($$row["metadata_shortcode"]);
-            $low = htmlspecialchars($$row["metadata_low_label"]);
-            $high = htmlspecialchars($$row["metadata_low_label"]);
+            $shortcode = htmlspecialchars($row["metadata_shortcode"]);
+            $low = htmlspecialchars($row["metadata_low_label"]);
+            $high = htmlspecialchars($row["metadata_low_label"]);
             $avail_metadata[] = [$text, $shortcode, $low, $high]; 
         }
     }
