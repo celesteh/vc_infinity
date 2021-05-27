@@ -230,7 +230,7 @@ function make_tag_list(){
         <ul id="taglist">
         </ul>
         <td></tr>
-
+</div>
     </div>
     <div>
     <div>
