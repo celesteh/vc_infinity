@@ -296,7 +296,7 @@ div.tagbox {
 
 }
 
-td.bordered {
+.bordered {
   border: 2px solid #000;
 }
 
