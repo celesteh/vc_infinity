@@ -384,10 +384,10 @@ EOT;
     </div>
     <div class="row">
                 <div class="col-50l">&nbsp;</div><div class="col-50r">
-                <input type="submit" class="btn btn-primary" value="Submit">
-                <input type="submit" class="btn btn-primary" value="Submit and Previous">
-                <input type="submit" class="btn btn-primary" value="Submit and Next">
-                <input type="reset" class="btn btn-default" value="Reset">
+                <input type="submit" class="btn btn-primary" value="Submit and Next"> &nbsp;
+                <input type="submit" class="btn btn-primary" value="Submit"> &nbsp;
+                <input type="submit" class="btn btn-primary" value="Submit and Previous"> &nbsp;
+                <input type="reset" class="btn btn-default" value="Reset"> &nbsp;
             </div>
         </div>
         </form>
