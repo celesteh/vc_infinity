@@ -175,6 +175,7 @@ function drop_handler(ev) {
     // Add the item to the hidden input
     //id = "'. $key . '_input"
     input_key = audio_key + "_input";
+    console.log(input_key);
     input = document.getElementById(input_key);
     console.log(input.value);
     values = input.value.split(',');
