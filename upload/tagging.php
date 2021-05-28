@@ -152,7 +152,7 @@ if($stmt = $pdo->prepare($sql)){
 <script>
 
 var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
-var dragee;
+//var dragee;
 
 function allowDrop(ev) {
 //  ev.preventDefault();
@@ -171,7 +171,7 @@ function drop_handler(ev) {
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     audio_key = event.target.id;
-    ul = document.getElementById(audio_key + "_ul");
+    ul = document.getElementById(audio_key.concat("_ul"));
     console.log(ul.key);
     /*
     var id = ev.target.id;
