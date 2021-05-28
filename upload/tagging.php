@@ -186,7 +186,7 @@ function drop_handler(ev) {
     li.id = audio_key + '_' + tag_key;
 
     li.addEventListener("dragstart", dragstart_handler);
-    li.addEventListener("click", function() {console.log("click")});
+    //li.addEventListener("click", function() {console.log("click")});
 
     ul.appendChild(li);
     /*
@@ -230,7 +230,7 @@ function make_tag_list(){
         //li.ondragstart="dragstart_handler(event)";
   
         li.innerHTML += value;
-        li.id = key +;
+        li.id = key;
 
         li.addEventListener("dragstart", dragstart_handler);
         li.addEventListener("click", function() {console.log("click")});
