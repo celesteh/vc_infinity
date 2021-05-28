@@ -296,6 +296,10 @@ div.tagbox {
 
 }
 
+td.bordered {
+  border: 2px solid #000;
+}
+
 /* Clear floats after the columns */
 /*
 .row:after {

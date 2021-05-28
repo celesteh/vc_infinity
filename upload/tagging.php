@@ -167,15 +167,19 @@ function dragstart_handler(ev) {
 
 function drop_handler(ev) {
     console.log("drop_handler");
-    //ev.preventDefault();
+    ev.preventDefault();
+    var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
-    //const data = ev.dataTransfer.getData("text/plain");
+    const data = ev.dataTransfer.getData("text/plain");
+    var li = document.createElement('li');
+    li.innerHTML += tags[data];
+    li.id = data + "_li";
     ////ev.target.appendChild(document.getElementById(data));
     //var li = document.getElementById(data);
     ////var id = li.id;
     ////ul = ev.target.getElements("ul");
-    //var ul = document.getElementById(data + "_input" );
-    //ul.appendChild(li);
+    var ul = document.getElementById(data + "_input" );
+    ul.appendChild(li);
 }
 
 function drag(item) {
