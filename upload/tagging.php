@@ -166,7 +166,7 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
-    var tag_key, audio_key, ul_key, ul;
+    var tag_key, audio_key, ul_key, ul, li;
     console.log("drop_handler");
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
@@ -174,7 +174,21 @@ function drop_handler(ev) {
     ul_key = audio_key.concat("_ul");
     console.log(ul_key);
     ul = document.getElementById(ul_key);
-    console.log(ul.key);
+    console.log(ul.id);
+    li = document.createElement('li');
+    li.draggable = true;
+        //li.addEventListener("drop", function (evt) {
+            //
+        //});
+        //li.ondragstart="dragstart_handler(event)";
+  
+    li.innerHTML += tags[tag_key];
+    li.id = audio_key + '_' + tag_key;
+
+    li.addEventListener("dragstart", dragstart_handler);
+    li.addEventListener("click", function() {console.log("click")});
+
+    ul.appendChild(li);
     /*
     var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
@@ -216,7 +230,7 @@ function make_tag_list(){
         //li.ondragstart="dragstart_handler(event)";
   
         li.innerHTML += value;
-        li.id = key;
+        li.id = key +;
 
         li.addEventListener("dragstart", dragstart_handler);
         li.addEventListener("click", function() {console.log("click")});
@@ -325,7 +339,7 @@ EOT;
                 echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="' . $key. '_ul"> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
                 foreach ($tags as $tag){
-                    echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
+                    echo '<li draggable="true" id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>";
                     $hidden = $hidden . $avail_tags[$tag] . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
