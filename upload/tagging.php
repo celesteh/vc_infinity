@@ -166,12 +166,13 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
-    var tag_key, audio_key;
+    var tag_key, audio_key, ul;
     console.log("drop_handler");
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     audio_key = event.target.id;
-    console.log(audio_key);
+    ul = document.getElementByID(audio_key + "_ul");
+    console.log(ul.key);
     /*
     var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
