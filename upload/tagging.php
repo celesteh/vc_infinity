@@ -170,9 +170,9 @@ function drop_handler(event) {
     console.log("drop_handler");
     event.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
-    console.log(tag_key);
+    //console.log(tag_key);
     audio_key = event.target.id;
-    audio_key = audio_key.split("_")[0];
+    audio_key = audio_key.split("_")[0]; //This line really shouldn't be necessary and yet it is
     console.log(audio_key);
 
     // Add the item to the hidden input
@@ -180,9 +180,9 @@ function drop_handler(event) {
     input_key = audio_key + "_tags";
     console.log(input_key);
     input = document.getElementById(input_key);
-    console.log(input.value);
+    //console.log(input.value);
     values = input.value.split(', ');
-    console.log(values);
+    //console.log(values);
 
     if (values.indexOf(tag_key)< 0) { // This tag is not already present
         input.value += (tag_key + ", ");
@@ -191,9 +191,9 @@ function drop_handler(event) {
 
         // now add it to the visible list
         ul_key = audio_key.concat("_ul");
-        console.log(ul_key);
+        //console.log(ul_key);
         ul = document.getElementById(ul_key);
-        console.log(ul.id);
+        //console.log(ul.id);
         li = document.createElement('li');
         li.draggable = true;
         //li.addEventListener("drop", function (evt) {
@@ -277,6 +277,10 @@ function make_tag_list(){
     <p><a href="manage-tags.php">Manage available tags</a></p>
     </div>
     
+    <! debugging >
+    <pre>
+        <?php var_dump($_POST); ?>
+    </pre>
     
     <?php
         echo <<< EOT
@@ -301,6 +305,7 @@ EOT;
 
     <div class="container">
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+        <input type="hidden" name="pageno" id="pageno" value="<?php echo htmlspecialchars($pageno); ?>">
         <div class = "overflow">
         <table>
 
@@ -377,7 +382,13 @@ EOT;
             ?>
         </table>
     </div>
-
+    <div class="row">
+                <div class="col-50l">&nbsp;</div><div class="col-50r">
+                <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="reset" class="btn btn-default" value="Reset">
+            </div>
+        </div>
+        </form>
 
     <!--
     <div>
