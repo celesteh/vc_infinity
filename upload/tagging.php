@@ -175,7 +175,7 @@ function drop_handler(ev) {
     var id = li.id;
     //ul = ev.target.getElements("ul");
     var ul = document.getElementById(id + "_input" );
-    ul[0].appendChild(li);
+    ul.appendChild(li);
 }
 
 function drag(item) {
