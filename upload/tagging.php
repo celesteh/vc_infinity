@@ -165,7 +165,7 @@ function dragstart_handler(ev) {
  ev.dataTransfer.dropEffect = "copy";
 }
 
-function drop_handler(ev) {
+function drop_handler(event) {
     var tag_key, audio_key, ul_key, ul, li, input_key, input, values;
     console.log("drop_handler");
     ev.preventDefault();
