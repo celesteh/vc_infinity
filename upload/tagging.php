@@ -171,6 +171,7 @@ function drop_handler(event) {
     event.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     audio_key = event.target.id;
+    console.log(audio_key);
 
     // Add the item to the hidden input
     //id = "'. $key . '_input"
