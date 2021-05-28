@@ -166,29 +166,41 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
-    var tag_key, audio_key, ul_key, ul, li;
+    var tag_key, audio_key, ul_key, ul, li, input_key, input;
     console.log("drop_handler");
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     audio_key = event.target.id;
-    ul_key = audio_key.concat("_ul");
-    console.log(ul_key);
-    ul = document.getElementById(ul_key);
-    console.log(ul.id);
-    li = document.createElement('li');
-    li.draggable = true;
+
+    // Add the item to the hidden input
+    //id = "'. $key . '_input"
+    input_key = audio_key + "_input";
+    input = document.getElementById(input_key);
+    var values = input.value.split(',');
+
+    if (values.index_of(tag_key)< 0) { // This tag is not already present
+        input.value += (tag_key + ", ");
+
+        // now add it to the visible list
+        ul_key = audio_key.concat("_ul");
+        console.log(ul_key);
+        ul = document.getElementById(ul_key);
+        console.log(ul.id);
+        li = document.createElement('li');
+        li.draggable = true;
         //li.addEventListener("drop", function (evt) {
             //
         //});
         //li.ondragstart="dragstart_handler(event)";
   
-    li.innerHTML += tags[tag_key];
-    li.id = audio_key + '_' + tag_key;
+        li.innerHTML += tags[tag_key];
+        li.id = audio_key + '_' + tag_key;
 
-    li.addEventListener("dragstart", dragstart_handler);
-    //li.addEventListener("click", function() {console.log("click")});
+        li.addEventListener("dragstart", dragstart_handler);
+        //li.addEventListener("click", function() {console.log("click")});
 
-    ul.appendChild(li);
+        ul.appendChild(li);
+    }
     /*
     var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
