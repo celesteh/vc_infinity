@@ -167,15 +167,15 @@ function dragstart_handler(ev) {
 
 function drop_handler(ev) {
     console.log("drop_handler");
-    ev.preventDefault();
+    //ev.preventDefault();
     // Get the id of the target and add the moved element to the target's DOM
-    const data = ev.dataTransfer.getData("text/plain");
-    //ev.target.appendChild(document.getElementById(data));
-    var li = document.getElementById(data);
-    //var id = li.id;
-    //ul = ev.target.getElements("ul");
-    var ul = document.getElementById(data + "_input" );
-    ul.appendChild(li);
+    //const data = ev.dataTransfer.getData("text/plain");
+    ////ev.target.appendChild(document.getElementById(data));
+    //var li = document.getElementById(data);
+    ////var id = li.id;
+    ////ul = ev.target.getElements("ul");
+    //var ul = document.getElementById(data + "_input" );
+    //ul.appendChild(li);
 }
 
 function drag(item) {
@@ -216,7 +216,7 @@ function make_tag_list(){
         //});
         //li.ondragstart="dragstart_handler(event)";
   
-        li.innerHTML += key;
+        li.innerHTML += value;
         li.id = key;
 
         li.addEventListener("dragstart", dragstart_handler);
