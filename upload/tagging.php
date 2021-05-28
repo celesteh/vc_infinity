@@ -174,11 +174,11 @@ function drop_handler(ev) {
 
     // Add the item to the hidden input
     //id = "'. $key . '_input"
-    input_key = audio_key + "_input";
+    input_key = audio_key + "_tags";
     console.log(input_key);
     input = document.getElementById(input_key);
     console.log(input.value);
-    values = input.value.split(',');
+    values = input.value.split(', ');
     console.log(values);
 
     if (values.indexOf(tag_key)< 0) { // This tag is not already present
@@ -352,7 +352,7 @@ EOT;
 
                 // last cloumn, tags
                 echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="' . $key. '_ul"> ';
-                $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
+                $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true" id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>";
                     $hidden = $hidden . $tag . ", ";
