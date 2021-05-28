@@ -168,6 +168,9 @@ function dragstart_handler(ev) {
 function drop_handler(ev) {
     console.log("drop_handler");
     ev.preventDefault();
+    var tag_key = event.dataTransfer.getData("Text");
+    console.log(tag_key);
+    //var audio_key = event.target.id;
     /*
     var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
@@ -315,7 +318,7 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '_div ><ul> ';
+                echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="' . $key. '_ul"> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
