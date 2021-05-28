@@ -182,23 +182,8 @@ function drop_handler(ev) {
     ul.appendChild(li);
 }
 
-function drag(item) {
-    //ev.dataTransfer.setData("text", ev.target.id);
-    console.log("drag");
-    dragee = item;
-    console.log("picked up " + dragee.id);
-}
-
-function drop(destination) {
-    console.log("dropping" + dragee.id);
-    //ev.preventDefault();
-    var key = dragee.id; //ev.dataTransfer.getData("text");
-  
-    //ev.target.appendChild(document.getElementById(data));
-    //ev.target.innerHTML += key;
-    var dest = document.getElementById(destination);
-    dest.innerHTML += key;
-    console.log("onto" + destination);
+function on_hover(ev) {
+    console.log("hovering");
 }
 
 function make_tag_list(){
@@ -327,13 +312,13 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo '<td ondrop="drop_handler(event)" class="bordered" id="'. $key . '_td"><ul> ';
+                echo '<td><div  ondrop="drop_handler(event)" ondragover="hover(event)" class="bordered" id="'. $key . '_div ><ul> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
                     $hidden = $hidden . $avail_tags[$tag] . ", ";
                 }
-                echo '</ul>'. $hidden . '"></td>';
+                echo '</ul>'. $hidden . '"></div></td>';
                 
 
 
