@@ -166,7 +166,7 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
-    var tag_key, audio_key, ul_key, ul, li, input_key, input;
+    var tag_key, audio_key, ul_key, ul, li, input_key, input, values;
     console.log("drop_handler");
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
@@ -176,9 +176,9 @@ function drop_handler(ev) {
     //id = "'. $key . '_input"
     input_key = audio_key + "_input";
     input = document.getElementById(input_key);
-    var values = input.value.split(',');
+    values = input.value.split(',');
 
-    if (values.index_of(tag_key)< 0) { // This tag is not already present
+    if (values.indexOf(tag_key)< 0) { // This tag is not already present
         input.value += (tag_key + ", ");
 
         // now add it to the visible list
