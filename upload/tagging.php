@@ -170,6 +170,7 @@ function drop_handler(event) {
     console.log("drop_handler");
     event.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
+    console.log(tag_key);
     audio_key = event.target.id;
     console.log(audio_key);
 
