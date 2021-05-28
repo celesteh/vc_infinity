@@ -160,7 +160,7 @@ function allowDrop(ev) {
 
 function dragstart_handler(ev) {
  console.log("dragStart");
- dragee = item;
+ //dragee = item;
  ev.dataTransfer.setData("text", ev.target.id);
  ev.dataTransfer.dropEffect = "copy";
 }
@@ -170,6 +170,7 @@ function drop_handler(ev) {
  // Get the id of the target and add the moved element to the target's DOM
  const data = ev.dataTransfer.getData("text/plain");
  //ev.target.appendChild(document.getElementById(data));
+ li = document.getElementById(data);
  ul = ev.target.getElements("ul");
  ul[0].appendChild(li);
 }
