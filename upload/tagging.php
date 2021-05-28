@@ -172,9 +172,9 @@ function drop_handler(ev) {
     const data = ev.dataTransfer.getData("text/plain");
     //ev.target.appendChild(document.getElementById(data));
     var li = document.getElementById(data);
-    var id = li.id;
+    //var id = li.id;
     //ul = ev.target.getElements("ul");
-    var ul = document.getElementById(id + "_input" );
+    var ul = document.getElementById(data + "_input" );
     ul.appendChild(li);
 }
 
@@ -323,7 +323,7 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo '<td ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul> ';
+                echo '<td ondrop="drop_handler(event)" class="bordered" id="'. $key . '_td"><ul> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
