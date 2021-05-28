@@ -320,7 +320,7 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo "<td ondrop="drop_handler(event)"><ul>";
+                echo '<td ondrop="drop_handler(event)"><ul>';
                 $hidden = '<input name="' . $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
