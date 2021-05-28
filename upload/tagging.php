@@ -160,7 +160,18 @@ function allowDrop(ev) {
 
 function dragstart_handler(ev) {
  console.log("dragStart");
- //ev.dataTransfer.setData("text", ev.target.id);
+ dragee = item;
+ ev.dataTransfer.setData("text", ev.target.id);
+ ev.dataTransfer.dropEffect = "copy";
+}
+
+function drop_handler(ev) {
+ ev.preventDefault();
+ // Get the id of the target and add the moved element to the target's DOM
+ const data = ev.dataTransfer.getData("text/plain");
+ //ev.target.appendChild(document.getElementById(data));
+ ul = ev.target.getElements("ul");
+ ul[0].appendChild(li);
 }
 
 function drag(item) {
@@ -200,12 +211,12 @@ function make_tag_list(){
             //
         //});
         //li.ondragstart="dragstart_handler(event)";
-        li.addEventListener("ondragstart", dragstart_handler);
-
-        li.addEventListener("click", function() {console.log("click")});
-
+  
         li.innerHTML += key;
         li.id = key;
+
+        li.addEventListener("dragstart", dragstart_handler);
+        li.addEventListener("click", function() {console.log("click")});
 
         ul.appendChild(li);
 
@@ -308,7 +319,7 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo "<td><ul>";
+                echo "<td ondrop="drop_handler(event)"><ul>";
                 $hidden = '<input name="' . $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true">' . $avail_tags[$tag] . "</li>";
