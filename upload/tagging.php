@@ -186,6 +186,8 @@ function drop_handler(event) {
     if (values.indexOf(tag_key)< 0) { // This tag is not already present
         input.value += (tag_key + ", ");
 
+        console.log(input.id);
+
         // now add it to the visible list
         ul_key = audio_key.concat("_ul");
         console.log(ul_key);
@@ -201,7 +203,7 @@ function drop_handler(event) {
         li.innerHTML += tags[tag_key];
         li.id = audio_key + '_' + tag_key;
 
-        li.addEventListener("dragstart", dragstart_handler);
+        //li.addEventListener("dragstart", dragstart_handler);
         //li.addEventListener("click", function() {console.log("click")});
 
         ul.appendChild(li);
@@ -356,7 +358,7 @@ EOT;
                 echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="' . $key. '_ul"> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
-                    echo '<li draggable="true" id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>";
+                    echo '<li  id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>"; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
