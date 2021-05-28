@@ -66,7 +66,7 @@ $last = $self. "?pageno=". $total_pages;
 
 //$tags = array();
 
-$sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE 1";
+$sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE tag_hidden =0";
 if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         while($row = $stmt->fetch()){
