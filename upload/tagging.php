@@ -176,7 +176,9 @@ function drop_handler(ev) {
     //id = "'. $key . '_input"
     input_key = audio_key + "_input";
     input = document.getElementById(input_key);
+    console.log(input.value);
     values = input.value.split(',');
+    console.log(values);
 
     if (values.indexOf(tag_key)< 0) { // This tag is not already present
         input.value += (tag_key + ", ");
@@ -352,7 +354,7 @@ EOT;
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_input" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     echo '<li draggable="true" id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>";
-                    $hidden = $hidden . $avail_tags[$tag] . ", ";
+                    $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
                 
