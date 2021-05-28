@@ -166,9 +166,10 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
+    var tag_key, audio_key;
     console.log("drop_handler");
     ev.preventDefault();
-    var tag_key = event.dataTransfer.getData("Text");
+    tag_key = event.dataTransfer.getData("Text");
     console.log(tag_key);
     //var audio_key = event.target.id;
     /*
