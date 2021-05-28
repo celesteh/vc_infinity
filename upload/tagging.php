@@ -171,7 +171,7 @@ function drop_handler(ev) {
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     audio_key = event.target.id;
-    ul = document.getElementByID(audio_key + "_ul");
+    ul = document.getElementById(audio_key + "_ul");
     console.log(ul.key);
     /*
     var id = ev.target.id;
