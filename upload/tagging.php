@@ -170,8 +170,8 @@ function drop_handler(ev) {
     console.log("drop_handler");
     ev.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
-    console.log(tag_key);
-    //var audio_key = event.target.id;
+    audio_key = event.target.id;
+    console.log(audio_key);
     /*
     var id = ev.target.id;
     // Get the id of the target and add the moved element to the target's DOM
