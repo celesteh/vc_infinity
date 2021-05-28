@@ -167,18 +167,18 @@ function dragstart_handler(ev) {
 
 function drop_handler(event) {
     var tag_key, audio_key, ul_key, ul, li, input_key, input, values;
-    console.log("drop_handler");
+    //console.log("drop_handler");
     event.preventDefault();
     tag_key = event.dataTransfer.getData("Text");
     //console.log(tag_key);
     audio_key = event.target.id;
     audio_key = audio_key.split("_")[0]; //This line really shouldn't be necessary and yet it is
-    console.log(audio_key);
+    //console.log(audio_key);
 
     // Add the item to the hidden input
     //id = "'. $key . '_input"
     input_key = audio_key + "_tags";
-    console.log(input_key);
+    //console.log(input_key);
     input = document.getElementById(input_key);
     //console.log(input.value);
     values = input.value.split(', ');
@@ -187,7 +187,7 @@ function drop_handler(event) {
     if (values.indexOf(tag_key)< 0) { // This tag is not already present
         input.value += (tag_key + ", ");
 
-        console.log(input.id);
+        //console.log(input.id);
 
         // now add it to the visible list
         ul_key = audio_key.concat("_ul");
@@ -385,6 +385,8 @@ EOT;
     <div class="row">
                 <div class="col-50l">&nbsp;</div><div class="col-50r">
                 <input type="submit" class="btn btn-primary" value="Submit">
+                <input type="submit" class="btn btn-primary" value="Submit and Previous">
+                <input type="submit" class="btn btn-primary" value="Submit and Next">
                 <input type="reset" class="btn btn-default" value="Reset">
             </div>
         </div>
