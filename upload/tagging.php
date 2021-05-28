@@ -166,6 +166,7 @@ function dragstart_handler(ev) {
 }
 
 function drop_handler(ev) {
+    console.log("drop_handler");
  ev.preventDefault();
  // Get the id of the target and add the moved element to the target's DOM
  const data = ev.dataTransfer.getData("text/plain");
