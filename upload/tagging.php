@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
                                     $param_shortcode = $dtag;
                                     $param_audio_id = $audio_id;
-                                    $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                                    //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                                     unset($stmt);
                                 }
                             } else {
