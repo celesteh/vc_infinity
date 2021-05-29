@@ -381,6 +381,7 @@ function get_metadata($ed_id, $pdo){ // get tags for an id
     $sql = "SELECT metadata_shortcode, metadata_value FROM metadata WHERE ed_audio_id = :ed_id";
     //echo "$sql\n";
     
+    $metadata;
     
     if($stmt = $pdo->prepare($sql)){        
         // Attempt to execute the prepared statement
@@ -390,7 +391,8 @@ function get_metadata($ed_id, $pdo){ // get tags for an id
         if($stmt->execute()){
             if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                    $metadata[$row["metadata_shortcode"]] = $row["metadata_value"];
+                    $code = $row["metadata_shortcode"];
+                    $metadata[$code] = $row["metadata_value"];
                 }
             }
         }

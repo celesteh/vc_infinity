@@ -88,7 +88,7 @@ if($pageno >= $total_pages){
     $next = '#'; $nclass = "disabled";
     $nsclass = "btn-disabled";
 }  else { 
-    $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; $nsclass = "";
+    $next = $self.  "?pageno=".($pageno + 1); $nclass =""; $nsclass = "";
 }
 $last = $self. "?pageno=". $total_pages; 
 
@@ -525,6 +525,7 @@ EOT;
                     $selected = "";
                     if (! isset($score)) {
                         $selected = "selected";
+                        $score="";
                     }
                     echo '<option value="-1" ' . $selected . '>' . $score . '</option>\n';
                     
