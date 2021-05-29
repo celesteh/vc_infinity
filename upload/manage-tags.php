@@ -88,7 +88,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $text = trim($_POST["tag_text"]);
     if(empty($text)){
         $tag_text_err = "Please specify the visible version of this tag";
-    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\p{Pd}]/u', $text)) {
+    } elseif ( preg_match('/[^\p{L}\p{N}\p{M}\'\p{Pd}\ ]/u', $text)) {
 
         //! ctype_alnum($username) ) {
         $tag_text_err = _("Please use only visible characters for your tag.");
