@@ -96,7 +96,7 @@ $last = $self. "?pageno=". $total_pages;
 // Handle Post data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     foreach ($_POST as $key => $value){
-        list($audio_id, $shortcode) = split($key, "_");
+        list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
         if ((isset($shortcode)) && ($shortcode != "")){
             if ($shortcode == "tags"){
                 // handle tags
@@ -351,6 +351,7 @@ function drop_handler(event) {
   
         li.innerHTML += tags[tag_key] + "&nbsp";
         li.id = audio_key + '_' + tag_key;
+        li.classList.add("intable");
 
         //li.addEventListener("dragstart", dragstart_handler);
         //li.addEventListener("click", function() {console.log("click")});
@@ -397,7 +398,7 @@ function drop_handler(event) {
 }
 
 function on_hover(ev) {
-    console.log("hovering");
+    //console.log("hovering");
     ev.preventDefault();
 }
 
@@ -541,7 +542,7 @@ EOT;
                 $hidden = '<input name="' . $hiddenid . '" id = "'. $hiddenid . '" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     $liid = $key . '_' . $tag;
-                    echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
+                    echo '<li  class = "intable" id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
                     onclick="remove_by_id(\''.$liid .'\', \''. $ulid .'\', \''.$hiddenid .'\', \'' . $tag . '\');return false;">x</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
