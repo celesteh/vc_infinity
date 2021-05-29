@@ -105,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $hidden = isset($_POST['hidden_t']);
     
     // Check input errors before inserting in database
-    if(empty($username_err) && empty($realname_err) && empty($password_err) && empty($confirm_password_err) && empty($captcha_err) && empty($url_err)){
+    if(empty($shortcode_err) && empty($tag_text_err) ){
         
         
         // Prepare an insert statement
