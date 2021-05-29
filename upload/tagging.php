@@ -126,7 +126,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 // Any tags left in the post_tags list need to be added to the db
                 foreach($post_tags as $ptag){
-                    $sql = "INSERT INTO metadata (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
+                    $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
                     if($stmt = $pdo->prepare($sql)){
                         // Bind variables to the prepared statement as parameters
                         $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
@@ -271,10 +271,10 @@ var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 
 
 var removable_tag = function(li, ul, input_key, tag_key) {
-    console.log("removable_tag");
+    //console.log("removable_tag");
     return function remove_tag() {
         // do something here
-        console.log("remove_tag");
+        //console.log("remove_tag");
 
         var input = document.getElementById(input_key);
         //console.log(input.value);
@@ -296,7 +296,7 @@ var removable_tag = function(li, ul, input_key, tag_key) {
 function remove_by_id (li_id, ul_id, input_key, tag_key){
     var li = document.getElementById(li_id);
     var ul = document.getElementById(ul_id);
-    console.log("remove_by_id")
+    //console.log("remove_by_id")
     var func =  removable_tag(li, ul, input_key, tag_key);
     return func();
 }
@@ -307,7 +307,7 @@ function allowDrop(ev) {
 }
 
 function dragstart_handler(ev) {
- console.log("dragStart");
+ //console.log("dragStart");
  //dragee = item;
  ev.dataTransfer.setData("text", ev.target.id);
  ev.dataTransfer.dropEffect = "copy";
@@ -341,7 +341,7 @@ function drop_handler(event) {
         ul_key = audio_key.concat("_ul");
         //console.log(ul_key);
         ul = document.getElementById(ul_key);
-        console.log(ul.id);
+        //console.log(ul.id);
         li = document.createElement('li');
         //li.draggable = true;
         //li.addEventListener("drop", function (evt) {

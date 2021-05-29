@@ -302,14 +302,14 @@ div.tagbox {
   border: 2px solid #000;
 }
 
-.tagitem{
+li.tagitem{
   margin: 5px;
   padding: 10px;
   border: 1px solid #333;
   background: #eaeaea;
 }
 
-.tagheader{
+h3.tagheader{
   background-color: #23527c;
   color: white;
 }
