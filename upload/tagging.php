@@ -96,6 +96,8 @@ $last = $self. "?pageno=". $total_pages;
 // Handle Post data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     foreach ($_POST as $key => $value){
+        unset($audio_id);
+        unset($shortcode);
         list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
         if ((isset($shortcode)) && ($shortcode != "")){
             if ($shortcode == "tags"){
@@ -126,6 +128,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 // Any tags left in the post_tags list need to be added to the db
                 foreach($post_tags as $ptag){
+                    /*
                     $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
                     if($stmt = $pdo->prepare($sql)){
                         // Bind variables to the prepared statement as parameters
@@ -135,7 +138,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $param_audio_id = $audio_id;
                         $stmt->execute();
                         unset($stmt);
-                    }
+                    }*/
+                    //function set_tag($shortcode, $id, $pdo){
+                    set_tag($ptag, $audio_id, $pdo);
                 }
 
             } else { 

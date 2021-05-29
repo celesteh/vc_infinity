@@ -62,7 +62,7 @@ $upper = ucfirst($page_called);
 
         echo "<div>\n<h2>Active {$upper}s</h2>\n";
         echo "<p>Click on a {$page_called} to zoom in and upload audio.</p>\n</div>\n";
-        $sql = "SELECT page_img_file, page_id FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
+        $sql = "SELECT page_img_file, page_id, page_num FROM `score_pages` WHERE page_active = 1 ORDER BY page_num";
         if($stmt = $pdo->prepare($sql)){
             if($stmt->execute()){
                  while($fetch = $stmt->fetch()){
@@ -72,6 +72,7 @@ $upper = ucfirst($page_called);
                     $ratio = $width/$height;
                     $scaled = $ratio * 180;
                     $id = $fetch["page_id"];
+                    $num = $fetch["page_num"];
 
                     $data = array(
                         "id" => $id,
