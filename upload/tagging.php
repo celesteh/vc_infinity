@@ -111,42 +111,48 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // First go through db_tags
                     foreach($db_tags as $dtag){
-                        echo "db: " . $dtag . "\n";
-                        $found = array_search($dtag, $post_tags);
-                        if(! $found){
-                            // A tag has been removed
-                            $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
-                            if($stmt = $pdo->prepare($sql)){
-                                // Bind variables to the prepared statement as parameters
-                                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                                $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                                $param_shortcode = $dtag;
-                                $param_audio_id = $audio_id;
-                                $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
-                                unset($stmt);
+                        $dtag = trim($dtag);
+                        if (isset($dtag) && ($dtag != "")){
+                            echo "db: " . $dtag . "\n";
+                            $found = array_search($dtag, $post_tags);
+                            if(! $found){
+                                // A tag has been removed
+                                $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
+                                if($stmt = $pdo->prepare($sql)){
+                                    // Bind variables to the prepared statement as parameters
+                                    $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                                    $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                                    $param_shortcode = $dtag;
+                                    $param_audio_id = $audio_id;
+                                    $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                                    unset($stmt);
+                                }
+                            } else {
+                                // remove the item from the tag array
+                                unset($post_tags[$found]);
                             }
-                        } else {
-                            // remove the item from the tag array
-                            unset($post_tags[$found]);
                         }
                     }
 
                     // Any tags left in the post_tags list need to be added to the db
                     foreach($post_tags as $ptag){
-                        echo "post: " . $ptag . "\n";
-                        /*
-                        $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
-                        if($stmt = $pdo->prepare($sql)){
-                            // Bind variables to the prepared statement as parameters
-                            $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                            $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                            $param_shortcode = $ptag;
-                            $param_audio_id = $audio_id;
-                            $stmt->execute();
-                            unset($stmt);
-                        }*/
-                        //function set_tag($shortcode, $id, $pdo){
-                        set_tag($ptag, $audio_id, $pdo);
+                        $ptag = trim($ptag);
+                        if (isset($ptag) && ($ptag != "")){
+                            echo "post: " . $ptag . "\n";
+                            /*
+                            $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
+                            if($stmt = $pdo->prepare($sql)){
+                                // Bind variables to the prepared statement as parameters
+                                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                                $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                                $param_shortcode = $ptag;
+                                $param_audio_id = $audio_id;
+                                $stmt->execute();
+                                unset($stmt);
+                            }*/
+                            //function set_tag($shortcode, $id, $pdo){
+                            set_tag($ptag, $audio_id, $pdo);
+                        }
                     }
 
                 } else { 
