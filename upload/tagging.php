@@ -101,7 +101,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if ($shortcode == "tags"){
                 // handle tags
                 $db_tags = get_tags($audio_id, $pdo);
-                $post_tags = split($value, ", ");
+                $post_tags = explode(", ", $value);
 
                 // First go through db_tags
                 foreach($db_tags as $dtag){
