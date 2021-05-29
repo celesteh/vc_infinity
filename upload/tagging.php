@@ -471,11 +471,11 @@ function make_tag_list(){
     </div>
     
     <! debugging >
-    <!--
+    
     <pre>
         <?php var_dump($_POST); ?>
     </pre>
-    -->
+    
 
     <?php
         echo <<< EOT
