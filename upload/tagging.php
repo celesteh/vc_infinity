@@ -276,7 +276,7 @@ var removable_tag = function(li, ul, input_key) {
         // do something here
         console.log("remove_tag");
 
-        var input = = document.getElementById(input_key);
+        var input = document.getElementById(input_key);
         //console.log(input.value);
         values = input.value.split(', ');
         //console.log(values);
