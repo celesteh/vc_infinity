@@ -96,21 +96,59 @@ $last = $self. "?pageno=". $total_pages;
 // Handle Post data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     foreach ($_POST as $key => $value){
-        unset($audio_id);
-        unset($shortcode);
-        list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
-        if ((isset($shortcode)) && ($shortcode != "")){
-            if ($shortcode == "tags"){
-                // handle tags
-                $db_tags = get_tags($audio_id, $pdo);
-                $post_tags = explode(", ", $value);
+        if (isset($value) && ($value != "")){
+            unset($audio_id);
+            unset($shortcode);
+            list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
+            if ((isset($shortcode)) && ($shortcode != "")){
+                if ($shortcode == "tags"){
+                    // handle tags
+                    $db_tags = get_tags($audio_id, $pdo);
+                    $post_tags = explode(", ", $value);
 
-                // First go through db_tags
-                foreach($db_tags as $dtag){
-                    $found = array_search($dtag, $post_tags);
-                    if(! $found){
-                        // A tag has been removed
-                        $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
+                    // First go through db_tags
+                    foreach($db_tags as $dtag){
+                        $found = array_search($dtag, $post_tags);
+                        if(! $found){
+                            // A tag has been removed
+                            $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
+                            if($stmt = $pdo->prepare($sql)){
+                                // Bind variables to the prepared statement as parameters
+                                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                                $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                                $param_shortcode = $shortcode;
+                                $param_audio_id = $audio_id;
+                                $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                                unset($stmt);
+                            }
+                        } else {
+                            // remove the item from the tag array
+                            unset($post_tags[$found]);
+                        }
+                    }
+
+                    // Any tags left in the post_tags list need to be added to the db
+                    foreach($post_tags as $ptag){
+                        /*
+                        $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
+                        if($stmt = $pdo->prepare($sql)){
+                            // Bind variables to the prepared statement as parameters
+                            $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                            $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                            $param_shortcode = $ptag;
+                            $param_audio_id = $audio_id;
+                            $stmt->execute();
+                            unset($stmt);
+                        }*/
+                        //function set_tag($shortcode, $id, $pdo){
+                        set_tag($ptag, $audio_id, $pdo);
+                    }
+
+                } else { 
+                    // handle metadata
+                    if ($value == -1){
+                        // remove this metadata item
+                        $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
                         if($stmt = $pdo->prepare($sql)){
                             // Bind variables to the prepared statement as parameters
                             $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
@@ -121,57 +159,21 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             unset($stmt);
                         }
                     } else {
-                        // remove the item from the tag array
-                        unset($post_tags[$found]);
+                        // set this metadata item      
+                        $sql = "INSERT INTO metadata (metadata_shortcode, ed_audio_id, metadata_value) VALUES (:shortcode,  :audio_id, :score)";
+                        if($stmt = $pdo->prepare($sql)){
+                            // Bind variables to the prepared statement as parameters
+                            $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                            $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                            $stmt->bindParam(":score", $param_score, PDO::PARAM_INT);
+                            $param_shortcode = $shortcode;
+                            $param_audio_id = $audio_id;
+                            $param_score = (int) $value;
+                            $stmt->execute();
+                            unset($stmt);
+                        }
+                
                     }
-                }
-
-                // Any tags left in the post_tags list need to be added to the db
-                foreach($post_tags as $ptag){
-                    /*
-                    $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
-                    if($stmt = $pdo->prepare($sql)){
-                        // Bind variables to the prepared statement as parameters
-                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                        $param_shortcode = $ptag;
-                        $param_audio_id = $audio_id;
-                        $stmt->execute();
-                        unset($stmt);
-                    }*/
-                    //function set_tag($shortcode, $id, $pdo){
-                    set_tag($ptag, $audio_id, $pdo);
-                }
-
-            } else { 
-                // handle metadata
-                if ($value == -1){
-                    // remove this metadata item
-                    $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
-                    if($stmt = $pdo->prepare($sql)){
-                        // Bind variables to the prepared statement as parameters
-                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                        $param_shortcode = $shortcode;
-                        $param_audio_id = $audio_id;
-                        $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
-                        unset($stmt);
-                    }
-                } else {
-                    // set this metadata item      
-                    $sql = "INSERT INTO metadata (metadata_shortcode, ed_audio_id, metadata_value) VALUES (:shortcode,  :audio_id, :score)";
-                    if($stmt = $pdo->prepare($sql)){
-                        // Bind variables to the prepared statement as parameters
-                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                        $stmt->bindParam(":score", $param_score, PDO::PARAM_INT);
-                        $param_shortcode = $shortcode;
-                        $param_audio_id = $audio_id;
-                        $param_score = (int) $value;
-                        $stmt->execute();
-                        unset($stmt);
-                    }
-             
                 }
             }
         }
