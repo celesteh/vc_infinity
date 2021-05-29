@@ -289,7 +289,7 @@ var removable_tag = function(li, ul, input_key, tag_key) {
         input.value = values.join(", ");
 
         ul.removeChild(li);
-        return true;
+        return false; // dont' open a link
     }
 }
 
@@ -371,7 +371,7 @@ function drop_handler(event) {
         a.title = "Remove tag"; 
                     
         // Set the href property.
-        a.href = "https://www.geeksforgeeks.org";
+        //a.href = "https://www.geeksforgeeks.org";
 
         a.addEventListener("click", removable_tag(li, ul, input_key, tag_key));
                     
