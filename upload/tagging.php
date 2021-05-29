@@ -113,10 +113,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     foreach($db_tags as $dtag){
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
-                            echo "db: " . $dtag . "\n";
+                            //echo "db: " . $dtag . "\n";
                             $found = array_search($dtag, $post_tags);
                             if(! $found){
                                 // A tag has been removed
+                                echo "delete: " . $dtag . "\n";
+
                                 $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
                                 if($stmt = $pdo->prepare($sql)){
                                     // Bind variables to the prepared statement as parameters
@@ -138,7 +140,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     foreach($post_tags as $ptag){
                         $ptag = trim($ptag);
                         if (isset($ptag) && ($ptag != "")){
-                            echo "post: " . $ptag . "\n";
+                            //echo "post: " . $ptag . "\n";
                             /*
                             $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
                             if($stmt = $pdo->prepare($sql)){
