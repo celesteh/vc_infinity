@@ -34,13 +34,33 @@ $_SESSION['nonce'] = set_nonce();
 $edior = lazy_power_check($_SESSION["id"], $pdo, 60);
 
 // Navigation
+$no_of_records_per_page = 10;
+
+
+$next_submit = "Submit and Next";
+$prev_submit = "Submit and Previous";
+$stationary_submit = "Submit";
+
 
 if (isset($_GET['pageno'])) {
     $pageno = $_GET['pageno'];
+} elseif (isset ($_POST['pageno'])){
+    $pageno = $_POST['pageno'];
 } else {
     $pageno = 1;
 }
-$no_of_records_per_page = 10;
+
+if (isset $_POST['submit']){
+    $submit = $_POST['submit'];
+    if ($submit == $next_submit){
+        $pageno += 1;
+    } elseif ($submit == $prev_submit){
+        $pageno -= 1;
+    }
+}
+
+
+
 
 $count = $pdo->query("select count(*) FROM `edited_audio` WHERE   `compressed_format` IS NOT NULL")->fetchColumn(); 
 $total_pages = ceil($count / $no_of_records_per_page);
@@ -57,8 +77,19 @@ $offset = ($pageno-1) * $no_of_records_per_page;
 
 $self = htmlspecialchars($_SERVER["PHP_SELF"]);
 $first = "$self?pageno=1";
-if ($pageno <= 1) { $prev = "#"; $pclass = "disabled";} else { $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; }
-if($pageno >= $total_pages){  $next = '#'; $nclass = "disabled";}  else { $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; }
+if ($pageno <= 1) { 
+    $prev = "#"; $pclass = "disabled";
+    $psclass = "btn-disabled";
+} else { 
+    $prev = $self . "?pageno=".($pageno - 1); $pclass = ""; $psclass = "";
+}
+
+if($pageno >= $total_pages){  
+    $next = '#'; $nclass = "disabled";
+    $nsclass = "btn-disabled";
+}  else { 
+    $next = $self.  "?pageno=".($pageno + 1); $cnlass =""; $nsclass = "";
+}
 $last = $self. "?pageno=". $total_pages; 
 
 
@@ -384,9 +415,9 @@ EOT;
     </div>
     <div class="row">
                 <div class="col-50l">&nbsp;</div><div class="col-50r">
-                <input type="submit" class="btn btn-primary" name="submit" value="Submit and Next"> &nbsp;
-                <input type="submit" class="btn btn-default" name="submit" value="Submit"> &nbsp;
-                <input type="submit" class="btn btn-default" name="submit" value="Submit and Previous"> &nbsp;
+                <input type="submit" class="btn btn-primary <?php echo $nsclass ?>" name="submit" value="<?php echo $next_submit ?>"> &nbsp;
+                <input type="submit" class="btn btn-default" name="submit" value="<?php echo $stationary_submit ?>"> &nbsp;
+                <input type="submit" class="btn btn-default <?php echo $psclass ?>" name="submit" value="<?php echo $prev_submit ?>"> &nbsp;
                 <input type="reset" class="btn btn-default" value="Reset"> &nbsp;
             </div>
         </div>
