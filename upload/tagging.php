@@ -108,6 +108,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $post_tags = array_unique($post_tags);
                     $db_tags = array_unique($db_tags);
 
+                    $only_in_db = array_diff($db_tags, $post_tags);
+                    $only_in_post = array_diff($post_tags, $db_tags);
+
                     //echo $db_tags;
                     //echo $post_tags;
 
@@ -116,9 +119,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
                             //echo "db: " . $dtag . "\n";
-                            $found = array_search($dtag, $post_tags);
-                            if(! $found){
-                                // A tag has been removed
+                            // A tag has been removed
                                 echo "delete: " . $dtag .  " " . $key . " " . $value . "\n";
 
                                 $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
@@ -131,10 +132,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                                     unset($stmt);
                                 }
-                            } else {
-                                // remove the item from the tag array
-                                unset($post_tags[$found]);
-                            }
                         }
                     }
 
@@ -142,20 +139,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     foreach($post_tags as $ptag){
                         $ptag = trim($ptag);
                         if (isset($ptag) && ($ptag != "")){
-                            //echo "post: " . $ptag . "\n";
-                            /*
-                            $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
-                            if($stmt = $pdo->prepare($sql)){
-                                // Bind variables to the prepared statement as parameters
-                                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                                $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                                $param_shortcode = $ptag;
-                                $param_audio_id = $audio_id;
-                                $stmt->execute();
-                                unset($stmt);
-                            }*/
-                            //function set_tag($shortcode, $id, $pdo){
-                            set_tag($ptag, $audio_id, $pdo);
+                            echo "add: " . $ptag .  " " . $key . " " . $value . "\n";
+                            //function set_tag($shortcode, $id, $pdo)
+                            //set_tag($ptag, $audio_id, $pdo);
                         }
                     }
 
