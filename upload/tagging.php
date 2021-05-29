@@ -270,7 +270,7 @@ var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 
 
 
-var removable_tag = function(li, ul, input_key) {
+var removable_tag = function(li, ul, input_key, tag_key) {
     console.log("removable_tag");
     return function remove_tag() {
         // do something here
@@ -293,11 +293,11 @@ var removable_tag = function(li, ul, input_key) {
     }
 }
 
-function remove_by_id (li_id, ul_id, input_key){
+function remove_by_id (li_id, ul_id, input_key, tag_key){
     var li = document.getElementById(li_id);
     var ul = document.getElementById(ul_id);
     console.log("remove_by_id")
-    var func =  removable_tag(li, ul, input_key);
+    var func =  removable_tag(li, ul, input_key, tag_key);
     return func();
 }
 
@@ -373,7 +373,7 @@ function drop_handler(event) {
         // Set the href property.
         a.href = "https://www.geeksforgeeks.org";
 
-        a.addEventListener("click", removable_tag(li, ul, input_key));
+        a.addEventListener("click", removable_tag(li, ul, input_key, tag_key));
                     
         // Append the anchor element to the list item
         li.appendChild(a);
@@ -542,7 +542,7 @@ EOT;
                 foreach ($tags as $tag){
                     $liid = $key . '_' . $tag;
                     echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
-                    onclick="remove_by_id(\''.$liid .'\', \''. $ulid .'\', \''.$hiddenid .'\');return false;">x</a></li>'; // draggable="true"
+                    onclick="remove_by_id(\''.$liid .'\', \''. $ulid .'\', \''.$hiddenid .'\', \'' . $tag . '\');return false;">x</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
