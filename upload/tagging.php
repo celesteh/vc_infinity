@@ -50,7 +50,7 @@ if (isset($_GET['pageno'])) {
     $pageno = 1;
 }
 
-if (isset $_POST['submit']){
+if (isset($_POST['submit'])){
     $submit = $_POST['submit'];
     if ($submit == $next_submit){
         $pageno += 1;
