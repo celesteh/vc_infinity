@@ -117,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $found = array_search($dtag, $post_tags);
                             if(! $found){
                                 // A tag has been removed
-                                echo "delete: " . $dtag . "\n";
+                                echo "delete: " . $dtag .  " " . $key . " " . $value . "\n";
 
                                 $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
                                 if($stmt = $pdo->prepare($sql)){
