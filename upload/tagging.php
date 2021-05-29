@@ -105,6 +105,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // handle tags
                     $db_tags = get_tags($audio_id, $pdo);
                     $post_tags = explode(", ", $value);
+                    $post_tags = array_unique($post_tags);
+                    $db_tags = array_unique($db_tags);
 
                     //echo $db_tags;
                     //echo $post_tags;
