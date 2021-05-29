@@ -106,11 +106,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $db_tags = get_tags($audio_id, $pdo);
                     $post_tags = explode(", ", $value);
 
-                    echo $db_tags;
-                    echo $post_tags;
+                    //echo $db_tags;
+                    //echo $post_tags;
 
                     // First go through db_tags
                     foreach($db_tags as $dtag){
+                        echo $dtag . "\n";
                         $found = array_search($dtag, $post_tags);
                         if(! $found){
                             // A tag has been removed
@@ -132,6 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // Any tags left in the post_tags list need to be added to the db
                     foreach($post_tags as $ptag){
+                        echo $ptag . "\n";
                         /*
                         $sql = "INSERT INTO `tags` (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
                         if($stmt = $pdo->prepare($sql)){
