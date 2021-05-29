@@ -225,10 +225,12 @@ ENDTAG;
        <div class="form-group <?php echo (!empty($shortcode_err)) ? 'has-error' : ''; ?>">
                 <label>Shortcode</label>
                 <input type="text" name="shortcode" class="form-control" value="<?php echo $shortcode; ?>" required placeholder="No spaces">
+                <span class="help-block"><?php echo $shortcode_err; ?></span>
             </div>  
             <div class="form-group <?php echo (!empty($tag_text_err)) ? 'has-error' : ''; ?>">
                 <label>Text</label>
                 <input type="text" name="tag_text" class="form-control" value="<?php echo $text; ?>" required placeholder="Capitalisation encouraged. Spaces allowed.">
+                <span class="help-block"><?php echo $tag_text_err; ?></span>
             </div>
             <div class="form-group ">
                 <label>Parent</label>
