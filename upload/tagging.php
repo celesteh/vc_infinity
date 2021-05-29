@@ -356,7 +356,7 @@ function drop_handler(event) {
         // Set the href property.
         a.href = "https://www.geeksforgeeks.org";
 
-        a.addEventListener("click", removable_tag(li, ul);
+        a.addEventListener("click", removable_tag(li, ul));
                     
         // Append the anchor element to the list item
         li.appendChild(a);
@@ -524,7 +524,7 @@ EOT;
                 foreach ($tags as $tag){
                     $liid = $key . '_' . $tag;
                     echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
-                    onclick="remove_by_id("'.$liid .'","'. $ulid .'");return false;">link text</a></li>'; // draggable="true"
+                    onclick="remove_by_id("'.$liid .'","'. $ulid .'");return false;">x</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
