@@ -270,21 +270,34 @@ var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 
 
 
-var removable_tag = function(li, ul) {
+var removable_tag = function(li, ul, input_key) {
     console.log("removable_tag");
     return function remove_tag() {
         // do something here
         console.log("remove_tag");
+
+        var input = = document.getElementById(input_key);
+        //console.log(input.value);
+        values = input.value.split(', ');
+        //console.log(values);
+
+        index = values.indexOf(tag_key);
+        if (index > -1) {
+          values.splice(index, 1);
+        }
+
+        input.value = values.join(", ");
+
         ul.removeChild(li);
         return true;
     }
 }
 
-function remove_by_id (li_id, ul_id){
+function remove_by_id (li_id, ul_id, input_key){
     var li = document.getElementById(li_id);
     var ul = document.getElementById(ul_id);
     console.log("remove_by_id")
-    var func =  removable_tag(li, ul);
+    var func =  removable_tag(li, ul, input_key);
     return func();
 }
 
@@ -328,7 +341,7 @@ function drop_handler(event) {
         ul_key = audio_key.concat("_ul");
         //console.log(ul_key);
         ul = document.getElementById(ul_key);
-        //console.log(ul.id);
+        console.log(ul.id);
         li = document.createElement('li');
         //li.draggable = true;
         //li.addEventListener("drop", function (evt) {
@@ -360,7 +373,7 @@ function drop_handler(event) {
         // Set the href property.
         a.href = "https://www.geeksforgeeks.org";
 
-        a.addEventListener("click", removable_tag(li, ul));
+        a.addEventListener("click", removable_tag(li, ul, input_key));
                     
         // Append the anchor element to the list item
         li.appendChild(a);
@@ -523,12 +536,13 @@ EOT;
 
                 // last cloumn, tags
                 $ulid = $key. '_ul';
+                $hiddenid = $key . '_tags';
                 echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="'. $ulid . '"> ';
-                $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_tags" type="hidden" value="'; 
+                $hidden = '<input name="' . $hiddenid . '" id = "'. $hiddenid . '" type="hidden" value="'; 
                 foreach ($tags as $tag){
                     $liid = $key . '_' . $tag;
                     echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
-                    onclick="remove_by_id(\''.$liid .'\',\''. $ulid .'\');return false;">x</a></li>'; // draggable="true"
+                    onclick="remove_by_id(\''.$liid .'\', \''. $ulid .'\', \''.$hiddenid .'\');return false;">x</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
