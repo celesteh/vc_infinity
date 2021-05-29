@@ -518,7 +518,7 @@ EOT;
                 }
 
                 // last cloumn, tags
-                $ulid =  . $key. '_ul';
+                $ulid = $key. '_ul';
                 echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="'. $ulid . '"> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
