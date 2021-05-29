@@ -93,6 +93,88 @@ if($pageno >= $total_pages){
 $last = $self. "?pageno=". $total_pages; 
 
 
+// Handle Post data
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    foreach ($_POST as $key => $value){
+        list($audio_id, $shortcode) = split($key, "_");
+        if ((isset($shortcode)) && ($shortcode != "")){
+            if ($shortcode == "tags"){
+                // handle tags
+                $db_tags = get_tags($audio_id, $pdo);
+                $post_tags = split($value, ", ");
+
+                // First go through db_tags
+                foreach($db_tags as $dtag){
+                    $found = array_search($dtag, $post_tags);
+                    if(! $found){
+                        // A tag has been removed
+                        $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
+                        if($stmt = $pdo->prepare($sql)){
+                            // Bind variables to the prepared statement as parameters
+                            $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                            $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                            $param_shortcode = $shortcode;
+                            $param_audio_id = $audio_id;
+                            //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                            unset($stmt);
+                        }
+                    } else {
+                        // remove the item from the tag array
+                        unset($post_tags[$found]);
+                    }
+                }
+
+                // Any tags left in the post_tags list need to be added to the db
+                foreach($post_tags as $ptag){
+                    $sql = "INSERT INTO metadata (tag_shortcode, ed_audio_id) VALUES (:shortcode,  :audio_id)";
+                    if($stmt = $pdo->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                        $param_shortcode = $ptag;
+                        $param_audio_id = $audio_id;
+                        //$stmt->execute();
+                        unset($stmt);
+                    }
+                }
+
+            } else { 
+                // handle metadata
+                if ($value == -1){
+                    // remove this metadata item
+                    $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
+                    if($stmt = $pdo->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                        $param_shortcode = $shortcode;
+                        $param_audio_id = $audio_id;
+                        //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                        unset($stmt);
+                    }
+                } else {
+                    // set this metadata item      
+                    $sql = "INSERT INTO metadata (metadata_shortcode, ed_audio_id, metadata_value) VALUES (:shortcode,  :audio_id, :score)";
+                    if($stmt = $pdo->prepare($sql)){
+                        // Bind variables to the prepared statement as parameters
+                        $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                        $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                        $stmt->bindParam(":score", $param_score, PDO::PARAM_INT);
+                        $param_shortcode = $shortcode;
+                        $param_audio_id = $audio_id;
+                        $param_score = (int) $value;
+                        //$stmt->execute();
+                        unset($stmt);
+                    }
+             
+                }
+            }
+        }
+    }
+}
+
+
+
 // get tags
 
 //$tags = array();
@@ -161,6 +243,7 @@ if($stmt = $pdo->prepare($sql)){
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -184,6 +267,23 @@ if($stmt = $pdo->prepare($sql)){
 
 var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 //var dragee;
+
+
+
+var removeable_tag = function(li, ul) {
+    return function remove_tag(event) {
+        // do something here
+        ul.removeChild(li);
+        return true;
+    }
+}
+
+var remove_by_id = function(li_id, ul_id){
+    var li = document.getElementById(li_id);
+    var ul = document.getElementById(ul_id);
+    return removeable_tag(li, ul);
+}
+
 
 function allowDrop(ev) {
 //  ev.preventDefault();
@@ -226,17 +326,40 @@ function drop_handler(event) {
         ul = document.getElementById(ul_key);
         //console.log(ul.id);
         li = document.createElement('li');
-        li.draggable = true;
+        //li.draggable = true;
         //li.addEventListener("drop", function (evt) {
             //
         //});
         //li.ondragstart="dragstart_handler(event)";
   
-        li.innerHTML += tags[tag_key];
+        li.innerHTML += tags[tag_key] + "&nbsp";
         li.id = audio_key + '_' + tag_key;
 
         //li.addEventListener("dragstart", dragstart_handler);
         //li.addEventListener("click", function() {console.log("click")});
+
+
+        // Make tags removable
+
+        // Create anchor element.
+        var a = document.createElement('a'); 
+                  
+        // Create the text node for anchor element.
+        var link = document.createTextNode("x");
+                    
+        // Append the text node to anchor element.
+        a.appendChild(link); 
+                    
+        // Set the title.
+        a.title = "Remove tag"; 
+                    
+        // Set the href property.
+        a.href = "https://www.geeksforgeeks.org";
+
+        a.addEventListener("click", removable_tag(li, ul);
+                    
+        // Append the anchor element to the list item
+        li.appendChild(a);
 
         ul.appendChild(li);
     }
@@ -284,7 +407,8 @@ function make_tag_list(){
         li.id = key;
 
         li.addEventListener("dragstart", dragstart_handler);
-        li.addEventListener("click", function() {console.log("click")});
+        //li.addEventListener("click", function() {console.log("click")});
+        li.classList.add("tagitem");
 
         ul.appendChild(li);
 
@@ -309,10 +433,12 @@ function make_tag_list(){
     </div>
     
     <! debugging >
+    <!--
     <pre>
         <?php var_dump($_POST); ?>
     </pre>
-    
+    -->
+
     <?php
         echo <<< EOT
         <ul class="pagination">
@@ -327,7 +453,7 @@ EOT;
 
     <div class="tagbox" id="tags">
         <!div class = "container" id = "tags">
-            <h3>Tags</h3>
+            <h3 class = "tagheader">Tags</h3>
             <ul id="taglist">
             </ul>
          <!/div>
@@ -392,10 +518,13 @@ EOT;
                 }
 
                 // last cloumn, tags
-                echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="' . $key. '_ul"> ';
+                $ulid =  . $key. '_ul';
+                echo '<td><div ondragover="on_hover(event)" ondrop="drop_handler(event)" class="bordered" id="'. $key . '"><ul id="'. $ulid . '"> ';
                 $hidden = '<input name="' . $key . '_tags" id = "'. $key . '_tags" type="hidden" value="'; 
                 foreach ($tags as $tag){
-                    echo '<li  id="' . $key . '_' . $tag . '">' . $avail_tags[$tag] . "</li>"; // draggable="true"
+                    $liid = $key . '_' . $tag;
+                    echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
+                    onclick="remove_by_id("'.$liid .'","'. $ulid .'");return false;">link text</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';

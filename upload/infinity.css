@@ -302,6 +302,18 @@ div.tagbox {
   border: 2px solid #000;
 }
 
+.tagitem{
+  margin: 5px;
+  padding: 10px;
+  border: 1px solid #333;
+  background: #eaeaea;
+}
+
+.tagheader{
+  background-color: #23527c;
+  color: white;
+}
+
 /* Clear floats after the columns */
 /*
 .row:after {
