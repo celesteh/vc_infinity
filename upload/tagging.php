@@ -284,7 +284,8 @@ function remove_by_id (li_id, ul_id){
     var li = document.getElementById(li_id);
     var ul = document.getElementById(ul_id);
     console.log("remove_by_id")
-    return removable_tag(li, ul);
+    var func =  removable_tag(li, ul);
+    return func();
 }
 
 
