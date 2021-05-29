@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     //echo $post_tags;
 
                     // First go through db_tags
-                    foreach($db_tags as $dtag){
+                    foreach($only_in_db as $dtag){
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
                             //echo "db: " . $dtag . "\n";
@@ -136,7 +136,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
 
                     // Any tags left in the post_tags list need to be added to the db
-                    foreach($post_tags as $ptag){
+                    foreach($only_in_post as $ptag){
                         $ptag = trim($ptag);
                         if (isset($ptag) && ($ptag != "")){
                             echo "add: " . $ptag .  " " . $key . " " . $value . "\n";
