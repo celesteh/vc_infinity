@@ -106,6 +106,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $db_tags = get_tags($audio_id, $pdo);
                     $post_tags = explode(", ", $value);
 
+                    echo $db_tags;
+                    echo $post_tags;
+
                     // First go through db_tags
                     foreach($db_tags as $dtag){
                         $found = array_search($dtag, $post_tags);
