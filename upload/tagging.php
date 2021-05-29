@@ -115,7 +115,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
                             $param_shortcode = $shortcode;
                             $param_audio_id = $audio_id;
-                            //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                            $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                             unset($stmt);
                         }
                     } else {
@@ -133,7 +133,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
                         $param_shortcode = $ptag;
                         $param_audio_id = $audio_id;
-                        //$stmt->execute();
+                        $stmt->execute();
                         unset($stmt);
                     }
                 }
@@ -149,7 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
                         $param_shortcode = $shortcode;
                         $param_audio_id = $audio_id;
-                        //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                        $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                         unset($stmt);
                     }
                 } else {
@@ -163,7 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $param_shortcode = $shortcode;
                         $param_audio_id = $audio_id;
                         $param_score = (int) $value;
-                        //$stmt->execute();
+                        $stmt->execute();
                         unset($stmt);
                     }
              
@@ -252,7 +252,7 @@ if($stmt = $pdo->prepare($sql)){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Metadata</title>
-    <link rel="stylesheet" href="range.css">
+    <!link rel="stylesheet" href="range.css">
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="infinity.css">
     <style>
@@ -470,7 +470,7 @@ EOT;
 
     <div class="tagbox" id="tags">
         <!div class = "container" id = "tags">
-            <h3 class = "tagheader">Tags</h3>
+        <h3 class="tagheader">Tags</h3>
             <ul id="taglist">
             </ul>
          <!/div>
