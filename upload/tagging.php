@@ -524,7 +524,7 @@ EOT;
                 foreach ($tags as $tag){
                     $liid = $key . '_' . $tag;
                     echo '<li  id="' . $liid . '">' . $avail_tags[$tag] . '&nbsp<a title="Click to remove tag"
-                    onclick="remove_by_id("'.$liid .'","'. $ulid .'");return false;">x</a></li>'; // draggable="true"
+                    onclick="remove_by_id(\''.$liid .'\',\''. $ulid .'\');return false;">x</a></li>'; // draggable="true"
                     $hidden = $hidden . $tag . ", ";
                 }
                 echo '</ul>'. $hidden . '"></div></td>';
