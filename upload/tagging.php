@@ -270,7 +270,7 @@ var tags = <?php echo json_encode($avail_tags) ?>;// don't use quotes
 
 
 
-var removeable_tag = function(li, ul) {
+var removable_tag = function(li, ul) {
     return function remove_tag(event) {
         // do something here
         ul.removeChild(li);
@@ -281,7 +281,7 @@ var removeable_tag = function(li, ul) {
 var remove_by_id = function(li_id, ul_id){
     var li = document.getElementById(li_id);
     var ul = document.getElementById(ul_id);
-    return removeable_tag(li, ul);
+    return removable_tag(li, ul);
 }
 
 
