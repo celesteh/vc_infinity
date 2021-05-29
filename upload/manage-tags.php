@@ -49,6 +49,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             $shortcode_err = _("Please use only lowercase letters for your shortcode.");
         
+        } elseif (($shortcode == "tags") || ($shortcode == "tag")){
+
+            $shortcode_err = _("You can't use this shortcode."); // I need this for form parsing
+
         } else {
 
 
