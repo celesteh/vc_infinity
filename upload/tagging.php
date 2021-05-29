@@ -116,6 +116,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // First go through db_tags
                     foreach($only_in_db as $dtag){
+                        echo "db: " . $dtag . "\n";
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
                             //echo "db: " . $dtag . "\n";
