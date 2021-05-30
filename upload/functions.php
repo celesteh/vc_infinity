@@ -457,7 +457,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                         $o_id_a = $row["o_id_a"];
 
                         // ok, get the data for the edited id
-                        $sql = "SELECT audio_id, audio_filename, compressed_format FROM edited_audio WHERE audio_id = :e_id";
+                        $sql = "SELECT audio_id, audio_filename, compressed_format dur FROM edited_audio WHERE audio_id = :e_id";
                         //echo "$sql\n";
 
 
@@ -469,7 +469,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                             if($stmt->execute()){
                                 if($stmt->rowCount() >= 1){
                                     while($row = $stmt->fetch()){
-                                        $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a];
+                                        $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a, $row["dur"]];
                                     }
                                 }
                             }
@@ -511,6 +511,27 @@ function get_available_tags($pdo){
     return $avail_tags;
 }
 
+
+function get_tag_heirarchy($pdo){
+    $sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE tag_hidden =0";
+    if($stmt = $pdo->prepare($sql)){
+        if($stmt->execute()){
+            while($row = $stmt->fetch()){
+
+                $text = htmlspecialchars($row["tag_text"]);
+                $shortcode = $row["tag_shortcode"];
+                $parent = $row["tag_parent"];
+                $all_tags[$shortcode] = $parent;
+            }
+        }
+
+        // Close statement
+        unset($stmt);
+    }
+    return $all_tags;
+   
+}
+
 function get_available_metadata($pdo){
 
     $avail_metadata = array();
@@ -533,5 +554,41 @@ function get_available_metadata($pdo){
     }
     return $avail_metadata;
 }
+
+
+function update_dur($audio_id, $dur, $pdo){
+    global $pdo;
+
+    $sql = "UPDATE edited_audio SET dur=':dur' WHERE id=:id";
+    if($stmt = $pdo->prepare($sql)){
+        // Bind variables to the prepared statement as parameters
+        $stmt->bindParam(":dur", $param_dur, PDO::PARAM_STR);
+        $stmt->bindParam(":id", $param_id, PDO::PARAM_STR);
+        $param_dur = $dur;
+        $param_id = $audio_id;
+        $stmt->execute(); // We could tput this in an if, but what would we do if it failed? nothing.
+        unset($stmt);
+    }
+}
+
+
+function get_artists($pdo){
+    $sql = "SELECT userid, u_realname, u_url FROM `users` WHERE 1";
+    if($stmt = $pdo->prepare($sql)){
+        if($stmt->execute()){
+            while($row = $stmt->fetch()){
+
+                $url = htmlspecialchars($row["u_url"]);
+                $name = htmlspecialchars($row["u_realname"]);
+                $users[$id] = [$name, $url];
+            }
+        }
+
+        // Close statement
+        unset($stmt);
+    }
+    return $users;
+}
+
 
 ?>

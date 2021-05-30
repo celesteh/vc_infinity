@@ -6,10 +6,34 @@ include_once "config.php";
 include_once "functions.php";
 
 
+// tag & metadata files
+
+$avail_tags = get_tag_heirarchy($pdo);
+$json_tags = json_encode($avail_tags);
+$handle = fopen("../json/avail_tags.json", "w");
+fwrite($handle, $json_tags);
+fclose($handle);
+
+$avail_metadata = get_available_metadata($pdo);
+$json_metadata = json_encode($avail_metadata);
+$handle = fopen("../json/avail_metadata.json", "w");
+fwrite($handle, $json_metadata);
+fclose($handle);
+
+
+// Credits
+
+// ID, name, URL
+$artists = get_artists($pdo);
+$json_artists = json_encode($artists);
+$handle = fopen("../json/artists.json", "w");
+fwrite($handle, $json_artists);
+fclose($handle);
+
 
 
 //The json file should have:
-// panel, x, y, flac, scores, tags
+// panel, x, y, flac, scores, tags, dur // creator ID
 
 // per panel construction
 
@@ -65,7 +89,7 @@ foreach ($panels as $panel) {
     // 2 get all the accepted audio
     $accepted = array();
 
-    $sql = "SELECT id, sa_x, sa_y FROM submitted_audio  WHERE sa_pageid = :sa_pageid AND sa_accepted = 1 ORDER By sa_x";
+    $sql = "SELECT id, sa_x, sa_y sa_userid FROM submitted_audio  WHERE sa_pageid = :sa_pageid AND sa_accepted = 1 ORDER By sa_x";
     //echo "$sql\n";
     
     
@@ -77,7 +101,7 @@ foreach ($panels as $panel) {
         if($stmt->execute()){
             if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                    $accepted[] = [$row["id"], $row["sa_x"], $row["sa_y"]];
+                    $accepted[] = [$row["id"], $row["sa_x"], $row["sa_y"], $row["userid"]];
                 }
             }
         }
@@ -89,6 +113,7 @@ foreach ($panels as $panel) {
         $id = $location[0];
         $x = $location[1];
         $y = $location[2];
+        $user = $location[3];
 
         $versions = get_editted($id, $pdo);
 
@@ -97,13 +122,14 @@ foreach ($panels as $panel) {
             $wav = $ver[1]; 
             $flac = $ver[2];
             $dir = $ver[3];
+            $dur = $ver[4];
     
             $tags = get_tags($e_id, $pdo);
 
             // metadata is not yet online
             $meta = array();
 
-            $json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags];
+            $json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags, $dur, $user];
         }
     }
 

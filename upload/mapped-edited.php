@@ -163,6 +163,8 @@ EOL;
         unset($stmt);
     }
 } else {
+
+    echo '<div><p><a href="' . htmlspecialchars($_SERVER["PHP_SELF"]). '">View all panels</a></p></div>\n';
     echo<<<EOL
     <div class="overflow full-width" id="con" width="$scalew" min-width="$scalew" height="$scaleh">
                     <canvas id="myCanvas" class="overflow" width="$scalew" height="$scaleh"></canvas>
@@ -177,7 +179,7 @@ EOL;
 
     foreach ($json_arr as $record){
 
-        //$json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags];
+        //$json_contents[] = [$x, $y, $dir, $wav, $flac, $meta, $tags, $dur, $userID];
 
         $x = $record[0];
         $y = $record[1];
