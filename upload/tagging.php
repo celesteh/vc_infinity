@@ -150,6 +150,8 @@ if($stmt = $pdo->prepare($sql)){
 
 // Handle Post data
 if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $tag_codes = array_keys($avail_tags);
+
     foreach ($_POST as $key => $value){
         if (isset($value) && ($value != "")){
             unset($audio_id);
@@ -167,8 +169,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // clean up whatever came in from the form
                     $lower_az_p_tags = array();
                     foreach($post_tags as $ptag){
+                        echo "unclean ptag: " . $ptag . "<br>\n"
                         $ptag = clean_shortcode($ptag);
-                        if (in_array($ptag, $avail_tags)) {
+                        echo "clean ptag: " . $ptag . "<br>\n"
+                        if (in_array($ptag, $tag_codes)) {
                             $lower_az_p_tags[] = $ptag;
                             echo "ptag: " . $ptag . "<br>\n";
                         }
