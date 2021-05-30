@@ -153,7 +153,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $tag_codes = array_keys($avail_tags);
 
     foreach ($_POST as $key => $value){
-        if (isset($value) && ($value != "")){
+        //if (isset($value) && ($value != "")){
             unset($audio_id);
             unset($shortcode);
             list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
@@ -252,7 +252,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                 }
             }
-        }
+        //}
     }
 }
 
