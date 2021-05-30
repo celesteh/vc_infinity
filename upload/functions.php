@@ -407,7 +407,7 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
     //e_id, wav, flac
     $versions = array();
 
-    $sql = "SELECT audio_id, audio_filename, compressed_format FROM edited_audio WHERE original_id = :o_id";
+    $sql = "SELECT audio_id, audio_filename, compressed_format, dur FROM edited_audio WHERE original_id = :o_id";
     //echo "$sql\n";
     
     
@@ -419,7 +419,7 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
         if($stmt->execute()){
             if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                    $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $oid];
+                    $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $oid, $row["dur"]];
                 }
             }
         }
@@ -433,6 +433,8 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
 
 
 function get_editted($oid, $pdo){ // look in edited audio and duplicates to chase down an id
+
+    echo "get_Editted\n";
     
     $versions = do_ed_query($oid, $pdo);
     if (sizeof($versions) < 1){
