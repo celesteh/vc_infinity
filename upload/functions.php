@@ -492,5 +492,46 @@ function clean_shortcode($code){
     return $code;
 }
 
+function get_available_tags($pdo){
+
+    $sql = "SELECT tag_shortcode, tag_text, tag_parent, tag_hidden FROM `available_tags` WHERE tag_hidden =0";
+    if($stmt = $pdo->prepare($sql)){
+        if($stmt->execute()){
+            while($row = $stmt->fetch()){
+
+                $text = htmlspecialchars($row["tag_text"]);
+                $shortcode = $row["tag_shortcode"];
+                $avail_tags[$shortcode] = $text;
+            }
+        }
+
+        // Close statement
+        unset($stmt);
+    }
+    return $avail_tags;
+}
+
+function get_available_metadata($pdo){
+
+    $avail_metadata = array();
+    // metadata_shortcode, metadata_text, metadata_low_label, metadata_high_label
+    $sql = "SELECT metadata_shortcode, metadata_text, metadata_low_label, metadata_high_label FROM `available_metadata` WHERE 1";
+    if($stmt = $pdo->prepare($sql)){
+        if($stmt->execute()){
+            while($row = $stmt->fetch()){
+
+                $text = htmlspecialchars($row["metadata_text"]);
+                $shortcode = htmlspecialchars($row["metadata_shortcode"]);
+                $low = htmlspecialchars($row["metadata_low_label"]);
+                $high = htmlspecialchars($row["metadata_high_label"]);
+                $avail_metadata[] = [$text, $shortcode, $low, $high]; 
+            }
+        }
+
+        // Close statement
+        unset($stmt);
+    }
+    return $avail_metadata;
+}
 
 ?>
