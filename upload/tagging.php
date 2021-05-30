@@ -170,6 +170,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $ptag = clean_shortcode($ptag);
                         if (in_array($ptag, $avail_tags)) {
                             $lower_az_p_tags[] = $ptag;
+                            echo "ptag: " . $ptag . "<br>\n";
                         }
                     }
                     $lower_az_p_tags = array_unique($lower_az_p_tags);
