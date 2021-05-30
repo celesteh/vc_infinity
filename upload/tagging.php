@@ -162,7 +162,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if ($shortcode == "tags"){
                     // handle tags
                     $db_tags = get_tags($audio_id, $pdo);
-                    $post_tags = explode(", ", $value);
+                    if (isset($value) && ($value != "")){
+                        $post_tags = explode(", ", $value);
+                    } else {
+                        $post_tags = array();
+                    }
                     //$post_tags = array_unique($post_tags);
                     $db_tags = array_unique($db_tags);
 
@@ -222,6 +226,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                 } else { 
                     // handle metadata
+                    if (isset($value) && ($value != "")){
                     if ($value == -1){
                         // remove this metadata item
                         $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
@@ -250,6 +255,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         }
                 
                     }
+                }
                 }
             }
         //}
