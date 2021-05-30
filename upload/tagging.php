@@ -169,9 +169,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     // clean up whatever came in from the form
                     $lower_az_p_tags = array();
                     foreach($post_tags as $ptag){
-                        echo "unclean ptag: " . $ptag . "<br>\n"
+                        echo "unclean ptag: " . $ptag . "<br>\n";
                         $ptag = clean_shortcode($ptag);
-                        echo "clean ptag: " . $ptag . "<br>\n"
+                        echo "clean ptag: " . $ptag . "<br>\n";
                         if (in_array($ptag, $tag_codes)) {
                             $lower_az_p_tags[] = $ptag;
                             echo "ptag: " . $ptag . "<br>\n";
