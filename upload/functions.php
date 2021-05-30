@@ -434,7 +434,7 @@ function do_ed_query($oid, $pdo){ // look in the editted audio for an id
 
 function get_editted($oid, $pdo){ // look in edited audio and duplicates to chase down an id
 
-    echo "get_Editted\n";
+    //echo "get_Editted\n";
     
     $versions = do_ed_query($oid, $pdo);
     if (sizeof($versions) < 1){
@@ -472,7 +472,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                                 if($stmt->rowCount() >= 1){
                                     while($row = $stmt->fetch()){
                                         $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a, $row["dur"]];
-                                        echo "dur " . $row["dur"] . "\n";
+                                        //echo "dur " . $row["dur"] . "\n";
                                     }
                                 }
                             }

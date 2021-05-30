@@ -119,11 +119,6 @@ foreach ($panels as $panel) {
         //$versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a, $row["dur"]];
 
         foreach ($versions as $ver){
-            foreach ($ver as $item){
-                echo "$item, ";
-            }
-            echo "\n";
-            
             $e_id = $ver[0]; 
             $wav = $ver[1]; 
             $flac = $ver[2];
