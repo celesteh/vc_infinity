@@ -188,13 +188,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     // First go through db_tags
                     foreach($db_tags as $dtag){
-                        echo "db: " . $dtag . "<br>\n";
+                        echo "db $audio_id: $dtag <br>\n";
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
                             if(! in_array($dtag, $lower_az_p_tags)) { // try thisinstead of a diff
                             //echo "db: " . $dtag . "\n";
                             // A tag has been removed
-                                echo "delete: " . $dtag .  " " . $key . " " . $value . "<br>\n";
+                                echo "delete: $dtag $key $value <br>\n";
 
                                 $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
                                 if($stmt = $pdo->prepare($sql)){
@@ -206,7 +206,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                                     unset($stmt);
                                 }
-                            } else { echo $dtag .  "in post<br>\n";}
+                            } else { echo "$dtag in post for $audio_id<br>\n";}
                         } 
                     }
 
@@ -214,7 +214,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     foreach($only_in_post as $ptag){
                         //$ptag = trim($ptag);
                         if (isset($ptag) && ($ptag != "")){
-                            echo "add: " . $ptag .  " " . $key . " " . $value . "<br>\n";
+                            echo "add: $ptag $key $value <br>\n";
                             //function set_tag($shortcode, $id, $pdo)
                             //set_tag($ptag, $audio_id, $pdo);
                         }
