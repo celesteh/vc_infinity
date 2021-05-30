@@ -179,7 +179,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     }
                     $lower_az_p_tags = array_unique($lower_az_p_tags);
 
-                    $only_in_db = array_diff($db_tags, $lower_az_p_tags);
+                    //$only_in_db = array_diff($db_tags, $lower_az_p_tags);
                     $only_in_post = array_diff($lower_az_p_tags, $db_tags);
 
 
@@ -187,10 +187,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     //echo $post_tags;
 
                     // First go through db_tags
-                    foreach($only_in_db as $dtag){
+                    foreach($db_tags as $dtag){
                         echo "db: " . $dtag . "<br>\n";
                         $dtag = trim($dtag);
                         if (isset($dtag) && ($dtag != "")){
+                            if(! in_array($dtag, $lower_az_p_tags)) { // try thisinstead of a diff
                             //echo "db: " . $dtag . "\n";
                             // A tag has been removed
                                 echo "delete: " . $dtag .  " " . $key . " " . $value . "<br>\n";
@@ -205,7 +206,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                                     unset($stmt);
                                 }
-                        }
+                            }
+                        } else { echo $dtag "in post<br>\n";}
                     }
 
                     // Any tags left in the post_tags list need to be added to the db
