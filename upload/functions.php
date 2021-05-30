@@ -457,7 +457,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                         $o_id_a = $row["o_id_a"];
 
                         // ok, get the data for the edited id
-                        $sql = "SELECT audio_id, audio_filename, compressed_format dur FROM edited_audio WHERE audio_id = :e_id";
+                        $sql = "SELECT audio_id, audio_filename, compressed_format, dur FROM edited_audio WHERE audio_id = :e_id";
                         //echo "$sql\n";
 
 
@@ -580,7 +580,7 @@ function get_artists($pdo){
 
                 $url = htmlspecialchars($row["u_url"]);
                 $name = htmlspecialchars($row["u_realname"]);
-                $users[$id] = [$name, $url];
+                $users[$row["userid"]] = [$name, $url];
             }
         }
 

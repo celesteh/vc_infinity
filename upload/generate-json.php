@@ -89,7 +89,7 @@ foreach ($panels as $panel) {
     // 2 get all the accepted audio
     $accepted = array();
 
-    $sql = "SELECT id, sa_x, sa_y sa_userid FROM submitted_audio  WHERE sa_pageid = :sa_pageid AND sa_accepted = 1 ORDER By sa_x";
+    $sql = "SELECT id, sa_x, sa_y, sa_userid FROM submitted_audio  WHERE sa_pageid = :sa_pageid AND sa_accepted = 1 ORDER By sa_x";
     //echo "$sql\n";
     
     
@@ -101,7 +101,7 @@ foreach ($panels as $panel) {
         if($stmt->execute()){
             if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                    $accepted[] = [$row["id"], $row["sa_x"], $row["sa_y"], $row["userid"]];
+                    $accepted[] = [$row["id"], $row["sa_x"], $row["sa_y"], $row["sa_userid"]];
                 }
             }
         }
