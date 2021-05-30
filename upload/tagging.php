@@ -228,7 +228,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // handle metadata
                 if (isset($value) && ($value != "")){
                     if ($value == -1){
-                        echo "Unset metadata $audio_id shortcode $shortcode value $value<br>\n";
+                        //echo "Unset metadata $audio_id shortcode $shortcode value $value<br>\n";
                         // remove this metadata item
                         $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
                         if($stmt = $pdo->prepare($sql)){
@@ -237,11 +237,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
                             $param_shortcode = $shortcode;
                             $param_audio_id = $audio_id;
-                            //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                            $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                             unset($stmt);
                         }
                     } else {
-                        echo "Set metadata $audio_id shortcode $shortcode value $value<br>\n";
+                        //echo "Set metadata $audio_id shortcode $shortcode value $value<br>\n";
                         // set this metadata item      
                         $sql = "INSERT INTO metadata (metadata_shortcode, ed_audio_id, metadata_value) VALUES (:shortcode,  :audio_id, :score)";
                         if($stmt = $pdo->prepare($sql)){
@@ -252,7 +252,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $param_shortcode = $shortcode;
                             $param_audio_id = $audio_id;
                             $param_score = (int) $value;
-                            //$stmt->execute();
+                            $stmt->execute();
                             unset($stmt);
                         }
                 
@@ -491,11 +491,11 @@ function make_tag_list(){
     </div>
     
     <! debugging >
-    
+    <!--
     <pre>
         <?php var_dump($_POST); ?>
     </pre>
-    
+    -->
 
     <?php
         echo <<< EOT
