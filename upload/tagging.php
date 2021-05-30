@@ -607,31 +607,34 @@ EOT;
                 <input type="submit" class="btn btn-primary <?php echo $nsclass ?>" name="submit" value="<?php echo $next_submit ?>"> &nbsp;
                 <input type="submit" class="btn btn-default" name="submit" value="<?php echo $stationary_submit ?>"> &nbsp;
                 <input type="submit" class="btn btn-default <?php echo $psclass ?>" name="submit" value="<?php echo $prev_submit ?>"> &nbsp;
-                <input type="reset" class="btn btn-default" value="Reset"> &nbsp;
+                <!input type="reset" class="btn btn-default" value="Reset"> &nbsp;
             </div>
         </div>
         </form>
 
-    <!--
-    <div>
-    <p>This is experimental dev code below</p>
-    <h3>Tags</h3>
-    <div id="tags"></div>
-        <ul id="taglist">
-        </ul>
-    </div>
-    <h3>Target</h3>
-    <table id="audiolist">
-        <tr id="tr1" ondrop="drop('row1')"><td>Sample 1</td><td id="row1" ></td></tr>
-        <tr id="tr2"><td>Sample 1</td><td id="row2" ondrop="drop(event)"></td></tr>
-    </table>
-    <p>Drag the W3Schools image into the rectangle:</p>
 
-
-<div id="target" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-<br>
-<img id="drag1" src="img_logo.gif" draggable="true" ondragstart="drag(event)" width="336" height="69">
-    -->
-        </div>
+   <div>
+       <h2>How to tag</h2>
+       <p>If you are accessing this page via a tablet or mobile device, you should use portait mode.</p>
+       <p>Audio files have scores from 1-5 for some types of metadata and can also have tags.</p>
+       <p>Listen to a file and score it using the 
+           drop down menus to decide if it is at the low end of the range or high. When you are scoring, please be sure that you are 
+           using the whole range, so that you have 1s and 5s in your scores. You may need to listen to several files before starting to score.
+           (Except in the case of the quality score, where hopefully all the files are of relatively high quality.)</p>
+        <p>You can assign tags to files by dragging them to the right-most column.  To erase a tag that you think is is inappropriate 
+            (or that you assigned by accident), click the 'x' at the end of the tag.  You can safely try this using the test tag.</p>
+        <p>If you would like to create a tag, go to <a href="manage-tags.php">Manage available tags</a>.</p>
+        <p>There are three submit buttons. Submit sends your changes to the database and then shows you all current values. Submit and Next
+            sends your values to the database and then takes you to the next page of audio files. Submit and Previous takes you
+            to the pevious page.  There is no Reset button, so if you need to clear all your changes, you'll have to close the page in your 
+            browser.</p>
+        <h3>How to create a new tag</h3>
+        <p>On the <a href="manage-tags.php">Manage available tags</a> page, you will see a list of existing tags. They have a shortcode,
+        which is a single, lower-case word and the tag text, which is what you see in the list of tags.</p>
+        <p>They may also have a parent.
+        The parent of the "Alto" tag is "Voiced", forexample. If you wanted to create a Tenor tag, for example, it would also 
+        have the same parent.  If you wanted to create a tag describing a specific kind of tenor, that might have Tenor as it's parent.</p>
+        <p>Tags may be visible or hidden.  The tag "Voiced" is hidden.  Anything that is voiced should be tagged with one of 
+            it's children, which will be more precise about what kind of voiced sound it is. You can make new children when you need them.</p>
     </body>
 </html>
