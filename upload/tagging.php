@@ -154,80 +154,81 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     foreach ($_POST as $key => $value){
         //if (isset($value) && ($value != "")){
-            unset($audio_id);
-            unset($shortcode);
-            list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
-            if ((isset($shortcode)) && ($shortcode != "")){
-                $shortcode = clean_shortcode($shortcode);
-                if ($shortcode == "tags"){
-                    // handle tags
-                    $db_tags = get_tags($audio_id, $pdo);
-                    if (isset($value) && ($value != "")){
-                        $post_tags = explode(", ", $value);
-                    } else {
-                        $post_tags = array();
+        unset($audio_id);
+        unset($shortcode);
+        list($audio_id, $shortcode) = explode( "_", $key); // This is a stupid name for a function
+        if ((isset($shortcode)) && ($shortcode != "")){
+            $shortcode = clean_shortcode($shortcode);
+            if ($shortcode == "tags"){
+                // handle tags
+                $db_tags = get_tags($audio_id, $pdo);
+                if (isset($value) && ($value != "")){
+                    $post_tags = explode(", ", $value);
+                } else {
+                    $post_tags = array();
+                }
+                //$post_tags = array_unique($post_tags);
+                $db_tags = array_unique($db_tags);
+
+                // clean up whatever came in from the form
+                $lower_az_p_tags = array();
+                foreach($post_tags as $ptag){
+                    //echo "unclean ptag: " . $ptag . "<br>\n";
+                    $ptag = clean_shortcode($ptag);
+                    //echo "clean ptag: " . $ptag . "<br>\n";
+                    if (in_array($ptag, $tag_codes)) {
+                        $lower_az_p_tags[] = $ptag;
+                        //echo "ptag: " . $ptag . "<br>\n";
                     }
-                    //$post_tags = array_unique($post_tags);
-                    $db_tags = array_unique($db_tags);
+                }
+                $lower_az_p_tags = array_unique($lower_az_p_tags);
 
-                    // clean up whatever came in from the form
-                    $lower_az_p_tags = array();
-                    foreach($post_tags as $ptag){
-                        //echo "unclean ptag: " . $ptag . "<br>\n";
-                        $ptag = clean_shortcode($ptag);
-                        //echo "clean ptag: " . $ptag . "<br>\n";
-                        if (in_array($ptag, $tag_codes)) {
-                            $lower_az_p_tags[] = $ptag;
-                            //echo "ptag: " . $ptag . "<br>\n";
-                        }
+                //$only_in_db = array_diff($db_tags, $lower_az_p_tags);
+                $only_in_post = array_diff($lower_az_p_tags, $db_tags);
+
+
+                //echo $db_tags;
+                //echo $post_tags;
+
+                // First go through db_tags
+                foreach($db_tags as $dtag){
+                    //echo "db $audio_id: $dtag <br>\n";
+                    $dtag = trim($dtag);
+                    if (isset($dtag) && ($dtag != "")){
+                        if(! in_array($dtag, $lower_az_p_tags)) { // try thisinstead of a diff
+                        //echo "db: " . $dtag . "\n";
+                        // A tag has been removed
+                            //echo "delete: $dtag $key $value <br>\n";
+
+                            $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
+                            if($stmt = $pdo->prepare($sql)){
+                                // Bind variables to the prepared statement as parameters
+                                $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
+                                $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
+                                $param_shortcode = $dtag;
+                                $param_audio_id = $audio_id;
+                                $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
+                                unset($stmt);
+                            }
+                        } //else { echo "$dtag in post for $audio_id<br>\n";}
+                    } 
+                }
+
+                // Any tags left in the post_tags list need to be added to the db
+                foreach($only_in_post as $ptag){
+                    //$ptag = trim($ptag);
+                    if (isset($ptag) && ($ptag != "")){
+                        //echo "add: $ptag $key $value <br>\n";
+                        //function set_tag($shortcode, $id, $pdo)
+                        set_tag($ptag, $audio_id, $pdo);
                     }
-                    $lower_az_p_tags = array_unique($lower_az_p_tags);
+                }
 
-                    //$only_in_db = array_diff($db_tags, $lower_az_p_tags);
-                    $only_in_post = array_diff($lower_az_p_tags, $db_tags);
-
-
-                    //echo $db_tags;
-                    //echo $post_tags;
-
-                    // First go through db_tags
-                    foreach($db_tags as $dtag){
-                        //echo "db $audio_id: $dtag <br>\n";
-                        $dtag = trim($dtag);
-                        if (isset($dtag) && ($dtag != "")){
-                            if(! in_array($dtag, $lower_az_p_tags)) { // try thisinstead of a diff
-                            //echo "db: " . $dtag . "\n";
-                            // A tag has been removed
-                                //echo "delete: $dtag $key $value <br>\n";
-
-                                $sql = "DELETE FROM `tags` WHERE `ed_audio_id` = :audio_id AND `tag_shortcode` = :shortcode";
-                                if($stmt = $pdo->prepare($sql)){
-                                    // Bind variables to the prepared statement as parameters
-                                    $stmt->bindParam(":shortcode", $param_shortcode, PDO::PARAM_STR);
-                                    $stmt->bindParam(":audio_id", $param_audio_id, PDO::PARAM_STR);
-                                    $param_shortcode = $dtag;
-                                    $param_audio_id = $audio_id;
-                                    $stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
-                                    unset($stmt);
-                                }
-                            } //else { echo "$dtag in post for $audio_id<br>\n";}
-                        } 
-                    }
-
-                    // Any tags left in the post_tags list need to be added to the db
-                    foreach($only_in_post as $ptag){
-                        //$ptag = trim($ptag);
-                        if (isset($ptag) && ($ptag != "")){
-                            //echo "add: $ptag $key $value <br>\n";
-                            //function set_tag($shortcode, $id, $pdo)
-                            set_tag($ptag, $audio_id, $pdo);
-                        }
-                    }
-
-                } else { 
-                    // handle metadata
-                    if (isset($value) && ($value != "")){
+            } else { 
+                // handle metadata
+                if (isset($value) && ($value != "")){
                     if ($value == -1){
+                        echo "Unset metadata $audio_id shortcode $shortcode value $value<br>\n";
                         // remove this metadata item
                         $sql = "DELETE FROM `metadata` WHERE `ed_audio_id` = :audio_id AND `metadata_shortcode` = :shortcode";
                         if($stmt = $pdo->prepare($sql)){
@@ -240,6 +241,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             unset($stmt);
                         }
                     } else {
+                        echo "Set metadata $audio_id shortcode $shortcode value $value<br>\n";
                         // set this metadata item      
                         $sql = "INSERT INTO metadata (metadata_shortcode, ed_audio_id, metadata_value) VALUES (:shortcode,  :audio_id, :score)";
                         if($stmt = $pdo->prepare($sql)){
@@ -256,8 +258,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 
                     }
                 }
-                }
             }
+        }
         //}
     }
 }
