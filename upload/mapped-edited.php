@@ -164,8 +164,9 @@ EOL;
     }
 } else {
 
-    echo '<div><p><a href="' . htmlspecialchars($_SERVER["PHP_SELF"]). '">View all panels</a></p></div>\n';
+    echo '<div><p><a href="' . htmlspecialchars($_SERVER["PHP_SELF"]). '">View all panels</a></p></div>';
     echo<<<EOL
+    
     <div class="overflow full-width" id="con" width="$scalew" min-width="$scalew" height="$scaleh">
                     <canvas id="myCanvas" class="overflow" width="$scalew" height="$scaleh"></canvas>
                     <img src="$imgfile" alt="" id="mape" usemap="#img_map" width="$scalew" height="$scaleh" class="overflow">
