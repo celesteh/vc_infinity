@@ -562,7 +562,7 @@ EOT;
                         $selected = "selected";
                         $score="";
                     }
-                    echo '<option value="-1" ' . $selected . '>' . $score . '</option>\n';
+                    echo '<option value="-1" ' . $selected . '>&nbsp;</option>\n';
                     
                     for ($x = 1; $x <= 5; $x++) {
                         $selected = "";
