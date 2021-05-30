@@ -206,8 +206,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     //$stmt->execute(); // Don't test if it worked. If it fails, then the item was probably already blank
                                     unset($stmt);
                                 }
-                            }
-                        } else { echo $dtag .  "in post<br>\n";}
+                            } else { echo $dtag .  "in post<br>\n";}
+                        } 
                     }
 
                     // Any tags left in the post_tags list need to be added to the db
