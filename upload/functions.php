@@ -485,5 +485,12 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
     return $versions;
 }
 
+function clean_shortcode($code){
+    $code = trim($code);
+    $code = strtolower($code);
+    $code = preg_replace("/[^a-z]+/", "", $code); // lower case letters only
+    return $code;
+}
+
 
 ?>

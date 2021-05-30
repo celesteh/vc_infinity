@@ -45,7 +45,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // check if it's alphanumeric and lower case
 
-        if (( ! ctype_alnum($shortcode) ) || preg_match('/[A-Z]/', $shortcode)) {
+        if (( ! ctype_alnum($shortcode) ) || preg_match('/[\p{N}]/u', $shortcode)) { // check for numbers and non-letters
 
             $shortcode_err = _("Please use only lowercase letters for your shortcode.");
         
