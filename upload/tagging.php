@@ -207,7 +207,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     unset($stmt);
                                 }
                             }
-                        } else { echo $dtag "in post<br>\n";}
+                        } else { echo $dtag .  "in post<br>\n";}
                     }
 
                     // Any tags left in the post_tags list need to be added to the db
