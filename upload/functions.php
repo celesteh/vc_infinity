@@ -470,7 +470,7 @@ function get_editted($oid, $pdo){ // look in edited audio and duplicates to chas
                                 if($stmt->rowCount() >= 1){
                                     while($row = $stmt->fetch()){
                                         $versions[] = [$row["audio_id"], $row["audio_filename"], $row["compressed_format"], $o_id_a, $row["dur"]];
-                                        echo $row["dur"] . "\n";
+                                        echo "dur " . $row["dur"] . "\n";
                                     }
                                 }
                             }
