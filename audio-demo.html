@@ -34,17 +34,17 @@
                     var howl;
                     
                     chosen.forEach(element => {
-                        howl = await new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]] });
+                        howl = new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]] });
                         sounds.push(howl);
                     });
-                    /*
+                    
                     var sleeptime = 20;
                     sounds.forEach(element =>{
                         await sleep(sleeptime);
                         //element.play();
                         sleeptime = rrand(200, 3000);
                     })
-                    */
+                    
                 }, 
                 function(xhr) { console.error(xhr); }
             );
