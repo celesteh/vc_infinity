@@ -22,9 +22,8 @@
     <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
     <script type="text/javascript" src="user-infinity.js"></script>
     <script>
-        function donothing(){console.log("do nothing");}
         
-        function doplay() {
+        async function doplay() {
             console.log("doplay");
             
             loadJSON('json/8.json',
@@ -52,10 +51,17 @@
             
         }
         
+        function play_stuff(){
+            doplay().then(
+                function(value) { console.log("playing"); },
+                function(error) { /* code if some error */ }
+            );
+        }
+
         
     </script>
 </head>
-<body  onload="doplay();">
+<body  onload="play_stuff();">
     <div class="page-header">
         <h1>Audio Demo</h1>
     </div>
