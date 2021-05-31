@@ -4,17 +4,30 @@
 .row {
     display: flex;
     align-items: center;
-  }
+    flex-flow: row wrap;
+}
+
+.logorow {
+    max-width: 1000px;
+    flex-flow: row wrap;
+    min-width: 300px;
+}
+
   
 .column {
-    flex: 33.33%;
+    flex: 50%;
     padding: 5px;
+    flex-flow: row wrap;
+    min-width: 100px;
+    /*flex: 1 1 0px;*/
+
 }
 .flex-container {
     display: flex;
     align-items: stretch;
     background-color: #f1f1f1;
     align-items: top;
+    flex-flow: row wrap;
   }
 
   .flex-container > div {
@@ -31,6 +44,7 @@
     display: flex;
     align-items: top;
     flex-grow: 1;
+    max-width: 200px;
 
 }
 
@@ -50,3 +64,7 @@
      -moz-column-width: 200px;
           column-width: 200px;
   }
+
+  img {
+    align-self: center;
+}
