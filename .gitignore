@@ -17,6 +17,10 @@ soundscape_appraisal_enactive_cognition_fpsyg-09-01129.pdf
 #json files
 json/*.json
 
+# University Logos
+images/WU_MasterLogo_FullColor_rgb_1450x500.jpg
+images/Trinity_Main_Logo.jpg
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/osx,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=osx,linux
