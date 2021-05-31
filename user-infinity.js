@@ -1,4 +1,4 @@
-import {Howl, Howler} from 'howler/holwer.js/dist/howler.js';
+//import {Howl, Howler} from 'howler/holwer.js/dist/howler.js';
 
 function loadJSON(path, success, error)
 {
