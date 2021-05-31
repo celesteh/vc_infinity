@@ -21,6 +21,9 @@ json/*.json
 images/WU_MasterLogo_FullColor_rgb_1450x500.jpg
 images/Trinity_Main_Logo.jpg
 
+Howler
+howler/*
+
 
 # Created by https://www.toptal.com/developers/gitignore/api/osx,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=osx,linux

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Audio Demo</title>
+    <link rel="stylesheet" href="upload/bootstrap.css">
+    <link rel="stylesheet" href="user-infinity.css">
+    <style>
+#myCanvas
+{
+    pointer-events: none;       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
+    position:absolute;
+    z-index: 2;
+}
+
+
+    </style>
+    <script type="text/javascript" src="user-infinity.js"></script>
+    <script>
+        function doplay() {
+            loadJSON('json/8.json',
+                function(audio_files) { //console.log(artists); 
+                    var chosen = getNRandSorted(audio_files, 5);
+                    var sounds = [];
+                    chosen.forEach(element => {
+                        sounds.push( new Howl ({ src: [element[2] + "/" + element[4]] }));
+                    });
+
+                    var sleeptime = 20;
+                    sounds.forEach(element =>{
+                        await sleep(sleeptime);
+                        element.play();
+                        sleeptime = rrand(200, 3000);
+                    })
+            
+                }, 
+                function(xhr) { console.error(xhr); }
+            );
+        }
+    </script>
+
+sound.play();
+    </script>
+</head>
+<body  onload="doplay();">
+    <div class="page-header">
+        <h1>Audio Demo</h1>
+    </div>
+</body>
+</html>
