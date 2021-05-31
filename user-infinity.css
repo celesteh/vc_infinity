@@ -40,7 +40,13 @@
 
 
 .people {
-    columns: 2;
-    -webkit-columns: 2;
-    -moz-columns: 2;
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    -webkit-column-count: 4;
+     -moz-column-count: 4;
+          column-count: 4;
+  -webkit-column-width: 200px;
+     -moz-column-width: 200px;
+          column-width: 200px;
   }
