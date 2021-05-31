@@ -27,9 +27,10 @@
             console.log("doplay");
             
             loadJSON('json/8.json',
-                function(audio_files) { console.log(audio_files); 
-                    /*
+                function(audio_files) { //console.log(audio_files); 
+                    
                     var chosen = getNRandSorted(audio_files, 5);
+                    /*
                     var sounds = [];
                     chosen.forEach(element => {
                         sounds.push( new Howl ({ src: [element[2] + "/" + element[4]] }));
