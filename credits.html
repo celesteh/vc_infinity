@@ -19,18 +19,36 @@
     <script type="text/javascript" src="user-infinity.js"></script>  
 
 <script>
+    function alphabatise(users){
+        var keys = Object.keys(users);
+        var sortedusers = keys.sort(function(a, b) {
+            usera = users[a];
+            uderb = users[b];
+            var nameA = usera[0].toUpperCase(); // ignore upper and lowercase
+            var nameB = userb[0].toUpperCase(); // ignore upper and lowercase
+            if (nameA < nameB) {
+                return -1; //nameA comes first
+            }
+            if (nameA > nameB) {
+                return 1; // nameB comes first
+            }
+            return 0;  // names must be equal
+        });
+        return sortedusers;
+    }
+
     function make_artist_list(){
     //var ul = document.createElement('ul');
     //document.getElementById('tags').appendChild(ul);
     loadJSON('json/artists.json',
          function(artists) { console.log(artists); 
 
+            keys = alphabatise(artists);
             var ul = document.getElementById("people");
-
    
             //$.each(tags, function(key, value) {
             var value;
-            Object.keys(artists).forEach((key) => {
+            keys.forEach((key) => {
                 value = artists[key];
                 //console.log('stuff : ' + key + ", " + value);
                 var li = document.createElement('li');
