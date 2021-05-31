@@ -25,9 +25,10 @@
         
         function doplay() {
             console.log("doplay");
-            /*
+            
             loadJSON('json/8.json',
-                function(audio_files) { //console.log(artists); 
+                function(audio_files) { console.log(audio_files); 
+                    /*
                     var chosen = getNRandSorted(audio_files, 5);
                     var sounds = [];
                     chosen.forEach(element => {
@@ -40,11 +41,11 @@
                         element.play();
                         sleeptime = rrand(200, 3000);
                     })
-            
+                    */
                 }, 
                 function(xhr) { console.error(xhr); }
             );
-            */
+            
         }
         
         
