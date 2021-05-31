@@ -16,9 +16,13 @@
 
 
     </style>
+    <script>
+        function dummy(){console.log("dummy");}
+    </script>
     <script type="text/javascript" src="user-infinity.js"></script>
     <script>
         function doplay() {
+            console.log("doplay");
             loadJSON('json/8.json',
                 function(audio_files) { //console.log(artists); 
                     var chosen = getNRandSorted(audio_files, 5);
@@ -42,7 +46,7 @@
         function donothing(){console.log("do nothing");}
     </script>
 </head>
-<body  onload="donothing();">
+<body  onload="dummy();">
     <div class="page-header">
         <h1>Audio Demo</h1>
     </div>
