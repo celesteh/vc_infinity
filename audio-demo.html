@@ -97,7 +97,7 @@
                     */ 
                     if (active.loaded()){
                         var denseness = density.value();
-                        var dur = active.dur();
+                        var dur = active.dur;  // was dur()
                         var panspread = linlin(denseness, 3.0, 5.0, 0.5, 0.78);
                         console.log("pan " + panspread);
                         active.pan(rrand((-1.0 * panspread), panspread));
