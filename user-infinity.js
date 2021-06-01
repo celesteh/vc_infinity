@@ -147,17 +147,17 @@ function AudioClip (json_arr){
     }
 
     this.load = function() {
-        this.clip = new Howl ({ 
+        clip = new Howl ({ 
             src: this.src, 
             preload: true,
             volume: this.amplitude,
             loop: false
         });
 
-        this.clip.on("load",function(){
-            this.dur = clip.duration();
+        clip.on("load",function(){
+            dur = clip.duration();
         });
-        this.clip.on("end", function(){
+        clip.on("end", function(){
             this.unload();
         })
     }
