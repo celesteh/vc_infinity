@@ -11,7 +11,7 @@
         });
 
         howl.on("load", function (){ howl.play()});
-        howl.on("end", function() { howl.unload()});
+        howl.on("end", function() { console.log("looping"); howl.unload()});
     </script>
 </head>
 </html>
