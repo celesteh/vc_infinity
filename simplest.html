@@ -17,7 +17,8 @@
         self. howl.on('end', function() { console.log("looping");
             self.countdown --;
             if (self.countdown < 1) { 
-                self.howl.unload()
+                //self.howl.unload()
+                self.loop(false);
             }
         });
     }
