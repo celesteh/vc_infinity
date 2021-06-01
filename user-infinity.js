@@ -294,7 +294,7 @@ function AudioClip (json_arr){
     //    this.unload();
     //});
 
-    const fuck = this.clip;
+    const fuck = Howl(this.clip);
 
     this.clip.on("end", function(id){
         console.log("fuck "+ typeof fuck);
