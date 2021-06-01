@@ -1,0 +1,16 @@
+<html>
+<head>
+    <title>Simplest howl</title>
+    <script>
+        var howl = new Howl ({ 
+            src: "https://infinity.vocalconstructivists.com/processed_audio/33/1604608217_14.flac", 
+            preload: true,
+            volume: 0.5,
+            loop: true
+        });
+
+        howl.on("load", function (){ howl.play()});
+        howl.on("end", function() { howl.unload()});
+    </script>
+</head>
+</html>
