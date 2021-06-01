@@ -33,6 +33,18 @@ function valid (testee){
     return is_valid;
 }
 
+function map (x, lowIn, highIn, lowOut, highOut){
+    var result;
+    if(x <= lowIn){
+        result = lowOut;
+    } else if (x>=highIn) {
+        result = highOut;
+    } else {
+        result = ((x-lowIn)/(highIn-lowIn)) * ((highOut-lowOut)) + lowOut;
+    }
+    return result;
+}
+
 function sortAudioByX(audio_json){
     //[$x, $y, $dir, $wav, $flac, $meta, $tags, $dur, $user]
     //var keys = Object.keys(users);
