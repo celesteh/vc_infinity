@@ -182,6 +182,8 @@ class AudioClip {
         this.times = 1;
         this.loop = false;
 
+        var self = this;
+
         this.howl = new Howl({
             src: this.src,
             preload: true,
@@ -287,7 +289,7 @@ class AudioClip {
         //this.load();
         this.howl.on('load', function () {
             console.log("dur " + this.howl.duration());
-            this.dur = this.howl.duration();
+            this.dur = self.howl.duration();
         });
         //this.clip.on("end", function(){
         //    this.unload();
@@ -318,7 +320,7 @@ class AudioClip {
         */
         this.howl.on('end', function () {
             console.log("this " + typeof this);
-            console.log("howl " + typeof this.howl);
+            console.log("howl " + typeof self.howl);
         });
 
 
@@ -334,5 +336,7 @@ class AudioClip {
         this.setFinished = function (doneAction) {
             this.whenFinished = doneAction;
         };
+
+        
     }
 }
