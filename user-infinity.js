@@ -309,7 +309,7 @@ class AudioClip {
                     // shake things up a bit
                     self.howl.rate(rrand(0.9, 1.1));
     
-                    self;f.times = self.times -1;
+                    self.times--;
                     self.loop = (self.times> 1);
                     self.howl.loop(self.loop);
                 }
