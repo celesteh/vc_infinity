@@ -145,7 +145,7 @@ function AudioClip (json_arr){
         return (clip.state() == "loaded");
     }
 
-    this.load() = function() {
+    this.load = function() {
         this.clip = new Howl ({ 
             src: this.src, 
             preload: true,
@@ -161,7 +161,7 @@ function AudioClip (json_arr){
         })
     }
 
-    this.unload() = function(){
+    this.unload = function(){
         clip.unload();
     }
 
