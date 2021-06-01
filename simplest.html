@@ -15,6 +15,7 @@
 
         self.howl.once('load', function (){ howl.play()});
         self. howl.on('end', function() { console.log("looping");
+            console.log(typeof self);
             self.countdown --;
             if (self.countdown < 1) { 
                 //self.howl.unload()
