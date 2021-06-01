@@ -297,7 +297,7 @@ function AudioClip (json_arr){
     const fuck = this.clip;
 
     this.clip.on("end", function(id){
-        //console.log("foo "+ typeof id);
+        console.log("fuck "+ typeof fuck);
         if(valid(fuck)){
             if(this.loop == false) {
                 fuck.loop(this.loop, id);
