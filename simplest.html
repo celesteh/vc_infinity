@@ -10,7 +10,7 @@
             loop: true
         });
 
-        howl.on("load", function (){ howl.play()});
+        howl.once("load", function (){ howl.play()});
         howl.on("end", function() { console.log("looping"); howl.unload()});
     </script>
 </head>
