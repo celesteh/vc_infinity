@@ -294,21 +294,23 @@ function AudioClip (json_arr){
     //    this.unload();
     //});
 
+    var fuck = this.clip;
+
     this.clip.on("end", function(id){
         //console.log("foo "+ typeof id);
-        if(valid(id)){
+        if(valid(fuck)){
             if(this.loop == false) {
-                this.clip.loop(this.loop, id);
+                fuck.loop(this.loop, id);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                this.clip.rate(rrand(0.9, 1.1), id);
+                fuck.rate(rrand(0.9, 1.1), id);
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                this.clip.loop(this.loop, id);
+                fuck.loop(this.loop, id);
             }
         }   
     });
