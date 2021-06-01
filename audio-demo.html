@@ -34,7 +34,13 @@
 
             // First see if we need to load more audio
             if (queue.length <= 2){
-                loadaudio(panels.shift());
+                var nextpanel = panels.shift();
+                if (valid(nextpanel)){
+                    loadaudio(nextpanel);
+                } else {
+                    // start over
+                    play_stuff();
+                }
             }
 
             // check if the queue was empty and if any file removed from it was ready
@@ -106,7 +112,7 @@
         }
         
         function play_stuff(){
-            var started = false;
+            //var started = false;
             loadJSON('json/panels.json',
                 function(panel_info){
                     panel_info.forEach(panel => {
