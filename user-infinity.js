@@ -147,17 +147,17 @@ function AudioClip (json_arr){
     }
 
     this.load = function() {
-        clip = new Howl ({ 
+        this.clip = new Howl ({ 
             src: this.src, 
             preload: true,
             volume: this.amplitude,
             loop: false
         });
 
-        clip.on("load",function(){
+        this.clip.on("load",function(){
             dur = clip.duration();
         });
-        clip.on("end", function(){
+        this.clip.on("end", function(){
             this.unload();
         })
     }
@@ -166,6 +166,18 @@ function AudioClip (json_arr){
         clip.unload();
     }
 
-    this.load();
-    
+    //this.load();
+    this.clip = new Howl ({ 
+        src: this.src, 
+        preload: true,
+        volume: this.amplitude,
+        loop: false
+    });
+
+    this.clip.on("load",function(){
+        dur = clip.duration();
+    });
+    this.clip.on("end", function(){
+        this.unload();
+    })
 }
