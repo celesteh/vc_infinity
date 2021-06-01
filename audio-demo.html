@@ -22,20 +22,41 @@
     <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
     <script type="text/javascript" src="user-infinity.js"></script>
     <script>
+
+        var queue;
+        var started = false;
+
+        function player () {
+            var dur = active.duration();
+            active.play();
+            var waittime = rrand(dur/5, dur*5);
+            if ((dur > 5) || (rrand(0, 13) < 5)){
+                active = queue.shift();
+            };
+            setTimeout(player, dur*1000);
+        }
         
-        async function doplay() {
+        function loadaudio() {
             console.log("doplay");
             
             loadJSON('json/8.json',
                 function(audio_files) { //console.log(audio_files); 
                     
                     var chosen = getNRandSorted(audio_files, 5);
-                    var sounds = [];
+                    //var sounds = [];
                     var howl;
+                    var queue = [];
                     
                     chosen.forEach(element => {
-                        howl = new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]] });
-                        sounds.push(howl);
+                        howl = new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]], preload: true });
+                        howl.on("load", function () {
+                            queue.push(howl);
+                            if (! started){
+                                started = true;
+                                var active = queue.shift
+                                player();
+                            }
+                        });
                     });
                     
                     var sleeptime = 20;
@@ -52,7 +73,7 @@
         }
         
         function play_stuff(){
-            doplay().then(
+            loadaudio().then(
                 function(value) { console.log("playing"); },
                 function(error) { /* code if some error */ }
             );
