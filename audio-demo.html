@@ -30,10 +30,16 @@
         var density;
 
         function mark_played(clip){
-            played.push(clip.arr);
-            if (played.length > 100){
-                played.shift();
+            if(!is_played(clip)){
+                played.push(clip.arr);
+                if (played.length > 100){
+                    played.shift();
+                }
             }
+        }
+
+        function is_played(clip){
+            return (played.includes(clip.arr));
         }
 
         function player () {
@@ -161,7 +167,7 @@
                             */
                             //queue.push(howl);
                             clip = new AudioClip(element);
-                            if (!played.includes(clip.arr)){
+                            if (!is_played(clip)){
                                 queue.push(clip);
                             };
                         }
