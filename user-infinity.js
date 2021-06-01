@@ -268,7 +268,7 @@ function AudioClip (json_arr){
         src: this.src, 
         preload: true,
         volume: this.amplitude,
-        loop: false
+        loop: true
     });
 
     //this.clip.on("load",function(){
