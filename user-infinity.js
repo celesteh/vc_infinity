@@ -297,22 +297,25 @@ function AudioClip (json_arr){
     //const fuck = Howl(this.clip);
 
     this.clip.on('end', function(id){
-        console.log("fuck "+ typeof this.clip);
+        console.log("this "+ typeof this);
+        console.log("clip "+ typeof this.clip);
         if(valid(this.clip)){
             if(this.loop == false) {
-                fuck.loop(this.loop, id);
+                this.clip.loop(this.loop, id);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                this.clip(rrand(0.9, 1.1), id);
+                this.clip.rate(rrand(0.9, 1.1), id);
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
                 this.clip.loop(this.loop, id);
             }
-        }   
+        }else {
+            console.log("not valid");
+        } 
     });
 
     this.dur = function(){
