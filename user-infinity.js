@@ -279,19 +279,20 @@ function AudioClip (json_arr){
     //});
 
     this.clip.on("end", function(){
+        if(valid(this.clip)){
+            if(this.clip.loop == false) {
+                if (valid(this.whenFinished)){
+                    this.whenFinished();
+                }
+            } else { console.log("looping");
+                // shake things up a bit
+                this.clip.setRate(rrand(0.9, 1.1));
 
-        if(this.clip.loop == false) {
-            if (valid(this.whenFinished)){
-                this.whenFinished();
+                this.times = this.times -1;
+                this.clip.loop = (this.times> 1);
             }
-        } else { console.log("looping");
-            // shake things up a bit
-            this.clip.setRate(rrand(0.9, 1.1));
-
-            this.times = this.times -1;
-            this.clip.loop = (this.times> 1);
         }   
-      });
+    });
 
     this.dur = function(){
         return this.clip.duration();
