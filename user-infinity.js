@@ -155,7 +155,7 @@ function AudioClip (json_arr){
         });
 
         this.clip.on("load",function(){
-            dur = clip.duration();
+            dur = this.clip.duration();
         });
         this.clip.on("end", function(){
             this.unload();
@@ -175,7 +175,7 @@ function AudioClip (json_arr){
     });
 
     this.clip.on("load",function(){
-        dur = clip.duration();
+        dur = this.clip.duration();
     });
     this.clip.on("end", function(){
         this.unload();
