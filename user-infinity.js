@@ -107,7 +107,7 @@ function rrand(low, high){
 
 function Ramp (){
 
-    this.mintime = 40;
+    this.mintime = 20;
     this.maxtime = 300;
     this.start = 0;
     this.middle = 0;
