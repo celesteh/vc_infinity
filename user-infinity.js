@@ -298,7 +298,7 @@ function AudioClip (json_arr){
         //console.log("foo "+ typeof id);
         if(valid(id)){
             if(this.loop == false) {
-                Howl.loop(this.loop, id);
+                Howler.loop(this.loop, id);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
@@ -308,7 +308,7 @@ function AudioClip (json_arr){
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                Howl.loop(this.loop, id);
+                Howler.loop(this.loop, id);
             }
         }   
     });
