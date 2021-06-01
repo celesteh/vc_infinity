@@ -83,9 +83,10 @@
                 }
                 */ 
                 if (active.loaded()){
+                    var denseness = density.value();
                     var dur = active.dur();
                     active.pan(rrand(-0.5, 0.5));
-                    active.amp(rrand(0.7, 0.7));
+                    active.amp((1/denseness) * rrand(0.8, 1.2));
                     if(rrand(0,10)< 1){
                         active.setRate(rrand(0.9, 1.1));
                     } else {
@@ -95,8 +96,8 @@
                     ready = true;
                     mark_played(active);
 
-                    console.log("Density "+ density.value());
-                    waittime = dur * (1.2 / density.value());  //rrand(dur/5, dur*1.1);
+                    console.log("Density "+ denseness);
+                    waittime = dur * (1.2 / denseness);  //rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
                         queue.unshift(active);
