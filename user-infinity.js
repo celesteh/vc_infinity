@@ -33,7 +33,8 @@ function valid (testee){
     return is_valid;
 }
 
-function map (x, lowIn, highIn, lowOut, highOut){
+// map between two linear ranges
+function linlin (x, lowIn, highIn, lowOut, highOut){
     var result = lowOut;
     if(x <= lowIn){
         result = lowOut;
