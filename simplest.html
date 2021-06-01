@@ -11,8 +11,15 @@
             loop: true
         });
 
+        self.countdown =3;
+
         self.howl.once('load', function (){ howl.play()});
-        self. howl.on('end', function() { console.log("looping"); self.howl.unload()});
+        self. howl.on('end', function() { console.log("looping");
+            self.countdown --;
+            if (self.countdown < 1) { 
+                self.howl.unload()
+            }
+        });
     }
 
     var proof = new Demo();
