@@ -54,17 +54,10 @@
                             if (! started){
                                 started = true;
                                 var active = queue.shift
-                                player();
+                                setTimeout(player, rrand(200, 3000));
                             }
                         });
                     });
-                    
-                    var sleeptime = 20;
-                    sounds.forEach(element =>{
-                        await sleep(sleeptime);
-                        //element.play();
-                        sleeptime = rrand(200, 3000);
-                    })
                     
                 }, 
                 function(xhr) { console.error(xhr); }
