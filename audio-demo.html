@@ -46,24 +46,25 @@
             // check if the queue was empty and if any file removed from it was ready
             if (valid(active)){
                 if(active.state() == "loaded"){
-
+                    let toPlay = { ...active };
                     // set the file to play
-                    var dur = active.duration();
-                    active.stereo(rrand(-0.5, 0.5));
-                    active.volume(rrand(0.2, 0.7));
+                    var dur = toPlay.duration();
+                    toPlay.stereo(rrand(-0.5, 0.5));
+                    toPlay.volume(rrand(0.2, 0.7));
                     if(rrand(0,10)< 1){
-                        active.rate(rrand(0.9, 1.1));
+                        toPlay.rate(rrand(0.9, 1.1));
                     } else {
-                        active.rate(1);
+                        toPlay.rate(1);
                     }
-                    active.play();
+                    toPlay.play();
                     ready = true;
                     waittime = rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
                         queue.unshift(active);
                     } else {
-                        active.on("end", function(){
+                        toPlay.on("end", function(){
+                            toPlay.unload();
                             active.unload();
                         })
                     }
