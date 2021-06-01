@@ -298,17 +298,17 @@ function AudioClip (json_arr){
         //console.log("foo "+ typeof id);
         if(valid(id)){
             if(this.loop == false) {
-                Howl.loop = (this.loop, id);
+                Howl.loop(this.loop, id);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                Howl.setRate(rrand(0.9, 1.1), id);
+                Howl.rate(rrand(0.9, 1.1), id);
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                Howl.loop = (this.loop, id);
+                Howl.loop(this.loop, id);
             }
         }   
     });
