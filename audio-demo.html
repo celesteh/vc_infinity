@@ -30,7 +30,7 @@
         var density;
 
         function mark_played(clip){
-            played.push(clip.src);
+            played.push(clip.arr);
             if (played.length > 100){
                 played.shift();
             }
@@ -131,7 +131,7 @@
             loadJSON('json/' + panel + '.json',
                 function(audio_files) { //console.log(audio_files); 
                     
-                    var chosen = getNRandSorted(audio_files, 2 * density.middle);
+                    var chosen = getNRandSortedExcluding(audio_files, 2 * density.middle, played);
                     //var sounds = [];
                     //var howl;
                     //var queue = [];
@@ -157,7 +157,7 @@
                             */
                             //queue.push(howl);
                             clip = new AudioClip(element);
-                            if (!played.includes(clip.src)){
+                            if (!played.includes(clip.arr)){
                                 queue.push(clip);
                             };
                         }

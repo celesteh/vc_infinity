@@ -75,6 +75,23 @@ function getNRandSorted(audio_json, n){
     return arr;
 }
 
+function getNRandSortedExcluding(audio_json, n, excluded){
+
+    var arr = [];
+    var picked;
+    var tries = 0;
+
+    while((arr.length < n) && tries < (n*3)){
+        picked = audio_json[Math.floor(Math.random() * audio_json.length)];
+        if (!excluded.includes(picked)){
+            arr.push();
+        }
+    };
+
+    arr = sortAudioByX(arr);
+    return arr;
+}
+
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
