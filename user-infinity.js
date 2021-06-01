@@ -124,7 +124,7 @@ function Ramp (){
         }
 
         var slope = (this.end - this.start) / durmilis; //slope = rise over run
-        return (slope * elapsed); // rise = slope * run
+        return ((slope * elapsed)+ this.start); // rise = slope * run
 
     }
 }
