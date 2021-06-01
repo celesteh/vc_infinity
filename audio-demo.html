@@ -43,6 +43,9 @@
 
             // First see if we need to load more audio
             if (queue.length <= 2){
+                if (panels.length <= 2){
+                    play_stuff(); // add more panels to the queu
+                }
                 var nextpanel = panels.shift();
                 if (valid(nextpanel)){
                     loadaudio(nextpanel);
