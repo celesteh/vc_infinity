@@ -258,4 +258,8 @@ function AudioClip (json_arr){
         this.times = n;
         this.clip.loop = (n>1)
     }
+
+    this.setFinished = function(doneAction){
+        this.whenFinished = doneAction;
+    }
 }

@@ -98,7 +98,7 @@
 
                     console.log("Density "+ denseness);
                     waittime = dur * (1.2 / denseness);  //rrand(dur/5, dur*1.1);
-                    active.repeats(rrand(0,3));
+                    active.setRepeats(rrand(0,3));
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
                         queue.unshift(active);
@@ -107,7 +107,7 @@
                             //toPlay.unload();
                         //    active.clip.unload();
                         //})
-                        active.whenFinished = function(){ active.unload()};
+                        active.setFinished(function(){ active.unload()});
                     }
 
 
