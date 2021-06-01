@@ -180,6 +180,7 @@ function AudioClip (json_arr){
     this.src = "processed_audio/" + [json_arr[2] + "/" + json_arr[4]];
     this.dur = -1;
     this.times = 1;
+    this.loop = false;
 
     this.whenFinished = new function(){  };
  
@@ -293,19 +294,20 @@ function AudioClip (json_arr){
     //    this.unload();
     //});
 
-    this.clip.on("end", function(foo){
-        console.log("foo "+ typeof foo);
-        if(valid(foo)){
-            if(foo.loop == false) {
+    this.clip.on("end", function(id){
+        //console.log("foo "+ typeof id);
+        if(valid(id)){
+            if(this.loop == false) {
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                foo.setRate(rrand(0.9, 1.1));
+                Howl.setRate(rrand(0.9, 1.1), id);
 
                 this.times = this.times -1;
-                foo.loop = (this.times> 1);
+                this.loop = (this.times> 1);
+                Howl.loop = (this.loop, id);
             }
         }   
     });
@@ -316,7 +318,8 @@ function AudioClip (json_arr){
 
     this.setRepeats = function(n){
         this.times = n;
-        this.clip.loop = (n>1);
+        this.loop = (n>1);
+        this.clip.loop = this.loop;
     }
 
     this.setFinished = function(doneAction){
