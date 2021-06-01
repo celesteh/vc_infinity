@@ -284,10 +284,13 @@ function AudioClip (json_arr){
             if (valid(this.whenFinished)){
                 this.whenFinished();
             }
-        } else { console.log("looping");}
+        } else { console.log("looping");
+            // shake things up a bit
+            this.clip.setRate(rrand(0.9, 1.1));
 
-        this.times = this.times -1;
-        this.loop = (this.times> 1);
+            this.times = this.times -1;
+            this.loop = (this.times> 1);
+        }   
       });
 
     this.dur = function(){
