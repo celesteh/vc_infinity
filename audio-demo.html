@@ -104,12 +104,14 @@
             var started = false;
             loadJSON('json/panels.json',
                 function(panel_info){
-                    panels.push(panel_info[1]);
-                    if (!started){
-                        started = true;
-                        loadaudio(panels.shift());
-                        setTimeout(player, rrand(200, 3000));
-                    }
+                    panel_info.foreach(panel => {
+                        panels.push(panel[1]);
+                        if (!started){
+                            started = true;
+                            loadaudio(panels.shift());
+                            setTimeout(player, rrand(200, 3000));
+                        }
+                    })
                 }
             )
         }
