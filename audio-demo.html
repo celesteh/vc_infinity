@@ -26,6 +26,7 @@
         var queue = [];
         var started = false;
         var panels = [];
+        var played = [];
 
         function player () {
             var waittime;
@@ -45,6 +46,7 @@
 
             // check if the queue was empty and if any file removed from it was ready
             if (valid(active)){
+                /*
                 if(active.state() == "loaded"){
                     //let toPlay = { ...active };
                     // set the file to play
@@ -70,7 +72,36 @@
                     }
                 } else { // not ready
                     queue.unshift(active);
-                } 
+                }
+                */ 
+                if (active.loaded()){
+                    var dur = active.dur;
+                    active.pan(rrand(-0.5, 0.5));
+                    active.amp(rrand(0.7, 0.7));
+                    if(rrand(0,10)< 1){
+                        active.setRate(rrand(0.9, 1.1));
+                    } else {
+                        active.setRate(1);
+                    }
+                    active.clip.play();
+                    ready = true;
+                    played.push(active.src);
+
+                    waittime = rrand(dur/5, dur*1.1);
+                    if ((dur < 5) && (rrand(0, 13) < 5)){
+                        //active = queue.shift();
+                        queue.unshift(active);
+                    } else {
+                        active.on("end", function(){
+                            //toPlay.unload();
+                            active.unload();
+                        })
+                    }
+
+
+                } else { // not ready
+                    queue.unshift(active);
+                }
             } else { // out of items
                 console.log("queue empty");
             }
@@ -88,11 +119,13 @@
                     
                     var chosen = getNRandSorted(audio_files, 5);
                     //var sounds = [];
-                    var howl;
+                    //var howl;
                     //var queue = [];
+                    var clip;
                     
                     chosen.forEach(element => {
                         if (valid(element)){
+                            /*
                             howl = new Howl ({ 
                                 src: "processed_audio/" + [element[2] + "/" + element[4]], 
                                 preload: true,
@@ -105,9 +138,14 @@
                                         //var active = queue.shift();
                                         setTimeout(player, rrand(200, 3000));
                                   }
-                                }*/
+                                }
                             });
-                            queue.push(howl);
+                            */
+                            //queue.push(howl);
+                            clip = new AudioClip(element);
+                            if (!played.includes(clip.src)){
+                                queue.push(clip);
+                            };
                         }
                     });
                     
