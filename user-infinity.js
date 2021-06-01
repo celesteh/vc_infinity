@@ -174,9 +174,9 @@ function AudioClip (json_arr){
         loop: false
     });
 
-    this.clip.on("load",function(){
-        this.dur = this.clip.duration();
-    });
+    //this.clip.on("load",function(){
+    //    this.dur = this.clip.duration();
+    //});
     this.clip.on("end", function(){
         this.unload();
     });
