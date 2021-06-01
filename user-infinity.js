@@ -182,6 +182,28 @@ function AudioClip (json_arr){
     this.times = 1;
     this.loop = false;
 
+    this.clip = new Howl ({ 
+        src: this.src, 
+        preload: true,
+        volume: this.amplitude,
+        loop: false/*,
+        onend: function(foo){
+            if(valid(this.clip)){
+                if(this.clip.loop == false) {
+                    if (valid(this.whenFinished)){
+                        this.whenFinished();
+                    }
+                } else { console.log("looping");
+                    // shake things up a bit
+                    this.clip.setRate(rrand(0.9, 1.1));
+    
+                    this.times = this.times -1;
+                    this.clip.loop = (this.times> 1);
+                }
+            }
+        }   */
+    });
+
     this.whenFinished = new function(){  };
  
     this.arr = json_arr;
@@ -244,6 +266,7 @@ function AudioClip (json_arr){
         return (this.clip.state() == "loaded");
     };
 
+    /*
     this.load = function() {
         this.clip = new Howl ({ 
             src: this.src, 
@@ -259,33 +282,14 @@ function AudioClip (json_arr){
         //    this.unload();
         //})
     };
+    */
 
     this.unload = function(){
         this.clip.unload();
     };
 
     //this.load();
-    this.clip = new Howl ({ 
-        src: this.src, 
-        preload: true,
-        volume: this.amplitude,
-        loop: false/*,
-        onend: function(foo){
-            if(valid(this.clip)){
-                if(this.clip.loop == false) {
-                    if (valid(this.whenFinished)){
-                        this.whenFinished();
-                    }
-                } else { console.log("looping");
-                    // shake things up a bit
-                    this.clip.setRate(rrand(0.9, 1.1));
     
-                    this.times = this.times -1;
-                    this.clip.loop = (this.times> 1);
-                }
-            }
-        }   */
-    });
 
     //this.clip.on("load",function(){
     //    this.dur = this.clip.duration();
