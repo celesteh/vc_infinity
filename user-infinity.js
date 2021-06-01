@@ -126,7 +126,7 @@ function Ramp (){
         this.middle = ((this.end - this.start) / 2) + this.start;
 
 
-        this.duration = rrand(this.mintime,this.maxtime);
+        this.duration = rrand(this.mintime,this.maxtime) * 1000;
 
         if(startTime){
             this.startTime = startTime;
@@ -142,21 +142,24 @@ function Ramp (){
         var d = new Date();
         var time = d.getTime();
         var elapsed = time - this.startTime;
-        var durmilis = this.duration * 1000;
+        //var durmilis = this.duration * 1000;
 
         // figureing out the current time might include the computer going to sleep, etc
 
         
-
-        if ((d.getTime() - this.startTime) < (this.maxtime * 2)){
-            while((elapsed) > durmilis){
-                this.init(this.end, this.startTime + durmilis);
+        if (elapsed > this.duration){
+            if ((elapsed) < (this.maxtime * 2)){
+                var flag = true;
+                while(flag){
+                    this.init(this.end, this.startTime + this.duration);
+                    flag = ((time - this.startTime)> this.duration);
+                }
+            } else {
+                this.init()
             }
-        } else {
-            this.init()
         }
 
-        var slope = (this.end - this.start) / durmilis; //slope = rise over run
+        var slope = (this.end - this.start) / this.duration; //slope = rise over run
         return ((slope * elapsed)+ this.start); // rise = slope * run
 
     }
