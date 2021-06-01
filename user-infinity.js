@@ -145,7 +145,7 @@ function AudioClip (json_arr){
     this.dur = -1;
     this.times = 1;
 
-    this.whenFinished = function(){};
+    this.whenFinished = new function(){  };
  
     this.arr = json_arr;
     //this.clip = "";
@@ -246,7 +246,9 @@ function AudioClip (json_arr){
         this.times = this.times -1;
         this.loop = (this.times> 1);
         if(this.loop == false) {
-            this.whenFinished();
+            if (valid(this.whenFinished)){
+                this.whenFinished();
+            }
         }
     });
 
