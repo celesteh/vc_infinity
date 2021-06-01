@@ -113,15 +113,15 @@ function AudioClip (json_arr){
 
     this.pan = function(pos) { 
         this.pos = pos;
-        clip.stereo(pos);
+        this.clip.stereo(pos);
     };
     this.amp = function(volume) {
         this.amplitude = volume;
-        clip.volume(volume);
+        this.clip.volume(volume);
     };
     this.setRate = function(rate){
         this.rate = rate;
-        clip.rate(rate);
+        this.clip.rate(rate);
     };
 
     this.xcomparesort = function(a,b){
@@ -143,7 +143,7 @@ function AudioClip (json_arr){
     };
 
     this.loaded = function() {
-        return (clip.state() == "loaded");
+        return (this.clip.state() == "loaded");
     };
 
     this.load = function() {
@@ -163,7 +163,7 @@ function AudioClip (json_arr){
     };
 
     this.unload = function(){
-        clip.unload();
+        this.clip.unload();
     };
 
     //this.load();
@@ -174,9 +174,9 @@ function AudioClip (json_arr){
         loop: false
     });
 
-    //this.clip.on("load",function(){
-    //    dur = this.clip.duration();
-    //});
+    this.clip.on("load",function(){
+        this.dur = this.clip.duration();
+    });
     this.clip.on("end", function(){
         this.unload();
     });
