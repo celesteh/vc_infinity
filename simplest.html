@@ -3,15 +3,19 @@
     <title>Simplest howl</title>
     <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
     <script>
-        var howl = new Howl ({ 
+        function Demo (){
+            self.howl = new Howl ({ 
             src: "https://infinity.vocalconstructivists.com/processed_audio/33/1604608217_14.flac", 
             preload: true,
             volume: 0.5,
             loop: true
         });
 
-        howl.once('load', function (){ howl.play()});
-        howl.on('end', function() { console.log("looping"); howl.unload()});
+        self.howl.once('load', function (){ howl.play()});
+        self. howl.on('end', function() { console.log("looping"); self.howl.unload()});
+    }
+
+    var proof = new Demo();
     </script>
 </head>
 </html>
