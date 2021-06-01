@@ -279,14 +279,16 @@ function AudioClip (json_arr){
     //});
 
     this.clip.on("end", function(){
-        this.times = this.times -1;
-        this.loop = (this.times> 1);
+
         if(this.loop == false) {
             if (valid(this.whenFinished)){
                 this.whenFinished();
             }
         } else { console.log("looping");}
-    });
+
+        this.times = this.times -1;
+        this.loop = (this.times> 1);
+      });
 
     this.dur = function(){
         return this.clip.duration();
