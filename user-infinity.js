@@ -182,7 +182,7 @@ function AudioClip (json_arr){
     this.times = 1;
     this.loop = false;
 
-    this.clip = new Howl ({ 
+    this.howl = new Howl ({ 
         src: this.src, 
         preload: true,
         volume: this.amplitude,
@@ -233,15 +233,15 @@ function AudioClip (json_arr){
 
     this.pan = function(pos) { 
         this.pos = pos;
-        this.clip.stereo(pos);
+        this.howl.stereo(pos);
     };
     this.amp = function(volume) {
         this.amplitude = volume;
-        this.clip.volume(volume);
+        this.howl.volume(volume);
     };
     this.setRate = function(rate){
         this.rate = rate;
-        this.clip.rate(rate);
+        this.howl.rate(rate);
     };
 
     this.xcomparesort = function(a,b){
@@ -263,7 +263,7 @@ function AudioClip (json_arr){
     };
 
     this.loaded = function() {
-        return (this.clip.state() == "loaded");
+        return (this.howl.state() == "loaded");
     };
 
     /*
@@ -285,15 +285,15 @@ function AudioClip (json_arr){
     */
 
     this.unload = function(){
-        this.clip.unload();
+        this.howl.unload();
     };
 
     //this.load();
     
 
-    this.clip.on('load',function(){
-        console.log("dur "+ this.clip.duration);
-        this.dur = this.clip.duration();
+    this.howl.on('load',function(){
+        console.log("dur "+ this.howl.duration());
+        this.dur = this.howl.duration();
     });
     //this.clip.on("end", function(){
     //    this.unload();
@@ -302,22 +302,22 @@ function AudioClip (json_arr){
     //const fuck = Howl(this.clip);
 
     /*
-    this.clip.on('end', function(){
+    this.howl.on('end', function(){
         console.log("this "+ typeof this);
-        console.log("clip "+ typeof this.clip);
-        if(valid(this.clip)){
+        console.log("howl "+ typeof this.howl);
+        if(valid(this.howl)){
             if(this.loop == false) {
-                this.clip.loop(this.loop);
+                this.howl.loop(this.loop);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                this.clip.rate(rrand(0.9, 1.1));
+                this.howl.rate(rrand(0.9, 1.1));
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                this.clip.loop(this.loop);
+                this.howl.loop(this.loop);
             }
         }else {
             console.log("not valid");
@@ -325,9 +325,9 @@ function AudioClip (json_arr){
     });
     */
 
-    this.clip.on('end', function(){
+    this.howl.on('end', function(){
         console.log("this "+ typeof this);
-        console.log("clip "+ typeof this.clip);
+        console.log("howl "+ typeof this.howl);
     });
 
 
@@ -338,7 +338,7 @@ function AudioClip (json_arr){
     this.setRepeats = function(n){
         this.times = n;
         this.loop = (n>1);
-        this.clip.loop(this.loop);
+        this.howl.loop(this.loop);
     }
 
     this.setFinished = function(doneAction){
