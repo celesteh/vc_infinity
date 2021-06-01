@@ -329,7 +329,7 @@ function AudioClip (json_arr){
     this.setRepeats = function(n){
         this.times = n;
         this.loop = (n>1);
-        this.clip.loop = this.loop;
+        this.clip.loop(this.loop);
     }
 
     this.setFinished = function(doneAction){
