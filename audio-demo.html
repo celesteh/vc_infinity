@@ -43,7 +43,7 @@
 
             // First see if we need to load more audio
             if (queue.length <= 2){
-                if (panels.length <= 2){
+                if (panels.length < 2){
                     play_stuff(); // add more panels to the queu
                 }
                 var nextpanel = panels.shift();
@@ -182,7 +182,7 @@
                             started = true;
                             density = new Ramp();
                             loadaudio(panels.shift());
-                            setTimeout(player, rrand(200, 3000));
+                            setTimeout(player, rrand(1000, 3000));
                         }
                     })
                 }
