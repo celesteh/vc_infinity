@@ -27,15 +27,31 @@
         var started = false;
 
         function player () {
+            var waittime;
             var active = queue.shift();
-            var dur = active.duration();
-            active.play();
-            var waittime = rrand(dur/5, dur*5);
-            if ((dur < 5) && (rrand(0, 13) < 5)){
-                //active = queue.shift();
-                queue.unshift(active);
-            };
-            setTimeout(player, dur*1000);
+            var ready = false;
+            if (valid(active)){
+                if(active.state() == "loaded"){
+                    var dur = active.duration();
+                    active.play();
+                    ready = true;
+                    waittime = rrand(dur/5, dur*5);
+                    if ((dur < 5) && (rrand(0, 13) < 5)){
+                        //active = queue.shift();
+                        queue.unshift(active);
+                    } else {
+                        active.on("end", function(){
+                            active.unload();
+                        })
+                    }
+                } else {
+                    queue.unshift(active);
+                } 
+            } 
+            if (! ready){
+                waittime = rrand(2, 10);
+            }
+            setTimeout(player, waittime*1000);
         }
         
         function loadaudio() {
@@ -50,15 +66,20 @@
                     //var queue = [];
                     
                     chosen.forEach(element => {
-                        howl = new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]], preload: true });
-                        howl.on("load", function () {
-                            queue.push(howl);
-                            if (! started){
-                                started = true;
-                                //var active = queue.shift();
-                                setTimeout(player, rrand(200, 3000));
-                            }
+                        howl = new Howl ({ 
+                            src: "processed_audio/" + [element[2] + "/" + element[4]], 
+                            preload: true,
+                            loop: false /*,
+                            onload:  function () {
+                              queue.push(howl);
+                                if (! started){
+                                    started = true;
+                                    //var active = queue.shift();
+                                    setTimeout(player, rrand(200, 3000));
+                                }
+                            }*/
                         });
+                        queue.push(howl);
                     });
                     
                 }, 
