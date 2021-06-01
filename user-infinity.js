@@ -143,6 +143,9 @@ function AudioClip (json_arr){
     this.rate = 1;
     this.src = "processed_audio/" + [json_arr[2] + "/" + json_arr[4]];
     this.dur = -1;
+    this.times = 1;
+
+    this.whenFinished = function(){};
  
     this.arr = json_arr;
     //this.clip = "";
@@ -239,7 +242,20 @@ function AudioClip (json_arr){
     //    this.unload();
     //});
 
+    this.clip.on("end", function(){
+        this.times = this.times -1;
+        this.loop = (this.times> 1);
+        if(this.loop == false) {
+            this.whenFinished();
+        }
+    });
+
     this.dur = function(){
         return this.clip.duration();
+    }
+
+    this.setRepeats = function(n){
+        this.times = n;
+        this.clip.loop = (n>1)
     }
 }
