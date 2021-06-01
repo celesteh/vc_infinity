@@ -315,7 +315,7 @@ function AudioClip (json_arr){
 
     this.setRepeats = function(n){
         this.times = n;
-        this.clip.loop = (n>1)
+        this.clip.loop = (n>1);
     }
 
     this.setFinished = function(doneAction){
