@@ -154,12 +154,12 @@ function AudioClip (json_arr){
             loop: false
         });
 
-        this.clip.on("load",function(){
-            dur = this.clip.duration();
-        });
-        this.clip.on("end", function(){
-            this.unload();
-        })
+        //this.clip.on("load",function(){
+        //    dur = this.clip.duration();
+        //});
+        //this.clip.on("end", function(){
+        //    this.unload();
+        //})
     };
 
     this.unload = function(){
@@ -177,9 +177,9 @@ function AudioClip (json_arr){
     //this.clip.on("load",function(){
     //    this.dur = this.clip.duration();
     //});
-    this.clip.on("end", function(){
-        this.unload();
-    });
+    //this.clip.on("end", function(){
+    //    this.unload();
+    //});
 
     this.dur = function(){
         return this.clip.duration();

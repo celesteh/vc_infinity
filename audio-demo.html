@@ -99,9 +99,9 @@
                         //active = queue.shift();
                         queue.unshift(active);
                     } else {
-                        active.on("end", function(){
+                        active.clip.on("end", function(){
                             //toPlay.unload();
-                            active.unload();
+                            active.clip.unload();
                         })
                     }
 
