@@ -27,11 +27,13 @@
         var started = false;
 
         function player () {
+            var active = queue.shift();
             var dur = active.duration();
             active.play();
             var waittime = rrand(dur/5, dur*5);
-            if ((dur > 5) || (rrand(0, 13) < 5)){
-                active = queue.shift();
+            if ((dur < 5) && (rrand(0, 13) < 5)){
+                //active = queue.shift();
+                queue.unshift(active);
             };
             setTimeout(player, dur*1000);
         }
@@ -53,7 +55,7 @@
                             queue.push(howl);
                             if (! started){
                                 started = true;
-                                var active = queue.shift();
+                                //var active = queue.shift();
                                 setTimeout(player, rrand(200, 3000));
                             }
                         });
