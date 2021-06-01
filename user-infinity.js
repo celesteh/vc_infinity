@@ -72,6 +72,59 @@ function rrand(low, high){
     return num;
 }
 
+function Ramp (){
+
+    this.maxtime = 60;
+    this.start = 0;
+    this.end = 0;
+    this.duration = 0;
+    this.startTime = 0;
+
+    this.init = function(start, startTime) {
+
+        if(start){
+            this.start = start;
+        } else {
+            this.start = rrand(1,5);
+        }
+        
+        this.end = rrand(1,5);
+        this.duration = rrand(1,this.maxtime);
+
+        if(startTime){
+            this.startTime = startTime;
+        } else {
+            var d = new Date();
+            this.startTime = d.getTime();
+        }
+    };
+
+    this.init();
+
+    this.value  = function() {
+        var d = new Date();
+        var time = d.getTime();
+        var elapsed = time - this.startTime;
+        var durmilis = this.duration * 1000;
+
+        // figureing out the current time might include the computer going to sleep, etc
+
+        
+
+        if ((d.getTime() - this.startTime) < (this.maxtime * 2)){
+            while((elapsed) > durmilis){
+                this.init(this.end, this.startTime + durmilis);
+            }
+        } else {
+            this.init()
+        }
+
+        var slope = (this.end - this.start) / durmilis; //slope = rise over run
+        return (slope * elapsed); // rise = slope * run
+
+    }
+}
+
 
 function AudioClip (json_arr){
     //[$x, $y, $dir, $wav, $flac, $meta, $tags, $dur, $user]
