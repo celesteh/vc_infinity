@@ -43,7 +43,7 @@
 
                     // set the file to play
                     var dur = active.duration();
-                    active.stero(rrand(-0.5, 0.5));
+                    active.stereo(rrand(-0.5, 0.5));
                     active.play();
                     ready = true;
                     waittime = rrand(dur/5, dur*1.1);
@@ -83,6 +83,7 @@
                             howl = new Howl ({ 
                                 src: "processed_audio/" + [element[2] + "/" + element[4]], 
                                 preload: true,
+                                volume: 0.5,
                                 loop: false /*,
                                 onload:  function () {
                                   queue.push(howl);
