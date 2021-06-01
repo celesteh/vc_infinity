@@ -25,17 +25,27 @@
 
         var queue = [];
         var started = false;
+        var panels = [];
 
         function player () {
             var waittime;
             var active = queue.shift();
             var ready = false;
+
+            // First see if we need to load more audio
+            if (queue.length <= 2){
+                loadaudio(panels.shift());
+            }
+
+            // check if the queue was empty and if any file removed from it was ready
             if (valid(active)){
                 if(active.state() == "loaded"){
+
+                    // set the file to play
                     var dur = active.duration();
                     active.play();
                     ready = true;
-                    waittime = rrand(dur/5, dur*5);
+                    waittime = rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
                         queue.unshift(active);
@@ -44,20 +54,22 @@
                             active.unload();
                         })
                     }
-                } else {
+                } else { // not ready
                     queue.unshift(active);
                 } 
-            } 
+            } else { // out of items
+                console.log("queue empty");
+            }
             if (! ready){
                 waittime = rrand(2, 10);
             }
             setTimeout(player, waittime*1000);
         }
         
-        function loadaudio() {
+        function loadaudio(panel) {
             console.log("doplay");
             
-            loadJSON('json/8.json',
+            loadJSON('json/' + panel + '.json',
                 function(audio_files) { //console.log(audio_files); 
                     
                     var chosen = getNRandSorted(audio_files, 5);
@@ -89,8 +101,17 @@
         }
         
         function play_stuff(){
-            loadaudio();
-            setTimeout(player, rrand(200, 3000));
+            var started = false;
+            loadJSON('json/panels.json',
+                function(panels_info){
+                    panels.push(panel_info[1]);
+                    if (!started){
+                        started = true;
+                        loadaudio(panels.shift());
+                        setTimeout(player, rrand(200, 3000));
+                    }
+                }
+            )
         }
 
         
