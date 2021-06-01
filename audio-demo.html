@@ -104,7 +104,7 @@
             var started = false;
             loadJSON('json/panels.json',
                 function(panel_info){
-                    panel_info.foreach(panel => {
+                    panel_info.forEach(panel => {
                         panels.push(panel[1]);
                         if (!started){
                             started = true;
