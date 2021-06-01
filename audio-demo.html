@@ -95,6 +95,7 @@
                     ready = true;
                     mark_played(active);
 
+                    console.log("Density "+ density.value());
                     waittime = dur * (1.2 / density.value());  //rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
