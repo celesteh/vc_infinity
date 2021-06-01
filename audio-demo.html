@@ -173,6 +173,7 @@
                             */
                             //queue.push(howl);
                             clip = new AudioClip(element);
+                            clip.setRepeats(Math.floor(rrand(((-2 * density.middle)-1),density.middle)));
                             if (!is_played(clip)){
                                 queue.push(clip);
                             };
