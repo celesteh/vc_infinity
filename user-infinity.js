@@ -294,6 +294,7 @@ function AudioClip (json_arr){
     //});
 
     this.clip.on("end", function(foo){
+        console.log("foo "+ typeof foo);
         if(valid(foo)){
             if(foo.loop == false) {
                 if (valid(this.whenFinished)){
