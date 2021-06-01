@@ -89,7 +89,7 @@
                     console.log("pan " + panspread);
                     active.pan(rrand((-1.0 * panspread), panspread));
                     active.amp((1/denseness) * rrand(0.8, 1.2));
-                    if(rrand(0,10)< 1){
+                    if(rrand(3,10)< 1){
                         active.setRate(rrand(0.9, 1.1));
                     } else {
                         active.setRate(1);
@@ -101,16 +101,16 @@
                     console.log("Density "+ denseness);
                     waittime = dur * (1.5 / denseness);  //rrand(dur/5, dur*1.1);
                     active.setRepeats(rrand(0,3));
-                    if ((dur < 5) && (rrand(0, 13) < 5)){
+                    //if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
-                        queue.unshift(active);
-                    } else {
+                    //    queue.unshift(active);
+                    //} else {
                         //active.clip.on("end", function(){
                             //toPlay.unload();
                         //    active.clip.unload();
                         //})
                         active.setFinished(function(){ active.unload()});
-                    }
+                    //}
 
 
                 } else { // not ready
