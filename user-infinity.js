@@ -23,9 +23,11 @@ function valid (testee){
     var is_valid = false;
     var is_valid = (typeof testee != 'undefined');
     if (is_valid){
-        testee = testee.trim();
-        if (testee.length < 1){
-            is_valid = false;
+        if (typeof testee == "string") {
+            testee = testee.trim();
+            if (testee.length < 1){
+                is_valid = false;
+            }
         }
     };
     return is_valid;
