@@ -28,6 +28,13 @@
         var panels = [];
         var played = [];
 
+        function mark_played(clip){
+            played.push(clip.src);
+            if (played.length > 100){
+                played.shift();
+            }
+        }
+
         function player () {
             var waittime;
             var active = queue.shift();
@@ -85,7 +92,7 @@
                     }
                     active.clip.play();
                     ready = true;
-                    played.push(active.src);
+                    mark_played(active);
 
                     waittime = rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
@@ -178,5 +185,6 @@
     <div class="page-header">
         <h1>Audio Demo</h1>
     </div>
+    <div><p>Music will start in 1 minute . . .</p></div>
 </body>
 </html>
