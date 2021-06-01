@@ -78,20 +78,22 @@
                     //var queue = [];
                     
                     chosen.forEach(element => {
-                        howl = new Howl ({ 
-                            src: "processed_audio/" + [element[2] + "/" + element[4]], 
-                            preload: true,
-                            loop: false /*,
-                            onload:  function () {
-                              queue.push(howl);
-                                if (! started){
-                                    started = true;
-                                    //var active = queue.shift();
-                                    setTimeout(player, rrand(200, 3000));
-                                }
-                            }*/
-                        });
-                        queue.push(howl);
+                        if (valid(element)){
+                            howl = new Howl ({ 
+                                src: "processed_audio/" + [element[2] + "/" + element[4]], 
+                                preload: true,
+                                loop: false /*,
+                                onload:  function () {
+                                  queue.push(howl);
+                                    if (! started){
+                                        started = true;
+                                        //var active = queue.shift();
+                                        setTimeout(player, rrand(200, 3000));
+                                  }
+                                }*/
+                            });
+                            queue.push(howl);
+                        }
                     });
                     
                 }, 
