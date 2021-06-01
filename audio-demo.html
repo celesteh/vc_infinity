@@ -113,16 +113,16 @@
                         console.log("Density "+ denseness);
                         waittime = Math.min(dur * (1.5 / denseness), 15);  //rrand(dur/5, dur*1.1);
                         active.setRepeats(Math.floor(rrand(((-2 * denseness)-1),denseness)));
-                        //if ((dur < 5) && (rrand(0, 13) < 5)){
+                        if ((dur < 5) && (rrand(0, 13) < 5)){
                             //active = queue.shift();
-                        //    queue.unshift(active);
-                        //} else {
+                            queue.unshift(active);
+                        } else {
                             //active.clip.on("end", function(){
                                 //toPlay.unload();
                             //    active.clip.unload();
                             //})
                             active.setFinished(function(){ active.unload()});
-                        //}
+                        }
 
 
                     } else { // not ready

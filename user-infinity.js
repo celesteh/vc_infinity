@@ -269,7 +269,7 @@ function AudioClip (json_arr){
         src: this.src, 
         preload: true,
         volume: this.amplitude,
-        loop: true/*,
+        loop: false/*,
         onend: function(foo){
             if(valid(this.clip)){
                 if(this.clip.loop == false) {
@@ -294,11 +294,11 @@ function AudioClip (json_arr){
     //    this.unload();
     //});
 
-    const fuck = Howl(this.clip);
+    //const fuck = Howl(this.clip);
 
-    this.clip.on("end", function(id){
-        console.log("fuck "+ typeof fuck);
-        if(valid(fuck)){
+    this.clip.on('end', function(id){
+        console.log("fuck "+ typeof this.clip);
+        if(valid(this.clip)){
             if(this.loop == false) {
                 fuck.loop(this.loop, id);
                 if (valid(this.whenFinished)){
@@ -306,11 +306,11 @@ function AudioClip (json_arr){
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                fuck.rate(rrand(0.9, 1.1), id);
+                this.clip(rrand(0.9, 1.1), id);
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                fuck.loop(this.loop, id);
+                this.clip.loop(this.loop, id);
             }
         }   
     });
