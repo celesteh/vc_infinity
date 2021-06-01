@@ -66,7 +66,7 @@
             // check if the queue was empty and if any file removed from it was ready
             if (valid(active)){
 
-                if (valid(active.clip)){
+                if (valid(active.howl)){
                     /*
                     if(active.state() == "loaded"){
                         //let toPlay = { ...active };
@@ -107,7 +107,7 @@
                         } else {
                             active.setRate(1);
                         }
-                        active.clip.play();
+                        active.howl.play();
                         ready = true;
                         mark_played(active);
 
@@ -133,8 +133,8 @@
                     } else { // not ready
                         queue.unshift(active);
                     }
-                } else {
-                    active.load();
+                    this} else {
+                    //active.load();
                     queue.unshift(active);
                 }
             } else { // out of items

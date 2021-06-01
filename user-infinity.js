@@ -289,39 +289,39 @@ class AudioClip {
         //this.load();
         this.howl.on('load', function () {
             console.log("dur " + self.howl.duration());
-            this.dur = self.howl.duration();
+            self.dur = self.howl.duration();
         });
         //this.clip.on("end", function(){
         //    this.unload();
         //});
         //const fuck = Howl(this.clip);
-        /*
+        
         this.howl.on('end', function(){
-            console.log("this "+ typeof this);
-            console.log("howl "+ typeof this.howl);
-            if(valid(this.howl)){
-                if(this.loop == false) {
-                    this.howl.loop(this.loop);
-                    if (valid(this.whenFinished)){
-                        this.whenFinished();
+            console.log("this "+ typeof self);
+            console.log("howl "+ typeof self.howl);
+            if(valid(self.howl)){
+                if(self.loop == false) {
+                    self.howl.loop(self.loop);
+                    if (valid(self.whenFinished)){
+                        self.whenFinished();
                     }
                 } else { console.log("looping");
                     // shake things up a bit
-                    this.howl.rate(rrand(0.9, 1.1));
+                    self.howl.rate(rrand(0.9, 1.1));
     
-                    this.times = this.times -1;
-                    this.loop = (this.times> 1);
-                    this.howl.loop(this.loop);
+                    self;f.times = self.times -1;
+                    self.loop = (self.times> 1);
+                    self.howl.loop(self.loop);
                 }
             }else {
                 console.log("not valid");
             }
         });
-        */
-        this.howl.on('end', function () {
-            console.log("this " + typeof this);
-            console.log("howl " + typeof self.howl);
-        });
+        
+        //this.howl.on('end', function () {
+        //    console.log("this " + typeof this);
+        //    console.log("howl " + typeof self.howl);
+        //});
 
 
         //this.dur = function(){
