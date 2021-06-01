@@ -50,7 +50,7 @@
 
             // First see if we need to load more audio
             if (queue.length <= 2){
-                if (panels.length < 2){
+                if (panels.length < 3){
                     started = true; // just so we're clear
                     play_stuff(); // add more panels to the queu
                 }
@@ -125,7 +125,7 @@
                             //})
                             active.setFinished(function(){ 
                                 
-                                active.unload()
+                                active.unload();
                             });
                         }
 
