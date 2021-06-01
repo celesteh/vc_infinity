@@ -288,7 +288,7 @@ class AudioClip {
 
         //this.load();
         this.howl.on('load', function () {
-            console.log("dur " + this.howl.duration());
+            console.log("dur " + self.howl.duration());
             this.dur = self.howl.duration();
         });
         //this.clip.on("end", function(){
