@@ -122,7 +122,7 @@ function AudioClip (json_arr){
     this.setRate = function(rate){
         this.rate = rate;
         clip.rate(rate);
-    }
+    };
 
     this.xcomparesort = function(a,b){
         if (a.x < b.x) {
@@ -136,15 +136,15 @@ function AudioClip (json_arr){
 
     this.xcompare = function(other){
         return this.xcomparesort(this,other);
-    }
+    };
 
     this.isCopy = function(other){
         return (this.src == other.src);
-    }
+    };
 
     this.loaded = function() {
         return (clip.state() == "loaded");
-    }
+    };
 
     this.load = function() {
         this.clip = new Howl ({ 
@@ -160,11 +160,11 @@ function AudioClip (json_arr){
         this.clip.on("end", function(){
             this.unload();
         })
-    }
+    };
 
     this.unload = function(){
         clip.unload();
-    }
+    };
 
     //this.load();
     this.clip = new Howl ({ 
@@ -179,5 +179,5 @@ function AudioClip (json_arr){
     });
     this.clip.on("end", function(){
         this.unload();
-    })
+    });
 }
