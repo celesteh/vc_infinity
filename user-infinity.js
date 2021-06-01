@@ -280,7 +280,7 @@ function AudioClip (json_arr){
 
     this.clip.on("end", function(){
 
-        if(this.loop == false) {
+        if(this.clip.loop == false) {
             if (valid(this.whenFinished)){
                 this.whenFinished();
             }
@@ -289,7 +289,7 @@ function AudioClip (json_arr){
             this.clip.setRate(rrand(0.9, 1.1));
 
             this.times = this.times -1;
-            this.loop = (this.times> 1);
+            this.clip.loop = (this.times> 1);
         }   
       });
 
