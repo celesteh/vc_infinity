@@ -87,7 +87,7 @@ function AudioClip (json_arr){
     this.dur = -1;
  
     this.arr = json_arr;
-    this.clip;
+    this.clip = "";
 
     
     //this.clip = new Howl ({ 
