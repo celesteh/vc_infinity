@@ -81,11 +81,12 @@ function getNRandSortedExcluding(audio_json, n, excluded){
     var picked;
     var tries = 0;
 
-    while((arr.length < n) && tries < (n*3)){
+    while((arr.length < n) && (tries < (n*3))){
         picked = audio_json[Math.floor(Math.random() * audio_json.length)];
         if (!excluded.includes(picked)){
             arr.push();
-        }
+        } else {console.log("already present");}
+        tries = tries +1;
     };
 
     arr = sortAudioByX(arr);
