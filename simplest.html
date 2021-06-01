@@ -13,7 +13,7 @@
 
         self.countdown =3;
 
-        self.howl.once('load', function (){ howl.play()});
+        self.howl.once('load', function (){ self.howl.play()});
         self. howl.on('end', function() { console.log("looping");
             console.log(typeof self);
             self.countdown --;
