@@ -288,7 +288,7 @@ class AudioClip {
 
         //this.load();
         this.howl.on('load', function () {
-            console.log("dur " + self.howl.duration());
+            //console.log("dur " + self.howl.duration());
             self.dur = self.howl.duration();
         });
         //this.clip.on("end", function(){
@@ -297,13 +297,17 @@ class AudioClip {
         //const fuck = Howl(this.clip);
         
         this.howl.on('end', function(){
-            console.log("this "+ typeof self);
-            console.log("howl "+ typeof self.howl);
+            //console.log("this "+ typeof self);
+            //console.log("howl "+ typeof self.howl);
             if(valid(self.howl)){
                 if(self.loop == false) {
                     self.howl.loop(self.loop);
                     if (valid(self.whenFinished)){
-                        self.whenFinished();
+                        if (typeof self.whenFinished == "function"){
+                            self.whenFinished();
+                        } else {
+                            console.log("whenfinished is a " + typeof self.whenfinished);
+                        }
                     }
                 } else { console.log("looping");
                     // shake things up a bit
