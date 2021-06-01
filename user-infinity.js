@@ -34,13 +34,15 @@ function valid (testee){
 }
 
 function map (x, lowIn, highIn, lowOut, highOut){
-    var result;
+    var result = lowOut;
     if(x <= lowIn){
         result = lowOut;
-    } else if (x>=highIn) {
-        result = highOut;
-    } else {
-        result = ((x-lowIn)/(highIn-lowIn)) * ((highOut-lowOut)) + lowOut;
+    } else { 
+        if (x>=highIn) {
+            result = highOut;
+        } else {
+            result = ((x-lowIn)/(highIn-lowIn)) * ((highOut-lowOut)) + lowOut;
+        }
     }
     return result;
 }

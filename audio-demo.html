@@ -86,6 +86,7 @@
                     var denseness = density.value();
                     var dur = active.dur();
                     var panspread = map(density, 3, 5, 0.5, 0.7);
+                    console.log("pan " + panspread);
                     active.pan(rrand((-1.0 * panspread), panspread));
                     active.amp((1/denseness) * rrand(0.8, 1.2));
                     if(rrand(0,10)< 1){
