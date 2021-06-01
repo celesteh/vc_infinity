@@ -23,7 +23,7 @@
     <script type="text/javascript" src="user-infinity.js"></script>
     <script>
 
-        var queue;
+        var queue = [];
         var started = false;
 
         function player () {
@@ -47,7 +47,7 @@
                     var chosen = getNRandSorted(audio_files, 5);
                     //var sounds = [];
                     var howl;
-                    var queue = [];
+                    //var queue = [];
                     
                     chosen.forEach(element => {
                         howl = new Howl ({ src: "processed_audio/" + [element[2] + "/" + element[4]], preload: true });
