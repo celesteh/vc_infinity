@@ -53,7 +53,7 @@ fclose($handle);
 // 1 get panels
 
 $panels = array();
-$sql = "SELECT page_num, page_id FROM score_pages WHERE page_scorecode='metaphysics'";
+$sql = "SELECT page_num, page_id FROM score_pages WHERE page_scorecode='metaphysics' ORDER BY page_num";
 //$sql = "SELECT id, firstname, lastname FROM MyGuests WHERE lastname='Doe'";
     //echo "$sql\n";
     
