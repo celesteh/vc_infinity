@@ -89,16 +89,14 @@
         }
         
         function play_stuff(){
-            loadaudio().then(
-                function(value) { console.log("playing"); },
-                function(error) { /* code if some error */ }
-            );
+            loadaudio();
+            setTimeout(player, rrand(200, 3000));
         }
 
         
     </script>
 </head>
-<body  onload="loadaudio();">
+<body  onload="play_stuff();">
     <div class="page-header">
         <h1>Audio Demo</h1>
     </div>
