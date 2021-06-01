@@ -285,7 +285,7 @@ function AudioClip (json_arr){
             if (valid(this.whenFinished)){
                 this.whenFinished();
             }
-        }
+        } else { console.log("looping");}
     });
 
     this.dur = function(){
