@@ -28,6 +28,7 @@
         var panels = [];
         var played = [];
         var density;
+        var div = Document.getElementById("page_no");
         
 
         function mark_played(clip){
@@ -99,7 +100,7 @@
                         var denseness = density.value();
                         var dur = active.dur;  // was dur()
                         var panspread = linlin(denseness, 3.0, 5.0, 0.5, 0.78);
-                        console.log("pan " + panspread);
+                        //console.log("pan " + panspread);
                         active.pan(rrand((-1.0 * panspread), panspread));
                         active.amp((1/denseness) * rrand(0.8, 1.2));
                         if(rrand(3,10)< 1){
@@ -108,6 +109,9 @@
                             active.setRate(1);
                         }
                         active.howl.play();
+
+                        div.innerHTML = active.page_no;
+
                         ready = true;
                         mark_played(active);
 
@@ -147,6 +151,9 @@
         }
         
         function loadaudio(panel) {
+            var id; var num;
+            id = panel[1];
+            num = panel[0];
             console.log("doplay");
             
             loadJSON('json/' + panel + '.json',
@@ -177,7 +184,7 @@
                             });
                             */
                             //queue.push(howl);
-                            clip = new AudioClip(element);
+                            clip = new AudioClip(element, num);
                             clip.setRepeats(Math.floor(rrand(((-2 * density.middle)-1),density.middle)));
                             if (!is_played(clip)){
                                 queue.push(clip);
@@ -196,7 +203,7 @@
             loadJSON('json/panels.json',
                 function(panel_info){
                     panel_info.forEach(panel => {
-                        panels.push(panel[1]);
+                        panels.push(panel);
                         if (!started){
                             started = true;
                             density = new Ramp();
@@ -216,5 +223,6 @@
         <h1>Audio Demo</h1>
     </div>
     <div><p>Music will start in 1 minute . . .</p></div>
+    <div>Now playing: <div id = "page_no"></div></div>
 </body>
 </html>
