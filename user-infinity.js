@@ -291,40 +291,49 @@ function AudioClip (json_arr){
     //this.load();
     
 
-    //this.clip.on("load",function(){
-    //    this.dur = this.clip.duration();
-    //});
+    this.clip.on('load',function(){
+        console.log("dur "+ this.clip.duration);
+        this.dur = this.clip.duration();
+    });
     //this.clip.on("end", function(){
     //    this.unload();
     //});
 
     //const fuck = Howl(this.clip);
 
-    this.clip.on('end', function(id){
+    /*
+    this.clip.on('end', function(){
         console.log("this "+ typeof this);
         console.log("clip "+ typeof this.clip);
         if(valid(this.clip)){
             if(this.loop == false) {
-                this.clip.loop(this.loop, id);
+                this.clip.loop(this.loop);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
             } else { console.log("looping");
                 // shake things up a bit
-                this.clip.rate(rrand(0.9, 1.1), id);
+                this.clip.rate(rrand(0.9, 1.1));
 
                 this.times = this.times -1;
                 this.loop = (this.times> 1);
-                this.clip.loop(this.loop, id);
+                this.clip.loop(this.loop);
             }
         }else {
             console.log("not valid");
         } 
     });
+    */
 
-    this.dur = function(){
-        return this.clip.duration();
-    }
+    this.clip.on('end', function(){
+        console.log("this "+ typeof this);
+        console.log("clip "+ typeof this.clip);
+    });
+
+
+    //this.dur = function(){
+    //    return this.clip.duration();
+    //}
 
     this.setRepeats = function(n){
         this.times = n;
