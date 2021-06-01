@@ -268,7 +268,22 @@ function AudioClip (json_arr){
         src: this.src, 
         preload: true,
         volume: this.amplitude,
-        loop: true
+        loop: true,
+        onend: function(){
+            if(valid(this.clip)){
+                if(this.clip.loop == false) {
+                    if (valid(this.whenFinished)){
+                        this.whenFinished();
+                    }
+                } else { console.log("looping");
+                    // shake things up a bit
+                    this.clip.setRate(rrand(0.9, 1.1));
+    
+                    this.times = this.times -1;
+                    this.clip.loop = (this.times> 1);
+                }
+            }
+        }   
     });
 
     //this.clip.on("load",function(){
