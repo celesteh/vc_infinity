@@ -298,6 +298,7 @@ function AudioClip (json_arr){
         //console.log("foo "+ typeof id);
         if(valid(id)){
             if(this.loop == false) {
+                Howl.loop = (this.loop, id);
                 if (valid(this.whenFinished)){
                     this.whenFinished();
                 }
