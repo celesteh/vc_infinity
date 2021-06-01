@@ -76,6 +76,7 @@ function Ramp (){
 
     this.maxtime = 60;
     this.start = 0;
+    this.middle = 0;
     this.end = 0;
     this.duration = 0;
     this.startTime = 0;
@@ -89,6 +90,9 @@ function Ramp (){
         }
         
         this.end = rrand(1,5);
+        this.middle = ((this.end - this.start) / 2) + this.start;
+
+
         this.duration = rrand(1,this.maxtime);
 
         if(startTime){

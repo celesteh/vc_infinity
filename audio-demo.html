@@ -27,6 +27,7 @@
         var started = false;
         var panels = [];
         var played = [];
+        var density;
 
         function mark_played(clip){
             played.push(clip.src);
@@ -94,7 +95,7 @@
                     ready = true;
                     mark_played(active);
 
-                    waittime = rrand(dur/5, dur*1.1);
+                    waittime = dur * (1.2 / density.value());  //rrand(dur/5, dur*1.1);
                     if ((dur < 5) && (rrand(0, 13) < 5)){
                         //active = queue.shift();
                         queue.unshift(active);
@@ -170,6 +171,7 @@
                         panels.push(panel[1]);
                         if (!started){
                             started = true;
+                            density = new Ramp();
                             loadaudio(panels.shift());
                             setTimeout(player, rrand(200, 3000));
                         }
