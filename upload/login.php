@@ -124,7 +124,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
         <h2>Contributor Login</h2>
         <p>It is not necessary to log in to listen to the project.</p>
-        <p>Please fill in your credentials to login.</p>
+        <p>If you are a contributor, please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                 <label>Username</label>
@@ -140,7 +140,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
             <p>Forgot your password? <a href="forgot-password.php">Password reset</a>.</p>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Don't have an account? Check your email for the sign-up link.</p>
+            <p><a href="../">Back to main site</a></p>
         </form>
 
     </div>
