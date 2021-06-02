@@ -25,7 +25,8 @@
 .flex-container {
     display: flex;
     align-items: stretch;
-    background-color: #f1f1f1;
+    /*background-color: #f1f1f1;*/
+    background-color: transparent;
     align-items: top;
     flex-flow: row wrap;
   }
@@ -45,11 +46,18 @@
     align-items: top;
     flex-grow: 1;
     max-width: 200px;
+    padding-left: 20px;
 
 }
 
 .text_container  {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /*padding-left: 20px;*/
     flex-grow: 80;
+    background-color: transparent;
+    align-items: top;
 }
 
 
