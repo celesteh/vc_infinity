@@ -1,0 +1,25 @@
+{
+    "IRs" :[
+        {
+            "title" : "Lady Chapel, St Albans Cathedral",
+            "stereo": "/lady-chapel-st-albans-cathedral/stereo/stalbans_a_ortf.wav",
+            "url": "https://www.openair.hosted.york.ac.uk/?page_id=595"
+        },
+        {
+            "title": "Saint Lawrence Church Molenbeek-Wersbeek Belgium",
+            "stereo": "saint-lawrence-church-molenbeek-wersbeek-belgium/stereo/ir_church_saint-laurentius_molenbeek_bekkevoort_belgium.wav",
+            "url": "https://www.openair.hosted.york.ac.uk/?page_id=638"
+        },
+        {
+            "title": "St. George’s Episcopal Church",
+            "stereo": "st-georges-episcopal-church/stereo/st_georges_medium.wav",
+            "url": "https://www.openair.hosted.york.ac.uk/?page_id=688"
+        },
+        {
+            "title": "York Minster",
+            "stero": "york-minster/stereo/minster1_000_ortf_48k.wav",
+            "url": "https://www.openair.hosted.york.ac.uk/?page_id=797"
+        }
+
+    ]
+}
