@@ -1,0 +1,21 @@
+Title: Saint Lawrence Church Molenbeek-Wersbeek Belgium
+Format(s): 
+Stereo (Stereo Files)
+
+Stereo: 
+
+    ir_church_saint-laurentius_molenbeek_bekkevoort_belgium.wav
+
+Sample Rate: 96 kHz
+Number of Channels: 2
+Bits per Sample: 24
+Duration: 1.1 s
+File Size: 617.33 KB
+File Format: wav
+Source Sound: 4sec sinesweep
+Microphone: DPA 4060 spaced omni pair
+Microphone Location: Microphones placed at a small distance from the altar. The sinesweep was played in the middle of the altar.
+Source Receiver Distance (m): 5 m
+Source Height: 1.60 m
+Receiver Height: 1.90 m
+Temperature: 18 °C

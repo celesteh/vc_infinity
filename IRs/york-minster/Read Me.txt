@@ -1,0 +1,42 @@
+Title: York Minster
+Format(s): 
+Stereo (Stereo Files)
+B-Format (4 Channel Files)
+
+Stereo: 
+
+    minster1_000_ortf_48k.wav
+
+Sample Rate: 48 kHz
+Number of Channels: 2
+Bits per Sample: 24
+Duration: 10 s
+File Size: 2.75 MB
+File Format: wav
+Source Sound: Genelec S30D, 15 second log. sine sweep
+Microphone: Neumann KM 140 Cardioid
+Source Location: Directly under mid-point of tower
+Microphone Location: Centre of nave
+Source Receiver Distance (m): 23.69 m
+Source Height: 1.5 m
+Receiver Height: 1.5 m
+Temperature: 15 °C
+
+B-Format: Multichannel: 
+
+    minster1_bformat_48k.wav
+
+Sample Rate: 48 kHz
+Number of Channels: 4
+Bits per Sample: 24
+Duration: 10 s
+File Size: 5.49 MB
+File Format: wav
+Source Sound: Genelec S30D, 15 second log. sine sweep
+Microphone: Soundfield SPS422B Microphone
+Source Location: Directly under mid-point of tower
+Microphone Location: Centre of nave
+Source Receiver Distance (m): 23.69 m
+Source Height: 1.5 m
+Receiver Height: 1.5 m
+Temperature: 15 °C

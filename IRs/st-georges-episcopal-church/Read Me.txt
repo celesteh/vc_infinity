@@ -1,0 +1,35 @@
+Title: St. George’s Episcopal Church
+Format(s): 
+Stereo (Stereo Files)
+
+Stereo: 
+
+    st_georges_far.wav
+
+Sample Rate: 96 kHz
+Number of Channels: 2
+Bits per Sample: 24
+Duration: 3 s
+File Size: 1.68 MB
+File Format: wav
+
+
+    st_georges_medium.wav
+
+Sample Rate: 96 kHz
+Number of Channels: 2
+Bits per Sample: 24
+Duration: 3 s
+File Size: 1.68 MB
+File Format: wav
+
+
+    st_georges_close.wav
+
+Sample Rate: 96 kHz
+Number of Channels: 2
+Bits per Sample: 24
+Duration: 3 s
+File Size: 1.68 MB
+File Format: wav
+
