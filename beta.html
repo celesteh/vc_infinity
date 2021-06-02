@@ -23,16 +23,23 @@
        <script type="text/javascript" src="user-infinity.js"></script>
     <script>
 
+
+/* Todo
+        Make sure the correct portion of the image is visible
+        Figure out how it's been scaled
+        Draw a red dot where it's playing
+*/
+
         var queue = [];
         var playing = false;
         var preloaded = false;
         var panels = [];
         var played = [];
         var density;
-        
+        var panels_json;
         
 
-        function mark_played(clip){
+        function mark_played(clip){metaphysics_1.jpg
             if(!is_played(clip)){
                 played.push(clip.arr);
                 if (played.length > 200){
@@ -112,9 +119,13 @@
                             }
                             active.howl.play();
 
-                            var div =  document.getElementById("page_no");
-                            if(valid(div)){
-                                div.innerHTML = "Panel " + active.page_no;
+                            var img =  document.getElementById("score");
+                            if(valid(img)){
+                                //div.innerHTML = "Panel " + active.page_no;
+                                var imgurl = "../score_pages/" + panels_json[active.imgurl];
+                                if (img.src != imgurl){
+                                    img.src = imgurl;
+                                }
                             }
 
                             ready = true;
@@ -157,9 +168,10 @@
         }
         
         function loadaudio(panel) {
-            var id; var num;
+            var id; var num, img;
             id = panel[1];
             num = panel[0];
+            img = panel[2];
             console.log("doplay");
             
             loadJSON('json/' + id + '.json',
@@ -190,7 +202,7 @@
                             });
                             */
                             //queue.push(howl);
-                            clip = new AudioClip(element, num);
+                            clip = new AudioClip(element, num, img);
                             clip.setRepeats(Math.floor(rrand(((-2 * density.middle)-1),density.middle)));
                             if (!is_played(clip)){
                                 queue.push(clip);
@@ -208,7 +220,11 @@
             //var started = false;
             loadJSON('json/panels.json',
                 function(panel_info){
-                    panel_info.forEach(panel => {
+                    panels_json = panel_info;
+                    Object.keys(panel_info).forEach(key => {
+                    //panel_info.forEach(panel => {
+                        var panel = panel_info[key];
+                        //panel.unshift(key);
                         panels.push(panel);
                         if(! preloaded){
                             preloaded = true;
@@ -261,5 +277,10 @@
         </div>
     </nav>
     <div><form><input type="button" VALUE="Play" onClick="start();"><input type="button" VALUE="Stop" onClick="stop();"></form></div>
+    <div class="flex-container">
+        <div class="playing-img">
+            <p><img class="playing-img" src = "../score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>
+        </div>
+    </div>
 </body>
 </html>

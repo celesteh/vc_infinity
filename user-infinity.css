@@ -76,3 +76,15 @@
   img {
     align-self: center;
 }
+
+
+.playing-img {
+    object-fit: cover;
+    object-position: 100% 0;
+    display: flex;
+    align-items: top;
+    
+    max-height: 300px;
+    width: 100%;
+  }
+  

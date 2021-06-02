@@ -205,7 +205,12 @@
             //var started = false;
             loadJSON('json/panels.json',
                 function(panel_info){
-                    panel_info.forEach(panel => {
+                    //panel_info.forEach(panel => {
+                    Object.keys(panel_info).forEach(key => {
+                    //panel_info.forEach(panel => {
+                        var panel = panel_info[key];
+                        //panel.unshift(key);
+                        panels.push(panel);
                         panels.push(panel);
                         if (!started){
                             started = true;

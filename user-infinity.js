@@ -167,7 +167,7 @@ class Ramp {
 
 
 class AudioClip {
-    constructor(json_arr, page_no) {
+    constructor(json_arr, page_no, imgurl) {
         //[$x, $y, $dir, $wav, $flac, $meta, $tags, $dur, $user]
         this.x = json_arr[0];
         this.y = json_arr[1];
@@ -182,6 +182,7 @@ class AudioClip {
         this.times = 1;
         this.loop = false;
         this.page_no = page_no;
+        this.imgurl = imgurl;
 
         var self = this;
 
