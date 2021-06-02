@@ -120,9 +120,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 </head>
 <body>
+    <div class="page-header">
+        <h1>Contributor Login</h1>
+    </div>
+    <nav class="navbar navbar-inverse" id="myTopnav">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav">
+                <li><a href="../">Public Site</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+
+                <li><a href="forgot-password.php">Reset Password</a></li>
+            </ul>
+        </div>
+    </nav>
     <div class="wrapper">
-        
-        <h2>Contributor Login</h2>
+    
         <p>It is not necessary to log in to listen to the project.</p>
         <p>If you are a contributor, please fill in your credentials to login.</p>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">

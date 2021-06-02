@@ -28,6 +28,7 @@
         Make sure the correct portion of the image is visible
         Figure out how it's been scaled
         Draw a red dot where it's playing
+        Set a range to display the density
 */
 
         var queue = [];
@@ -43,7 +44,8 @@
             if(!is_played(clip)){
                 played.push(clip.arr);
                 if (played.length > 200){
-                    played.shift();
+                    var old = played.shift();
+                    old.unload(); // just make sure to prevent memory leaks
                 }
             }
         }

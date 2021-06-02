@@ -16,7 +16,7 @@ if(!isset($_SESSION["powerlevel"])){
   <div class="container-fluid">
    <ul class="nav navbar-nav">
  
-    <li><a href="../">Future Site</a></li>
+    <li><a href="../">Public Site</a></li>
     <li><a href="./">Dashboard</a></li>
 <?php
  $powerlevel = $_SESSION["powerlevel"];

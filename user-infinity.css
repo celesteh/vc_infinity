@@ -31,15 +31,15 @@
     flex-flow: row wrap;
   }
 
-  .flex-container > div {
-      /*
+.flex-container > div {
+    /*  
     background-color: DodgerBlue;
     color: white;
     margin: 10px;
+    */
     text-align: center;
     line-height: 75px;
     font-size: 30px;
-    */
   }
 .logo_left {
     display: flex;
