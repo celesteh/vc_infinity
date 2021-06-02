@@ -172,7 +172,7 @@
             id = panel[1];
             num = panel[0];
             img = panel[2];
-            console.log("doplay");
+            console.log("doplay " + img);
             
             loadJSON('json/' + id + '.json',
                 function(audio_files) { //console.log(audio_files); 
@@ -221,7 +221,7 @@
             loadJSON('json/panels.json',
                 function(panel_info){
                     panels_json = panel_info;
-                    Object.keys(panel_info).forEach(key => {
+                    Object.keys(panel_info).sort().forEach(key => {
                     //panel_info.forEach(panel => {
                         var panel = panel_info[key];
                         //panel.unshift(key);
