@@ -1,3 +1,3 @@
 [submodule "howler/howler.js"]
-	path = howler/howler.js
-	url = https://github.com/RenaudRohlinger/howler.js.git
+        path = howler/howler.js
+        url = https://github.com/RenaudRohlinger/howler.js.git
