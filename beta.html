@@ -212,6 +212,7 @@
                         panels.push(panel);
                         if(! preloaded){
                             preloaded = true;
+                            density = new Ramp();
                             loadaudio(panels.shift());
                         }
                         //if (!started){
@@ -228,7 +229,7 @@
         function start(){
             if(! playing){
                 playing = true;
-                density = new Ramp();
+                
                 loadaudio(panels.shift());
                 setTimeout(player, 500);
             }
