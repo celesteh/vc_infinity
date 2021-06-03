@@ -31,6 +31,16 @@
     flex-flow: row wrap;
   }
 
+  .flex-container2 {
+    display: flex;
+    align-items: stretch;
+    /*background-color: #f1f1f1;*/
+    background-color: transparent;
+    align-items: top;
+    flex-flow: row wrap;
+    border: 2px solid #000
+  }
+
 .flex-container > div {
     /*  
     background-color: DodgerBlue;
@@ -172,7 +182,7 @@
   flex-shrink: 0;
   margin: 10px;
   padding: 10px;
-  border: 2px solid #000;
+  /*border: 2px solid #000;*/
   overflow: hidden;
   overflow-x:scroll;
   overflow-x: auto;
