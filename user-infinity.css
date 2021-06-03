@@ -137,21 +137,6 @@
     margin-left: 0;
   }
 
-  .playCanvas
-{
-  display: flex;
-  flex-wrap: nowrap;
-    /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
-    position:absolute;
-    z-index: 150;
-    opacity:1;
-    object-fit: cover;
-    overflow: hidden;
-    overflow-x:scroll;
-    width: 100%;
-    margin-top: 0;
-    margin-left: 0;
-}
 
 /*
 .arr-img {
@@ -166,18 +151,7 @@
   margin-left: 0;
 }
 */
-.playback-bordered {
-  display: flex;
-  flex-wrap: nowrap;
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #000;
-  overflow: hidden;
-  overflow-x:scroll;
-  overflow-x: auto;
-  min-height: min-content; /* needs vendor prefixes */
-  min-width: 0;
-}
+
 
 .capture{
   display:flex;
@@ -191,7 +165,23 @@
   width: calc(100%);
 }
 
+.playback-bordered {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #000;
+  overflow: hidden;
+  overflow-x:scroll;
+  overflow-x: auto;
+  min-height: min-content; /* needs vendor prefixes */
+  min-width: 0;
+}
+
 .playback-img{
+  display: flex;
+  flex-wrap: nowrap;
   width: 1400;
   height: 200;
   min-width:300;
@@ -212,6 +202,22 @@
   margin-top: 0;
   margin-left: 0;
 }
+.playCanvas
+{
+  display: flex;
+  flex-wrap: nowrap;
+    /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
+    position:absolute;
+    z-index: 150;
+    opacity:1;
+    object-fit: cover;
+    overflow: hidden;
+    overflow-x:scroll;
+    width: 100%;
+    margin-top: 0;
+    margin-left: 0;
+}
+
 
 .slider {
     -webkit-appearance: none;
