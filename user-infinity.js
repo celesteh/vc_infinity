@@ -359,7 +359,7 @@ class ImgHandler {
                     var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
-                            if(self.img.style.opacity > 0){
+                            if(parseFloat(self.img.style.opacity) > 0){
                                 self.img.style.opacity = parseFloat(self.img.style.opacity) - 0.1;
                                 fading = true;
                                 setTimeout(fadefunc, 100);
@@ -404,7 +404,7 @@ class ImgHandler {
                     var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
-                            if(self.img.style.opacity < 1){
+                            if(parseFloat(self.img.style.opacity) < 1){
                                 self.img.style.opacity = parseFloat(self.img.style.opacity) + 0.1;
                                 fading = true;
                                 setTimeout(fadefunc, 100);
