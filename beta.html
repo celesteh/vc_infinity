@@ -41,6 +41,7 @@
 
 
         function makeNewImgHandler(page_no){
+            var handler;
             var con = document.getElementById("con");
             var record = panels_json[page_no];
             //$panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
@@ -49,7 +50,12 @@
             var x_size = record[3];
             var y_size = record[4];
 
-            return new ImgHandler(url, document.getElementById("con"), x_size, y_size);
+            handler = ImgHandler(url, con, x_size, y_size);
+
+            var canvas = document.getElementById("myCanvas");
+            handler.setCanvas(canvas);
+
+            return handler;
         }
          
 
