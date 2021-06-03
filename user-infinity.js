@@ -155,7 +155,7 @@ class ImgHandler {
                     self.img.height = self.disp_h;
 
                     // try to make the images the same
-                    //self.img.style.flex = "0 0 " + self.disp_w + "px";
+                    self.img.style.flex = "0 0 " + self.disp_w + "px";
 
                     //console.log("w " + w + " h " + h);
 
