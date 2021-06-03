@@ -121,6 +121,19 @@
     width: 100%;
   }
 
+  .playCanvas
+{
+    /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
+    position:absolute;
+    z-index: 15;
+}
+
+.arr-img {
+  position: absolute;
+  opacity:0;
+  z-index:-1;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 100px;

@@ -7,12 +7,7 @@
     <link rel="stylesheet" href="upload/bootstrap.css">
     <link rel="stylesheet" href="user-infinity.css">
     <style>
-#myCanvas
-{
-    pointer-events: none;       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
-    position:absolute;
-    z-index: 2;
-}
+
 
 
     </style>
@@ -25,10 +20,11 @@
 
 
 /* Todo
-        Make sure the correct portion of the image is visible
-        Figure out how it's been scaled
-        Draw a red dot where it's playing
-        Set a range to display the density
+        x Make sure the correct portion of the image is visible
+        x Figure out how it's been scaled
+        x Draw a red dot where it's playing
+        x Set a range to display the density
+        Pre-load next image
 */
 
         var queue = [];
@@ -42,21 +38,26 @@
         var density_slider;
         
 
-        function nextSlidePlease(oldurl, newurl, img){
+        function nextSlidePlease(oldurl, newurl){
             var oldImg = images[oldurl];
             if(valid(oldImg)){
                 oldImg.clearPoints();
             }
-            img.src = newurl;
+            //img.src = newurl;
             var newImg = images[newurl];
             if(!valid(newImg)){
                 
-                newImg = new ImgHandler();
+                //newImg = new ImgHandler();
+                newImg = new ImgHandler(newurl, document.getElmentById("con"));
                
                 images[newurl] = newImg;
             }
-            newImg.setImg(img);
-            newImg.setUrl(newurl);
+            //newImg.setImg(img);
+            //newImg.setUrl(newurl);
+            if(valid(oldImg)){
+                oldImg.fadeOut();
+            }
+            newImg.fadeIn();
             var canvas = document.getElementById("myCanvas");
             newImg.setCanvas(canvas);
         }
@@ -230,11 +231,14 @@
                         console.log(panel);
                         //panel.unshift(key);
                         panels.push(panel);
+
                         if(! preloaded){
                             preloaded = true;
                             density = new Ramp();
                             density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
+                            var imgurl = panel[2];
+                            images[imgurl] = new ImgHandler(imgurl, document.getElmentById("con"));
                         }
                         //if (!started){
                         //    started = true;
@@ -242,10 +246,10 @@
                         //    loadaudio(panels.shift());
                         //    setTimeout(player, rrand(1000, 3000));
                         //}
-                        var imgurl = panel[2];
-                        if(!valid(images[imgurl])){
-                            images[imgurl] = new ImgHandler();
-                        }
+                        //var imgurl = panel[2];
+                        //if(!valid(images[imgurl])){
+                        //    images[imgurl] = new ImgHandler();
+                        //}
                     })
                 }
             )
@@ -318,8 +322,9 @@
     <div class="flex-container">
         <div class="playing-img">
             <div id="con" width="1400"  height="200">
-                <canvas id="myCanvas"  width="1400" height="200" min-width="300" ></canvas>
-                <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score"  width="1400" height="200"  min-width="300" >
+                <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>
+                <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score1"  width="1400" height="200"  min-width="300" >
+                <!img class="anchor-img playing-img" src="score_pages/metaphysics_2.jpg" alt="The Score" id="score2"  width="1400" height="200"  min-width="300" style="transparent">
           <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
         </div>
     </div>

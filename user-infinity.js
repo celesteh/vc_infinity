@@ -110,8 +110,8 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(){
-        this.url = ""; // url;
+    constructor(url, div){
+        this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
         this.width =0;
@@ -120,6 +120,14 @@ class ImgHandler {
         this.points = [];
         this.canvas;
         this.ctx;
+        this.div = div;
+
+
+        this.img = Image(div.width, div.height);
+        this.img.opacity = 0;
+        this.setUrl(url);
+        this.class = "arr-img";
+        div.appendChild(this.img);
 
         this.setImg = function(img){
             this.img = img;
@@ -249,6 +257,55 @@ class ImgHandler {
             //this.points = [];
             if(valid(this.ctx) && valid(this.canvas)){
                 this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
+        }
+
+        this.fadeOut = function() {
+            if(valid(this.img)){
+                self = this;
+                var fadefunc = function(){
+                    if(valid(self.img)){
+                        if(valid(self.img.opacity)){
+                            if(self.img.opacity > 0){
+                                self.img.opacity = self.impage.opacity - 0.1;
+                                setTimeout(fadefunc, 100);
+                            } else {
+                                this.zIndex = -1;
+                                this.img.class = "arr-img";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        this.fadeIn = function() {
+            if(valid(this.img)){
+
+                // bring it invisibly to the front
+                this.img.class = "anchor-img playing-img";
+                this.opacity = 0;
+                
+                if(valid(div)){
+                    this.zIndex = div.getChildNodes.length;
+                } else {
+                    this.zIndex = 4;
+                }
+
+                
+
+                self = this;
+                
+                var fadefunc = function(){
+                    if(valid(self.img)){
+                        if(valid(self.img.opacity)){
+                            if(self.img.opacity < 1){
+                                self.img.opacity = self.impage.opacity + 0.1;
+                                setTimeout(fadefunc, 100);
+                            }
+                        }
+                    }
+                }
             }
         }
     }
