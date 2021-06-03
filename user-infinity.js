@@ -232,6 +232,8 @@ class ImgHandler {
                 this.ctx.fillStyle = 'red';
                 this.ctx.strokeStyle = 'red';
                 this.ctx.lineWidth = 2;
+
+                console.log("set canvas");
             }
         }
 
