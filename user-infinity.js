@@ -139,9 +139,9 @@ class ImgHandler {
                     //self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
-                    self.img.class = "arr-img anchor-img";
-                    self.img.height = div.clientHeight;
-                    self.img.width = div.clientWidth;
+                    self.img.class = "playback-img" ; //"arr-img anchor-img";
+                    //self.img.height = div.clientHeight;
+                    //self.img.width = div.clientWidth;
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
                     
@@ -337,8 +337,8 @@ class ImgHandler {
                                 fading = true;
                                 setTimeout(fadefunc, 100);
                             } else {
-                                self.zIndex = -1;
-                                self.img.class = "arr-img";
+                                self.img.style.zIndex = -1;
+                                //self.img.class = "arr-img";
                             }
                         }
                     }
@@ -358,13 +358,13 @@ class ImgHandler {
             if(valid(this.img)){
 
                 // bring it invisibly to the front
-                this.img.class = "anchor-img playing-img";
+                this.img.class = "playback-img" ;//"anchor-img playing-img";
                 this.img.style.opacity = 0;
 
                 if(valid(div)){
-                    this.zIndex = div.childNodes.length;
+                    this.img.style.zIndex = div.childNodes.length;
                 } else {
-                    this.zIndex = 4;
+                    this.img.style.zIndex = 4;
                 }
 
                 
