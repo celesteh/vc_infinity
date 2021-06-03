@@ -50,7 +50,9 @@
     align-items: center;
     flex-direction: row;
     width: 100%;
-    justify-content: space-around;
+    justify-content: baseline;
+   /* padding:10px;
+    margin: 10px;*/
 }
 
 .flex-controls > div {
@@ -60,13 +62,16 @@
     margin: 10px;
     */
     text-align: center;
-    align-items: center;
+    align-items: baseline;
     justify-content: center;
     text-justify: center;
+    
     /*
     line-height: 75px;
     font-size: 30px;
     */
+    /*padding:10px;*/
+    margin: 5px;
   }
 
 .logo_left {
