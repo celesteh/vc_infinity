@@ -123,7 +123,7 @@ class ImgHandler {
         this.div = div;
 
 
-        this.img = Image(div.width, div.height);
+        this.img = new Image(div.width, div.height);
         this.img.opacity = 0;
         this.setUrl(url);
         this.class = "arr-img";
@@ -285,7 +285,7 @@ class ImgHandler {
                 // bring it invisibly to the front
                 this.img.class = "anchor-img playing-img";
                 this.opacity = 0;
-                
+
                 if(valid(div)){
                     this.zIndex = div.getChildNodes.length;
                 } else {
