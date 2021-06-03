@@ -54,6 +54,7 @@
 
             var canvas = document.getElementById("myCanvas");
             handler.setCanvas(canvas);
+            images[record[2]] = handler;
 
             return handler;
         }
@@ -75,7 +76,7 @@
                 newImg = makeNewImgHandler(page_no);
                 //new ImgHandler(newurl, document.getElmentById("con"));
                
-                images[newurl] = newImg;
+                //images[newurl] = newImg;
             }
             //newImg.setImg(img);
             //newImg.setUrl(newurl);
@@ -272,7 +273,7 @@
                             var handler = makeNewImgHandler(key);
                             handler.id("score");
                             //handler.fadeIn();
-                            images[panel[2]] = makeNewImgHandler(key);
+                            //images[panel[2]] = makeNewImgHandler(key);
                             handler.img.style.opacity =1;
                             //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
