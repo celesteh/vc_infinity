@@ -144,8 +144,8 @@
                             //    //div.innerHTML = "Panel " + active.page_no;
                                 //var imgurl = img_prefix + active.imgurl;
                                 var path = img.src.split("/");
-                                var oldkey = path[path.legnth-1]; 
-                                console.log("img src " + oldkey + " img url " + active.imgurl);
+                                var oldkey = path[path.length-1]; 
+                                console.log("img src " + img.src + " key " + oldkey + " img url " + active.imgurl);
                                 if (oldkey != active.imgurl){
                                     nextSlidePlease(oldkey, active.imgurl, active.page_no);
                                     //images[img.src].clearPoints
