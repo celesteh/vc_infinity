@@ -153,6 +153,8 @@ class ImgHandler {
                     self.img.width = self.disp_w;
                     self.img.height = self.disp_h;
 
+                    self.img.style.flex = "0 0 " + self.disp_w + "px";
+
                     //console.log("w " + w + " h " + h);
 
                     //var x_offset = self.div.offsetLeft;
@@ -264,6 +266,8 @@ class ImgHandler {
                     
                     
                 }
+
+                canvas.style.flex = "0 0 " + self.disp_w + "px";
 
                 canvas.style.objectFit = "cover";
                 canvas.style.overflow = "hidden";
