@@ -135,8 +135,8 @@ class ImgHandler {
                     self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
-                    this.img.height = div.clientHeight;
-                    this.img.width = div.clientWidth;
+                    self.img.height = div.clientHeight;
+                    self.img.width = div.clientWidth;
                     var x_offset = self.div.offsetLeft;
                     var y_offset = self.div.offsetTop;
                     self.img.style.left = x_offset + 'px';
