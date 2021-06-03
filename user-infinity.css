@@ -38,7 +38,8 @@
     background-color: transparent;
     align-items: top;
     flex-flow: row wrap;
-    border: 2px solid #000
+    border: 2px solid #000;
+    z-index: 200;
   }
 
 .flex-container > div {
