@@ -367,7 +367,7 @@ class ImgHandler {
                                 self.img.style.zIndex = -1;
                                 //self.img.class = "arr-img";
                             }
-                        }
+                        } else {console.log("not opaque");}
                     }
                     self.fading = fading;
                 }
