@@ -142,12 +142,12 @@ class ImgHandler {
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
                     
-                    self.img.opacity = 0;
+                    self.img.opacity = 0;//img.style.opacity
 
                     div.appendChild(self.img);
                     self.img.opacity = 0; // double check
-                    self.img.style.left = '0px';//div.style.left + 'px';//self.left + 'px';
-                    self.img.style.top = '0px';//div.style.top + 'px';//self.top + 'px';
+                    self.img.style.left = div.offsetTop + "px";//div.style.left + 'px';//self.left + 'px';
+                    self.img.style.top = div.offsetLeft + "px";//div.style.top + 'px';//self.top + 'px';
                     self.img.style.position = "absolute";
                     
                     
