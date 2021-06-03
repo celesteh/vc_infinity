@@ -56,7 +56,7 @@
         function nextSlidePlease(oldurl, newurl, page_no){
 
             console.log("make new image");
-            
+
             var oldImg = images[oldurl];
             if(valid(oldImg)){
                 oldImg.clearPoints();
@@ -143,6 +143,7 @@
                             if(valid(img)){
                             //    //div.innerHTML = "Panel " + active.page_no;
                                 var imgurl = img_prefix + active.imgurl;
+                                console.log("img src " + img.src + "img url " + imgurl);
                                 if (img.src != imgurl){
                                     nextSlidePlease(img.src, imgurl, active.page_no);
                                     //images[img.src].clearPoints

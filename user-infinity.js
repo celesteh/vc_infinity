@@ -121,6 +121,7 @@ class ImgHandler {
         this.canvas;
         this.ctx;
         this.div = div;
+        this.active = true;
         
 
         this.setUrl = function(url) {
@@ -291,6 +292,7 @@ class ImgHandler {
         }
 
         this.fadeOut = function() {
+            this.active = false;
             console.log("fadeOut");
             if(valid(this.img)){
                 self = this;
@@ -312,6 +314,8 @@ class ImgHandler {
         }
 
         this.fadeIn = function() {
+
+            this.active = true;
 
             console.log("fadeIn ")
 
