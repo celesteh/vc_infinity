@@ -46,7 +46,7 @@
             if(valid(oldImg)){
                 oldImg.clearPoints();
             }
-            
+
             var newImg = images[newurl];
             if(!valid(newImg)){
                 
@@ -126,6 +126,7 @@
                                 }
                             }
                             var handler = images[imgurl];
+                            console.log(typeof handler);
                             handler.drawPoint(active.x, active.y);
 
 
