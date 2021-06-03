@@ -142,6 +142,13 @@ class ImgHandler {
                     self.img.width = div.clientWidth;
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
+                    if(!valid(self.top)){
+                        self.top = self.div.offsetParent.offsetTop;
+                    }
+                    if(!valid(self.left)){
+                        self.left = self.div.offsetParent.offsetLeft;
+                    }
+                    
                     self.img.style.left = self.top + 'px';
                     self.img.style.top = self.left + 'px';
                     self.img.opacity = 0;

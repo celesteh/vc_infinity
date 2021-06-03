@@ -292,9 +292,11 @@
             con.height = img.clientHeight;
             con.className="bordered";
 
-            var boundingRect = img.getBoundingClientRect();
-            top = boundingRect.top;
-            left = boundingRect.left;
+            var offset = img.offsetParent;
+            if(valid(offset)){
+                top = offset.offsetTop;
+                left = offset.offsetLeft;
+            }
 
             console.log("top " + top + ", left " + left);
 
