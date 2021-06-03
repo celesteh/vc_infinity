@@ -268,7 +268,10 @@
             // resize the canvas to fit the image
             var img =  document.getElementById("score");
             var canvas = document.getElementById("myCanvas");
+            var con = document.getElementById("con");
             canvas.height = img.clientHeight;
+            con.height = img.clientHeight;
+            con.class="bordered";
  
             play_stuff();
         }
@@ -296,10 +299,11 @@
     <div class="flex-container">
         <div class="playing-img">
             <div id="con" width="1400"  height="200">
-                <canvas id="myCanvas"  width="1400" height="200" min-width="300"></canvas>
+                <canvas id="myCanvas"  width="1400" height="200" min-width="300" class ="bordered"></canvas>
                 <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score"  width="1400" height="200"  min-width="300" class="bordered">
           <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
         </div>
     </div>
+</div>
 </body>
 </html>
