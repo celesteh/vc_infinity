@@ -59,6 +59,8 @@
     margin: 10px;
     */
     text-align: center;
+    align-items: center;
+    justify-content: center;
     /*
     line-height: 75px;
     font-size: 30px;
