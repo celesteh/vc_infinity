@@ -142,10 +142,12 @@
                             var img =  document.getElementById("score");
                             if(valid(img)){
                             //    //div.innerHTML = "Panel " + active.page_no;
-                                var imgurl = img_prefix + active.imgurl;
-                                console.log("img src " + img.src + "img url " + imgurl);
-                                if (img.src != imgurl){
-                                    nextSlidePlease(img.src, imgurl, active.page_no);
+                                //var imgurl = img_prefix + active.imgurl;
+                                var path = img.src.split("/");
+                                var oldkey = path[path.legnth-1]; 
+                                console.log("img src " + oldkey + " img url " + active.imgurl);
+                                if (oldkey != active.imgurl){
+                                    nextSlidePlease(oldkey, active.imgurl, active.page_no);
                                     //images[img.src].clearPoints
                             //        img.src = imgurl;
                                 }
@@ -264,7 +266,7 @@
                             var handler = makeNewImgHandler(key);
                             handler.id("score");
                             //handler.fadeIn();
-                            images[imgurl] = makeNewImgHandler(key);
+                            images[panel[2]] = makeNewImgHandler(key);
                             handler.img.style.opacity =1;
                             //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
