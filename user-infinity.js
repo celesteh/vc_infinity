@@ -139,7 +139,7 @@ class ImgHandler {
                     //self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
-                    self.img.class = "playback-img" ; //"arr-img anchor-img";
+                    self.img.classList.add("playback-img") ; //"arr-img anchor-img";
                     //self.img.height = div.clientHeight;
                     //self.img.width = div.clientWidth;
                     var w, h;
@@ -366,7 +366,7 @@ class ImgHandler {
             if(valid(this.img)){
 
                 // bring it invisibly to the front
-                this.img.class = "playback-img" ;//"anchor-img playing-img";
+                //this.img.class = "playback-img" ;//"anchor-img playing-img";
                 this.img.style.opacity = 0;
 
                 if(valid(div)){
