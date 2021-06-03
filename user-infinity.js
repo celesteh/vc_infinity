@@ -150,7 +150,7 @@ class ImgHandler {
                     var border = 0;
                     console.log(div.style.borderWidth);
                     //if(valid(div.style.border.width)){
-                        border = div.style.border.borderWidth;
+                        border = div.style.borderWidth;
                         console.log("border " + border);
                     //}
                     self.img.style.top = div.offsetTop + border + "px";//div.style.left + 'px';//self.left + 'px';
