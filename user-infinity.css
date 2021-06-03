@@ -292,4 +292,5 @@ input[type="range"] {
     background: white;
     margin-top: 4%;
     text-align: center;
+    overflow-y: scroll;
   }
