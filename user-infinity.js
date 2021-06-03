@@ -316,7 +316,7 @@ class ImgHandler {
                 this.img.style.opacity = 0;
 
                 if(valid(div)){
-                    this.zIndex = div.getChildNodes().length;
+                    this.zIndex = div.childNodes.length;
                 } else {
                     this.zIndex = 4;
                 }
