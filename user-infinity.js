@@ -81,16 +81,20 @@ function getNRandSortedExcluding(audio_json, n, excluded){
     var arr = [];
     var picked;
     var tries = 0;
+    var index;
+    var indexes=[];
 
     while((arr.length < n) && (tries < (n*3))){
-        picked = audio_json[Math.floor(Math.random() * audio_json.length)];
+        index = Math.floor(Math.random() * audio_json.length);
+        picked = audio_json[index];
         if (!excluded.includes(picked)){
             arr.push(picked);
         } else {console.log("already present");}
         tries++;
     };
 
-    arr = sortAudioByX(arr);
+    //arr = sortAudioByX(arr);
+    arr.sort(function(a,b){return(a[0]-b[0])});
     return arr;
 }
 
@@ -119,6 +123,13 @@ class ImgHandler {
 
         this.setImg = function(img){
             this.img = img;
+            if(valid(img)){
+                if(this.img.naturalHeight > 0){
+                    this.width = this.img.naturalWidth;
+                    this.height = this.img.naturalHeight;
+                    this.ratio = this.width / this.height;
+                }
+            }
         }
 
         this.setUrl = function(url) {
