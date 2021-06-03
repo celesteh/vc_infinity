@@ -55,11 +55,11 @@
             //newImg.setImg(img);
             //newImg.setUrl(newurl);
             if(valid(oldImg)){
-                oldImg.id = "";
+                oldImg.id("");
                 oldImg.fadeOut();
             }
 
-            newImg.id = "score";
+            newImg.id("score");
             newImg.fadeIn();
             var canvas = document.getElementById("myCanvas");
             newImg.setCanvas(canvas);
