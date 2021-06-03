@@ -149,12 +149,14 @@ class ImgHandler {
                         self.left = self.div.offsetParent.offsetLeft;
                     }
 
+                    self.img.opacity = 0;
+
+                    div.appendChild(self.img);
                     self.img.style.left = self.top + 'px';
                     self.img.style.top = self.left + 'px';
-                    self.img.opacity = 0;
                     self.img.style.position = "absolute";
                     
-                    div.appendChild(self.img);
+                    
                 }
             }
         }
