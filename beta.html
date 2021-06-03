@@ -157,9 +157,7 @@
                             active.howl.play();
 
                             var img =  document.getElementById("score");
-                            if(valid(img)){
-                            //    //div.innerHTML = "Panel " + active.page_no;
-                                //var imgurl = img_prefix + active.imgurl;
+                            if(img && valid(img)){
                                 if(valid(img.src)){
                                     var path = img.src.split("/");
                                     var oldkey = path[path.length-1]; 
@@ -172,12 +170,13 @@
                                 }
                             }
                             var handler = images[active.imgurl];
-                            console.log(typeof handler);
-                            if((! handler.fading) && (parseFloat(handler.img.style.opacity) < 1)){
-                                handler.fadeIn();
+                            if(valid(handler)){
+                                console.log(typeof handler);
+                                if((! handler.fading) && (parseFloat(handler.img.style.opacity) < 1)){
+                                    handler.fadeIn();
+                                }
+                                handler.drawPoint(active.x, active.y);
                             }
-                            handler.drawPoint(active.x, active.y);
-
 
                             ready = true;
                             mark_played(active);
