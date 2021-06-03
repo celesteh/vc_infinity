@@ -291,8 +291,10 @@
             canvas.height = img.clientHeight;
             con.height = img.clientHeight;
             con.className="bordered";
-            top = img.style.top;
-            left = img.style.left;
+
+            var boundingRect = img.getBoundingClientRect();
+            top = boundingRect.top;
+            left = boundingRect.left;
 
             console.log("top " + top + ", left " + left);
 
