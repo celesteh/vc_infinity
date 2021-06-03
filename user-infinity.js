@@ -136,15 +136,17 @@ class ImgHandler {
 
         this.getPercent = function(x, y){
             var percent = 0;
-            if (width > 0){ // width loads asynchornously
-                percent = (x/width) * 100;
+            if (this.width > 0){ // width loads asynchornously
+                percent = (x/this.width) * 100;
             }
             return(percent);
         }
 
 
         this.setPercent = function(percent){
+            if(valid(this.img)){
             this.img.style.objectPosition = percent + "% 0";
+            }
         }
 
         this.setXVisible = function (x){
@@ -226,7 +228,9 @@ class ImgHandler {
 
         this.clearPoints = function(){
             //this.points = [];
-            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            if(valid(this.ctx) && valid(this.canvas)){
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+            }
         }
     }
 }
