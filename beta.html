@@ -50,7 +50,7 @@
             var x_size = record[3];
             var y_size = record[4];
 
-            handler = ImgHandler(url, con, x_size, y_size);
+            handler = new ImgHandler(url, con, x_size, y_size);
 
             var canvas = document.getElementById("myCanvas");
             handler.setCanvas(canvas);
