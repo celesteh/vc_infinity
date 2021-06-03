@@ -291,6 +291,7 @@ class ImgHandler {
         }
 
         this.fadeOut = function() {
+            console.log("fadeOut");
             if(valid(this.img)){
                 self = this;
                 var fadefunc = function(){
@@ -307,9 +308,13 @@ class ImgHandler {
                     }
                 }
             }
+            setTimeout(fadefunc, 10);
         }
 
         this.fadeIn = function() {
+
+            console.log("fadeIn ")
+
             if(valid(this.img)){
 
                 // bring it invisibly to the front
@@ -336,6 +341,7 @@ class ImgHandler {
                         }
                     }
                 }
+                setTimeout(fadefunc, 10);
             }
         }
 
