@@ -209,8 +209,9 @@ class ImgHandler {
                     var y_offset = this.img.offsetTop;
                     var w = this.img.clientWidth;
                     var h = this.img.clientHeight;
-                    var imgParent = this.img.parentNode;
-                    imgParent.appendChild(canvas);
+                    // surely the canvas is already there?
+                    //var imgParent = this.img.parentNode;
+                    //imgParent.appendChild(canvas);
                     canvas.style.zIndex = 1;
                     //var wBh = 0;
                     //if(this.height> 0) {
