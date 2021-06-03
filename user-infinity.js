@@ -309,6 +309,12 @@ class ImgHandler {
                 }
             }
         }
+
+        this.id = function() {
+            if(valid(this.img)){
+                this.img.id = id;
+            }
+        }
     }
 }
 
