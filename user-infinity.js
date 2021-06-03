@@ -122,6 +122,7 @@ class ImgHandler {
         this.ctx;
         this.div = div;
         this.active = true;
+        this.unused = true;
         
 
         this.setUrl = function(url) {
@@ -154,8 +155,11 @@ class ImgHandler {
                         border = div.style.borderWidth;
                         console.log("border " + border);
                     }
-                    self.img.style.top = div.offsetTop + border + "px";//div.style.left + 'px';//self.left + 'px';
-                    self.img.style.left = div.offsetLeft + border + "px";//div.style.top + 'px';//self.top + 'px';
+
+                    this.offsetTop = div.offsetTop + border;
+                    this.offsetLeft = div.offsetLeft + border;
+                    self.img.style.top = this.offsetTop + "px";//div.style.left + 'px';//self.left + 'px';
+                    self.img.style.left = this.offsetLeft + "px";//div.style.top + 'px';//self.top + 'px';
                     
                     
                     
@@ -239,6 +243,12 @@ class ImgHandler {
 
         this.drawPoint = function(x, y, r){
             //this.setXVisible(x);
+
+            if(this.unused){
+                // re-initiatise the canvas
+                this.unused = false;
+                this.setCanvas(this.canvas);
+            }
             
             //this.setPercent(percent);
             if (valid(this.canvas) && valid (this.ctx)){
