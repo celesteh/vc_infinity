@@ -148,8 +148,9 @@ class ImgHandler {
                     self.img.opacity = 0; // double check
                     self.img.style.position = "absolute";
                     var border = 0;
+                    console.log(div.style.borderWidth);
                     //if(valid(div.style.border.width)){
-                        border = div.style.border.width;
+                        border = div.style.border.borderWidth;
                         console.log("border " + border);
                     //}
                     self.img.style.top = div.offsetTop + border + "px";//div.style.left + 'px';//self.left + 'px';
