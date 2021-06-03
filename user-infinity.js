@@ -312,7 +312,7 @@ class ImgHandler {
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
                             if(self.img.style.opacity > 0){
-                                self.img.style.opacity = self.img.style.opacity - 0.1;
+                                self.img.style.opacity = parseFloat(self.img.style.opacity) - 0.1;
                                 setTimeout(fadefunc, 100);
                             } else {
                                 self.zIndex = -1;
@@ -351,7 +351,7 @@ class ImgHandler {
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
                             if(self.img.style.opacity < 1){
-                                self.img.style.opacity = self.img.style.opacity + 0.1;
+                                self.img.style.opacity = parseFloat(self.img.style.opacity) + 0.1;
                                 setTimeout(fadefunc, 100);
                             }
                         }
