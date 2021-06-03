@@ -110,7 +110,7 @@ input[type="range"] {
     outline: none;
   }
   input[type=range]::-webkit-slider-runnable-track {
-    width: 100%;
+    width: 100px;
     height: 5px;
     cursor: pointer;
     animate: 0.2s;
@@ -134,7 +134,7 @@ input[type="range"] {
     background: #2497E3;
   }
   input[type=range]::-moz-range-track {
-    width: 100%;
+    width: 100px;
     height: 5px;
     cursor: pointer;
     animate: 0.2s;
