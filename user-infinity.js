@@ -295,6 +295,9 @@ class ImgHandler {
                 this.ctx.fillStyle = 'red';
                 this.ctx.strokeStyle = 'red';
                 this.ctx.lineWidth = 2;
+
+                // Just one point at a time
+                this.clearPoints();
         
                 this.ctx.beginPath();
                 this.ctx.arc(scaledX, scaledY, radius, 0, 2 * Math.PI);
