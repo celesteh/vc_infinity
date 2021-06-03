@@ -159,6 +159,7 @@ class ImgHandler {
                     self.img.style.opacity = 0;//img.style.opacity
 
                     self.img.style.objectFit = "cover";
+                    self.img.style.overflow = "hidden";
 
                     div.appendChild(self.img);
                     self.img.style.opacity = 0; // double check
@@ -258,7 +259,12 @@ class ImgHandler {
                     // position it over the image
                     canvas.style.left = x_offset + 'px';
                     canvas.style.top = y_offset + 'px';
+                    
+                    
                 }
+
+                canvas.style.objectFit = "cover";
+                canvas.style.overflow = "hidden";
 
                 this.canvas = canvas;
                 this.ctx = this.canvas.getContext('2d');
