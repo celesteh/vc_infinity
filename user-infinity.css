@@ -120,6 +120,7 @@
     max-height: 300px;
     width: 100%;
     overflow: hidden;
+    overflow-x:scroll;
     /*max-width: 100%;*/
   }
 
@@ -127,6 +128,7 @@
   .img-container{
     object-fit: cover;
     overflow: scroll;
+    overflow-x:scroll;
   }
 
   .playCanvas
@@ -137,6 +139,7 @@
     opacity:1;
     object-fit: cover;
     overflow: hidden;
+    overflow-x:scroll;
     width: 100%;
 }
 
@@ -144,6 +147,7 @@
   position: absolute;
   object-fit: cover;
   overflow: hidden;
+  overflow-x:scroll;
   opacity:0;
   z-index:-1;
   width:100%;
