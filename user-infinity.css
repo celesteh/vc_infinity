@@ -112,6 +112,8 @@
 
 
 .playing-img {
+  display: flex;
+  flex-wrap: nowrap;
     object-fit: cover;
     object-position: 0 0;
     display: flex;
@@ -137,6 +139,8 @@
 
   .playCanvas
 {
+  display: flex;
+  flex-wrap: nowrap;
     /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
     position:absolute;
     z-index: 150;
