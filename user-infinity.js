@@ -130,6 +130,7 @@ class ImgHandler {
         this.unused = true;
         this.fading = false;
         this.scroller = scroller;
+        this.opacity = 0;
         
 
         this.setUrl = function(url) {
@@ -162,13 +163,13 @@ class ImgHandler {
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;:
                     
-                    self.img.style.opacity = 0;//img.style.opacity
+                    self.img.style.opacity = self.opacity;//img.style.opacity
 
                     self.img.style.objectFit = "cover";
                     self.img.style.overflow = "hidden";
 
                     div.appendChild(self.img);
-                    self.img.style.opacity = 0; // double check
+                    self.img.style.opacity = self.opacity; //0 // double check
                     self.img.style.position = "absolute";
                     var border = 2;
                     //console.log(div.style.borderWidth);
@@ -205,7 +206,7 @@ class ImgHandler {
 
 
         this.img = new Image(div.width, div.height);
-        this.img.opacity = 0;
+        this.img.style.opacity = 0;
         this.setUrl(url);
         
         //this.img.class = "arr-img";
@@ -359,8 +360,9 @@ class ImgHandler {
                     var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
-                            if(parseFloat(self.img.style.opacity) > 0){
-                                self.img.style.opacity = parseFloat(self.img.style.opacity) - 0.1;
+                            if(self.opacity > 0){
+                                self.opacity = self.opacity - 0.1;
+                                self.img.style.opacity = self.opacity;
                                 fading = true;
                                 setTimeout(fadefunc, 100);
                                 console.log("fading");
@@ -404,8 +406,9 @@ class ImgHandler {
                     var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
-                            if(parseFloat(self.img.style.opacity) < 1){
-                                self.img.style.opacity = parseFloat(self.img.style.opacity) + 0.1;
+                            if(self.opacity < 1){
+                                self.opacity = self.opacity +0.1;
+                                self.img.style.opacity = self.opacity;
                                 fading = true;
                                 setTimeout(fadefunc, 100);
                             }
