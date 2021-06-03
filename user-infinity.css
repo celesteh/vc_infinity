@@ -135,6 +135,8 @@
     position:absolute;
     z-index: 150;
     opacity:1;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .arr-img {
