@@ -36,6 +36,8 @@
         var panels_json;
         var images = {};
         var density_slider;
+        var top;
+        var left;
         
 
         function nextSlidePlease(oldurl, newurl){
@@ -48,7 +50,7 @@
             if(!valid(newImg)){
                 
                 //newImg = new ImgHandler();
-                newImg = new ImgHandler(newurl, document.getElmentById("con"));
+                newImg = new ImgHandler(newurl, document.getElmentById("con"), top, left);
                
                 images[newurl] = newImg;
             }
@@ -241,7 +243,7 @@
                             density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
                             var imgurl = "score_pages/" + panel[2];
-                            images[imgurl] = new ImgHandler(imgurl, document.getElementById("con"));
+                            images[imgurl] = new ImgHandler(imgurl, document.getElementById("con"), top, left);
                         }
                         //if (!started){
                         //    started = true;
@@ -289,6 +291,8 @@
             canvas.height = img.clientHeight;
             con.height = img.clientHeight;
             con.className="bordered";
+            top = img.style.top;
+            left = img.style.left;
 
 
             density_slider = document.getElementById("density");
