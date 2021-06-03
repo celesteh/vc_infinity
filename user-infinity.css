@@ -113,7 +113,7 @@
 
 .playing-img {
     object-fit: cover;
-    object-position: 100% 0;
+    object-position: 0 0;
     display: flex;
     align-items: top;
     
@@ -122,6 +122,8 @@
     overflow: hidden;
     overflow-x:scroll;
     /*max-width: 100%;*/
+    margin-top: 0;
+    margin-left: 0;
   }
 
 
@@ -129,6 +131,8 @@
     object-fit: cover;
     overflow: scroll;
     overflow-x:scroll;
+    margin-top: 0;
+    margin-left: 0;
   }
 
   .playCanvas
@@ -141,6 +145,8 @@
     overflow: hidden;
     overflow-x:scroll;
     width: 100%;
+    margin-top: 0;
+    margin-left: 0;
 }
 
 .arr-img {
@@ -151,6 +157,8 @@
   opacity:0;
   z-index:-1;
   width:100%;
+  margin-top: 0;
+  margin-left: 0;
 }
 
 .slider {
