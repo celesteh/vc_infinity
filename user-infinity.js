@@ -225,7 +225,7 @@ class ImgHandler {
 
                 this.img.style.objectPosition = percent + "% 0";
                 this.canvas.style.objectPosition = percent + "% 0"
-                console.log("Drew " + x + ", " + y + ", " + scaledX + ", " + sacledY);
+                console.log("Drew " + x + ", " + y + ", " + scaledX + ", " + scaledY);
             } else {
                 console.log("Couldn't draw");
             }
