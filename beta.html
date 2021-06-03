@@ -59,7 +59,7 @@
                 var x_size = record[3];
                 var y_size = record[4];
 
-                handler = new ImgHandler(url, con, x_size, y_size, imgw, imgh);
+                handler = new ImgHandler(url, con, x_size, y_size, imgh);
 
                 var canvas = document.getElementById("myCanvas");
                 handler.setCanvas(canvas);
@@ -345,7 +345,7 @@
             con.height = img.clientHeight;
             con.className="playback-bordered";
 
-            imgw = img.clientWidth;
+            //imgw = img.clientWidth;
             imgh = img.clientHeight;
 
 
@@ -383,12 +383,14 @@
     <div class="flex-container">
         <div class="playing-img">
             <div id="con" width="1400"  height="200" class="image-container">
-                <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>
-                <img class="playback-img" src="score_pages/600/metaphysics_1.jpg" alt="The Score" id="score1"  >
-                <!img class="anchor-img playing-img" src="score_pages/metaphysics_2.jpg" alt="The Score" id="score2"  width="1400" height="200"  min-width="300" style="transparent">
-          <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
+                <div class="capture">
+                    <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>
+                    <img class="playback-img" src="score_pages/600/metaphysics_1.jpg" alt="The Score" id="score1"  >
+                    <!img class="anchor-img playing-img" src="score_pages/metaphysics_2.jpg" alt="The Score" id="score2"  width="1400" height="200"  min-width="300" style="transparent">
+                    <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
+                </div>
+            </div>
         </div>
     </div>
-</div>
 </body>
 </html>

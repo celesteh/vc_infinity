@@ -111,15 +111,17 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div, width, height, disp_w, disp_h){
+    constructor(url, div, width, height, disp_h){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
         this.width =width;
         this.height= height;
         this.ratio = width/height;
-        this.disp_w = disp_w;
+        
+        this.disp_w = this.ratio * disp_h;
         this.disp_h = disp_h;
+
         this.points = [];
         this.canvas;
         this.ctx;
