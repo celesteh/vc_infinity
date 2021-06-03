@@ -119,7 +119,7 @@
     
     max-height: 300px;
     width: 100%;
-    overflow: hidden;
+    overflow: scroll;
     /*max-width: 100%;*/
   }
 
