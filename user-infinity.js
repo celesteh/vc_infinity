@@ -363,6 +363,7 @@ class ImgHandler {
                                 self.img.style.opacity = parseFloat(self.img.style.opacity) - 0.1;
                                 fading = true;
                                 setTimeout(fadefunc, 100);
+                                console.log("fading");
                             } else {
                                 self.img.style.zIndex = -1;
                                 //self.img.class = "arr-img";
