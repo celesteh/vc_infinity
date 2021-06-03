@@ -46,7 +46,7 @@
             if(valid(oldImg)){
                 oldImg.clearPoints();
             }
-
+            img.src = newurl;
             var newImg = images[newurl];
             if(!valid(newImg)){
                 
@@ -295,9 +295,9 @@
     <div><form><input type="button" VALUE="Play" onClick="start();"><input type="button" VALUE="Stop" onClick="stop();"></form></div>
     <div class="flex-container">
         <div class="playing-img">
-            <div class="overflow full-width" id="con" width="1400"  height="200">
-                <canvas id="myCanvas" class="overflow" width="1400" height="200" min-width="300"></canvas>
-                <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score"  width="1400" height="200" class="overflow" min-width="300">
+            <div id="con" width="1400"  height="200">
+                <canvas id="myCanvas"  width="1400" height="200" min-width="300"></canvas>
+                <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score"  width="1400" height="200"  min-width="300">
           <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
         </div>
     </div>
