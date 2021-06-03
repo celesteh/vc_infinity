@@ -161,6 +161,28 @@
   margin-left: 0;
 }
 
+.playback-img{
+  width: 1400px;
+  height: 200px;
+  min-width:300;
+  object-fit: cover;
+  object-position: 0 0;
+  /*
+  width: 300px;
+  height: 200px;
+  */
+  display: flex;
+  align-items: top;
+  
+  max-height: 300px;
+  width: 100%;
+  overflow: hidden;
+  overflow-x:scroll;
+  /*max-width: 100%;*/
+  margin-top: 0;
+  margin-left: 0;
+}
+
 .slider {
     -webkit-appearance: none;
     width: 100px;
