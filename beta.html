@@ -212,8 +212,8 @@
             
         }
         
-        function play_stuff(){
-            //var started = false;
+        function play_stuff(){           
+
             loadJSON('json/panels.json',
                 function(panel_info){
                     panels_json = panel_info;
@@ -257,10 +257,19 @@
             playing = false;
             Howler.stop();
         }
+
+        function init() {
+            // resize the canvas to fit the image
+            var img =  document.getElementById("score");
+            var canvas = document.getElementById("myCanvas");
+            canvas.height = img.clientHeight;
+ 
+            play_stuff();
+        }
         
     </script>
 </head>
-<body  onload="play_stuff();">
+<body  onload="init();">
     <div class="page-header">
         <h1>Audio Demo</h1>
     </div>

@@ -120,7 +120,7 @@ class ImgHandler {
         this.setImg = function(img){
             this.img = img;
         }
-        
+
         this.setUrl = function(url) {
             this.url = url;
             this.img.src = this.url;
@@ -133,7 +133,7 @@ class ImgHandler {
             this.ratio = this.width / this.height;
         }
 
-        this.getPrecent = function(x, y){
+        this.getPercent = function(x, y){
             var percent = 0;
             if (width > 0){ // width loads asynchornously
                 percent = (x/width) * 100;
@@ -187,7 +187,7 @@ class ImgHandler {
             if (valid(this.canvas) && valid (this.ctx)){
                 // draw the new point
 
-                var percent = this.getPrecent(x,y);
+                var percent = this.getPercent(x,y);
 
                 //$scaleh = 360;
                 //$scalew = $ratio * $scaleh;
