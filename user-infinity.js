@@ -147,8 +147,8 @@ class ImgHandler {
                     div.appendChild(self.img);
                     self.img.opacity = 0; // double check
                     self.img.style.position = "absolute";
-                    self.img.style.left = div.offsetTop + "px";//div.style.left + 'px';//self.left + 'px';
-                    self.img.style.top = div.offsetLeft + "px";//div.style.top + 'px';//self.top + 'px';
+                    self.img.style.top = div.offsetTop + "px";//div.style.left + 'px';//self.left + 'px';
+                    self.img.style.left = div.offsetLeft + "px";//div.style.top + 'px';//self.top + 'px';
                     
                     
                     
