@@ -118,7 +118,8 @@
     align-items: top;
     
     max-height: 300px;
-    width: 100%;
+    /*width: 100%;*/
+    overflow: hidden;
   }
 
   .playCanvas
