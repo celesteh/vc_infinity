@@ -125,7 +125,8 @@
 {
     /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
     position:absolute;
-    z-index: 15;
+    z-index: 150;
+    opacity:1;
 }
 
 .arr-img {
