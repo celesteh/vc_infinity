@@ -128,9 +128,21 @@ class ImgHandler {
                 this.img.src = this.url;
                 var self = this;
                 this.img.onload = function(){
+
+                    // get data
                     self.width = self.img.naturalWidth;
                     self.height = self.img.naturalHeight;
                     self.ratio = self.width / self.height;
+
+                    // set size and location based on the holder
+                    this.img.height = div.clientHeight;
+                    this.img.width = div.clientWidth;
+                    var x_offset = self.div.offsetLeft;
+                    var y_offset = self.div.offsetTop;
+                    self.img.style.left = x_offset + 'px';
+                    self.img.style.top = y_offset + 'px';
+
+                    div.appendChild(this.img);
                 }
             }
         }
@@ -139,10 +151,9 @@ class ImgHandler {
         this.img = new Image(div.width, div.height);
         this.img.opacity = 0;
         this.setUrl(url);
-        this.img.height = div.clientHeight;
-        this.img.width = div.clientWidth;
+        
         this.img.class = "arr-img";
-        div.appendChild(this.img);
+        
 
         this.setImg = function(img){
             this.img = img;
