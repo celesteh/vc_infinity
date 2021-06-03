@@ -143,10 +143,10 @@ class ImgHandler {
                     //self.img.height = div.clientHeight;
                     //self.img.width = div.clientWidth;
                     var w, h;
-                    w = parseInt(self.img.style.getPropertyValue("width"));
-                    h = parseInt(self.img.style.getPropertyValue("height"));
-                    self.img.width = w;
-                    self.img.height = h;
+                    w = self.img.style.getPropertyValue("width");
+                    h = self.img.style.getPropertyValue("height");
+                    //self.img.width = w;
+                    //self.img.height = h;
 
                     console.log("w " + w + " h " + h);
 
