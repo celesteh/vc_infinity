@@ -371,8 +371,9 @@ class ImgHandler {
                     }
                     self.fading = fading;
                 }
+                setTimeout(fadefunc, 10);
             }
-            setTimeout(fadefunc, 10);
+            
         }
 
         this.fadeIn = function() {
