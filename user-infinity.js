@@ -142,7 +142,7 @@ class ImgHandler {
                     self.img.style.left = x_offset + 'px';
                     self.img.style.top = y_offset + 'px';
 
-                    div.appendChild(this.img);
+                    div.appendChild(self.img);
                 }
             }
         }
