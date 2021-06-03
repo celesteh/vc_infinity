@@ -149,6 +149,7 @@
     margin-left: 0;
 }
 
+/*
 .arr-img {
   position: absolute;
   object-fit: cover;
@@ -160,7 +161,7 @@
   margin-top: 0;
   margin-left: 0;
 }
-
+*/
 .playback-img{
   width: 1400;
   height: 200;

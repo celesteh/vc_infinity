@@ -274,7 +274,8 @@
             loadJSON('json/panels.json',
                 function(panel_info){
                     panels_json = panel_info;
-                    Object.keys(panel_info).sort().forEach(key => {
+                    // $panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
+                    Object.keys(panel_info).sort(function(a,b){return(parseInt(a) - parseInt(b));}).forEach(key => {
                     //panel_info.forEach(panel => {
                         var panel = panel_info[key];
                         console.log(panel);

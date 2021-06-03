@@ -158,6 +158,8 @@ class ImgHandler {
                     
                     self.img.style.opacity = 0;//img.style.opacity
 
+                    self.img.style.objectFit = "cover";
+
                     div.appendChild(self.img);
                     self.img.style.opacity = 0; // double check
                     self.img.style.position = "absolute";
