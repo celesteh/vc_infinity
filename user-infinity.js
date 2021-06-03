@@ -122,6 +122,19 @@ class ImgHandler {
         this.ctx;
         this.div = div;
 
+        this.setUrl = function(url) {
+            this.url = url;
+            if(valid(this.img)){
+                this.img.src = this.url;
+                var self = this;
+                this.img.onload = function(){
+                    self.width = self.img.naturalWidth;
+                    self.height = self.img.naturalHeight;
+                    self.ratio = self.width / self.height;
+                }
+            }
+        }
+
 
         this.img = new Image(div.width, div.height);
         this.img.opacity = 0;
@@ -140,18 +153,6 @@ class ImgHandler {
             }
         }
 
-        this.setUrl = function(url) {
-            this.url = url;
-            if(valid(this.img)){
-                this.img.src = this.url;
-                var self = this;
-                this.img.onload = function(){
-                    self.width = self.img.naturalWidth;
-                    self.height = self.img.naturalHeight;
-                    self.ratio = self.width / self.height;
-                }
-            }
-        }
 
         this.getPercent = function(x, y){
             var percent = 0;
