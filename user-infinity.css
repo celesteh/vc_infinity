@@ -255,3 +255,11 @@ input[type="range"] {
     background: #000000;
   }
   
+  .player-body{
+    /* disabling body scrolling */
+    overflow: hidden;
+    margin: auto;
+    background: white;
+    margin-top: 4%;
+    text-align: center;
+  }
