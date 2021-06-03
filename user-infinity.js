@@ -119,8 +119,8 @@ class ImgHandler {
         this.height= height;
         this.ratio = width/height;
         
-        this.disp_w = this.ratio * disp_h;
-        this.disp_h = disp_h;
+        this.disp_w = this.ratio * div.offsetHeight;
+        this.disp_h = offsetHeight;
 
         this.points = [];
         this.canvas;
