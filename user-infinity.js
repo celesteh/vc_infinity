@@ -154,30 +154,32 @@ class ImgHandler {
 
         this.setCanvas = function (canvas){
             if (valid(canvas)){
-                var x_offset = this.img.offsetLeft;
-                var y_offset = this.img.offsetTop;
-                var w = this.img.clientWidth;
-                var h = this.img.clientHeight;
-                var imgParent = this.img.parentNode;
-                imgParent.appendChild(canvas);
-                canvas.style.zIndex = 1;
-                //var wBh = 0;
-                //if(this.height> 0) {
-                //    wBh = this.width / this.height;
-                //}
+                if(valid(this.img)){
+                    var x_offset = this.img.offsetLeft;
+                    var y_offset = this.img.offsetTop;
+                    var w = this.img.clientWidth;
+                    var h = this.img.clientHeight;
+                    var imgParent = this.img.parentNode;
+                    imgParent.appendChild(canvas);
+                    canvas.style.zIndex = 1;
+                    //var wBh = 0;
+                    //if(this.height> 0) {
+                    //    wBh = this.width / this.height;
+                    //}
 
-                canvas.height = h;
-                canvas.width =  h * this.ratio; //wBh; // (c.w/c.h = wBh)
+                    canvas.height = h;
+                    canvas.width =  h * this.ratio; //wBh; // (c.w/c.h = wBh)
 
-                // position it over the image
-                canvas.style.left = x_offset + 'px';
-                canvas.style.top = y_offset + 'px';
+                    // position it over the image
+                    canvas.style.left = x_offset + 'px';
+                    canvas.style.top = y_offset + 'px';
+                }
 
                 this.canvas = canvas;
                 this.ctx = this.canvas.getContext('2d');
-                ctx.fillStyle = 'red';
-                ctx.strokeStyle = 'red';
-                ctx.lineWidth = 2;
+                this.ctx.fillStyle = 'red';
+                this.ctx.strokeStyle = 'red';
+                this.ctx.lineWidth = 2;
             }
         }
 
