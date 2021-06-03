@@ -152,8 +152,8 @@ class ImgHandler {
                     self.img.opacity = 0;
 
                     div.appendChild(self.img);
-                    self.img.style.left = self.top + 'px';
-                    self.img.style.top = self.left + 'px';
+                    self.img.style.left = self.left + 'px';
+                    self.img.style.top = self.top + 'px';
                     self.img.style.position = "absolute";
                     
                     
