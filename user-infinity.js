@@ -161,6 +161,21 @@ class ImgHandler {
                     this.ol = div.offsetLeft + border;
                     self.img.style.top = this.ot + "px";//div.style.left + 'px';//self.left + 'px';
                     self.img.style.left = this.ol + "px";//div.style.top + 'px';//self.top + 'px';
+
+                    if(valid(self.canvas)){
+                        /*
+                        var h = div.clientHeight;
+                        var x_offset = this.img.offsetLeft;
+                        var y_offset = this.img.offsetTop;
+
+                        canvas.height = h;
+                        canvas.width =  h * this.ratio;
+
+                        canvas.style.left = x_offset + 'px';
+                        canvas.style.top = y_offset + 'px';
+                        */
+                       self.setCanvas(self.canvas);
+                    }
                     
                     
                     
