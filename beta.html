@@ -46,13 +46,15 @@
             oldImg.clearPoints();
             var newImg = images[newurl];
             if(!valid(newImg)){
-                var canvas = document.getElementById("myCanvas");
+                
                 newImg = new ImgHandler();
-                newImg.setCanvas(canvas);
+               
                 images[newurl] = newImg;
             }
             newImg.setImg(img);
             newImg.setUrl(newurl);
+            var canvas = document.getElementById("myCanvas");
+            newImg.setCanvas(canvas);
         }
 
         function mark_played(clip){
