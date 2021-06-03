@@ -92,7 +92,7 @@
     -webkit-appearance: none;
     width: 100px;
     height: 25px;
-    background: #000;
+    background: transparent;
     /*outline: none;*/
     opacity: 0.7;
     -webkit-transition: .2s;
