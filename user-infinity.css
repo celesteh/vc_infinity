@@ -47,7 +47,7 @@
     align-items: stretch;
     /*background-color: #f1f1f1;*/
     background-color: transparent;
-    align-items: top;
+    align-items: middle;
     flex-direction: row;
     width: 100%;
 }
