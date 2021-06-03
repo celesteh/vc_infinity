@@ -139,6 +139,8 @@
 
 .arr-img {
   position: absolute;
+  object-fit: cover;
+  overflow: hidden;
   opacity:0;
   z-index:-1;
 }
