@@ -162,8 +162,8 @@
 }
 
 .playback-img{
-  width: 1400px;
-  height: 200px;
+  width: 1400;
+  height: 200;
   min-width:300;
   object-fit: cover;
   object-position: 0 0;
