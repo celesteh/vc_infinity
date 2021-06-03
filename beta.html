@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Audio Demo</title>
+    <title>Beta Test</title>
     <link rel="stylesheet" href="upload/bootstrap.css">
     <link rel="stylesheet" href="user-infinity.css">
     <style>
@@ -39,6 +39,7 @@
         var density;
         var panels_json;
         var images = {};
+        var density_slider;
         
 
         function nextSlidePlease(oldurl, newurl, img){
@@ -232,7 +233,8 @@
                         if(! preloaded){
                             preloaded = true;
                             density = new Ramp();
-                            loadaudio(panels.shift());
+                            density_slider.value = density.start;
+                            //loadaudio(panels.shift());
                         }
                         //if (!started){
                         //    started = true;
@@ -249,12 +251,20 @@
             )
         }
 
+        function guiUpdate (){
+            if(valid(density) && valid(density_slider)){
+                density_slider.value = density.value();
+            }
+            setTimeout(guiUpdate, 100);
+        }
+
         function start(){
             if(! playing){
                 playing = true;
                 
                 loadaudio(panels.shift());
                 setTimeout(player, 500);
+                setTimeout(guiUpdate, 500);
             }
 
         }
@@ -272,6 +282,9 @@
             canvas.height = img.clientHeight;
             con.height = img.clientHeight;
             con.className="bordered";
+
+
+            density_slider = document.getElementById("density");
  
             play_stuff();
         }
@@ -280,7 +293,7 @@
 </head>
 <body  onload="init();">
     <div class="page-header">
-        <h1>Audio Demo</h1>
+        <h1>Beta Test</h1>
     </div>
     <nav class="navbar navbar-default" id="myTopnav">
         <div class="container-fluid">
@@ -295,7 +308,7 @@
             </ul>
         </div>
     </nav>
-    <div><form><input type="button" VALUE="Play" onClick="start();"><input type="button" VALUE="Stop" onClick="stop();"></form></div>
+    <div><form><input type="button" VALUE="Play" onClick="start();"><input type="button" VALUE="Stop" onClick="stop();"><input type="range" min="1" max="5" value="2.5" class="slider" id="density"></form></div>
     <div class="flex-container">
         <div class="playing-img">
             <div id="con" width="1400"  height="200">
