@@ -233,7 +233,7 @@
                         if(! preloaded){
                             preloaded = true;
                             density = new Ramp();
-                            density_slider.value = density.start;
+                            density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
                         }
                         //if (!started){
@@ -311,9 +311,9 @@
     <div class="flex-controls"><!form>
         <div><input type="button" VALUE="Play" onClick="start();"></div>
         <div><input type="button" VALUE="Stop" onClick="stop();"></div>
-        <div><label>Density:
-            <input type="range" min="1" max="500" value="250" class="slider" id="density"></div>
-        </label><!/form>
+        <div>Density:</div>
+        <div><input type="range" min="100" max="500" value="250" class="slider" id="density"></div>
+        <!/form>
     </div>
     <div class="flex-container">
         <div class="playing-img">
