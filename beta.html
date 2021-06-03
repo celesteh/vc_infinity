@@ -36,8 +36,8 @@
         var panels_json;
         var images = {};
         var density_slider;
-        var top;
-        var left;
+        var itop;
+        var ileft;
         
 
         function nextSlidePlease(oldurl, newurl){
@@ -50,7 +50,7 @@
             if(!valid(newImg)){
                 
                 //newImg = new ImgHandler();
-                newImg = new ImgHandler(newurl, document.getElmentById("con"), top, left);
+                newImg = new ImgHandler(newurl, document.getElmentById("con"), itop, ileft);
                
                 images[newurl] = newImg;
             }
@@ -243,7 +243,7 @@
                             density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
                             var imgurl = "score_pages/" + panel[2];
-                            images[imgurl] = new ImgHandler(imgurl, document.getElementById("con"), top, left);
+                            images[imgurl] = new ImgHandler(imgurl, document.getElementById("con"), itop, ileft);
                         }
                         //if (!started){
                         //    started = true;
@@ -294,11 +294,11 @@
 
             var offset = img.offsetParent;
             if(valid(offset)){
-                top = 0;//offset.offsetTop;
-                left = offset.offsetLeft;
+                itop = 0;//offset.offsetTop;
+                ileft = offset.offsetLeft;
             }
 
-            console.log("top " + top + ", left " + left);
+            console.log("top " + itop + ", left " + ileft);
 
 
             density_slider = document.getElementById("density");
