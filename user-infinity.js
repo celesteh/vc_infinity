@@ -123,6 +123,7 @@ class ImgHandler {
         this.div = div;
         this.active = true;
         this.unused = true;
+        this.fading = false;
         
 
         this.setUrl = function(url) {
@@ -305,14 +306,17 @@ class ImgHandler {
 
         this.fadeOut = function() {
             this.active = false;
+            this.fading = true;
             console.log("fadeOut");
             if(valid(this.img)){
                 self = this;
                 var fadefunc = function(){
+                    var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
                             if(self.img.style.opacity > 0){
                                 self.img.style.opacity = parseFloat(self.img.style.opacity) - 0.1;
+                                fading = true;
                                 setTimeout(fadefunc, 100);
                             } else {
                                 self.zIndex = -1;
@@ -320,6 +324,7 @@ class ImgHandler {
                             }
                         }
                     }
+                    self.fading = fading;
                 }
             }
             setTimeout(fadefunc, 10);
@@ -328,6 +333,7 @@ class ImgHandler {
         this.fadeIn = function() {
 
             this.active = true;
+            this.fading = true;
 
             console.log("fadeIn ")
 
@@ -348,14 +354,17 @@ class ImgHandler {
                 self = this;
                 
                 var fadefunc = function(){
+                    var fading = false;
                     if(valid(self.img)){
                         if(valid(self.img.style.opacity)){
                             if(self.img.style.opacity < 1){
                                 self.img.style.opacity = parseFloat(self.img.style.opacity) + 0.1;
+                                fading = true;
                                 setTimeout(fadefunc, 100);
                             }
                         }
                     }
+                    self.fading = fading;
                 }
                 setTimeout(fadefunc, 10);
             }

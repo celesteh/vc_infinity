@@ -161,6 +161,9 @@
                             }
                             var handler = images[active.imgurl];
                             console.log(typeof handler);
+                            if((! handler.fading) && (parseFloat(handler.img.style.opacity) < 1)){
+                                handler.fadeIn();
+                            }
                             handler.drawPoint(active.x, active.y);
 
 
