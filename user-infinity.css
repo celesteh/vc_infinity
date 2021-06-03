@@ -126,6 +126,7 @@
 
   .img-container{
     /*overflow: hidden;*/
+    object-fit: cover;
   }
 
   .playCanvas
