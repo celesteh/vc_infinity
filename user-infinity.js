@@ -169,8 +169,8 @@ class ImgHandler {
                     //    wBh = this.width / this.height;
                     //}
 
-                    canvas.setHeight(h);
-                    canvas.setWidth(h * this.ratio); //wBh; // (c.w/c.h = wBh)
+                    canvas.height = h;
+                    canvas.width =  h * this.ratio; //wBh; // (c.w/c.h = wBh)
 
                     // position it over the image
                     canvas.style.left = x_offset + 'px';
