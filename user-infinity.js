@@ -151,7 +151,7 @@ class ImgHandler {
                     self.img.width = self.disp_w;
                     self.img.height = self.disp_h;
 
-                    console.log("w " + w + " h " + h);
+                    //console.log("w " + w + " h " + h);
 
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
