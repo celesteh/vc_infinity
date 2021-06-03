@@ -141,6 +141,8 @@ class ImgHandler {
                     var y_offset = self.div.offsetTop;
                     self.img.style.left = x_offset + 'px';
                     self.img.style.top = y_offset + 'px';
+                    self.img.opacity = 0;
+                    self.img.class = "arr-img";
 
                     div.appendChild(self.img);
                 }
