@@ -212,6 +212,11 @@ class ImgHandler {
                 if(!valid(radius)){
                     radius = 5;
                 }
+
+                this.ctx = this.canvas.getContext('2d');
+                this.ctx.fillStyle = 'red';
+                this.ctx.strokeStyle = 'red';
+                this.ctx.lineWidth = 2;
         
                 this.ctx.beginPath();
                 this.ctx.arc(scaledX, scaledY, radius, 0, 2 * Math.PI);
