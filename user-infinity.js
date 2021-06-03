@@ -142,10 +142,10 @@ class ImgHandler {
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
                     
-                    self.img.opacity = 0;//img.style.opacity
+                    self.img.style.opacity = 0;//img.style.opacity
 
                     div.appendChild(self.img);
-                    self.img.opacity = 0; // double check
+                    self.img.style.opacity = 0; // double check
                     self.img.style.position = "absolute";
                     var border = 2;
                     //console.log(div.style.borderWidth);
@@ -294,9 +294,9 @@ class ImgHandler {
                 self = this;
                 var fadefunc = function(){
                     if(valid(self.img)){
-                        if(valid(self.img.opacity)){
-                            if(self.img.opacity > 0){
-                                self.img.opacity = self.impage.opacity - 0.1;
+                        if(valid(self.img.style.opacity)){
+                            if(self.img.style.opacity > 0){
+                                self.img.style.opacity = self.image.style.opacity - 0.1;
                                 setTimeout(fadefunc, 100);
                             } else {
                                 this.zIndex = -1;
@@ -313,7 +313,7 @@ class ImgHandler {
 
                 // bring it invisibly to the front
                 this.img.class = "anchor-img playing-img";
-                this.opacity = 0;
+                this.img.style.opacity = 0;
 
                 if(valid(div)){
                     this.zIndex = div.getChildNodes.length;
@@ -327,9 +327,9 @@ class ImgHandler {
                 
                 var fadefunc = function(){
                     if(valid(self.img)){
-                        if(valid(self.img.opacity)){
-                            if(self.img.opacity < 1){
-                                self.img.opacity = self.impage.opacity + 0.1;
+                        if(valid(self.img.style.opacity)){
+                            if(self.img.style.opacity < 1){
+                                self.img.style.opacity = self.image.style.opacity + 0.1;
                                 setTimeout(fadefunc, 100);
                             }
                         }

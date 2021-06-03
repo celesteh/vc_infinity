@@ -257,6 +257,8 @@
                             density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
                             var imgurl = img_prefix + panel[2];
+                            var handler = makeNewImgHandler(key);
+                            handler.fadeIn();
                             images[imgurl] = makeNewImgHandler(key);
                             //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
