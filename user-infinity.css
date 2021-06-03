@@ -44,12 +44,13 @@
 
 .flex-controls{
     display: flex;
-    align-items: stretch;
-    /*background-color: #f1f1f1;*/
+    /*align-items: stretch;
+    background-color: #f1f1f1;*/
     background-color: transparent;
-    align-items: middle;
+    align-items: center;
     flex-direction: row;
     width: 100%;
+    justify-content: space-around;
 }
 
 .flex-controls > div {
@@ -61,6 +62,7 @@
     text-align: center;
     align-items: center;
     justify-content: center;
+    text-justify: center;
     /*
     line-height: 75px;
     font-size: 30px;
