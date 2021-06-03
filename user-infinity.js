@@ -203,10 +203,10 @@ class ImgHandler {
                 var percentx = percent;
                 var percenty = 0;
                 if(this.height > 0){
-                    percenty = y/ this.height;
+                    percenty = y/ this.height * 100;
                 }
-                var scaledX = Math.floor(this.canvas.width * percentx);
-                var scaledY = Math.floor(this.canvas.height * percenty);  
+                var scaledX = Math.floor(this.canvas.width * (percentx/ 100));
+                var scaledY = Math.floor(this.canvas.height * (percenty/ 100));  
                 
                 var radius = r;
                 if(!valid(radius)){
