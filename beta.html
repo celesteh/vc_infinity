@@ -253,7 +253,7 @@
 
         function guiUpdate (){
             if(valid(density) && valid(density_slider)){
-                density_slider.value = density.value();
+                density_slider.value = density.value() * 100;
             }
             setTimeout(guiUpdate, 100);
         }
@@ -308,7 +308,7 @@
             </ul>
         </div>
     </nav>
-    <div class="flex-controls"><!form><div><input type="button" VALUE="Play" onClick="start();"></div><div><input type="button" VALUE="Stop" onClick="stop();"></div><div><input type="range" min="1" max="5" value="2.5" class="slider" id="density"></div><!/form></div>
+    <div class="flex-controls"><!form><div><input type="button" VALUE="Play" onClick="start();"></div><div><input type="button" VALUE="Stop" onClick="stop();"></div><div><input type="range" min="1" max="500" value="250" class="slider" id="density"></div><!/form></div>
     <div class="flex-container">
         <div class="playing-img">
             <div id="con" width="1400"  height="200">
