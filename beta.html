@@ -41,20 +41,28 @@
 
 
         function makeNewImgHandler(page_no){
-            var handler;
-            var con = document.getElementById("con");
             var record = panels_json[page_no];
-            //$panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
-            var id = record[1];
-            var url = img_prefix + record[2];
-            var x_size = record[3];
-            var y_size = record[4];
+            var handler;
 
-            handler = new ImgHandler(url, con, x_size, y_size);
+            if(! valid(images[record[2]])) {
+                // things are asynchronous, so stuff something in the array
+                images[record[2]] = true;
+                
+                var handler;
+                var con = document.getElementById("con");
+                
+               //$panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
+                var id = record[1];
+                var url = img_prefix + record[2];
+                var x_size = record[3];
+                var y_size = record[4];
 
-            var canvas = document.getElementById("myCanvas");
-            handler.setCanvas(canvas);
-            images[record[2]] = handler;
+                handler = new ImgHandler(url, con, x_size, y_size);
+
+                var canvas = document.getElementById("myCanvas");
+                handler.setCanvas(canvas);
+                images[record[2]] = handler;
+            }
 
             return handler;
         }
@@ -214,6 +222,9 @@
             num = panel[0];
             img = panel[2];
             console.log("doplay " + img);
+
+            // It only makes it if it doesn't exist
+            makeNewImgHandler(num);
             
             loadJSON('json/' + id + '.json',
                 function(audio_files) { //console.log(audio_files); 
