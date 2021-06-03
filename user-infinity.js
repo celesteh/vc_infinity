@@ -338,7 +338,7 @@ class ImgHandler {
             }
         }
 
-        this.id = function() {
+        this.id = function(id) {
             if(valid(this.img)){
                 this.img.id = id;
             }
