@@ -110,7 +110,7 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div, top, left){
+    constructor(url, div){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
@@ -121,8 +121,7 @@ class ImgHandler {
         this.canvas;
         this.ctx;
         this.div = div;
-        this.top = top;
-        this.left = left;
+        
 
         this.setUrl = function(url) {
             this.url = url;
@@ -142,13 +141,7 @@ class ImgHandler {
                     self.img.width = div.clientWidth;
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
-                    if(!valid(self.top)){
-                        self.top = self.div.offsetParent.offsetTop;
-                    }
-                    if(!valid(self.left)){
-                        self.left = self.div.offsetParent.offsetLeft;
-                    }
-
+                    
                     self.img.opacity = 0;
 
                     div.appendChild(self.img);
