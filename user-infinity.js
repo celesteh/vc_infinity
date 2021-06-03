@@ -110,13 +110,13 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div){
+    constructor(url, div, width, height){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
-        this.width =0;
-        this.height= 0;
-        this.ratio = 0;
+        this.width =width;
+        this.height= height;
+        this.ratio = width/height;
         this.points = [];
         this.canvas;
         this.ctx;
@@ -131,9 +131,9 @@ class ImgHandler {
                 this.img.onload = function(){
 
                     // get data
-                    self.width = self.img.naturalWidth;
-                    self.height = self.img.naturalHeight;
-                    self.ratio = self.width / self.height;
+                    //self.width = self.img.naturalWidth;
+                    //self.height = self.img.naturalHeight;
+                    //self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
                     self.img.class = "arr-img";
@@ -145,6 +145,7 @@ class ImgHandler {
                     self.img.opacity = 0;
 
                     div.appendChild(self.img);
+                    self.img.opacity = 0; // double check
                     self.img.style.left = div.style.left + 'px';//self.left + 'px';
                     self.img.style.top = div.style.top + 'px';//self.top + 'px';
                     self.img.style.position = "absolute";

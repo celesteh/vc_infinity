@@ -36,9 +36,24 @@
         var panels_json;
         var images = {};
         var density_slider;
+
+        var img_prefix = "score_pages/";
+
+
+        function makeNewImgHandler(page_no){
+            var con = document.getElmentById("con");
+            var record = panels.json[page_no];
+            //$panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
+            var id = record[1];
+            var url = url_prefix + record[2];
+            var x_size = record[3];
+            var y_size = record[4];
+
+            return new ImgHandler(url, document.getElmentById("con"), x_size, y_size);
+        }
          
 
-        function nextSlidePlease(oldurl, newurl){
+        function nextSlidePlease(oldurl, newurl, page_no){
             var oldImg = images[oldurl];
             if(valid(oldImg)){
                 oldImg.clearPoints();
@@ -48,7 +63,8 @@
             if(!valid(newImg)){
                 
                 //newImg = new ImgHandler();
-                newImg = new ImgHandler(newurl, document.getElmentById("con"));
+                newImg = makeNewImgHandler(page_no);
+                //new ImgHandler(newurl, document.getElmentById("con"));
                
                 images[newurl] = newImg;
             }
@@ -123,9 +139,9 @@
                             var img =  document.getElementById("score");
                             if(valid(img)){
                             //    //div.innerHTML = "Panel " + active.page_no;
-                                var imgurl = "score_pages/" + active.imgurl;
+                                var imgurl = img_prefix + active.imgurl;
                                 if (img.src != imgurl){
-                                    nextSlidePlease(img.src, imgurl, img);
+                                    nextSlidePlease(img.src, imgurl, active.page_no);
                                     //images[img.src].clearPoints
                             //        img.src = imgurl;
                                 }
@@ -175,7 +191,7 @@
         }
         
         function loadaudio(panel) {
-            var id; var num; var img;
+            var id; var num; var img; var x; var y;
             id = panel[1];
             num = panel[0];
             img = panel[2];
@@ -240,8 +256,9 @@
                             density = new Ramp();
                             density_slider.value = density.start * 100;
                             //loadaudio(panels.shift());
-                            var imgurl = "score_pages/" + panel[2];
-                            images[imgurl] = new ImgHandler(imgurl, document.getElementById("con"));
+                            var imgurl = img_prefix + panel[2];
+                            images[imgurl] = makeNewImgHandler(key);
+                            //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
                         //if (!started){
                         //    started = true;

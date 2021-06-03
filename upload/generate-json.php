@@ -53,7 +53,7 @@ fclose($handle);
 // 1 get panels
 
 $panels = array();
-$sql = "SELECT page_num, page_id, page_img_file FROM score_pages WHERE page_scorecode='metaphysics' ORDER BY page_num";
+$sql = "SELECT page_num, page_id, page_img_file, page_x, page_y FROM score_pages WHERE page_scorecode='metaphysics' ORDER BY page_num";
 //$sql = "SELECT id, firstname, lastname FROM MyGuests WHERE lastname='Doe'";
     //echo "$sql\n";
     
@@ -63,7 +63,7 @@ if($stmt = $pdo->prepare($sql)){
     if($stmt->execute()){
         if($stmt->rowCount() >= 1){
                 while($row = $stmt->fetch()){
-                $panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"]];
+                $panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
             }
         }
     }
