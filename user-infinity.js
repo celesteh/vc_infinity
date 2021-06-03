@@ -156,10 +156,10 @@ class ImgHandler {
                         console.log("border " + border);
                     }
 
-                    this.offsetTop = div.offsetTop + border;
-                    this.offsetLeft = div.offsetLeft + border;
-                    self.img.style.top = this.offsetTop + "px";//div.style.left + 'px';//self.left + 'px';
-                    self.img.style.left = this.offsetLeft + "px";//div.style.top + 'px';//self.top + 'px';
+                    this.ot = div.offsetTop + border;
+                    this.ol = div.offsetLeft + border;
+                    self.img.style.top = this.ot + "px";//div.style.left + 'px';//self.left + 'px';
+                    self.img.style.left = this.ol + "px";//div.style.top + 'px';//self.top + 'px';
                     
                     
                     
