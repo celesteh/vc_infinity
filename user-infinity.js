@@ -105,6 +105,129 @@ function rrand(low, high){
     return num;
 }
 
+class ImgHandler {
+    constructor(){
+        this.url = ""; // url;
+        //this.img = new Image();
+        //this.img.src = this.url; 
+        this.width =0;
+        this.height= 0;
+        this.ratio = 0;
+        this.points = [];
+        this.canvas;
+        this.ctx;
+
+        this.setImg = function(img){
+            this.img = img;
+        }
+        
+        this.setUrl = function(url) {
+            this.url = url;
+            this.img.src = this.url;
+        }
+
+        var self = this;
+        this.img.onload = function(){
+            this.width = self.img.naturalWidth;
+            this.height = self.img.naturalHeight;
+            this.ratio = this.width / this.height;
+        }
+
+        this.getPrecent = function(x, y){
+            var percent = 0;
+            if (width > 0){ // width loads asynchornously
+                percent = (x/width) * 100;
+            }
+            return(percent);
+        }
+
+
+        this.setPercent = function(percent){
+            this.img.style.objectPosition = percent + "% 0";
+        }
+
+        this.setXVisible = function (x){
+            var percent = this.getPrecent(x,0);
+            this.setPercent(percent);
+        }
+
+        this.setCanvas = function (canvas){
+            if (valid(canvas)){
+                var x_offset = this.img.offsetLeft;
+                var y_offset = this.img.offsetTop;
+                var w = this.img.clientWidth;
+                var h = this.img.clientHeight;
+                var imgParent = this.img.parentNode;
+                imgParent.appendChild(canvas);
+                canvas.style.zIndex = 1;
+                //var wBh = 0;
+                //if(this.height> 0) {
+                //    wBh = this.width / this.height;
+                //}
+
+                canvas.height = h;
+                canvas.width =  h * this.ratio; //wBh; // (c.w/c.h = wBh)
+
+                // position it over the image
+                canvas.style.left = x_offset + 'px';
+                canvas.style.top = y_offset + 'px';
+
+                this.canvas = canvas;
+                this.ctx = this.canvas.getContext('2d');
+                ctx.fillStyle = 'red';
+                ctx.strokeStyle = 'red';
+                ctx.lineWidth = 2;
+            }
+        }
+
+        this.drawPoint = function(x, y, r){
+            //this.setXVisible(x);
+            
+            //this.setPercent(percent);
+            if (valid(this.canvas) && valid (this.ctx)){
+                // draw the new point
+
+                var percent = this.getPrecent(x,y);
+
+                //$scaleh = 360;
+                //$scalew = $ratio * $scaleh;
+                // $percentx = ($x/$width); //* 100;
+                //$percenty = ($y/$height);
+                //$scalex = floor($scalew * $percentx);
+                //$scaley = floor($scaleh * $percenty);
+                var percentx = percent;
+                var percenty = 0;
+                if(this.height > 0){
+                    percenty = y/ this.height;
+                }
+                var scaledX = Math.floor(this.canvas.width * percentx);
+                var scaledY = Math.floor(this.canvas.height * percenty);  
+                
+                var radius = r;
+                if(!valid(radius)){
+                    radius = 5;
+                }
+        
+                this.ctx.beginPath();
+                this.ctx.arc(scaledX, scaledY, radius, 0, 2 * Math.PI);
+                this.ctx.fill();
+                this.ctx.stroke();
+
+                this.img.style.objectPosition = percent + "% 0";
+                this.canvas.style.objectPosition = percent + "% 0"
+            }
+
+        }
+
+        
+
+        this.clearPoints = function(){
+            //this.points = [];
+            this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        }
+    }
+}
+
 class Ramp {
     constructor() {
 

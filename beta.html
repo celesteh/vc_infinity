@@ -38,7 +38,22 @@
         var played = [];
         var density;
         var panels_json;
+        var images = {};
         
+
+        function nextSlidePlease(oldurl, newurl, img){
+            var oldImg = images[oldurl];
+            oldImg.clearPoints();
+            var newImg = images[newurl];
+            if(!valid(newImg)){
+                var canvas = document.getElementById("myCanvas");
+                newImg = new ImgHandler();
+                newImg.setCanvas(canvas);
+                images[newurl] = newImg;
+            }
+            newImg.setImg(img);
+            newImg.setUrl(newurl);
+        }
 
         function mark_played(clip){
             if(!is_played(clip)){
@@ -79,34 +94,8 @@
                 if (valid(active)){
 
                     if (valid(active.howl)){
-                        /*
-                        if(active.state() == "loaded"){
-                            //let toPlay = { ...active };
-                            // set the file to play
-                            var dur = active.duration();
-                            active.stereo(rrand(-0.5, 0.5));
-                            active.volume(rrand(0.2, 0.7));
-                            if(rrand(0,10)< 1){
-                                active.rate(rrand(0.9, 1.1));
-                            } else {
-                                active.rate(1);
-                            }
-                            active.play();
-                            ready = true;
-                            waittime = rrand(dur/5, dur*1.1);
-                            if ((dur < 5) && (rrand(0, 13) < 5)){
-                                //active = queue.shift();
-                                queue.unshift(active);
-                            } else {
-                                active.on("end", function(){
-                                    //toPlay.unload();
-                                    active.unload();
-                                })
-                            }
-                        } else { // not ready
-                            queue.unshift(active);
-                        }
-                        */ 
+                       
+                        
                         if (active.loaded()){
                             var denseness = density.value();
                             var dur = active.dur;  // was dur()
@@ -123,12 +112,17 @@
 
                             var img =  document.getElementById("score");
                             if(valid(img)){
-                                //div.innerHTML = "Panel " + active.page_no;
+                            //    //div.innerHTML = "Panel " + active.page_no;
                                 var imgurl = "score_pages/" + active.imgurl;
                                 if (img.src != imgurl){
-                                    img.src = imgurl;
+                                    nextSlidePlease(img.src, imgurl, img);
+                                    //images[img.src].clearPoints
+                            //        img.src = imgurl;
                                 }
                             }
+                            var handler = images[imgurl];
+                            handler.drawPoint(active.x, active.y);
+
 
                             ready = true;
                             mark_played(active);
@@ -240,6 +234,10 @@
                         //    loadaudio(panels.shift());
                         //    setTimeout(player, rrand(1000, 3000));
                         //}
+                        var imgurl = panel[2];
+                        if(!valid(images[imgurl])){
+                            images[imgurl] = new ImgHandler();
+                        }
                     })
                 }
             )
@@ -282,7 +280,10 @@
     <div><form><input type="button" VALUE="Play" onClick="start();"><input type="button" VALUE="Stop" onClick="stop();"></form></div>
     <div class="flex-container">
         <div class="playing-img">
-            <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>
+            <div class="overflow full-width" id="con" width="1400"  height="200">
+                <canvas id="myCanvas" class="overflow" width="1400" height="200" min-width="300"></canvas>
+                <img class="anchor-img playing-img" src="score_pages/metaphysics_1.jpg" alt="The Score" id="score"  width="1400" height="200" class="overflow" min-width="300">
+          <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
         </div>
     </div>
 </body>
