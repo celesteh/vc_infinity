@@ -43,7 +43,10 @@
 
         function nextSlidePlease(oldurl, newurl, img){
             var oldImg = images[oldurl];
-            oldImg.clearPoints();
+            if(valid(oldImg)){
+                oldImg.clearPoints();
+            }
+            
             var newImg = images[newurl];
             if(!valid(newImg)){
                 
