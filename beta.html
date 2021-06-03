@@ -38,6 +38,7 @@
         var density_slider;
         var imgw=0;
         var imgh = 0;
+        var scoller;
 
         var img_prefix = "score_pages/600/";
 
@@ -59,7 +60,7 @@
                 var x_size = record[3];
                 var y_size = record[4];
 
-                handler = new ImgHandler(url, con, x_size, y_size, imgh);
+                handler = new ImgHandler(url, con, x_size, y_size, imgh, scroller);
 
                 var canvas = document.getElementById("myCanvas");
                 handler.setCanvas(canvas);
@@ -346,7 +347,9 @@
             con.className="playback-bordered";
 
             //imgw = img.clientWidth;
-            imgh = img.clientHeight;
+            imgh = 200; // img.clientHeight;
+
+            scroller = document.getElementById("scrollable");
 
 
             density_slider = document.getElementById("density");
@@ -381,7 +384,7 @@
         <!/form>
     </div>
     <div class="flex-container">
-        <div class="playing-img">
+        <div class="playing-img" id="scrollable">
             <div id="con" width="1400"  height="200" class="image-container">
                 
                     <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>

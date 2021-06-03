@@ -111,7 +111,7 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div, width, height, disp_h){
+    constructor(url, div, width, height, disp_h, scroller){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
@@ -129,6 +129,7 @@ class ImgHandler {
         this.active = true;
         this.unused = true;
         this.fading = false;
+        this.scroller = scroller;
         
 
         this.setUrl = function(url) {
@@ -153,12 +154,13 @@ class ImgHandler {
                     self.img.width = self.disp_w;
                     self.img.height = self.disp_h;
 
-                    self.img.style.flex = "0 0 " + self.disp_w + "px";
+                    // try to make the images the same
+                    //self.img.style.flex = "0 0 " + self.disp_w + "px";
 
                     //console.log("w " + w + " h " + h);
 
                     //var x_offset = self.div.offsetLeft;
-                    //var y_offset = self.div.offsetTop;
+                    //var y_offset = self.div.offsetTop;:
                     
                     self.img.style.opacity = 0;//img.style.opacity
 
