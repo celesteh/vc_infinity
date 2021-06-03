@@ -110,13 +110,15 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div, width, height){
+    constructor(url, div, width, height, disp_w, disp_h){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
         this.width =width;
         this.height= height;
         this.ratio = width/height;
+        this.disp_w = disp_w;
+        this.disp_h = disp_h;
         this.points = [];
         this.canvas;
         this.ctx;
@@ -142,11 +144,11 @@ class ImgHandler {
                     self.img.classList.add("playback-img") ; //"arr-img anchor-img";
                     //self.img.height = div.clientHeight;
                     //self.img.width = div.clientWidth;
-                    var w, h;
-                    w = self.img.style.getPropertyValue("width");
-                    h = self.img.style.getPropertyValue("height");
-                    //self.img.width = w;
-                    //self.img.height = h;
+                    //var w, h;
+                    //w = self.img.style.getPropertyValue("width");
+                    //h = self.img.style.getPropertyValue("height");
+                    self.img.width = self.disp_w;
+                    self.img.height = self.disp_h;
 
                     console.log("w " + w + " h " + h);
 

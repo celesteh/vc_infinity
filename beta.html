@@ -36,6 +36,8 @@
         var panels_json;
         var images = {};
         var density_slider;
+        var imgw=0;
+        var imgh = 0;
 
         var img_prefix = "score_pages/600/";
 
@@ -57,7 +59,7 @@
                 var x_size = record[3];
                 var y_size = record[4];
 
-                handler = new ImgHandler(url, con, x_size, y_size);
+                handler = new ImgHandler(url, con, x_size, y_size, imgw, imgh);
 
                 var canvas = document.getElementById("myCanvas");
                 handler.setCanvas(canvas);
@@ -321,6 +323,7 @@
                 var img =  document.getElementById("score1");
                 img.style.opacity = 0;
                 
+                
                 loadaudio(panels.shift());
                 setTimeout(player, 500);
                 setTimeout(guiUpdate, 500);
@@ -341,6 +344,9 @@
             canvas.height = img.clientHeight;
             con.height = img.clientHeight;
             con.className="bordered";
+
+            imgw = img.clientWidth;
+            imgh = img.clientHeight;
 
 
             density_slider = document.getElementById("density");
