@@ -315,8 +315,8 @@ class ImgHandler {
                                 self.img.style.opacity = self.img.style.opacity - 0.1;
                                 setTimeout(fadefunc, 100);
                             } else {
-                                this.zIndex = -1;
-                                this.img.class = "arr-img";
+                                self.zIndex = -1;
+                                self.img.class = "arr-img";
                             }
                         }
                     }
