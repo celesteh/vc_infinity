@@ -259,8 +259,9 @@
                             var imgurl = img_prefix + panel[2];
                             var handler = makeNewImgHandler(key);
                             handler.id("score");
-                            handler.fadeIn();
+                            //handler.fadeIn();
                             images[imgurl] = makeNewImgHandler(key);
+                            handler.img.style.opacity =1;
                             //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
                         //if (!started){
