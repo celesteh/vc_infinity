@@ -178,6 +178,7 @@
   overflow-x: auto;
   min-height: min-content; /* needs vendor prefixes */
   min-width: 0;
+  z-index: 200;
 }
 
 .playback-img{
