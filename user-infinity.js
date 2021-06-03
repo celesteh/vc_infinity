@@ -142,8 +142,8 @@ class ImgHandler {
                     self.img.class = "playback-img" ; //"arr-img anchor-img";
                     //self.img.height = div.clientHeight;
                     //self.img.width = div.clientWidth;
-                    self.img.height = parseFloat(self.img.style.getPropertyValue("height"));
-                    self.img.width = parseFloat(self.img.style.getPropertyValue("width"));
+                    self.img.height = self.img.style.getPropertyValue("height");
+                    self.img.width = self.img.style.getPropertyValue("width");
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
                     
