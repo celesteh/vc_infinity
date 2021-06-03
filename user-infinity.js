@@ -22,6 +22,7 @@ function loadJSON(path, success, error)
 function valid (testee){
     var is_valid = false;
     var is_valid = (typeof testee != 'undefined');
+    is_valid = is_valid && (teste != null);
     if (is_valid){
         if (typeof testee == "string") {
             testee = testee.trim();
