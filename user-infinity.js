@@ -139,8 +139,8 @@ class ImgHandler {
         this.img = new Image(div.width, div.height);
         this.img.opacity = 0;
         this.setUrl(url);
-        this.img.clientHeight = div.clientHeight;
-        this.img.clientWidth = div.clientWidth;
+        this.img.height = div.clientHeight;
+        this.img.width = div.clientWidth;
         this.img.class = "arr-img";
         div.appendChild(this.img);
 
