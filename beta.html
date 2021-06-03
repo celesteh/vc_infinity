@@ -150,13 +150,15 @@
                             if(valid(img)){
                             //    //div.innerHTML = "Panel " + active.page_no;
                                 //var imgurl = img_prefix + active.imgurl;
-                                var path = img.src.split("/");
-                                var oldkey = path[path.length-1]; 
-                                console.log("img src " + img.src + " key " + oldkey + " img url " + active.imgurl);
-                                if (oldkey != active.imgurl){
-                                    nextSlidePlease(oldkey, active.imgurl, active.page_no);
-                                    //images[img.src].clearPoints
-                            //        img.src = imgurl;
+                                if(valid(img.src)){
+                                    var path = img.src.split("/");
+                                    var oldkey = path[path.length-1]; 
+                                    console.log("img src " + img.src + " key " + oldkey + " img url " + active.imgurl);
+                                    if (oldkey != active.imgurl){
+                                        nextSlidePlease(oldkey, active.imgurl, active.page_no);
+                                        //images[img.src].clearPoints
+                                        //        img.src = imgurl;
+                                    }
                                 }
                             }
                             var handler = images[active.imgurl];
