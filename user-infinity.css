@@ -175,6 +175,7 @@
   overflow: hidden;
   overflow-x:scroll;
   min-height: min-content; /* needs vendor prefixes */
+  min-width: 0;
 }
 
 .capture{
