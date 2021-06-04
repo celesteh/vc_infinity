@@ -243,10 +243,24 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
-            if ((x+100) > this.leftMostPoint){ // We should scroll
+            var shouldScroll = false;
+            var target;
+            
+            if ((x+100) > this.leftMostPoint){
+                shouldScroll = true;
+                target = Math.max((this.div.clientWidth / 3), 100);
+            }
+            if((this.leftMostPoint - x) > this.div.clientWidth){
+                target = Math.max(0, (x-100));
+            }
 
-                var third = Math.max((this.div.clientWidth / 3), 100);//Math.min(x, Math.max((this.div.clientWidth / 3), 100));
-                this.leftMostPoint = x+third;
+            if (shouldScroll){ // We should scroll
+
+                this.leftMostPoint = target;
+
+                //var target = Math.max((this.div.clientWidth / 3), 100);
+                //Math.min(x, Math.max((this.div.clientWidth / 3), 100));
+                //this.leftMostPoint = x+third;
 
                 console.log("third is " + third);
 
