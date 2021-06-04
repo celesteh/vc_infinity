@@ -266,7 +266,7 @@ class ImgHandler {
             this.invisibleCanvas.style.position = "absolute";
             this.invisibleCanvas.style.left = x;
             this.invisibleCanvas.style.top = y;
-            this.invisibleCanvas.scrollIntiView();
+            this.invisibleCanvas.scrollIntoView();
             //div.removeChild(invisible;)
             
             if ((centrePos + 50) > div.clientWidth) {  
