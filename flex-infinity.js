@@ -178,7 +178,7 @@ class ImgHandler {
                         canvas.style.left = x_offset + 'px';
                         canvas.style.top = y_offset + 'px';
                         */
-                       self.setCanvas(self.canvas);
+                       self.fixCanvas(self.canvas);
                     }
                     
                     
@@ -346,7 +346,7 @@ class ImgHandler {
             if(this.unused){
                 // re-initiatise the canvas
                 this.unused = false;
-                this.setCanvas(this.canvas);
+                this.fixCanvas(this.canvas);
             }
             
             //this.setPercent(percent);
