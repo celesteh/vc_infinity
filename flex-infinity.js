@@ -189,7 +189,7 @@ class ImgHandler {
 
 
         this.img = new Image(this.disp_w, this.disp_h);
-        div.appendChild(self.img);
+        this.div.appendChild(this.img);
         this.img.style.opacity = this.opacity;
         this.setUrl(url);
         
