@@ -263,7 +263,7 @@ class ImgHandler {
             }
 
             if (shouldScroll || this.scrollDue){ // We should scroll
-
+                this.scrollDue = false; // scrolling obligations are being met
                 this.leftMostPoint = target;
 
                 //var target = Math.max((this.div.clientWidth / 3), 100);
