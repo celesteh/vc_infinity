@@ -188,7 +188,7 @@ class ImgHandler {
 
 
         this.img = new Image(this.disp_w, this.disp_h);
-        this.img.opacity = this.opacity;
+        this.img.style.opacity = this.opacity;
         this.setUrl(url);
         
         //this.img.class = "arr-img";
@@ -196,9 +196,9 @@ class ImgHandler {
         this.setOpacity = function(opacity){
             this.opacity = opacity;
             if(valid(this.img)){
-                if(valid(this.img.style)){
+                //if(valid(this.img.style)){
                     this.img.style.opacity = this.opacity;                           
-                }
+                //}
             }
         }
 
