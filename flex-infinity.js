@@ -245,7 +245,7 @@ class ImgHandler {
 
             if ((x+100) > this.leftMostPoint){ // We should scroll
 
-                var third = Math.min(x, Math.max((this.div.clientWidth / 3), 100));
+                var third = Math.max((this.div.clientWidth / 3), 100);//Math.min(x, Math.max((this.div.clientWidth / 3), 100));
                 this.leftMostPoint = x+third;
 
                 console.log("third is " + third);
