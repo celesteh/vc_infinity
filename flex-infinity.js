@@ -253,8 +253,15 @@ class ImgHandler {
 
             var shouldScroll = false;
             var target;
-            var visibleWidth = window.innerWidth / 3; // this.div.parentNode.clientWidth;
+            var visibleWidth;
+            var minwidth = Math.min(Math.min(div.width, div.clientWidth),div.offsetWidth);
 
+            if(minwidth < (window.innerWidth)){
+                visibleWidth = minwidth;
+            } else {
+                visibleWidth = window.innerWidth / 3; // this.div.parentNode.clientWidth;
+            }
+            
             console.log("div width " + visibleWidth);
             
             if ((x+100) > this.leftMostPoint){
@@ -270,8 +277,8 @@ class ImgHandler {
                 shouldScroll = true;
             }
 
-            if (shouldScroll || this.scrollDue){ // We should scroll
-                this.scrollDue = false; // scrolling obligations are being met
+            if (shouldScroll){ // We should scroll
+                
                 this.leftMostPoint = target;
 
                 //var target = Math.max((this.div.clientWidth / 3), 100);
@@ -296,6 +303,12 @@ class ImgHandler {
             
                 this.invisibleCanvas.scrollIntoView();
                 //this.div.removeChild(this.invisibleCanvas);
+            }
+
+            if(this.scrollDue){
+                // re-scroll to prevent falling off either side
+                this.scrollDue = false;
+                this.setScroll(x,y);
             }
             
         }
