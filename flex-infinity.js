@@ -242,7 +242,7 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
-            var third = Math.max(div.clientWith / 3, 100);
+            var third = Math.min(x, Math.max(div.clientWith / 3, 100));
 
             //div.scrollIntoView();
             // make a dummy element and scroll to it
