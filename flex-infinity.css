@@ -49,14 +49,14 @@
   max-height: 200px;*/
   flex-grow: 0;
   flex-basis: auto;
-  max-width: 310px;
+  max-width: 320px;
   max-height: 160px;
   object-fit: contain;
 }
 .sponsorimg {
   display:flex;
   object-fit: contain;
-  max-width: 300px;
+  max-width: 310px;
   max-height: 150px;
 }
 
