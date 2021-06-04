@@ -248,13 +248,15 @@ class ImgHandler {
                 this.invisibleCanvas = document.createElement('canvas');
                 this.invisibleCanvas.width = 1;
                 this.invisibleCanvas.height = 1;
-                div.appendChild(this.invisibleCanvas);
+                
             }
             this.invisibleCanvas.style.position = "absolute";
             this.invisibleCanvas.style.left = x;
             this.invisibleCanvas.style.top = y;
+            this.invisibleCanvas.style.zIndex = -2;
+            this.div.appendChild(this.invisibleCanvas);
             this.invisibleCanvas.scrollIntoView();
-            //div.removeChild(invisible;)
+            this.div.removeChild(this.invisibleCanvas);
             
         }
 
