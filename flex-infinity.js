@@ -252,7 +252,7 @@ class ImgHandler {
                 
             }
             this.invisibleCanvas.style.position = "absolute";
-            this.invisibleCanvas.style.left = x+"px";
+            this.invisibleCanvas.style.left = (x + 100)+"px";
             this.invisibleCanvas.style.top = y+"px";
             this.invisibleCanvas.style.zIndex = -2;
             
