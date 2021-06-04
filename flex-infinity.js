@@ -128,6 +128,7 @@ class ImgHandler {
         this.fading = false;
         this.opacity = 0;
         this.invisibleCanvas;
+        this.leftMostPoint=0;
         
 
         this.setUrl = function(url) {
@@ -242,25 +243,30 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
-            var third = Math.min(x, Math.max((this.div.clientWidth / 3), 100));
-            console.log("third is " + third);
+            if ((x+100) > this.leftMostPoint){ // We should scroll
 
-            //div.scrollIntoView();
-            // make a dummy element and scroll to it
-            if(!valid(this.invisibleCanvas)){
-                this.invisibleCanvas = document.createElement('canvas');
-                this.invisibleCanvas.width = 1;
-                this.invisibleCanvas.height = 1;
-                this.div.appendChild(this.invisibleCanvas);
+                var third = Math.min(x, Math.max((this.div.clientWidth / 3), 100));
+                this.leftMostPoint = x+third;
+
+                console.log("third is " + third);
+
+                //div.scrollIntoView();
+                // make a dummy element and scroll to it
+                if(!valid(this.invisibleCanvas)){
+                    this.invisibleCanvas = document.createElement('canvas');
+                    this.invisibleCanvas.width = 1;
+                    this.invisibleCanvas.height = 1;
+                    this.div.appendChild(this.invisibleCanvas);
                 
-            }
-            this.invisibleCanvas.style.position = "absolute";
-            this.invisibleCanvas.style.left = (x + 100)+"px";
-            this.invisibleCanvas.style.top = y+"px";
-            this.invisibleCanvas.style.zIndex = -2;
+                }
+                this.invisibleCanvas.style.position = "absolute";
+                this.invisibleCanvas.style.left = (this.leftMostPoint)+"px";
+                this.invisibleCanvas.style.top = y+"px";
+                this.invisibleCanvas.style.zIndex = -2;
             
-            this.invisibleCanvas.scrollIntoView();
-            //this.div.removeChild(this.invisibleCanvas);
+                this.invisibleCanvas.scrollIntoView();
+                //this.div.removeChild(this.invisibleCanvas);
+            }
             
         }
 
