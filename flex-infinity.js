@@ -253,15 +253,16 @@ class ImgHandler {
 
             var shouldScroll = false;
             var target;
+            var visibleWidth = this.div.parentNode.clientWidth;
 
-            console.log("div width " + this.div.clientWidth);
+            console.log("div width " + visibleWidth);
             
             if ((x+100) > this.leftMostPoint){
                 shouldScroll = true;
-                if(this.div.clientWidth < 350){
+                if(visibleWidth < 350){
                     target = x+50;
                 } else {
-                    target = Math.max((this.div.clientWidth / 3), 100) + x;
+                    target = Math.max((visibleWidth / 3), 100) + x;
                 }
             }
             if((this.leftMostPoint - x) > this.div.clientWidth){
