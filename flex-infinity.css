@@ -1,0 +1,283 @@
+@import url("upload/infinity.css");
+
+.player-body{
+  /* disabling body scrolling */
+  overflow: hidden;
+  margin: auto;
+  background: white;
+  margin-top: 4%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
+.img-overlay-container{
+  position: relative;
+  display:inline-block;
+}
+.img-overlay-container > img{
+
+}
+
+/* flex */
+
+.flex-scores {
+  display: flex;    
+  overflow-x: auto;
+  /*background-color: #f1f1f1;*/
+  background-color: transparent;
+  align-items: top;
+  border: 2px solid #000;
+  
+}
+
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+.logorow {
+    max-width: 1000px;
+    flex-flow: row wrap;
+    min-width: 300px;
+}
+
+  
+.column {
+    flex: 50%;
+    padding: 5px;
+    flex-flow: row wrap;
+    min-width: 100px;
+    /*flex: 1 1 0px;*/
+
+}
+.flex-container {
+    display: flex;
+    align-items: stretch;
+    /*background-color: #f1f1f1;*/
+    background-color: transparent;
+    align-items: top;
+    flex-flow: row wrap;
+  }
+
+.flex-container > div {
+    /*  
+    background-color: DodgerBlue;
+    color: white;
+    margin: 10px;
+    */
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+  }
+
+.flex-controls{
+    display: flex;
+    /*align-items: stretch;
+    background-color: #f1f1f1;*/
+    background-color: transparent;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    justify-content: baseline;
+   /* padding:10px;
+    margin: 10px;*/
+}
+
+.flex-controls > div {
+    /*  
+    background-color: DodgerBlue;
+    color: white;
+    margin: 10px;
+    */
+    text-align: center;
+    align-items: baseline;
+    justify-content: center;
+    text-justify: center;
+    
+    /*
+    line-height: 75px;
+    font-size: 30px;
+    */
+    /*padding:10px;*/
+    margin: 5px;
+  }
+
+.logo_left {
+    display: flex;
+    align-items: top;
+    flex-grow: 1;
+    max-width: 200px;
+    padding-left: 20px;
+
+}
+
+.text_container  {
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+    /*padding-left: 20px;*/
+    flex-grow: 80;
+    background-color: transparent;
+    align-items: top;
+}
+
+
+.people {
+    columns: 4;
+    -webkit-columns: 4;
+    -moz-columns: 4;
+    -webkit-column-count: 4;
+     -moz-column-count: 4;
+          column-count: 4;
+  -webkit-column-width: 200px;
+     -moz-column-width: 200px;
+          column-width: 200px;
+  }
+
+  img {
+    align-self: center;
+}
+
+
+.playing-img {
+    object-fit: cover;
+    object-position: 100% 0;
+    display: flex;
+    align-items: top;
+    
+    max-height: 300px;
+    width: 100%;
+    overflow: hidden;
+    /*max-width: 100%;*/
+  }
+
+
+  .img-container{
+    object-fit: cover;
+    overflow: hidden;
+  }
+
+  .playCanvas
+{
+    /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
+    position:absolute;
+    z-index: 150;
+    opacity:1;
+    object-fit: cover;
+    overflow: hidden;
+    width: 100%;
+}
+
+.arr-img {
+  position: absolute;
+  object-fit: cover;
+  overflow: hidden;
+  opacity:0;
+  z-index:-1;
+  width:100%;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 25px;
+    background: transparent;
+    /*outline: none;*/
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+input[type="range"] {
+    display: block;
+    width: 100px;
+    height: 25px;
+    -webkit-appearance: none;
+    margin: 10px 0;
+  }
+
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100px;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #2497E3;
+    border-radius: 1px;
+    border: 0px solid #000000;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid #2497E3;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #A1D0FF;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -7px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #2497E3;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100px;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    box-shadow: 0px 0px 0px #000000;
+    background: #2497E3;
+    border-radius: 1px;
+    border: 0px solid #000000;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid #000000;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #A1D0FF;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #000000;
+    border: 0px solid #000000;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #000000;
+    border: 0px solid #000000;
+    border-radius: 2px;
+    box-shadow: 0px 0px 0px #000000;
+  }
+  input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    box-shadow: 0px 0px 0px #000000;
+    border: 1px solid #000000;
+    height: 18px;
+    width: 18px;
+    border-radius: 25px;
+    background: #A1D0FF;
+    cursor: pointer;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #000000;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #000000;
+  }
+  
