@@ -153,18 +153,20 @@ class ImgHandler {
                     self.img.style.opacity = self.opacity;//img.style.opacity
 
                     self.img.style.opacity = self.opacity; // double check
-                    self.img.style.position = "absolute";
-                    var border = 2;
+                    // don't set any style attributes
+                    
+                    //self.img.style.position = "absolute";
+                    //var border = 2;
                     //console.log(div.style.borderWidth);
-                    if(valid(div.style.borderWidth)){
-                        border = div.style.borderWidth;
-                        console.log("border " + border);
-                    }
+                    //if(valid(div.style.borderWidth)){
+                    //    border = div.style.borderWidth;
+                    //    console.log("border " + border);
+                    //}
 
-                    this.ot = div.offsetTop + border;
-                    this.ol = div.offsetLeft + border;
-                    self.img.style.top = this.ot + "px";//div.style.left + 'px';//self.left + 'px';
-                    self.img.style.left = this.ol + "px";//div.style.top + 'px';//self.top + 'px';
+                    //this.ot = div.offsetTop + border;
+                    //this.ol = div.offsetLeft + border;
+                    //self.img.style.top = this.ot + "px";//div.style.left + 'px';//self.left + 'px';
+                    //self.img.style.left = this.ol + "px";//div.style.top + 'px';//self.top + 'px';
 
                     if(valid(self.canvas)){
                         /*
