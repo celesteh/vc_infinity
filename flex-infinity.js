@@ -129,6 +129,7 @@ class ImgHandler {
         this.opacity = 0;
         this.invisibleCanvas;
         this.leftMostPoint=0;
+        this.scrollDue = false;
         
 
         this.setUrl = function(url) {
@@ -212,6 +213,13 @@ class ImgHandler {
             }
         }
 
+        this.setActive = function(active){
+            if((this.active != active)&& active){
+                this.scrollDue = true;
+            }
+            this.active = active;
+        }
+
         this.setImg = function(img){
             this.img = img;
             if(valid(img)){
@@ -254,7 +262,7 @@ class ImgHandler {
                 target = Math.max(0, (x-100));
             }
 
-            if (shouldScroll){ // We should scroll
+            if (shouldScroll || this.scrollDue){ // We should scroll
 
                 this.leftMostPoint = target;
 
