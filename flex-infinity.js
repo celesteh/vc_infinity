@@ -265,8 +265,9 @@ class ImgHandler {
                     target = Math.max((visibleWidth / 3), 100) + x;
                 }
             }
-            if((this.leftMostPoint - x) > this.div.clientWidth){
-                target = Math.max(0, (x-100));
+            if(((this.leftMostPoint - x) > this.div.clientWidth) || this.scrollDue){
+                target = Math.max(0, (x-50));
+                shouldScroll = true;
             }
 
             if (shouldScroll || this.scrollDue){ // We should scroll
