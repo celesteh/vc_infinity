@@ -256,8 +256,8 @@ class ImgHandler {
             
             if ((x+100) > this.leftMostPoint){
                 shouldScroll = true;
-                if(this.div.clientWidth < 500){
-                    target = x+100;
+                if(this.div.clientWidth < 350){
+                    target = x+50;
                 } else {
                     target = Math.max((this.div.clientWidth / 3), 100) + x;
                 }
