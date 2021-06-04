@@ -190,6 +190,8 @@ class ImgHandler {
 
         this.img = new Image(this.disp_w, this.disp_h);
         this.div.appendChild(this.img);
+        this.div.style.width = this.disp_w;
+        this.div.style.height = this.disp_h;
         this.img.style.opacity = this.opacity;
         this.setUrl(url);
         
@@ -337,6 +339,10 @@ class ImgHandler {
                 this.ctx.lineWidth = 2;
 
                 console.log("fix canvas");
+
+                // dont's squish the div
+                this.div.style.width = this.disp_w;
+                this.div.style.height = this.disp_h;
             }
         }
 
@@ -346,7 +352,7 @@ class ImgHandler {
             if(this.unused){
                 // re-initiatise the canvas
                 this.unused = false;
-                this.fixCanvas(this.canvas);
+                //this.fixCanvas(this.canvas);
             }
             
             //this.setPercent(percent);
