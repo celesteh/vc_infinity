@@ -145,8 +145,8 @@ class ImgHandler {
                     //self.img.classList.add ("arr-img")
                     //self.img.classList.add("anchor-img");
                     
-                    self.img.height = self.disp_w;
-                    self.img.width = self.disp_h;
+                    self.img.width = self.disp_w;
+                    self.img.height = self.disp_h;
                     //var x_offset = self.div.offsetLeft;
                     //var y_offset = self.div.offsetTop;
                     
@@ -178,7 +178,9 @@ class ImgHandler {
                         canvas.style.left = x_offset + 'px';
                         canvas.style.top = y_offset + 'px';
                         */
-                       self.fixCanvas(self.canvas);
+                       if (self.active){
+                           self.fixCanvas(self.canvas);
+                       }
                     }
                     
                     
@@ -325,7 +327,9 @@ class ImgHandler {
                     var h = rectObject.bottom - rectObject.top;
                     var w = rectObject.right - rectObject.left;
                     this.canvas.height = h;
-                    this.canvas.w = h * this.ratio;
+                    this.canvas.width = h * this.ratio;
+                    this.canvas.style.height = h;
+                    this.canvas.style.width = h * this.ratio;
                     this.canvas.style.position = "absolute";
                     this.canvas.style.left = 0;
                     this.canvas.style.top = 0;
