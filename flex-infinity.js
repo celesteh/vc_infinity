@@ -242,6 +242,8 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
+            var third = Math.max(div.clientWith / 3, 100);
+
             //div.scrollIntoView();
             // make a dummy element and scroll to it
             if(!valid(this.invisibleCanvas)){
@@ -252,7 +254,7 @@ class ImgHandler {
                 
             }
             this.invisibleCanvas.style.position = "absolute";
-            this.invisibleCanvas.style.left = (x + 100)+"px";
+            this.invisibleCanvas.style.left = (x + third)+"px";
             this.invisibleCanvas.style.top = y+"px";
             this.invisibleCanvas.style.zIndex = -2;
             
