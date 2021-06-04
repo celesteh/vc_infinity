@@ -11,10 +11,7 @@
 
 
     </style>
-    <script>
-        function dummy(){console.log("dummy");}
-    </script>
-    <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
+        <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
        <script type="text/javascript" src="user-infinity.js"></script>
     <script>
 
@@ -24,7 +21,7 @@
         x Figure out how it's been scaled
         x Draw a red dot where it's playing
         x Set a range to display the density
-        Pre-load next image
+        x Pre-load next image
 */
 
         var queue = [];
@@ -38,7 +35,6 @@
         var density_slider;
         var imgw=0;
         var imgh = 0;
-        var scoller;
 
         var img_prefix = "score_pages/600/";
 
@@ -60,7 +56,7 @@
                 var x_size = record[3];
                 var y_size = record[4];
 
-                handler = new ImgHandler(url, con, x_size, y_size, imgh, scroller);
+                handler = new ImgHandler(url, con, x_size, y_size, imgh);
 
                 var canvas = document.getElementById("myCanvas");
                 handler.setCanvas(canvas);
@@ -158,7 +154,9 @@
                             active.howl.play();
 
                             var img =  document.getElementById("score");
-                            if(img && valid(img)){
+                            if(valid(img)){
+                            //    //div.innerHTML = "Panel " + active.page_no;
+                                //var imgurl = img_prefix + active.imgurl;
                                 if(valid(img.src)){
                                     var path = img.src.split("/");
                                     var oldkey = path[path.length-1]; 
@@ -171,13 +169,12 @@
                                 }
                             }
                             var handler = images[active.imgurl];
-                            if(valid(handler)){
-                                console.log(typeof handler);
-                                if((! handler.fading) && (parseFloat(handler.img.style.opacity) < 1)){
-                                    handler.fadeIn();
-                                }
-                                handler.drawPoint(active.x, active.y);
+                            console.log(typeof handler);
+                            if((! handler.fading) && (handler.opacity < 1)){
+                                handler.fadeIn();
                             }
+                            handler.drawPoint(active.x, active.y);
+
 
                             ready = true;
                             mark_played(active);
@@ -275,7 +272,6 @@
             loadJSON('json/panels.json',
                 function(panel_info){
                     panels_json = panel_info;
-                    // $panels[$row["page_num"]] = [$row["page_num"], $row["page_id"], $row["page_img_file"], $row["page_x"], $row["page_y"]];
                     Object.keys(panel_info).sort(function(a,b){return(parseInt(a) - parseInt(b));}).forEach(key => {
                     //panel_info.forEach(panel => {
                         var panel = panel_info[key];
@@ -293,7 +289,7 @@
                             handler.id("score");
                             //handler.fadeIn();
                             //images[panel[2]] = makeNewImgHandler(key);
-                            handler.img.style.opacity =1;
+                            handler.setOpacity(1);
                             //new ImgHandler(imgurl, document.getElementById("con"), panel[3], panel[4]);
                         }
                         //if (!started){
@@ -324,7 +320,6 @@
                 var img =  document.getElementById("score1");
                 img.style.opacity = 0;
                 
-                
                 loadaudio(panels.shift());
                 setTimeout(player, 500);
                 setTimeout(guiUpdate, 500);
@@ -344,12 +339,9 @@
             var con = document.getElementById("con");
             canvas.height = img.clientHeight;
             con.height = img.clientHeight;
-            con.className="playback-bordered";
+            con.className="bordered";
 
-            //imgw = img.clientWidth;
-            imgh = 268; // img.clientHeight;
-
-            scroller = document.getElementById("scrollable");
+            imgh = canvas.clientHeight;
 
 
             density_slider = document.getElementById("density");
@@ -383,17 +375,15 @@
         <div><input type="range" min="100" max="500" value="250" class="slider" id="density" disabled></div>
         <!/form>
     </div>
-    <div class="flex-container2">
-        <div class="playing-img" id="scrollable">
-            <div id="con" width="1400"  height="300" class="image-container">
-                
-                    <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>
-                    <img class="playback-img" src="score_pages/600/metaphysics_1.jpg" alt="The Score" id="score1"  >
-                    <!img class="anchor-img playing-img" src="score_pages/metaphysics_2.jpg" alt="The Score" id="score2"  width="1400" height="200"  min-width="300" style="transparent">
-                    <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
-                
-            </div>
+    <div class="flex-container">
+        <div class="playing-img">
+            <div id="con" width="1400"  height="200" class="image-container">
+                <canvas id="myCanvas"  width="1400" height="200" min-width="300" class = "playCanvas"></canvas>
+                <img class="anchor-img playing-img" src="score_pages/600/metaphysics_1.jpg" alt="The Score" id="score1"  width="1400" height="200"  min-width="300" >
+                <!img class="anchor-img playing-img" src="score_pages/metaphysics_2.jpg" alt="The Score" id="score2"  width="1400" height="200"  min-width="300" style="transparent">
+          <!--   <p><img class="playing-img" src = "score_pages/metaphysics_1.jpg" id = "score"   width="300" height = "200" /></p>-->
         </div>
     </div>
+</div>
 </body>
 </html>

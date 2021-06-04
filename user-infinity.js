@@ -99,9 +99,6 @@ function getNRandSortedExcluding(audio_json, n, excluded){
     return arr;
 }
 
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 function rrand(low, high){
     var mulval = high-low;
@@ -111,14 +108,14 @@ function rrand(low, high){
 }
 
 class ImgHandler {
-    constructor(url, div, width, height, disp_h, scroller){
+    constructor(url, div, width, height,  disp_h,){
         this.url = url;
         //this.img = new Image();
         //this.img.src = this.url; 
         this.width =width;
         this.height= height;
         this.ratio = width/height;
-        
+
         this.disp_w = this.ratio * disp_h;//div.offsetHeight;
         this.disp_h = disp_h; //div.offsetHeight;
 
@@ -129,7 +126,6 @@ class ImgHandler {
         this.active = true;
         this.unused = true;
         this.fading = false;
-        this.scroller = scroller;
         this.opacity = 0;
         
 
@@ -146,30 +142,16 @@ class ImgHandler {
                     //self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
-                    self.img.classList.add("playback-img") ; //"arr-img anchor-img";
-                    //self.img.height = div.clientHeight;
-                    //self.img.width = div.clientWidth;
-                    //var w, h;
-                    //w = self.img.style.getPropertyValue("width");
-                    //h = self.img.style.getPropertyValue("height");
-                    self.img.width = self.disp_w;
-                    self.img.height = self.disp_h;
-
-                    // try to make the images the same
-                    self.img.style.flex = "0 0 " + self.disp_w + "px";
-
-                    //console.log("w " + w + " h " + h);
-
+                    self.img.classList.add ("arr-img anchor-img");
+                    self.img.height = self.disp_w;
+                    self.img.width = self.disp_h;
                     //var x_offset = self.div.offsetLeft;
-                    //var y_offset = self.div.offsetTop;:
+                    //var y_offset = self.div.offsetTop;
                     
                     self.img.style.opacity = self.opacity;//img.style.opacity
 
-                    self.img.style.objectFit = "cover";
-                    self.img.style.overflow = "hidden";
-
                     div.appendChild(self.img);
-                    self.img.style.opacity = self.opacity; //0 // double check
+                    self.img.style.opacity = self.opacity; // double check
                     self.img.style.position = "absolute";
                     var border = 2;
                     //console.log(div.style.borderWidth);
@@ -205,12 +187,20 @@ class ImgHandler {
         }
 
 
-        this.img = new Image(div.width, div.height);
-        this.img.style.opacity = 0;
+        this.img = new Image(this.disp_w, this.disp_h);
+        this.img.opacity = this.opacity;
         this.setUrl(url);
         
         //this.img.class = "arr-img";
         
+        this.setOpacity = function(opacity){
+            this.opacity = opacity;
+            if(valid(this.img)){
+                if(valid(this.img.style)){
+                    this.img.style.opacity = this.opacity;                           
+                }
+            }
+        }
 
         this.setImg = function(img){
             this.img = img;
@@ -235,7 +225,8 @@ class ImgHandler {
 
         this.setPercent = function(percent){
             if(valid(this.img)){
-            this.img.style.objectPosition = percent + "% 0";
+                this.img.style.objectPosition = percent + "% 50";
+                this.canvas.style.objectPosition = percent + "% 50";
             }
         }
 
@@ -266,14 +257,7 @@ class ImgHandler {
                     // position it over the image
                     canvas.style.left = x_offset + 'px';
                     canvas.style.top = y_offset + 'px';
-                    
-                    
                 }
-
-                canvas.style.flex = "0 0 " + self.disp_w + "px";
-
-                canvas.style.objectFit = "cover";
-                canvas.style.overflow = "hidden";
 
                 this.canvas = canvas;
                 this.ctx = this.canvas.getContext('2d');
@@ -332,8 +316,10 @@ class ImgHandler {
                 this.ctx.fill();
                 this.ctx.stroke();
 
-                this.img.style.objectPosition = percent + "% 0";
-                this.canvas.style.objectPosition = percent + "% 50%"
+                //this.img.style.objectPosition = percent + "% 0";
+                //this.canvas.style.objectPosition = percent + "% 50%"
+                this.setPercent(percent);
+
                 console.log("Drew " + x + ", " + y + ", " + scaledX + ", " + scaledY);
             } else {
                 console.log("Couldn't draw");
@@ -358,25 +344,34 @@ class ImgHandler {
                 self = this;
                 var fadefunc = function(){
                     var fading = false;
-                    if(valid(self.img)){
-                        if(valid(self.img.style.opacity)){
-                            if(self.opacity > 0){
-                                self.opacity = self.opacity - 0.1;
-                                self.img.style.opacity = self.opacity;
-                                fading = true;
-                                setTimeout(fadefunc, 100);
-                                console.log("fading");
-                            } else {
-                                self.img.style.zIndex = -1;
-                                //self.img.class = "arr-img";
-                            }
-                        } else {console.log("not opaque");}
+
+                    // calculate what the opacity should be
+                    if(self.opacity > 0){
+                        self.opacity = self.opacity - 0.1;
+                        fading = true;
                     }
+                    // set the opacity
+                    if(valid(self.img)){
+                        if(valid(self.img.style)){
+                            if(fading){
+                                self.img.style.opacity = self.opacity;
+                            } else {
+                                self.zIndex = -1;
+                                self.img.class = "arr-img";
+                            }
+                        }
+                    }
+
                     self.fading = fading;
+
+                    // If the fade is ongoing, recurse
+                    if (fading){
+                        setTimeout(fadefunc, 100);
+                    }
+                    
                 }
                 setTimeout(fadefunc, 10);
             }
-            
         }
 
         this.fadeIn = function() {
@@ -389,13 +384,13 @@ class ImgHandler {
             if(valid(this.img)){
 
                 // bring it invisibly to the front
-                //this.img.class = "playback-img" ;//"anchor-img playing-img";
-                this.img.style.opacity = 0;
+                this.img.class = "anchor-img playing-img";
+                this.img.style.opacity = this.opacity;
 
                 if(valid(div)){
-                    this.img.style.zIndex = div.childNodes.length;
+                    this.zIndex = div.childNodes.length;
                 } else {
-                    this.img.style.zIndex = 4;
+                    this.zIndex = 4;
                 }
 
                 
@@ -404,18 +399,27 @@ class ImgHandler {
                 
                 var fadefunc = function(){
                     var fading = false;
-                    if(valid(self.img)){
-                        if(valid(self.img.style.opacity)){
-                            if(self.opacity < 1){
-                                self.opacity = self.opacity +0.1;
-                                self.img.style.opacity = self.opacity;
-                                fading = true;
-                                setTimeout(fadefunc, 100);
-                            }
-                        }
+
+                    // calculate desired opacity
+                    if(self.opacity < 1){
+                        self.opacity = self.opacity +0.1;
+                        fading = true;
                     }
+                    // set the opacity
+                    self.setOpacity(self.opacity);
+                    //if(valid(self.img)){
+                    //    if(valid(self.img.style)){
+                    //        self.img.style.opacity = self.opacity;                           
+                    //    }
+                    //}
                     self.fading = fading;
+                    
+                    // If the fade is ongoing, recurse
+                    if (fading){
+                        setTimeout(fadefunc, 100);
+                    }
                 }
+
                 setTimeout(fadefunc, 10);
             }
         }
@@ -669,3 +673,4 @@ class AudioClip {
         
     }
 }
+

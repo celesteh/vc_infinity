@@ -1,5 +1,15 @@
 @import url("upload/infinity.css");
 
+.player-body{
+  /* disabling body scrolling */
+  overflow: hidden;
+  margin: auto;
+  background: white;
+  margin-top: 4%;
+  text-align: center;
+  overflow-y: scroll;
+}
+
 /* flex */
 .row {
     display: flex;
@@ -29,17 +39,6 @@
     background-color: transparent;
     align-items: top;
     flex-flow: row wrap;
-  }
-
-  .flex-container2 {
-    display: flex;
-    align-items: stretch;
-    /*background-color: #f1f1f1;*/
-    background-color: transparent;
-    align-items: top;
-    flex-flow: row wrap;
-    border: 2px solid #000;
-    z-index: 200;
   }
 
 .flex-container > div {
@@ -123,114 +122,42 @@
 
 
 .playing-img {
-  display: flex;
-  flex-wrap: nowrap;
     object-fit: cover;
-    object-position: 0 0;
+    object-position: 100% 0;
     display: flex;
     align-items: top;
     
     max-height: 300px;
     width: 100%;
     overflow: hidden;
-    /*overflow-x:scroll;*/
     /*max-width: 100%;*/
-    margin-top: 0;
-    margin-left: 0;
-    overflow-x: hidden;
   }
 
 
   .img-container{
     object-fit: cover;
-    overflow: scroll;
-    overflow-x:scroll;
-    margin-top: 0;
-    margin-left: 0;
+    overflow: hidden;
   }
 
-
-/*
-.arr-img {
-  position: absolute;
-  object-fit: cover;
-  overflow: hidden;
-  overflow-x:scroll;
-  opacity:0;
-  z-index:-1;
-  width:100%;
-  margin-top: 0;
-  margin-left: 0;
-}
-*/
-
-
-.capture{
-  display:flex;
-  position: relative;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: hidden;
-  height: calc(100%);
-  width: calc(100%);
-}
-
-.playback-bordered {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-shrink: 0;
-  margin: 10px;
-  padding: 10px;
-  /*border: 2px solid #000;*/
-  overflow: hidden;
-  overflow-x:scroll;
-  overflow-x: auto;
-  min-height: min-content; /* needs vendor prefixes */
-  min-width: 0;
-  z-index: 200;
-}
-
-.playback-img{
-  display: flex;
-  flex-wrap: nowrap;
-  width: 1400;
-  height: 200;
-  min-width:300;
-  object-fit: cover;
-  object-position: 0 0;
-  /*
-  width: 300px;
-  height: 200px;
-  */
-  display: flex;
-  align-items: top;
-  
-  max-height: 300px;
-  width: 100%;
-  overflow: hidden;
-  overflow-x:scroll;
-  /*max-width: 100%;*/
-  margin-top: 0;
-  margin-left: 0;
-}
-.playCanvas
+  .playCanvas
 {
-  display: flex;
-  flex-wrap: nowrap;
     /*pointer-events: none;*/       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
     position:absolute;
     z-index: 150;
     opacity:1;
     object-fit: cover;
     overflow: hidden;
-    overflow-x:scroll;
     width: 100%;
-    margin-top: 0;
-    margin-left: 0;
 }
 
+.arr-img {
+  position: absolute;
+  object-fit: cover;
+  overflow: hidden;
+  opacity:0;
+  z-index:-1;
+  width:100%;
+}
 
 .slider {
     -webkit-appearance: none;
@@ -334,12 +261,3 @@ input[type="range"] {
     background: #000000;
   }
   
-  .player-body{
-    /* disabling body scrolling */
-    overflow: hidden;
-    margin: auto;
-    background: white;
-    margin-top: 4%;
-    text-align: center;
-    overflow-y: scroll;
-  }
