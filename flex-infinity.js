@@ -352,11 +352,14 @@ class ImgHandler {
                     var w = rectObject.right - rectObject.left;
                     //this.canvas.height = h;
                     //this.canvas.width = h * this.ratio;
-                    this.canvas.style.width = this.disp_w;//h * this.ratio;
-                    this.canvas.style.height = this.disp_h;//h;
+                    this.canvas.width = this.disp_w;//h * this.ratio;
+                    this.canvas.height = this.disp_h;//h;
+
                     this.canvas.style.position = "absolute";
                     this.canvas.style.left = 0;
                     this.canvas.style.top = 0;
+                    this.canvas.style.width = this.disp_w;//h * this.ratio;
+                    this.canvas.style.height = this.disp_h;//h;
 
                 }
 
