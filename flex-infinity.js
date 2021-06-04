@@ -242,13 +242,13 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
             //var x = elmnt.scrollLeft;
-            var rectObject = this.div.getBoundingClientRect();
-            var h = rectObject.bottom - rectObject.top;
-            var w = rectObject.right - rectObject.left;
+            //var rectObject = this.div.getBoundingClientRect();
+            //var h = rectObject.bottom - rectObject.top;
+            //var w = rectObject.right - rectObject.left;
 
-            var xratio = x/this.width;
-            var inImg = xratio * this.disp_w;
-            var centrePos = rectObject.left + inImg;
+            //var xratio = x/this.width;
+            //var inImg = xratio * this.disp_w;
+            //var centrePos = rectObject.left + inImg;
             
 
             // make sure we're visible
@@ -441,7 +441,7 @@ class ImgHandler {
                 //this.img.style.objectPosition = percent + "% 0";
                 //this.canvas.style.objectPosition = percent + "% 50%"
                 //this.setPercent(percent);
-                this.setScroll(x);
+                this.setScroll(scaledX, scaledY);
 
                 console.log("Drew " + x + ", " + y + ", " + scaledX + ", " + scaledY);
             } else {
