@@ -154,7 +154,7 @@ class ImgHandler {
 
                     self.img.style.opacity = self.opacity; // double check
                     // don't set any style attributes
-                    
+
                     //self.img.style.position = "absolute";
                     //var border = 2;
                     //console.log(div.style.borderWidth);
@@ -248,9 +248,29 @@ class ImgHandler {
             var xratio = x/this.width;
             var inImg = xratio * this.disp_w;
             var centrePos = rectObject.left + inImg;
-            var leftPos = Math.max(0, (centrePos - 100)); // keep 100 pixels to the left
-            var flexbox = div.parentNode;
-            flexbox.scrollLeft = leftPos;
+            
+
+            // make sure we're visible
+            
+
+            // div.clientWidth // is the visible witdh
+
+            if ((centrePos + 50) > div.clientWidth) {  
+                // should scroll
+
+                var flexbox = div.parentNode;
+                if (valid(flexbox)){
+
+                    var leftPos = Math.max(0, (centrePos - 100)); // keep 100 pixels to the left
+                    if (flexbox.scrollLeft < leftPos){
+                        flexbox.scrollLeft = leftPos;
+                    }
+                }
+            } 
+
+
+            //var flexbox = div.parentNode;
+            //flexbox.scrollLeft = leftPos;
 
         }
 
@@ -260,6 +280,8 @@ class ImgHandler {
         }
 
         this.setCanvas = function (canvas){
+            this.fixCanvas(canvas);
+            /*
             if (valid(canvas)){
                 if(valid(this.img)){
                     var x_offset = this.img.offsetLeft;
@@ -290,7 +312,7 @@ class ImgHandler {
                 this.ctx.lineWidth = 2;
 
                 console.log("set canvas");
-            }
+            }*/
         }
 
         this.fixCanvas = function(camvas){
@@ -330,8 +352,8 @@ class ImgHandler {
                     var w = rectObject.right - rectObject.left;
                     //this.canvas.height = h;
                     //this.canvas.width = h * this.ratio;
-                    this.canvas.style.height = h;
-                    this.canvas.style.width = h * this.ratio;
+                    this.canvas.style.width = this.disp_w;//h * this.ratio;
+                    this.canvas.style.height = this.disp_h;//h;
                     this.canvas.style.position = "absolute";
                     this.canvas.style.left = 0;
                     this.canvas.style.top = 0;
@@ -478,6 +500,7 @@ class ImgHandler {
                 }
 
                 
+                div.scrollIntoView();
 
                 self = this;
                 
