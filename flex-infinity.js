@@ -256,7 +256,7 @@ class ImgHandler {
             this.invisibleCanvas.style.zIndex = -2;
             this.div.appendChild(this.invisibleCanvas);
             this.invisibleCanvas.scrollIntoView();
-            this.div.removeChild(this.invisibleCanvas);
+            //this.div.removeChild(this.invisibleCanvas);
             
         }
 
