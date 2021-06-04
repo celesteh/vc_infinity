@@ -253,7 +253,7 @@ class ImgHandler {
 
             var shouldScroll = false;
             var target;
-            var visibleWidth = this.div.parentNode.clientWidth;
+            var visibleWidth = window.innerWidth / 3; // this.div.parentNode.clientWidth;
 
             console.log("div width " + visibleWidth);
             
