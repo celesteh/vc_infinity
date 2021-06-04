@@ -20,6 +20,7 @@
 .img-overlay-container > img{
   margin-right: 0px;
 }
+.img-overlay-container::-webkit-scrollbar {    display: none;}
 
 /* flex */
 
