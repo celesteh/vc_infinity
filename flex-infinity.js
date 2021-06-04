@@ -262,7 +262,7 @@ class ImgHandler {
                 //Math.min(x, Math.max((this.div.clientWidth / 3), 100));
                 //this.leftMostPoint = x+third;
 
-                console.log("third is " + third);
+                console.log("target is " + target);
 
                 //div.scrollIntoView();
                 // make a dummy element and scroll to it
