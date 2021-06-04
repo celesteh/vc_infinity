@@ -253,6 +253,8 @@ class ImgHandler {
 
             var shouldScroll = false;
             var target;
+
+            console.log("div width " + this.div.clientWidth);
             
             if ((x+100) > this.leftMostPoint){
                 shouldScroll = true;
