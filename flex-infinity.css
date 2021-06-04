@@ -39,12 +39,32 @@
     display: flex;
     align-items: center;
     flex-flow: row wrap;
+    /*flex-direction: row;*/
+    flex: 0 1 auto;
+    flex-basis: auto;
+}
+
+.row > div {
+  /*max-width: 200px;
+  max-height: 200px;*/
+  flex-grow: 0;
+  flex-basis: auto;
+  max-width: 310px;
+  max-height: 160px;
+  object-fit: contain;
+}
+.sponsorimg {
+  display:flex;
+  object-fit: contain;
+  max-width: 300px;
+  max-height: 150px;
 }
 
 .logorow {
     max-width: 1000px;
     flex-flow: row wrap;
     min-width: 300px;
+    flex: initial;
 }
 
   
@@ -54,8 +74,17 @@
     flex-flow: row wrap;
     min-width: 100px;
     /*flex: 1 1 0px;*/
+    flex: initial;
 
 }
+
+.row > {
+  /*
+  flex: initial;
+  flex: 0 1 200px;
+*/
+}
+
 .flex-container {
     display: flex;
     align-items: stretch;
