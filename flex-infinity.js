@@ -485,7 +485,7 @@ class ImgHandler {
 
         this.fadeIn = function() {
 
-            this.active = true;
+            //this.active = true;
             this.fading = true;
 
             console.log("fadeIn ")

@@ -70,6 +70,7 @@
 
                 //handler.setCanvas(canvas);
                 target.appendChild(holder);
+                handler.fadeIn();
                 
                 images[record[2]] = handler;
             }
@@ -100,12 +101,16 @@
             //newImg.setUrl(newurl);
             if(valid(oldImg)){
                 oldImg.id("");
-                oldImg.fadeOut();
+                //oldImg.fadeOut();
+                newImg.fixCanvas(oldImg.canvas);
+                oldImg.active = false;
             }
 
             newImg.id("score");
-            newImg.fixCanvas(oldImg.canvas);
-            newImg.fadeIn();
+            
+            //newImg.fadeIn();
+            newImg.active = true;
+            //newImg.opacity = 1;
         }
 
         function mark_played(clip){
