@@ -242,7 +242,7 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
-            var third = Math.min(x, Math.max((div.clientWith / 3), 100));
+            var third = Math.min(x, Math.max((this.div.clientWidth / 3), 100));
             console.log("third is " + third);
 
             //div.scrollIntoView();
