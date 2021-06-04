@@ -593,6 +593,12 @@ class Ramp {
             return ((slope * elapsed) + this.start); // rise = slope * run
 
         };
+
+        this.setValue = function(value){
+            var d = new Date();
+            this.startTime = d.getTime();
+            this.start = value
+        }
     }
 }
 
