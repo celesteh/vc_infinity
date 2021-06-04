@@ -127,6 +127,7 @@ class ImgHandler {
         this.unused = true;
         this.fading = false;
         this.opacity = 0;
+        this.invisibleCanvas;
         
 
         this.setUrl = function(url) {
@@ -239,7 +240,7 @@ class ImgHandler {
         }
 
 
-        this.setScroll = function(x){
+        this.setScroll = function(x, y){
             //var x = elmnt.scrollLeft;
             var rectObject = this.div.getBoundingClientRect();
             var h = rectObject.bottom - rectObject.top;
@@ -254,7 +255,20 @@ class ImgHandler {
             
 
             // div.clientWidth // is the visible witdh
-
+            //div.scrollIntoView();
+            // make a dummy element and scroll to it
+            if(!valid(this.invisibleCanvas)){
+                this.invisibleCanvas = document.createElement('canvas');
+                this.invisibleCanvas.width = 1;
+                this.invisibleCanvas.height = 1;
+                div.appendChild(this.invisibleCanvas);
+            }
+            this.invisibleCanvas.style.position = "absolute";
+            this.invisibleCanvas.style.left = x;
+            this.invisibleCanvas.style.top = y;
+            this.invisibleCanvas.scrollIntiView();
+            //div.removeChild(invisible;)
+            
             if ((centrePos + 50) > div.clientWidth) {  
                 // should scroll
 
@@ -505,7 +519,7 @@ class ImgHandler {
                 }
 
                 
-                div.scrollIntoView();
+                
 
                 var self = this;
                 
