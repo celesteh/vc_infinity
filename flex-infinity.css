@@ -14,8 +14,11 @@
   position: relative;
   display:inline-block;
 }
+.img-overlay-container > div{
+  margin-right: 0px;
+}
 .img-overlay-container > img{
-
+  margin-right: 0px;
 }
 
 /* flex */

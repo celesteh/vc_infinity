@@ -486,11 +486,13 @@ class ImgHandler {
         this.fadeIn = function() {
 
             //this.active = true;
-            this.fading = true;
+            //this.fading = true;
 
             console.log("fadeIn ")
 
             if(valid(this.img)){
+
+                this.fading = true;
 
                 // bring it invisibly to the front
                 //this.img.class = "anchor-img playing-img";
@@ -505,7 +507,7 @@ class ImgHandler {
                 
                 div.scrollIntoView();
 
-                self = this;
+                var self = this;
                 
                 var fadefunc = function(){
                     var fading = false;
@@ -531,6 +533,11 @@ class ImgHandler {
                 }
 
                 setTimeout(fadefunc, 10);
+            } else {
+                //try again later
+                var self = this;
+                var delay = function() { self.fadeIn()};
+                setTimeout(delay, 500);
             }
         }
 
