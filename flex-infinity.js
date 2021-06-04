@@ -323,11 +323,11 @@ class ImgHandler {
 
                     div.appendChild(canvas);
                     
-                    var rectObject = this.div.getBoundingClientRect();
+                    var rectObject = this.img.getBoundingClientRect();
                     var h = rectObject.bottom - rectObject.top;
                     var w = rectObject.right - rectObject.left;
-                    this.canvas.height = h;
-                    this.canvas.width = h * this.ratio;
+                    //this.canvas.height = h;
+                    //this.canvas.width = h * this.ratio;
                     this.canvas.style.height = h;
                     this.canvas.style.width = h * this.ratio;
                     this.canvas.style.position = "absolute";
