@@ -241,20 +241,7 @@ class ImgHandler {
 
 
         this.setScroll = function(x, y){
-            //var x = elmnt.scrollLeft;
-            //var rectObject = this.div.getBoundingClientRect();
-            //var h = rectObject.bottom - rectObject.top;
-            //var w = rectObject.right - rectObject.left;
 
-            //var xratio = x/this.width;
-            //var inImg = xratio * this.disp_w;
-            //var centrePos = rectObject.left + inImg;
-            
-
-            // make sure we're visible
-            
-
-            // div.clientWidth // is the visible witdh
             //div.scrollIntoView();
             // make a dummy element and scroll to it
             if(!valid(this.invisibleCanvas)){
@@ -269,23 +256,6 @@ class ImgHandler {
             this.invisibleCanvas.scrollIntoView();
             //div.removeChild(invisible;)
             
-            if ((centrePos + 50) > div.clientWidth) {  
-                // should scroll
-
-                var flexbox = div.parentNode;
-                if (valid(flexbox)){
-
-                    var leftPos = Math.max(0, (centrePos - 100)); // keep 100 pixels to the left
-                    if (flexbox.scrollLeft < leftPos){
-                        flexbox.scrollLeft = leftPos;
-                    }
-                }
-            } 
-
-
-            //var flexbox = div.parentNode;
-            //flexbox.scrollLeft = leftPos;
-
         }
 
         this.setXVisible = function (x){
