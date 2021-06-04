@@ -142,7 +142,9 @@ class ImgHandler {
                     //self.ratio = self.width / self.height;
 
                     // set size and location based on the holder
-                    self.img.classList.add ("arr-img anchor-img");
+                    self.img.classList.add ("arr-img")
+                    self.img.classList.add("anchor-img");
+                    
                     self.img.height = self.disp_w;
                     self.img.width = self.disp_h;
                     //var x_offset = self.div.offsetLeft;
