@@ -90,7 +90,7 @@ function getNRandSortedExcluding(audio_json, n, excluded){
         picked = audio_json[index];
         if (!excluded.includes(picked)){
             arr.push(picked);
-        } else {console.log("already present");}
+        } //else {console.log("already present");}
         tries++;
     };
 
@@ -242,7 +242,8 @@ class ImgHandler {
 
         this.setScroll = function(x, y){
 
-            var third = Math.min(x, Math.max(div.clientWith / 3, 100));
+            var third = Math.min(x, Math.max((div.clientWith / 3), 100));
+            console.log("third is " + third);
 
             //div.scrollIntoView();
             // make a dummy element and scroll to it
@@ -358,7 +359,7 @@ class ImgHandler {
                 this.ctx.strokeStyle = 'red';
                 this.ctx.lineWidth = 2;
 
-                console.log("fix canvas");
+                //console.log("fix canvas");
 
                 // dont's squish the div
                 this.div.style.width = this.disp_w;
@@ -437,7 +438,7 @@ class ImgHandler {
         this.fadeOut = function() {
             this.active = false;
             this.fading = true;
-            console.log("fadeOut");
+            //console.log("fadeOut");
             if(valid(this.img)){
                 self = this;
                 var fadefunc = function(){
@@ -468,7 +469,7 @@ class ImgHandler {
                     }
                     
                 }
-                setTimeout(fadefunc, 10);
+                //setTimeout(fadefunc, 10); Don't fade
             }
         }
 
@@ -477,7 +478,7 @@ class ImgHandler {
             //this.active = true;
             //this.fading = true;
 
-            console.log("fadeIn ")
+            //console.log("fadeIn ")
 
             if(valid(this.img)){
 
@@ -747,10 +748,10 @@ class AudioClip {
                         if (typeof self.whenFinished == "function"){
                             self.whenFinished();
                         } else {
-                            console.log("whenfinished is a " + typeof self.whenfinished);
+                            //console.log("whenfinished is a " + typeof self.whenfinished);
                         }
                     }
-                } else { console.log("looping");
+                } else { //console.log("looping");
                     // shake things up a bit
                     self.howl.rate(rrand(0.9, 1.1));
     
@@ -759,7 +760,7 @@ class AudioClip {
                     self.howl.loop(self.loop);
                 }
             }else {
-                console.log("not valid");
+                //console.log("not valid");
             }
         });
         
