@@ -6,36 +6,22 @@
     <title>Constructing Infinity</title>
     <link rel="stylesheet" href="upload/bootstrap.css">
     <link rel="stylesheet" href="flex-infinity.css">
-    <style>
-#myCanvas
-{
-    pointer-events: none;       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
-    position:absolute;
-    z-index: 2;
-}
-
-
-    </style>
+    <script type="text/javascript" src="navbar.js"></script>
+    <script>
+         function init() {
+            // load any external html
+            includeHTML();
+            //style the nav bar
+            navStyle();
+         }
+    </script>
 </head>
-<body class="player-body">
+<body class="player-body" onload="init();">
     <div class="page-header">
     <h1>About Constructing Infinity</h1>
     </div>
-    <nav class="navbar navbar-default" id="myTopnav">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="./">Home</a></li>
-                <!--<li><a href="https://vocalconstructivists.com">Vocal Constructivists</a></li>-->
-                <li><a href="about.html">About</a></li>
-                <li><a href="credits.html">Credits</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            
-                <li><a href="./upload">Contributor Login</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div>
+    <nav w3-include-html="user-nav.html" id = "myTopnav" class="navbar navbar-default" ></nav>
+     <div>
         <h1>Online Festival</h1>
         <p>Come to the launch event associated with this project!
             <A href="https://m.vocalconstructivists.com/2021/04/through-the-square-window-an-online-festival/">More infromation</A>.</p>
