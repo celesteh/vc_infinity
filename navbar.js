@@ -29,5 +29,7 @@ function includeHTML() {
   function navStyle(){
       var nav = document.getElementById("myTopnav");
       nav.className = "navbar";
-      nav.classList = ["navbar", "navbar-default"];
+      if(valid(nav.classList)){
+          nav.classList.add("navbar-default");
+      }
   }
