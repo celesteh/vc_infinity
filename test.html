@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Constructing Infinity</title>
     <link rel="stylesheet" href="upload/bootstrap.css">
-    <link rel="stylesheet" href="flex-infinity.css">
+    <link rel="stylesheet" href="test-infinity.css">
     <style>
 
 
@@ -40,6 +40,8 @@
         var imgh = 0;
         var target;
         var canvas;
+        var loadingDiv;
+        var shouldClearLoadingDiv=false;
 
         var img_prefix = "score_pages/600/";
 
@@ -160,6 +162,11 @@
                        
                         
                         if (active.loaded()){
+                            if(shouldClearLoadingDiv){
+                                loadingDiv.innerHTML = "";
+                                shouldClearLoadingDiv = false;
+                            }
+                            
                             var denseness = density.value();
                             var dur = active.dur;  // was dur()
                             var panspread = linlin(denseness, 3.0, 5.0, 0.5, 0.78);
@@ -341,6 +348,8 @@
                 playing = true;
                 //var img =  document.getElementById("score1");
                 //img.style.opacity = 0;
+                loadingDiv.innerHTML = "Loading . . .";
+                shouldClearLoadingDiv = true;
                 
                 loadaudio(panels.shift());
                 setTimeout(player, 500);
@@ -363,6 +372,7 @@
             // initialise some variables
             target = document.getElementById("scores");
             density_slider = document.getElementById("density");
+            loadingDiv = document.getElementById("loading");
  
             play_stuff();
         }
@@ -382,6 +392,7 @@
         <!/form>
     </div>
     <div class="flex-scores" id="scores">
+        <div class="loading" id="loading"></div></div>
     </div>
 </div>
 </body>
