@@ -27,7 +27,7 @@ function includeHTML() {
   };
 
   function navStyle(){
-      var nav = document.getElementById("topnav");
+      var nav = document.getElementById("myTopnav");
       nav.className = "navbar";
       nav.classList = ["navbar", "navbar-default"];
   }
