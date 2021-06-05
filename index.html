@@ -13,6 +13,7 @@
     </style>
         <script type="text/javascript" src="howler/howler.js/dist/howler.js"></script>
        <script type="text/javascript" src="flex-infinity.js"></script>
+       <script type="text/javascript" src="navbar.js"></script>
     <script>
 
 
@@ -354,18 +355,13 @@
         }
 
         function init() {
-            // resize the canvas to fit the image
-            //var img =  document.getElementById("score1");
-            //var canvas = document.getElementById("myCanvas");
-            //var con = document.getElementById("con");
-            //canvas.height = img.clientHeight;
-            //con.height = img.clientHeight;
-            //con.className="bordered";
+            // load any external html
+            includeHTML();
+            //style the nav bar
+            navStyle();
+
+            // initialise some variables
             target = document.getElementById("scores");
-
-            //imgh = canvas.clientHeight;
-
-
             density_slider = document.getElementById("density");
  
             play_stuff();
@@ -377,20 +373,7 @@
     <div class="page-header">
         <h1>Constructing Infinity</h1>
     </div>
-    <nav class="navbar navbar-default" id="myTopnav">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="./">Home</a></li>
-                <li><a href="https://m.vocalconstructivists.com/2021/04/through-the-square-window-an-online-festival/">Online Festival Information</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="credits.html">Credits</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            
-                <li><a href="./upload">Contributor Login</a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav w3-include-html="user-nav.html" id = "myTopnav" class="navbar navbar-default" ></nav>
     <div class="flex-controls"><!form>
         <div><input type="button" VALUE="Play" onClick="start();"></div>
         <div><input type="button" VALUE="Stop" onClick="stop();"></div>

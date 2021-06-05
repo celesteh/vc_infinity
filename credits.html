@@ -7,17 +7,10 @@
     <link rel="stylesheet" href="upload/bootstrap.css">
     <link rel="stylesheet" href="flex-infinity.css">
     <style>
-#myCanvas
-{
-    pointer-events: none;       /* make the canvas transparent to the mouse - needed since canvas is position infront of image */
-    position:absolute;
-    z-index: 2;
-}
-
 
     </style>
     <script type="text/javascript" src="user-infinity.js"></script>  
-
+    <script type="text/javascript" src="navbar.js"></script>
 <script>
     function alphabatise(users){
         var keys = Object.keys(users);
@@ -38,85 +31,84 @@
     }
 
     function make_artist_list(){
-    //var ul = document.createElement('ul');
-    //document.getElementById('tags').appendChild(ul);
-    loadJSON('json/artists.json',
-         function(artists) { //console.log(artists); 
+        //var ul = document.createElement('ul');
+        //document.getElementById('tags').appendChild(ul);
+        loadJSON('json/artists.json',
+            function(artists) { //console.log(artists); 
 
-            keys = alphabatise(artists);
-            var ul = document.getElementById("people");
-   
-            //$.each(tags, function(key, value) {
-            var value;
-            keys.forEach((key) => {
-                value = artists[key];
-                //console.log('stuff : ' + key + ", " + value);
-                var li = document.createElement('li');
-                var name = value[0];
-                var url = value[1];
-                name = name.trim();
+                keys = alphabatise(artists);
+                var ul = document.getElementById("people");
+    
+                //$.each(tags, function(key, value) {
+                var value;
+                keys.forEach((key) => {
+                    value = artists[key];
+                    //console.log('stuff : ' + key + ", " + value);
+                    var li = document.createElement('li');
+                    var name = value[0];
+                    var url = value[1];
+                    name = name.trim();
 
-                var url_defined = (typeof url != 'undefined');
-                if (url_defined){
-                    url = url.trim();
-                    if (url.length < 1){
-                        url_defined = false;
+                    var url_defined = (typeof url != 'undefined');
+                    if (url_defined){
+                        url = url.trim();
+                        if (url.length < 1){
+                            url_defined = false;
+                        }
                     }
-                }
 
-                if (!url_defined){
-                    // no url provided
-                    li.innerHTML += name;
-                } else {
-                
-                    var a = document.createElement('a'); 
-                  
-                    // Create the text node for anchor element.
-                    var link = document.createTextNode(name);
+                    if (!url_defined){
+                        // no url provided
+                        li.innerHTML += name;
+                    } else {
                     
-                    // Append the text node to anchor element.
-                    a.appendChild(link); 
+                        var a = document.createElement('a'); 
                     
-                    // Set the title.
-                    a.title = name; 
-                    
-                    // Set the href property.
-                    a.href = url;
+                        // Create the text node for anchor element.
+                        var link = document.createTextNode(name);
+                        
+                        // Append the text node to anchor element.
+                        a.appendChild(link); 
+                        
+                        // Set the title.
+                        a.title = name; 
+                        
+                        // Set the href property.
+                        a.href = url;
 
-        
-                    
-                    // Append the anchor element to the list item
-                    li.appendChild(a);
-                }
-   
-                ul.appendChild(li);
+            
+                        
+                        // Append the anchor element to the list item
+                        li.appendChild(a);
+                    }
+    
+                    ul.appendChild(li);
 
-            });
-        },
-        function(xhr) { console.error(xhr); }
-    );
+                });
+            },
+            function(xhr) { console.error(xhr); }
+        );
+    };
 
-}
+
+
+
+    function init() {
+            // load any external html
+            includeHTML();
+            //style the nav bar
+            navStyle();
+            // credits list
+            make_artist_list();
+         }
 </script>
    
 </head>
-<body  onload="make_artist_list();" class="player-body">
+<body  onload="init();" class="player-body">
     <div class="page-header">
         <h1>Credits</h1>
     </div>
-    <nav class="navbar navbar-default" id="myTopnav">
-        <div class="container-fluid">
-            <ul class="nav navbar-nav">
-                <li><a href="./">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="credits.html">Credits</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-            
-                <li><a href="./upload">Contributor Login</a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav w3-include-html="user-nav.html" id = "myTopnav" class="navbar navbar-default" ></nav>
     <h2>Constructing Infinity</h2>
     <!div class="flex-container">
         
