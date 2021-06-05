@@ -34,6 +34,15 @@
   
 }
 
+.loading {
+  position:absolute;
+  z-index: 150;
+  opacity:1;
+  object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+}
+
 
 .row {
     display: flex;
