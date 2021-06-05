@@ -1,5 +1,6 @@
 # vc_infinity
 Constructing Infinity - an algorithmic realisation of the Metaphysics of Notation by Mark Applebaum
+You can see and hear this running at https://infinity.vocalconstructivists.com/
 
 To run this you will need to copy upload/config-example.php to upload/config.php and fill in your own database details.
 
