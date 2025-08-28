@@ -1,3 +1,5 @@
+moved to codeberg: https://codeberg.org/celesteh/vc_infinity
+
 # vc_infinity
 Constructing Infinity - an algorithmic realisation of the Metaphysics of Notation by Mark Applebaum
 You can see and hear this running at https://infinity.vocalconstructivists.com/
